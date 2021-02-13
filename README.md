@@ -14,8 +14,8 @@ One stop destination for showcasing the community you have built.
 
 A firebase account is already created, but you will not have the access to it.
 
-- To create your own firebase instance, [create a firebase project]('https://firebase.google.com/docs/web/setup')
-- Now change it to provide your firebase credentials [here]('https://github.com/codeforcauseorg/Code-for-cause-Leaders/blob/master/src/services/authService.js#L8-LL13')
+- To create your own firebase instance, [create a firebase project](https://firebase.google.com/docs/web/setup)
+- Now change it to provide your firebase credentials [here](https://github.com/codeforcauseorg/Code-for-cause-Leaders/blob/master/src/services/authService.js#L8-LL13)
 
 ## Build Setup
 
