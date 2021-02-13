@@ -9,7 +9,6 @@ import Events from './Events';
 import Hero from './Hero';
 import MentorExperience from './MentorExperience';
 
-
 const useStyles = makeStyles(() => ({
   root: {}
 }));

@@ -4,8 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import LoadingScreen from 'src/components/LoadingScreen';
 import MainLayout from 'src/layouts/MainLayout';
 import HomeView from 'src/views/pages/HomeView';
-import Error404View from 'src/views/pages/Error404View'
-
+import Error404View from 'src/views/pages/Error404View';
 
 const renderRoutes = () => (
   <Suspense fallback={<LoadingScreen />}>
@@ -19,11 +18,7 @@ const renderRoutes = () => (
           </MainLayout>
         )}
       />
-      <Route
-        path="*"
-        exact
-        render={() => <Error404View />}
-      />
+      <Route path="*" exact render={() => <Error404View />} />
     </Switch>
   </Suspense>
 );

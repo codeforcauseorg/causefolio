@@ -6,9 +6,9 @@ import firebase from 'firebase';
 class AuthService {
   // Configure Firebase.
   config = {
-    apiKey: "AIzaSyBogaqI7q74Wml7AD90VVm_89o1cgFFQCo",
-    authDomain: "code-for-cause-leaders.firebaseapp.com",
-    projectId: "code-for-cause-leaders",
+    apiKey: 'AIzaSyBogaqI7q74Wml7AD90VVm_89o1cgFFQCo',
+    authDomain: 'code-for-cause-leaders.firebaseapp.com',
+    projectId: 'code-for-cause-leaders'
     // ...
   };
 
@@ -16,9 +16,7 @@ class AuthService {
   uiConfig = {
     // Popup signin flow rather than redirect flow.
     signInFlow: 'popup',
-    signInOptions: [
-      firebase.auth.GoogleAuthProvider.PROVIDER_ID
-    ],
+    signInOptions: [firebase.auth.GoogleAuthProvider.PROVIDER_ID],
     callbacks: {
       // Avoid redirects after sign-in.
       signInSuccessWithAuthResult: () => false
