@@ -45,7 +45,7 @@
     "@mui-treasury/styles": "^1.13.0",
     "@react-pdf/renderer": "^1.6.8",
     "apexcharts": "^3.18.0",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "axios-mock-adapter": "^1.17.0",
     "change-case": "^4.1.1",
     "chart.js": "^2.9.3",
