@@ -1,4 +1,4 @@
-## Code for Cause Leaders website
+# CauseFolio
 
 One stop destination for showcasing the community you have built.
 
@@ -47,3 +47,15 @@ npm run build
     |   ├── index.js            # starting point
     │   └── ...
     └── ...
+
+## Contributors✨
+<table>
+<tr>
+<td align="center"><a href="https://github.com/kunal-kushwaha"><img src="https://avatars.githubusercontent.com/u/42698533?s=100" width="100px;" alt=""  style="border-radius: 50px" /><br /><sub><b>Kunal Kushwaha</b></sub></a><br /><p>Project Head</p></td>
+
+<td align="center"><a href="https://github.com/Abhishek-kumar09"><img src="https://avatars.githubusercontent.com/Abhishek-kumar09?s=100" width="100px;" alt=""  style="border-radius: 50px" /><br /><sub><b>Abhishek Kumar</b></sub></a><br /><p>Maintainer</p></td>
+
+<td align="center"><a href="https://github.com/SHITIZ-AGGARWAL"><img src="https://avatars.githubusercontent.com/SHITIZ-AGGARWAL?s=100" width="100px;" alt=""  style="border-radius: 50px" /><br /><sub><b>Shitiz Aggarwal</b></sub></a><br /><p>Designer, Frontend</p></td>
+
+</tr>
+</table>
