@@ -49,6 +49,7 @@ npm run build
     └── ...
 
 ## Contributors✨
+
 <table>
 <tr>
 <td align="center"><a href="https://github.com/kunal-kushwaha"><img src="https://avatars.githubusercontent.com/u/42698533?s=100" width="100px;" alt=""  style="border-radius: 50px" /><br /><sub><b>Kunal Kushwaha</b></sub></a><br /><p>Project Head</p></td>

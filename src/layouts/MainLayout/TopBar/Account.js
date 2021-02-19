@@ -133,7 +133,10 @@ function Account() {
             className={classes.button}
             onClick={handleLoginOpen}
             style={{
-              textTransform: 'capitalize'
+              backgroundColor: '#ffffff',
+              color: '#291755',
+              borderRadius: '20px',
+              fontWeight: 'bolder'
             }}
           >
             {user === undefined ? (
