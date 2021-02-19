@@ -136,13 +136,13 @@ function Account() {
               backgroundColor: '#ffffff',
               color: '#291755',
               borderRadius: '20px',
-              fontWeight: 'bolder'
+              fontWeight: 800
             }}
           >
             {user === undefined ? (
               <CircularProgress size="24px" color="inherit" />
             ) : (
-              <Typography variant="h6">Login</Typography>
+              <Typography variant="h5">Login</Typography>
             )}
           </Button>
         )}

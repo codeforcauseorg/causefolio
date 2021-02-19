@@ -15,8 +15,6 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: '#291755',
     paddingTop: 80,
     paddingBottom: 60,
-    paddingLeft: 70,
-    paddingRight: 70,
     color: '#FFFFFF',
     height: '90vh',
     [theme.breakpoints.down('md')]: {
@@ -25,7 +23,6 @@ const useStyles = makeStyles(theme => ({
     }
   },
   extraPadding: {
-    padding: '0 70px 0px 0px',
     // [theme.breakpoints.down('md')]: {
     //   padding: '0 30px'
     // },
@@ -69,28 +66,35 @@ function Hero({ className, ...rest }) {
           left: '0'
         }}
       />
-      <Container maxWidth="lg">
-        <Grid container spacing={3}>
-          <Grid item xs={12} md={6} style={{ zIndex: '20' }}>
+      <Container maxWidth="lg" style={{ paddingTop: '40px' }}>
+        <Grid container spacing={0}>
+          <Grid item xs={10} md={5} style={{ zIndex: '20' }}>
             <Box
               display="flex"
               flexDirection="column"
               justifyContent="center"
               height="100%"
+              width="100%"
               className={clsx(classes.extraPadding, className)}
             >
               <Typography
                 variant="h1"
                 color="#fff"
-                style={{ fontWeight: '1000' }}
+                style={{
+                  fontWeight: 800,
+                  fontSize: '40px'
+                }}
               >
                 Code for Cause
               </Typography>
-              <Box mt={6}>
+              <Box mt={2}>
                 <Typography variant="body1">
-                  An initiative to help the community by providing training,
-                  guidance and awareness about the possibilities in the software
-                  field to students &amp; professionals.
+                  An initiative to contribute to Open Source
+                  <br />
+                  community by providing training, guidance
+                  <br /> and awareness about the possibilities in the
+                  <br />
+                  software field to students &amp; professionals.
                 </Typography>
               </Box>
               <Box mt={2}>
@@ -108,7 +112,7 @@ function Hero({ className, ...rest }) {
                           backgroundColor: '#ffffff',
                           color: '#B20000',
                           textTransform: 'capitalize',
-                          fontWeight: '700',
+                          fontWeight: 700,
                           borderRadius: '20px'
                         }}
                         component="a"
@@ -125,14 +129,20 @@ function Hero({ className, ...rest }) {
             </Box>
           </Grid>
 
-          <Grid item xs={12} md={6}>
+          <Grid item xs={14} md={7}>
             <Box position="relative">
               {/* <div className={classes.shape}>
                 <img alt="Shapes" src="/static/home/shapes.svg" />
               </div> */}
 
               <div className={classes.image}>
-                <img alt="codeforcauseimg" src="/static/home/illus-1.svg" />
+                <img
+                  alt="codeforcauseimg"
+                  src="/static/home/illus-1.svg"
+                  style={{
+                    width: '100%'
+                  }}
+                />
               </div>
             </Box>
           </Grid>
