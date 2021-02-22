@@ -52,21 +52,20 @@ const useStyles = makeStyles(theme => ({
 function Hero({ className, ...rest }) {
   const classes = useStyles();
   return (
-    <div
-      className={clsx(classes.root, className)}
-      {...rest}
-      style={{ position: 'relative' }}
-    >
-      <img
-        src="/static/home/blob.svg"
-        alt="blob"
-        style={{
-          position: 'absolute',
-          top: '-10%',
-          left: '0'
-        }}
-      />
-      <Container maxWidth="lg" style={{ paddingTop: '40px' }}>
+    <div className={clsx(classes.root, className)} {...rest}>
+      <Container
+        maxWidth="lg"
+        style={{ paddingTop: '40px', position: 'relative' }}
+      >
+        <img
+          src="/static/home/blob.svg"
+          alt="blob"
+          style={{
+            position: 'absolute',
+            top: '-20%',
+            left: '-4%'
+          }}
+        />
         <Grid container spacing={0}>
           <Grid item xs={10} md={5} style={{ zIndex: '20' }}>
             <Box
