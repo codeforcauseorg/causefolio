@@ -23,8 +23,7 @@ import { HashLink as Link } from 'react-router-hash-link';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    zIndex: theme.zIndex.drawer + 100,
-    backgroundColor: theme.palette.background.default,
+    backgroundColor: '#291755',
     paddingLeft: 70,
     paddingRight: 70,
     [theme.breakpoints.down('md')]: {
