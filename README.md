@@ -58,6 +58,7 @@ npm run build
 
 <td align="center"><a href="https://github.com/SHITIZ-AGGARWAL"><img src="https://avatars.githubusercontent.com/SHITIZ-AGGARWAL?s=100" width="100px;" alt=""  style="border-radius: 50px" /><br /><sub><b>Shitiz Aggarwal</b></sub></a><br /><p>Designer, Frontend</p></td>
 
+<td align="center"><a href="https://github.com/mindninjaX"><img src="https://avatars.githubusercontent.com/mindninjaX?s=100" width="100px;" alt=""  style="border-radius: 50px" /><br /><sub><b>Rishabh Singh</b></sub></a><br /><p>UI/UX Designer</p></td>
 <td align="center"><a href="https://github.com/AdityaTeltia"><img src="https://avatars.githubusercontent.com/AdityaTeltia?s=100" width="100px;" alt=""  style="border-radius: 50px" /><br /><sub><b>Aditya Teltia</b></sub></a><br /><p>Contributor</p></td>
 
 </tr>
