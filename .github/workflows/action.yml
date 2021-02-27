@@ -1,0 +1,26 @@
+name: 'Verify commit'
+description: 'Verify the authenticity of your commits with CodeNotary.io'
+
+inputs:
+  signerID:
+    description: 'List of SignerID(s) (separated by space) to authenticate against'
+    required: false
+  org:
+    description: "Organization's ID to authenticate against"
+    required: false
+  path:
+    description: 'Default to the current directory'
+    required: false
+    default: '.'
+
+runs:
+  using: 'docker'
+  image: 'docker://codenotary/vcn:0.7'
+  args: ['a', 'git://${{ inputs.path }}']
+  env:
+    VCN_SIGNERID: ${{ inputs.signerID }}
+    VCN_ORG: ${{ inputs.org }}
+
+branding:
+  icon: 'check'
+  color: blue
