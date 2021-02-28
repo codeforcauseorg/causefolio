@@ -75,10 +75,20 @@ const useStyles = makeStyles(theme => ({
     fontWeight: 'bold',
     fontSize: '18px',
     background: 'linear-gradient(180deg, #5731BA 0%, #291757 100%)'
+  },
+  cross: {
+    position: 'absolute',
+    width: '12px',
+    height: '12px',
+    right: '18px',
+    top: '18px',
+    '&:hover': {
+      cursor: 'pointer'
+    }
   }
 }));
 
-export default function Login() {
+export default function Login({ handleClose }) {
   const classes = useStyles();
 
   return (
@@ -112,6 +122,11 @@ export default function Login() {
           </Typography>
         </div>
         <Button className={classes.button}>Login</Button>
+        <img
+          src="/static/images/icons/cross.svg"
+          className={classes.cross}
+          onClick={handleClose}
+        />
       </CardContent>
     </Card>
   );
