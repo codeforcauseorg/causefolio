@@ -6,7 +6,6 @@ import PersonIcon from '@material-ui/icons/Person';
 import {
   Typography,
   Dialog,
-  DialogContent,
   Button,
   Box,
   Avatar,
@@ -16,8 +15,6 @@ import {
   CircularProgress,
   makeStyles
 } from '@material-ui/core';
-import authService from 'src/services/authService';
-import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import { login, dismissLogin, logout } from 'src/actions/accountActions';
 import Login from 'src/components/Login';
 

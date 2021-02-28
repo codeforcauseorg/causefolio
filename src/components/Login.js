@@ -126,6 +126,7 @@ export default function Login({ handleClose }) {
           src="/static/images/icons/cross.svg"
           className={classes.cross}
           onClick={handleClose}
+          alt="cross icon"
         />
       </CardContent>
     </Card>
