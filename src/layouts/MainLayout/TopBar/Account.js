@@ -19,6 +19,7 @@ import {
 import authService from 'src/services/authService';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import { login, dismissLogin, logout } from 'src/actions/accountActions';
+import Login from 'src/components/Login';
 
 const useStyles = makeStyles(theme => ({
   button: {
@@ -148,49 +149,12 @@ function Account() {
         )}
 
         <Dialog
+          maxWidth
           open={!user && !!loginFlag}
           onClose={handleClose}
           aria-labelledby="form-dialog-title"
         >
-          <DialogContent
-            style={{
-              background: '#E2E9FF'
-            }}
-          >
-            <Box
-              display="flex"
-              flexDirection="column"
-              alignItems="center"
-              justifyContent="center"
-              mt={2}
-              mb={2}
-            >
-              <Typography
-                variant="h3"
-                style={{
-                  marginBottom: '8px'
-                }}
-              >
-                Login / Sign Up
-              </Typography>
-
-              <Typography variant="body2">Explore learning with</Typography>
-
-              <Typography
-                variant="body2"
-                style={{
-                  marginBottom: '12px'
-                }}
-              >
-                Open Source
-              </Typography>
-
-              <StyledFirebaseAuth
-                uiConfig={authService.uiConfig}
-                firebaseAuth={authService.firebase.auth()}
-              />
-            </Box>
-          </DialogContent>
+          <Login handleClose={handleClose} />
         </Dialog>
 
         <Menu
