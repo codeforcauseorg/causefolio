@@ -21,6 +21,11 @@ import Login from 'src/components/Login';
 const useStyles = makeStyles(theme => ({
   button: {
     minWidth: '120px'
+  },
+  dialog: {
+    '& .MuiDialog-paper': {
+      borderRadius: '20px'
+    }
   }
 }));
 
@@ -150,6 +155,7 @@ function Account() {
           open={!user && !!loginFlag}
           onClose={handleClose}
           aria-labelledby="form-dialog-title"
+          className={classes.dialog}
         >
           <Login handleClose={handleClose} />
         </Dialog>

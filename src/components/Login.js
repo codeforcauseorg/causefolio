@@ -110,9 +110,9 @@ export default function Login({ handleClose }) {
           please login to your account
         </Typography>
         <Typography>Email Id</Typography>
-        <input className={classes.input} variant="outlined" />
+        <input className={classes.input} type="email" variant="outlined" />
         <Typography>Password</Typography>
-        <input className={classes.input} variant="outlined" />
+        <input className={classes.input} type="password" variant="outlined" />
         <Divider className={classes.divider} />
         <div className={classes.bottomPart}>
           <Checkbox className={classes.checkbox} />
