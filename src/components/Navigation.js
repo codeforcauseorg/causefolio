@@ -56,6 +56,16 @@ export default function PermanentDrawerLeft() {
     fontSize: '25px',
     letterSpacing: '2px'
   };
+
+  const navItems = [
+    'Dashboard',
+    'Profiles',
+    'Events',
+    'Blogs',
+    'Settings',
+    'Log out'
+  ];
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -77,15 +87,8 @@ export default function PermanentDrawerLeft() {
         style={drawerStyle}
       >
         <List>
-          {[
-            'Dashboard',
-            'Profiles',
-            'Events',
-            'Blogs',
-            'Settings',
-            'Log out'
-          ].map((text, index) => (
-            <ListItem button key={text} style={{ paddingLeft: '20%' }}>
+          {navItems.map((text, index) => (
+            <ListItem button key={index} style={{ paddingLeft: '20%' }}>
               <ListItemText
                 disableTypography
                 primary={
