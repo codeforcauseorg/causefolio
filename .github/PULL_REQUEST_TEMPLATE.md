@@ -8,7 +8,6 @@
 
 Fixes # [ISSUE]
 
-
 ### Type of Change:
 
 <!--- **Delete irrelevant options.** --->
@@ -20,14 +19,13 @@ Fixes # [ISSUE]
 - Testing
 
 **Code/Quality Assurance Only**
+
 - Bug fix (non-breaking change which fixes an issue)
 - This change requires a documentation update (software upgrade on readme file)
-
 
 ### How Has This Been Tested?
 
 <!-- Describe the tests you ran to verify your changes. Provide instructions or GIFs so we can reproduce. List any relevant details for your test. -->
-
 
 ### Checklist:
 
@@ -42,7 +40,7 @@ Fixes # [ISSUE]
 - [ ] My changes generate no new warnings
 - [ ] I have added tests to cover my changes
 - [ ] All new and existing tests passed
-<!-- For UI changes -->
+  <!-- For UI changes -->
 - [ ] My UI is responsive
 - [ ] UI made replicates the design provided
 
