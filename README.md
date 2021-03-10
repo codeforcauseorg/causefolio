@@ -52,14 +52,15 @@ npm run build
 
 <table>
 <tr>
-<td align="center"><a href="https://github.com/kunal-kushwaha"><img src="https://avatars.githubusercontent.com/u/42698533?s=100" width="100px;" alt=""  style="border-radius: 50px" /><br /><sub><b>Kunal Kushwaha</b></sub></a><br /><p>Project Head</p></td>
+<td align="center"><a href="https://github.com/kunal-kushwaha"><img src="https://avatars.githubusercontent.com/u/42698533?s=100" width="100px;" alt="" /><br /><sub><b>Kunal Kushwaha</b></sub></a><br /><p>Project Head</p></td>
 
-<td align="center"><a href="https://github.com/Abhishek-kumar09"><img src="https://avatars.githubusercontent.com/Abhishek-kumar09?s=100" width="100px;" alt=""  style="border-radius: 50px" /><br /><sub><b>Abhishek Kumar</b></sub></a><br /><p>Maintainer</p></td>
+<td align="center"><a href="https://github.com/Abhishek-kumar09"><img src="https://avatars.githubusercontent.com/Abhishek-kumar09?s=100" width="100px;" alt="" /><br /><sub><b>Abhishek Kumar</b></sub></a><br /><p>Maintainer</p></td>
 
-<td align="center"><a href="https://github.com/SHITIZ-AGGARWAL"><img src="https://avatars.githubusercontent.com/SHITIZ-AGGARWAL?s=100" width="100px;" alt=""  style="border-radius: 50px" /><br /><sub><b>Shitiz Aggarwal</b></sub></a><br /><p>Designer, Frontend</p></td>
+<td align="center"><a href="https://github.com/SHITIZ-AGGARWAL"><img src="https://avatars.githubusercontent.com/SHITIZ-AGGARWAL?s=100" width="100px;" alt="" /><br /><sub><b>Shitiz Aggarwal</b></sub></a><br /><p>Designer, Frontend</p></td>
 
-<td align="center"><a href="https://github.com/mindninjaX"><img src="https://avatars.githubusercontent.com/mindninjaX?s=100" width="100px;" alt=""  style="border-radius: 50px" /><br /><sub><b>Rishabh Singh</b></sub></a><br /><p>UI/UX Designer</p></td>
-<td align="center"><a href="https://github.com/AdityaTeltia"><img src="https://avatars.githubusercontent.com/AdityaTeltia?s=100" width="100px;" alt=""  style="border-radius: 50px" /><br /><sub><b>Aditya Teltia</b></sub></a><br /><p>Contributor</p></td>
+<td align="center"><a href="https://github.com/mindninjaX"><img src="https://avatars.githubusercontent.com/mindninjaX?s=100" width="100px;" alt="" /><br /><sub><b>Rishabh Singh</b></sub></a><br /><p>UI/UX Designer</p></td>
+<td align="center"><a href="https://github.com/AdityaTeltia"><img src="https://avatars.githubusercontent.com/AdityaTeltia?s=100" width="100px;" alt="" /><br /><sub><b>Aditya Teltia</b></sub></a><br /><p>Contributor</p></td>
+<td align="center"><a href="https://github.com/mdPial"><img src="https://avatars.githubusercontent.com/mdPial?s=100" width="100px;" alt="" /><br /><sub><b>Md. Pial Ahamed</b></sub></a><br /><p>Contributor</p></td>
 
 </tr>
 </table>
