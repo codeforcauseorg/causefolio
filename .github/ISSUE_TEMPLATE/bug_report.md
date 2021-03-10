@@ -18,7 +18,9 @@ A clear description of what the actual behavior is.
 
 ## Steps to Reproduce the Problem
 
-1. 2. 3.
+1.
+2.
+3.
 
 ## Specifications
 

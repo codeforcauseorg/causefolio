@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Logo1 from './Logo1';
-import Stats from './Stats'
+import Stats from './Stats';
 
 const drawerWidth = 300;
 
@@ -104,7 +104,7 @@ export default function PermanentDrawerLeft() {
       </div>
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        <Stats/>
+        <Stats />
       </main>
     </div>
   );
