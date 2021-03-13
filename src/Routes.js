@@ -2,6 +2,7 @@
 import React, { Suspense } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import LoadingScreen from 'src/components/LoadingScreen';
+import Navigation from 'src/components/Navigation';
 import MainLayout from 'src/layouts/MainLayout';
 import HomeView from 'src/views/pages/HomeView';
 import Error404View from 'src/views/pages/Error404View';
@@ -18,6 +19,7 @@ const renderRoutes = () => (
           </MainLayout>
         )}
       />
+      <Route path="/dashboard" exact render={() => <Navigation />} />
       <Route path="*" exact render={() => <Error404View />} />
     </Switch>
   </Suspense>
