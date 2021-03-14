@@ -48,7 +48,8 @@ export default function PermanentDrawerLeft() {
 
   const drawerStyle = {
     backgroundColor: '#291755',
-    color: 'white'
+    color: 'white',
+    height: '100vh'
   };
 
   const textStyle = {
