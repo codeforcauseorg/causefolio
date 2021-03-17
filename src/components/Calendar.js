@@ -5,8 +5,6 @@ import clsx from 'clsx';
 
 const useStyles = makeStyles(() => ({
   root: {
-    width: '554px',
-    height: '268px',
     borderRadius: '20px',
     background: '#CCD2E3',
     padding: '19px',
