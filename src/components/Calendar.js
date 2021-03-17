@@ -8,7 +8,8 @@ const useStyles = makeStyles(() => ({
     borderRadius: '20px',
     background: '#CCD2E3',
     padding: '19px',
-    fontFamily: 'Montserrat'
+    fontFamily: 'Montserrat',
+    marginBottom: '21px'
   },
   text: {
     fontWeight: 'bold',
