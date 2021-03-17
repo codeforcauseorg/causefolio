@@ -197,6 +197,7 @@ function Calendar() {
             <Typography
               display="inline"
               variant="subtitle1"
+              key={day}
               className={classes.days}
             >
               {day}
@@ -210,6 +211,7 @@ function Calendar() {
             <Typography
               display="inline"
               variant="subtitle1"
+              key={date}
               className={clsx(
                 classes.dates,
                 date > 7 && classes.lightColorText
@@ -228,6 +230,7 @@ function Calendar() {
             <Typography
               display="inline"
               variant="subtitle1"
+              key={date}
               className={clsx(classes.dates)}
             >
               <div className={events[monthNameIndex][date] && classes.event}>
@@ -243,6 +246,7 @@ function Calendar() {
             <Typography
               display="inline"
               variant="subtitle1"
+              key={date}
               className={clsx(classes.dates)}
             >
               <div className={events[monthNameIndex][date] && classes.event}>
@@ -258,6 +262,7 @@ function Calendar() {
             <Typography
               display="inline"
               variant="subtitle1"
+              key={date}
               className={clsx(classes.dates)}
             >
               <div className={events[monthNameIndex][date] && classes.event}>
@@ -273,6 +278,7 @@ function Calendar() {
             <Typography
               display="inline"
               variant="subtitle1"
+              key={date}
               className={clsx(
                 classes.dates,
                 date < 8 && classes.lightColorText
