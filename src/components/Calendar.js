@@ -102,6 +102,11 @@ function Calendar() {
       5: true,
       19: true,
       24: true
+    },
+    3: {
+      3: true,
+      15: true,
+      27: true
     }
   };
   const getFirstRow = () => {
@@ -175,7 +180,7 @@ function Calendar() {
     <div className={classes.root}>
       <div className={classes.top}>
         <Typography variant="h4" className={classes.text}>
-          Calender
+          Calendar
         </Typography>
         <div style={{ display: 'flex' }}>
           <Typography
@@ -216,7 +221,7 @@ function Calendar() {
                 date > 7 && classes.lightColorText
               )}
             >
-              <div className={events[monthNameIndex][date] && classes.event}>
+              <div className={(events[monthNameIndex] ? events[monthNameIndex][date] : false) && classes.event}>
                 {date}
               </div>
             </Typography>
@@ -232,7 +237,7 @@ function Calendar() {
               key={date}
               className={clsx(classes.dates)}
             >
-              <div className={events[monthNameIndex][date] && classes.event}>
+              <div className={(events[monthNameIndex] ? events[monthNameIndex][date] : false) && classes.event}>
                 {date}
               </div>
             </Typography>
@@ -248,7 +253,7 @@ function Calendar() {
               key={date}
               className={clsx(classes.dates)}
             >
-              <div className={events[monthNameIndex][date] && classes.event}>
+              <div className={(events[monthNameIndex] ? events[monthNameIndex][date] : false) && classes.event}>
                 {date}
               </div>
             </Typography>
@@ -264,7 +269,7 @@ function Calendar() {
               key={date}
               className={clsx(classes.dates)}
             >
-              <div className={events[monthNameIndex][date] && classes.event}>
+              <div className={(events[monthNameIndex] ? events[monthNameIndex][date] : false) && classes.event}>
                 {date}
               </div>
             </Typography>
@@ -283,7 +288,7 @@ function Calendar() {
                 date < 8 && classes.lightColorText
               )}
             >
-              <div className={events[monthNameIndex][date] && classes.event}>
+              <div className={(events[monthNameIndex] ? events[monthNameIndex][date] : false) && classes.event}>
                 {date}
               </div>
             </Typography>
