@@ -175,7 +175,7 @@ function Calendar() {
     <div className={classes.root}>
       <div className={classes.top}>
         <Typography variant="h4" className={classes.text}>
-          Calender
+          Calendar
         </Typography>
         <div style={{ display: 'flex' }}>
           <Typography
