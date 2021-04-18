@@ -4,12 +4,14 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
+import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Logo1 from './Logo1';
 import Stats from './Stats';
 import Calendar from './Calendar';
+import Publications from './Publications';
 
 const drawerWidth = 300;
 
@@ -106,8 +108,15 @@ export default function PermanentDrawerLeft() {
       </div>
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        <Calendar />
-        <Stats />
+        <Box display="flex">
+          <Box flexGrow={1}>
+            <Calendar />
+            <Stats />
+          </Box>
+          <Box maxWidth="28em" minWidth="24em">
+            <Publications />
+          </Box>
+        </Box>
       </main>
     </div>
   );
