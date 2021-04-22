@@ -98,7 +98,7 @@ function Calendar() {
   let currentDate = 0;
   //  for demo purpose this events variable is created
   const events = {
-    2: {
+    [now.getMonth()]: {
       5: true,
       19: true,
       24: true
@@ -175,7 +175,7 @@ function Calendar() {
     <div className={classes.root}>
       <div className={classes.top}>
         <Typography variant="h4" className={classes.text}>
-          Calender
+          Calendar
         </Typography>
         <div style={{ display: 'flex' }}>
           <Typography
