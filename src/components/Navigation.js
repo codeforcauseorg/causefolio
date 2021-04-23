@@ -13,6 +13,7 @@ import Stats from './Stats';
 import Calendar from './Calendar';
 import Publications from './Publications';
 import NewEvents from './NewEvents';
+import BookmarkedEvents from './BookmarkedEvents';
 
 const drawerWidth = 300;
 
@@ -113,6 +114,7 @@ export default function PermanentDrawerLeft() {
           <Box flexGrow={1}>
             <Calendar />
             <Stats />
+            <BookmarkedEvents />
           </Box>
           <Box maxWidth="28em" minWidth="24em">
             <NewEvents />
