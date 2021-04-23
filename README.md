@@ -145,6 +145,7 @@ npm run build
 <td align="center"><a href="https://github.com/SHITIZ-AGGARWAL"><img src="https://avatars.githubusercontent.com/SHITIZ-AGGARWAL?s=100" width="100px;" alt="" /><br /><sub><b>Shitiz Aggarwal</b></sub></a><br /><p>Designer, Frontend</p></td>
 
 <td align="center"><a href="https://github.com/mindninjaX"><img src="https://avatars.githubusercontent.com/mindninjaX?s=100" width="100px;" alt="" /><br /><sub><b>Rishabh Singh</b></sub></a><br /><p>UI/UX Designer</p></td>
+<td align="center"><a href="https://github.com/zeborg"><img src="https://avatars.githubusercontent.com/zeborg?s=100" width="100px;" alt="" /><br /><sub><b>Abhinav Sinha</b></sub></a><br /><p>UI/UX & Frontend</p></td>
 <td align="center"><a href="https://github.com/AdityaTeltia"><img src="https://avatars.githubusercontent.com/AdityaTeltia?s=100" width="100px;" alt="" /><br /><sub><b>Aditya Teltia</b></sub></a><br /><p>Contributor</p></td>
 <td align="center"><a href="https://github.com/mdPial"><img src="https://avatars.githubusercontent.com/mdPial?s=100" width="100px;" alt="" /><br /><sub><b>Md. Pial Ahamed</b></sub></a><br /><p>Contributor</p></td>
 </tr>

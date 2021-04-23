@@ -12,6 +12,7 @@ import Logo1 from './Logo1';
 import Stats from './Stats';
 import Calendar from './Calendar';
 import Publications from './Publications';
+import NewEvents from './NewEvents';
 
 const drawerWidth = 300;
 
@@ -114,6 +115,7 @@ export default function PermanentDrawerLeft() {
             <Stats />
           </Box>
           <Box maxWidth="28em" minWidth="24em">
+            <NewEvents />
             <Publications />
           </Box>
         </Box>
