@@ -6,6 +6,7 @@ import { Box, Card, Typography, makeStyles } from '@material-ui/core';
 const useStyles = makeStyles(theme => ({
   root: {
     backgroundColor: '#E2E9FF',
+    boxShadow: "5px 5px 5px rgba(0,0,0,0.8)",
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
