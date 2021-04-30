@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Card,
@@ -10,6 +10,7 @@ import {
   Button,
   Grid
 } from '@material-ui/core';
+import auth from '../services/authService';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -107,6 +108,32 @@ const useStyles = makeStyles(theme => ({
 
 export default function Login({ handleClose }) {
   const classes = useStyles();
+  const [loginCredentials, setLoginCredentials] = useState({
+    email: '',
+    password: ''
+  });
+
+  const handleLogin = () => {
+    const { email, password } = loginCredentials;
+    auth
+      .signInWithEmailAndPassword(email, password)
+      .then(result => {
+        console.log(result.user);
+        return result.user.updateProfile({
+          displayName: 'Dummy Name'
+        });
+      })
+      .catch(e => {
+        console.log('error on signin', e);
+      });
+  };
+
+  const handleChange = event => {
+    setLoginCredentials({
+      ...loginCredentials,
+      [event.target.name]: event.target.value
+    });
+  };
 
   return (
     <Card className={classes.root}>
@@ -140,12 +167,20 @@ export default function Login({ handleClose }) {
               please login to your account
             </Typography>
             <Typography>Email Id</Typography>
-            <input className={classes.input} type="email" variant="outlined" />
+            <input
+              className={classes.input}
+              name="email"
+              type="email"
+              variant="outlined"
+              onChange={handleChange}
+            />
             <Typography>Password</Typography>
             <input
               className={classes.input}
+              name="password"
               type="password"
               variant="outlined"
+              onChange={handleChange}
             />
             <Divider className={classes.divider} />
             <div className={classes.bottomPart}>
@@ -157,7 +192,9 @@ export default function Login({ handleClose }) {
                 Forgot password ?
               </Typography>
             </div>
-            <Button className={classes.button}>Login</Button>
+            <Button onClick={handleLogin} className={classes.button}>
+              Login
+            </Button>
           </CardContent>
         </Grid>
       </Grid>

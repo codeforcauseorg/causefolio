@@ -48,17 +48,8 @@ class AuthService {
     this.firebase.initializeApp(this.config);
   }
 
-  loadUserProfile() {
-    return new Promise(resolve => {
-      this.keycloak
-        .loadUserProfile()
-        .then(profile => {
-          resolve(profile);
-        })
-        .catch(function() {
-          alert('Failed to load user profile');
-        });
-    });
+  signInWithEmailAndPassword(email, password) {
+    return this.firebase.auth().signInWithEmailAndPassword(email, password);
   }
 
   login = () => {

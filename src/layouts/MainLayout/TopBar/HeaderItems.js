@@ -39,7 +39,7 @@ const HeaderItem = ({ title, link, active }) => {
         })}
       >
         <Typography variant="h6" color="textPrimary">
-          {title}
+          {/* {title} */}
         </Typography>
       </Link>
     </Box>
