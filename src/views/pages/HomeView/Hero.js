@@ -63,7 +63,7 @@ function Hero({ className, ...rest }) {
           style={{
             position: 'absolute',
             top: '-20%',
-            left: '-4%'
+            left: '-20%'
           }}
         />
         <Grid container spacing={0}>

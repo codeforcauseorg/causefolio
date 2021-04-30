@@ -55,8 +55,7 @@ const useStyles = makeStyles(() => ({
 
 function Publications() {
   const classes = useStyles();
-  useEffect(() => {
-  }, []);
+  useEffect(() => {}, []);
   return (
     <Card className={classes.root}>
       <Grid container>
@@ -69,11 +68,19 @@ function Publications() {
       {/* sample blog posts */}
       <Grid container className={classes.publication}>
         <Grid className={classes.pubText}>
-          <img style={{ borderRadius: '3px' }} src="./static/images/icons/publication.svg" alt="publication" />
+          <img
+            style={{ borderRadius: '3px' }}
+            src="./static/images/icons/publication.svg"
+            alt="publication"
+          />
           <Grid className={classes.pubHeading}>
-            <Typography style={{ fontSize: '18px', fontWeight: '600' }}>Blog Title</Typography>
+            <Typography style={{ fontSize: '18px', fontWeight: '600' }}>
+              Blog Title
+            </Typography>
             <div style={{ display: 'flex' }}>
-              <Typography variant="subtitle1" className={classes.pubRead}>2 MIN</Typography>
+              <Typography variant="subtitle1" className={classes.pubRead}>
+                2 MIN
+              </Typography>
               <Typography variant="subtitle1" className={classes.pubDate}>
                 <b>•</b>
                 &ensp;16 Jan
@@ -82,11 +89,19 @@ function Publications() {
           </Grid>
         </Grid>
         <Grid className={classes.pubText}>
-          <img style={{ borderRadius: '3px' }} src="./static/images/icons/publication.svg" alt="publication" />
+          <img
+            style={{ borderRadius: '3px' }}
+            src="./static/images/icons/publication.svg"
+            alt="publication"
+          />
           <Grid className={classes.pubHeading}>
-            <Typography style={{ fontSize: '18px', fontWeight: '600' }}>Blog Title</Typography>
+            <Typography style={{ fontSize: '18px', fontWeight: '600' }}>
+              Blog Title
+            </Typography>
             <div style={{ display: 'flex' }}>
-              <Typography variant="subtitle1" className={classes.pubRead}>2 MIN</Typography>
+              <Typography variant="subtitle1" className={classes.pubRead}>
+                2 MIN
+              </Typography>
               <Typography variant="subtitle1" className={classes.pubDate}>
                 <b>•</b>
                 &ensp;16 Jan
@@ -95,11 +110,19 @@ function Publications() {
           </Grid>
         </Grid>
         <Grid className={classes.pubText}>
-          <img style={{ borderRadius: '3px' }} src="./static/images/icons/publication.svg" alt="publication" />
+          <img
+            style={{ borderRadius: '3px' }}
+            src="./static/images/icons/publication.svg"
+            alt="publication"
+          />
           <Grid className={classes.pubHeading}>
-            <Typography style={{ fontSize: '18px', fontWeight: '600' }}>Blog Title</Typography>
+            <Typography style={{ fontSize: '18px', fontWeight: '600' }}>
+              Blog Title
+            </Typography>
             <div style={{ display: 'flex' }}>
-              <Typography variant="subtitle1" className={classes.pubRead}>2 MIN</Typography>
+              <Typography variant="subtitle1" className={classes.pubRead}>
+                2 MIN
+              </Typography>
               <Typography variant="subtitle1" className={classes.pubDate}>
                 <b>•</b>
                 &ensp;16 Jan

@@ -53,8 +53,7 @@ const useStyles = makeStyles(() => ({
 
 function BookmarkedEvents() {
   const classes = useStyles();
-  useEffect(() => {
-  }, []);
+  useEffect(() => {}, []);
   return (
     <div className={classes.root}>
       <Grid container>
@@ -63,7 +62,15 @@ function BookmarkedEvents() {
             Bookmarked Events
           </Typography>
           <Typography>
-            <Button style={{ backgroundColor: 'white', fontWeight: 'bold', padding: '0px 6px' }}>SEE MORE</Button>
+            <Button
+              style={{
+                backgroundColor: 'white',
+                fontWeight: 'bold',
+                padding: '0px 6px'
+              }}
+            >
+              SEE MORE
+            </Button>
           </Typography>
         </Grid>
       </Grid>
@@ -73,72 +80,128 @@ function BookmarkedEvents() {
           <Grid
             container
             style={{
-              backgroundColor: '#291757CC', width: '114px', height: '147px', borderRadius: '20px'
+              backgroundColor: '#291757CC',
+              width: '114px',
+              height: '147px',
+              borderRadius: '20px'
             }}
             align="center"
             justify="center"
             direction="column"
           >
-            <Typography variant="h5" style={{ marginBottom: '14px' }}>Event-1</Typography>
+            <Typography variant="h5" style={{ marginBottom: '14px' }}>
+              Event-1
+            </Typography>
             <div style={{ display: 'inline-block', margin: '0 auto' }}>
-              <Typography variant="subtitle1" style={{ fontSize: '10px' }}>29TH MARCH</Typography>
-              <Typography variant="subtitle1" style={{ fontSize: '10px' }}>6:00 PM</Typography>
+              <Typography variant="subtitle1" style={{ fontSize: '10px' }}>
+                29TH MARCH
+              </Typography>
+              <Typography variant="subtitle1" style={{ fontSize: '10px' }}>
+                6:00 PM
+              </Typography>
             </div>
-            <Button style={{ backgroundColor: 'white' }} className={classes.checkOut}>CHECK OUT</Button>
+            <Button
+              style={{ backgroundColor: 'white' }}
+              className={classes.checkOut}
+            >
+              CHECK OUT
+            </Button>
           </Grid>
         </Grid>
         <Grid className={classes.bmText}>
           <Grid
             container
             style={{
-              backgroundColor: '#291757CC', width: '114px', height: '147px', borderRadius: '20px'
+              backgroundColor: '#291757CC',
+              width: '114px',
+              height: '147px',
+              borderRadius: '20px'
             }}
             align="center"
             justify="center"
             direction="column"
           >
-            <Typography variant="h5" style={{ marginBottom: '14px' }}>Event-2</Typography>
+            <Typography variant="h5" style={{ marginBottom: '14px' }}>
+              Event-2
+            </Typography>
             <div style={{ display: 'inline-block', margin: '0 auto' }}>
-              <Typography variant="subtitle1" style={{ fontSize: '10px' }}>29TH MARCH</Typography>
-              <Typography variant="subtitle1" style={{ fontSize: '10px' }}>6:00 PM</Typography>
+              <Typography variant="subtitle1" style={{ fontSize: '10px' }}>
+                29TH MARCH
+              </Typography>
+              <Typography variant="subtitle1" style={{ fontSize: '10px' }}>
+                6:00 PM
+              </Typography>
             </div>
-            <Button style={{ backgroundColor: 'white' }} className={classes.checkOut}>CHECK OUT</Button>
+            <Button
+              style={{ backgroundColor: 'white' }}
+              className={classes.checkOut}
+            >
+              CHECK OUT
+            </Button>
           </Grid>
         </Grid>
         <Grid className={classes.bmText}>
           <Grid
             container
             style={{
-              backgroundColor: '#291757CC', width: '114px', height: '147px', borderRadius: '20px'
+              backgroundColor: '#291757CC',
+              width: '114px',
+              height: '147px',
+              borderRadius: '20px'
             }}
             align="center"
             justify="center"
             direction="column"
           >
-            <Typography variant="h5" style={{ marginBottom: '14px' }}>Event-3</Typography>
+            <Typography variant="h5" style={{ marginBottom: '14px' }}>
+              Event-3
+            </Typography>
             <div style={{ display: 'inline-block', margin: '0 auto' }}>
-              <Typography variant="subtitle1" style={{ fontSize: '10px' }}>29TH MARCH</Typography>
-              <Typography variant="subtitle1" style={{ fontSize: '10px' }}>6:00 PM</Typography>
+              <Typography variant="subtitle1" style={{ fontSize: '10px' }}>
+                29TH MARCH
+              </Typography>
+              <Typography variant="subtitle1" style={{ fontSize: '10px' }}>
+                6:00 PM
+              </Typography>
             </div>
-            <Button style={{ backgroundColor: 'white' }} className={classes.checkOut}>CHECK OUT</Button>
+            <Button
+              style={{ backgroundColor: 'white' }}
+              className={classes.checkOut}
+            >
+              CHECK OUT
+            </Button>
           </Grid>
         </Grid>
         <Grid className={classes.bmText}>
           <Grid
             container
             style={{
-              backgroundColor: '#291757CC', width: '114px', height: '147px', borderRadius: '20px'
+              backgroundColor: '#291757CC',
+              width: '114px',
+              height: '147px',
+              borderRadius: '20px'
             }}
             align="center"
             justify="center"
             direction="column"
           >
-            <Typography variant="h5" style={{ marginBottom: '14px' }}>Event-4</Typography>
+            <Typography variant="h5" style={{ marginBottom: '14px' }}>
+              Event-4
+            </Typography>
             <div style={{ display: 'inline-block', margin: '0 auto' }}>
-              <Typography variant="subtitle1" style={{ fontSize: '10px' }}>29TH MARCH</Typography>
-              <Typography variant="subtitle1" style={{ fontSize: '10px' }}>6:00 PM</Typography>
+              <Typography variant="subtitle1" style={{ fontSize: '10px' }}>
+                29TH MARCH
+              </Typography>
+              <Typography variant="subtitle1" style={{ fontSize: '10px' }}>
+                6:00 PM
+              </Typography>
             </div>
-            <Button style={{ backgroundColor: 'white' }} className={classes.checkOut}>CHECK OUT</Button>
+            <Button
+              style={{ backgroundColor: 'white' }}
+              className={classes.checkOut}
+            >
+              CHECK OUT
+            </Button>
           </Grid>
         </Grid>
       </Grid>
