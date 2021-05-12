@@ -8,12 +8,12 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import Logo1 from './Logo1';
-import Stats from './Stats';
-import Calendar from './Calendar';
-import Publications from './Publications';
-import NewEvents from './NewEvents';
-import BookmarkedEvents from './BookmarkedEvents';
+import Logo1 from '../../components/Logo1';
+import Stats from '../../components/Stats';
+import Calendar from '../../components/Calendar';
+import Publications from '../../components/Publications';
+import NewEvents from '../../components/NewEvents';
+import BookmarkedEvents from '../../components/BookmarkedEvents';
 import { Drawer } from '@material-ui/core';
 import clsx from 'clsx';
 import { useHistory } from 'react-router';
@@ -56,7 +56,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function PermanentDrawerLeft() {
+export default function DrawerLayout({ children }) {
   const classes = useStyles();
   const history = useHistory();
 
@@ -113,20 +113,7 @@ export default function PermanentDrawerLeft() {
           ))}
         </List>
       </Drawer>
-      <main className={classes.content}>
-        <div className={classes.toolbar} />
-        <Box display="flex">
-          <Box flexGrow={1}>
-            <Calendar />
-            <Stats />
-            <BookmarkedEvents />
-          </Box>
-          <Box maxWidth="28em" minWidth="24em">
-            <NewEvents />
-            <Publications />
-          </Box>
-        </Box>
-      </main>
+      {children}
     </div>
   );
 }
