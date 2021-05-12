@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
@@ -14,6 +14,9 @@ import Calendar from './Calendar';
 import Publications from './Publications';
 import NewEvents from './NewEvents';
 import BookmarkedEvents from './BookmarkedEvents';
+import { Drawer } from '@material-ui/core';
+import clsx from 'clsx';
+import { useHistory } from 'react-router';
 
 const drawerWidth = 300;
 
@@ -29,10 +32,20 @@ const useStyles = makeStyles(theme => ({
   },
   drawer: {
     width: drawerWidth,
-    flexShrink: 0
+    flexShrink: 0,
+    backgroundColor: '#291755',
   },
   drawerPaper: {
-    width: drawerWidth
+    width: drawerWidth,
+    backgroundColor: '#291755',
+  },
+  textStyle: {
+    color: '#FFFFFF',
+    fontWeight: '600',
+    fontSize: '30px',
+  },
+  disabled: {
+    color: 'rgb(255,255,255,0.5)'
   },
   // necessary for content to be below app bar
   toolbar: theme.mixins.toolbar,
@@ -45,32 +58,22 @@ const useStyles = makeStyles(theme => ({
 
 export default function PermanentDrawerLeft() {
   const classes = useStyles();
+  const history = useHistory();
+
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
   const myStyles = {
     display: 'flex',
     justifyContent: 'space-between'
   };
 
-  const drawerStyle = {
-    backgroundColor: '#291755',
-    color: 'white',
-    height: '100vh'
-  };
-
-  const textStyle = {
-    color: '#FFFFFF',
-    fontWeight: '700',
-    fontSize: '25px',
-    letterSpacing: '2px'
-  };
-
   const navItems = [
-    'Dashboard',
-    'Profiles',
-    'Events',
-    'Blogs',
-    'Settings',
-    'Log out'
+    { name: 'Dashboard', link: '/dashboard' },
+    { name: 'Profiles', link: '/profile' },
+    { name: 'Events', link: '/events' },
+    { name: 'Blogs', link: '/blogs' },
+    { name: 'Settings', link: '/settings' },
+    { name: 'Log out', link: '/logout' }
   ];
 
   return (
@@ -84,30 +87,32 @@ export default function PermanentDrawerLeft() {
           </Typography>
         </Toolbar>
       </AppBar>
-      <div
+      <Drawer
         className={classes.drawer}
         variant="permanent"
         classes={{
-          paper: classes.drawerPaper
+          paper: classes.drawerPaper,
         }}
         anchor="left"
-        style={drawerStyle}
       >
         <List>
-          {navItems.map((text, index) => (
-            <ListItem button key={index} style={{ paddingLeft: '20%' }}>
+          {navItems.map(({ name, link }, idx) => (
+            <ListItem button key={idx} style={{ paddingLeft: '20%' }} >
               <ListItemText
-                disableTypography
+                onClick={() => {
+                  setSelectedIndex(idx);
+                  history.push(link)
+                }}
                 primary={
-                  <Typography type="body2" style={textStyle}>
-                    {text}
+                  <Typography type="body2" className={clsx(classes.textStyle, selectedIndex !== idx ? classes.disabled : '')}>
+                    {name}
                   </Typography>
                 }
               />
             </ListItem>
           ))}
         </List>
-      </div>
+      </Drawer>
       <main className={classes.content}>
         <div className={classes.toolbar} />
         <Box display="flex">
