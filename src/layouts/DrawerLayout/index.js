@@ -1,22 +1,16 @@
-import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import { Drawer } from '@material-ui/core';
 import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import List from '@material-ui/core/List';
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import Logo1 from '../../components/Logo1';
-import Stats from '../../components/Stats';
-import Calendar from '../../components/Calendar';
-import Publications from '../../components/Publications';
-import NewEvents from '../../components/NewEvents';
-import BookmarkedEvents from '../../components/BookmarkedEvents';
-import { Drawer } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
 import clsx from 'clsx';
+import React from 'react';
 import { useHistory } from 'react-router';
+import Logo1 from '../../components/Logo1';
 
 const drawerWidth = 300;
 
@@ -33,34 +27,27 @@ const useStyles = makeStyles(theme => ({
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
-    backgroundColor: '#291755',
+    backgroundColor: '#291755'
   },
   drawerPaper: {
     width: drawerWidth,
-    backgroundColor: '#291755',
+    backgroundColor: '#291755'
   },
   textStyle: {
     color: '#FFFFFF',
     fontWeight: '600',
-    fontSize: '30px',
+    fontSize: '30px'
   },
   disabled: {
     color: 'rgb(255,255,255,0.5)'
   },
   // necessary for content to be below app bar
-  toolbar: theme.mixins.toolbar,
-  content: {
-    flexGrow: 1,
-    backgroundColor: theme.palette.background.default,
-    padding: theme.spacing(3)
-  }
+  toolbar: theme.mixins.toolbar
 }));
 
 export default function DrawerLayout({ children }) {
   const classes = useStyles();
   const history = useHistory();
-
-  const [selectedIndex, setSelectedIndex] = useState(0);
 
   const myStyles = {
     display: 'flex',
@@ -91,20 +78,25 @@ export default function DrawerLayout({ children }) {
         className={classes.drawer}
         variant="permanent"
         classes={{
-          paper: classes.drawerPaper,
+          paper: classes.drawerPaper
         }}
         anchor="left"
       >
         <List>
           {navItems.map(({ name, link }, idx) => (
-            <ListItem button key={idx} style={{ paddingLeft: '20%' }} >
+            <ListItem button key={idx} style={{ paddingLeft: '20%' }}>
               <ListItemText
                 onClick={() => {
-                  setSelectedIndex(idx);
-                  history.push(link)
+                  history.push(link);
                 }}
                 primary={
-                  <Typography type="body2" className={clsx(classes.textStyle, selectedIndex !== idx ? classes.disabled : '')}>
+                  <Typography
+                    type="body2"
+                    className={clsx(
+                      classes.textStyle,
+                      window.location.pathname !== link ? classes.disabled : ''
+                    )}
+                  >
                     {name}
                   </Typography>
                 }
@@ -113,7 +105,7 @@ export default function DrawerLayout({ children }) {
           ))}
         </List>
       </Drawer>
-      {children}
+      <div style={{ marginTop: '80px', width: '100%' }}>{children}</div>
     </div>
   );
 }

@@ -8,10 +8,7 @@ import NewEvents from './NewEvents';
 import Publications from './Publications';
 import Stats from './Stats';
 
-const drawerWidth = 300;
-
 const useStyles = makeStyles(theme => ({
-  toolbar: theme.mixins.toolbar,
   content: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
@@ -20,12 +17,11 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function Dashboard() {
-  const classes = useStyles()
+  const classes = useStyles();
 
   return (
     <DrawerLayout>
       <main className={classes.content}>
-        <div className={classes.toolbar} />
         <Box display="flex">
           <Box flexGrow={1}>
             <Calendar />
@@ -39,5 +35,5 @@ export default function Dashboard() {
         </Box>
       </main>
     </DrawerLayout>
-  )
+  );
 }
