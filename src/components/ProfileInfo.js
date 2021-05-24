@@ -6,7 +6,9 @@ import {
   Switch,
   IconButton,
   Card,
-  Typography
+  Typography,
+  Box,
+  Chip
 } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
@@ -18,14 +20,16 @@ const useStyles = makeStyles(theme => ({
     background: '#CCD2E3',
     borderRadius: '25px',
     padding: '20px',
-    margin: '70px 20px 20px 20px'
+    margin: '70px 20px 20px 20px',
+    width: '100%'
   },
   tags: {
     backgroundColor: '#291757',
     color: 'white',
     borderRadius: '20px',
     padding: '10px 10px',
-    fontWeight: '700'
+    fontWeight: '700',
+    margin: '4px'
   },
   medium: {
     marginLeft: '55px',
@@ -93,74 +97,64 @@ function ProfileInfo() {
           <AntSwitch />
         </Grid>
       </Grid>
-      <Grid></Grid>
-      <Grid></Grid>
       <Card className={classes.cards}>
-        <Grid container>
-          <Grid container>
-            <Grid sm={4} />
-            <Grid xs={12} sm={8}>
-              <IconButton>
-                <img
-                  className={classes.tiny}
-                  alt="LinkedIn"
-                  src="./static/profile/icons/Vector.png"
-                />
-              </IconButton>
-              <IconButton>
-                <img
-                  className={classes.tiny}
-                  alt="Twitter"
-                  src="./static/profile/icons/Vector-1.png"
-                />
-              </IconButton>
-              <IconButton>
-                <img
-                  className={classes.tiny}
-                  alt="GitHub"
-                  src="./static/profile/icons/Vector-3.png"
-                />
-              </IconButton>
-              <IconButton>
-                <img
-                  className={classes.tiny}
-                  alt="Website"
-                  src="./static/profile/icons/Vector-2.png"
-                />
-              </IconButton>
-            </Grid>
-          </Grid>
+        <Box display="flex" justifyContent="flex-end">
+          <Box flexGrow={1} />
+          <Box xs={12} sm={8}>
+            <IconButton>
+              <img
+                className={classes.tiny}
+                alt="LinkedIn"
+                src="./static/profile/icons/Vector.png"
+              />
+            </IconButton>
+            <IconButton>
+              <img
+                className={classes.tiny}
+                alt="Twitter"
+                src="./static/profile/icons/Vector-1.png"
+              />
+            </IconButton>
+            <IconButton>
+              <img
+                className={classes.tiny}
+                alt="GitHub"
+                src="./static/profile/icons/Vector-3.png"
+              />
+            </IconButton>
+            <IconButton>
+              <img
+                className={classes.tiny}
+                alt="Website"
+                src="./static/profile/icons/Vector-2.png"
+              />
+            </IconButton>
+          </Box>
+        </Box>
 
-          <Grid container>
-            <Grid>
-              <Typography variant="h1">John Doe</Typography>
-              <Typography variant="h3">Software Developer</Typography>
-            </Grid>
-            <Grid sm={4} md={4} lg={4} />
-            <Grid>
-              <Typography variant="h2">Interested in:</Typography>
-            </Grid>
-          </Grid>
-
-          <Grid container>
-            <Grid sm={4} md={4} lg={4}>
-              {' '}
-              <Typography variant="body2">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos
-                blanditiis tenetur
-              </Typography>
-            </Grid>
-            <Grid sm={5} md={5} lg={5} />
-            <Grid sm={3} md={3} lg={3}>
-              <Typography className={classes.tags}>Machine Learning</Typography>
-              <Typography className={classes.tags}>UI/UX</Typography>
-              <Typography className={classes.tags}>DevOps</Typography>
-
-              <Typography className={classes.tags}>Public Speaking</Typography>
-              <Typography className={classes.tags}>Blockchain</Typography>
-            </Grid>
-          </Grid>
-        </Grid>
+        <Box display="flex" flexWrap="wrap">
+          <Box flexGrow={1} minWidth={320}>
+            <Typography variant="h1">John Doe</Typography>
+            <Typography variant="h3">Software Developer</Typography>
+            <Typography
+              variant="body2"
+              style={{ maxWidth: '400px', marginTop: '16px' }}
+            >
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos
+              blanditiis tenetur Lorem ipsum dolor sit amet, consectetur
+              adipisicing elit. Quos blanditiis tenetur
+            </Typography>
+          </Box>
+          <Box flexGrow={1.5} maxWidth={400} mt={1}>
+            <Typography variant="h2">Interested in:</Typography>
+            <Chip className={classes.tags} label="Machine Learning" />
+            <Chip className={classes.tags} label="ui/ux" />
+            <Chip className={classes.tags} label="DevOps" />
+            <Chip className={classes.tags} label="Public Speaking" />
+            <Chip className={classes.tags} label="BlockChain" />
+            <Chip className={classes.tags} label="Web Dev" />
+          </Box>
+        </Box>
       </Card>
     </Grid>
   );

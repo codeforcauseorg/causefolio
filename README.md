@@ -157,6 +157,7 @@ npm run build
 <a id="contributors"></a>
 
 ## Thanks to all the contributors ❤️
+
 <a href = "https://github.com/codeforcauseorg/causefolio/graphs/contributors">
   <img src = "https://contrib.rocks/image?repo=codeforcauseorg/causefolio"/>
 </a>
