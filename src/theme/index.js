@@ -50,13 +50,13 @@ const themeConfigs = [
       background: {
         default: colors.common.white,
         dark: '#f4f6f8',
-        paper: colors.common.white // background
+        paper: '#291757' // background
       },
       primary: {
         main: colors.indigo[600] // for header and loader
       },
       secondary: {
-        main: '#A60000' // for button and selected
+        main: '#291757' // for button and selected
       },
       text: {
         // for text classes

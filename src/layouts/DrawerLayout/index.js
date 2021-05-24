@@ -42,7 +42,12 @@ const useStyles = makeStyles(theme => ({
     color: 'rgb(255,255,255,0.5)'
   },
   // necessary for content to be below app bar
-  toolbar: theme.mixins.toolbar
+  toolbar: theme.mixins.toolbar,
+  content: {
+    padding: theme.spacing(3),
+    marginTop: '80px',
+    width: '100%'
+  }
 }));
 
 export default function DrawerLayout({ children }) {
@@ -105,7 +110,7 @@ export default function DrawerLayout({ children }) {
           ))}
         </List>
       </Drawer>
-      <div style={{ marginTop: '80px', width: '100%' }}>{children}</div>
+      <div className={classes.content}>{children}</div>
     </div>
   );
 }
