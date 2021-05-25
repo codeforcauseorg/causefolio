@@ -13,14 +13,15 @@ import {
 
 const useStyles = makeStyles(theme => ({
   root: {
-    fontFamily: 'Montserrat'
+    fontFamily: 'Montserrat',
+    color: '#291757'
   },
   cards: {
     color: '#291757',
     background: '#CCD2E3',
     borderRadius: '25px',
     padding: '20px',
-    margin: '70px 20px 20px 20px',
+    margin: '90px 5px 20px 0px',
     width: '100%'
   },
   tags: {
@@ -32,7 +33,7 @@ const useStyles = makeStyles(theme => ({
     margin: '4px'
   },
   medium: {
-    marginLeft: '55px',
+    marginLeft: '75px',
     position: 'absolute',
     width: theme.spacing(20),
     height: theme.spacing(20)
@@ -57,7 +58,7 @@ const AntSwitch = withStyles(theme => ({
       color: theme.palette.common.white,
       '& + $track': {
         opacity: 1,
-        backgroundColor: theme.palette.primary.main,
+        backgroundColor: '#291757',
         borderColor: theme.palette.primary.main
       }
     }
@@ -80,23 +81,30 @@ function ProfileInfo() {
   const classes = useStyles();
 
   return (
-    <Grid container>
-      <Grid container>
-        <Grid sm={2} md={2} lg={2}>
-          <Avatar
-            alt="ProfileIcon"
-            src="./static/profile/icons/icons.png"
-            className={classes.medium}
-          />
-        </Grid>
-        <Grid sm={6} md={6} lg={6} />
-        <Grid sm={3} md={3} lg={3}>
-          <Typography variant="h2">Public View</Typography>
-        </Grid>
-        <Grid sm={1} md={1} lg={1}>
-          <AntSwitch />
-        </Grid>
-      </Grid>
+    <Grid container className={classes.root}>
+      <Box>
+        <Avatar
+          alt="ProfileIcon"
+          src="./static/profile/icons/icons.png"
+          className={classes.medium}
+        />
+      </Box>
+
+      <Box
+        display="flex"
+        justifyContent="flex-end"
+        style={{ position: 'absolute', right: '60px', paddingTop: '50px' }}
+      >
+        <Typography
+          variant="h2"
+          style={{ fontWeight: '650', paddingRight: '10px' }}
+        >
+          Public View
+        </Typography>
+
+        <AntSwitch />
+      </Box>
+
       <Card className={classes.cards}>
         <Box display="flex" justifyContent="flex-end">
           <Box flexGrow={1} />
@@ -132,21 +140,35 @@ function ProfileInfo() {
           </Box>
         </Box>
 
-        <Box display="flex" flexWrap="wrap">
-          <Box flexGrow={1} minWidth={320}>
-            <Typography variant="h1">John Doe</Typography>
-            <Typography variant="h3">Software Developer</Typography>
+        <Box
+          display="flex"
+          flexWrap="wrap"
+          style={{ paddingLeft: '60px', paddingTop: '10px' }}
+        >
+          <Box flexGrow={1} minWidth={200}>
+            <Typography variant="h1" style={{ fontWeight: '650' }}>
+              John Doe
+            </Typography>
+            <Typography variant="body2" style={{ fontWeight: '650' }}>
+              Software Developer
+            </Typography>
             <Typography
               variant="body2"
-              style={{ maxWidth: '400px', marginTop: '16px' }}
+              style={{ maxWidth: '250px', marginTop: '16px' }}
             >
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos
-              blanditiis tenetur Lorem ipsum dolor sit amet, consectetur
-              adipisicing elit. Quos blanditiis tenetur
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aenean
+              pharetra, felis
             </Typography>
           </Box>
-          <Box flexGrow={1.5} maxWidth={400} mt={1}>
-            <Typography variant="h2">Interested in:</Typography>
+          <Box
+            flexGrow={1.5}
+            maxWidth={380}
+            mt={1}
+            style={{ marginTop: '50px' }}
+          >
+            <Typography variant="h2" style={{ fontWeight: '650' }}>
+              Interested in:
+            </Typography>
             <Chip className={classes.tags} label="Machine Learning" />
             <Chip className={classes.tags} label="ui/ux" />
             <Chip className={classes.tags} label="DevOps" />
