@@ -23,6 +23,7 @@ const renderRoutes = () => (
       />
       <Route path="/dashboard" exact render={() => <Navigation />} />
       <Route path="/profile" exact render={() => <Badge />} />
+
       <Route path="/events" exact render={() => <EventDefaultPage />} />
       <Route path="*" exact render={() => <Error404View />} />
     </Switch>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { Card, Grid, Typography, Button } from '@material-ui/core';
 import DrawerLayout from 'src/layouts/DrawerLayout';
+import ProfileInfo from 'src/components/ProfileInfo';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -73,6 +74,7 @@ function Badge() {
 
   return (
     <DrawerLayout>
+      <ProfileInfo />
       <Card className={classes.root}>
         <Grid container>
           <Grid item className={classes.topContainer}>
