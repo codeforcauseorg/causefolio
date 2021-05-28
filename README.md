@@ -117,7 +117,7 @@ $ npm run start
 
 ### Build Setup
 
-- After doing changes, Run the command `npm run build` to build the app for production to the `build` folder.
+- After doing changes, run the command `npm run build` to build the app for production to the `build` folder.
 
 ```bash
 # build for production
@@ -130,7 +130,7 @@ npm run build
 
 - PRs should be generated against `development`.
 - Remember to run `npm run format` before creating pull request.
-- Netlify willl create a preview inside pull request, Please check if your work is fine.
+- Netlify will create a preview inside pull request. Please check if your work is fine.
 
 <a id="projectstructure"></a>
 
@@ -157,6 +157,7 @@ npm run build
 <a id="contributors"></a>
 
 ## Thanks to all the contributors ❤️
+
 <a href = "https://github.com/codeforcauseorg/causefolio/graphs/contributors">
   <img src = "https://contrib.rocks/image?repo=codeforcauseorg/causefolio"/>
 </a>
