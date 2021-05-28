@@ -37,6 +37,7 @@ const useStyles = makeStyles(() => ({
   eventInfo: {
     display: 'block',
     fontSize: '10px',
+    textAlign: 'left',
     marginLeft: '10px',
     letterSpacing: '0.44px'
   },
@@ -108,7 +109,7 @@ function ProfileEvents() {
             alt="event"
           />
           <Grid className={classes.eventInfo}>
-            <Typography variant="h5">Intro to Open Source</Typography>
+            <Typography variant="h5">Git & GitHub Basics</Typography>
               <Typography variant="subtitle2" className={classes.eventDate}>
                 10 Jan 2021
                 <br/>
