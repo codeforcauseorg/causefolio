@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { Card, Grid, Typography, Button } from '@material-ui/core';
-import DrawerLayout from 'src/layouts/DrawerLayout';
-import ProfileInfo from 'src/components/ProfileInfo';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -73,47 +71,44 @@ function Badge() {
   }, []);
 
   return (
-    <DrawerLayout>
-      <ProfileInfo />
-      <Card className={classes.root}>
-        <Grid container>
-          <Grid item className={classes.topContainer}>
-            <Typography variant="h1" className={classes.topText}>
-              Badges Earned
-            </Typography>
-            <Typography variant="h1" className={classes.topText}>
-              {numberOfBadgesUnlocked} Unlocked
-            </Typography>
-          </Grid>
+    <Card className={classes.root}>
+      <Grid container>
+        <Grid item className={classes.topContainer}>
+          <Typography variant="h1" className={classes.topText}>
+            Badges Earned
+          </Typography>
+          <Typography variant="h1" className={classes.topText}>
+            {numberOfBadgesUnlocked} Unlocked
+          </Typography>
         </Grid>
-        <Grid container className={classes.badges}>
-          {/* for demo purpose added badges statically */}
-          <Grid item>
-            <img src="./static/images/icons/star_yellow.svg" alt="badge"></img>
-            <Typography className={classes.badgesText}>
-              Super Blogger
-            </Typography>
-          </Grid>
-          <Grid item>
-            <img src="./static/images/icons/star_orange.svg" alt="badge"></img>
-            <Typography className={classes.badgesText}>GitHub Hero</Typography>
-          </Grid>
-          <Grid item>
-            <img src="./static/images/icons/star_blue.svg" alt="badge"></img>
-            <Typography className={classes.badgesText}>I am Famous</Typography>
-          </Grid>
-          <Grid item>
-            <img src="./static/images/icons/star_yellow.svg" alt="badge"></img>
-            <Typography className={classes.badgesText}>Organizer</Typography>
-          </Grid>
+      </Grid>
+      <Grid container className={classes.badges}>
+        {/* for demo purpose added badges statically */}
+        <Grid item>
+          <img src="./static/images/icons/star_yellow.svg" alt="badge"></img>
+          <Typography className={classes.badgesText}>
+            Super Blogger
+          </Typography>
         </Grid>
-        <div className={classes.buttonContainer}>
-          <Button variant="contained" className={classes.button}>
-            VIEW ALL
-          </Button>
-        </div>
-      </Card>
-    </DrawerLayout>
+        <Grid item>
+          <img src="./static/images/icons/star_orange.svg" alt="badge"></img>
+          <Typography className={classes.badgesText}>GitHub Hero</Typography>
+        </Grid>
+        <Grid item>
+          <img src="./static/images/icons/star_blue.svg" alt="badge"></img>
+          <Typography className={classes.badgesText}>I am Famous</Typography>
+        </Grid>
+        <Grid item>
+          <img src="./static/images/icons/star_yellow.svg" alt="badge"></img>
+          <Typography className={classes.badgesText}>Organizer</Typography>
+        </Grid>
+      </Grid>
+      <div className={classes.buttonContainer}>
+        <Button variant="contained" className={classes.button}>
+          VIEW ALL
+        </Button>
+      </div>
+    </Card>
   );
 }
 
