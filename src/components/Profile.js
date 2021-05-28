@@ -31,7 +31,7 @@ export default function Dashboard() {
             <Box flexGrow={1}>
                 <ProfileEvents />
             </Box>
-            <Box maxWidth="30em" minWidth="26em">
+            <Box maxWidth="26em" minWidth="24em">
                 <ProfilePublications />
             </Box>
         </Box>
