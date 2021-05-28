@@ -10,7 +10,6 @@ const useStyles = makeStyles(() => ({
     color: '#291757',
     fontFamily: 'Montserrat',
     marginBottom: '21px',
-    marginLeft: '21px'
   },
   topContainer: {
     display: 'flex',
@@ -38,6 +37,7 @@ const useStyles = makeStyles(() => ({
   eventInfo: {
     display: 'block',
     fontSize: '10px',
+    textAlign: 'left',
     marginLeft: '10px',
     letterSpacing: '0.44px'
   },
@@ -48,11 +48,12 @@ const useStyles = makeStyles(() => ({
     marginRight: '12px',
     marginBottom: '5px'
   },
-  rsvp: {
+  eventButton: {
     display: 'flex',
     textAlign: 'left',
     fontSize: '12px',
-    background: 'white',
+    background: '#291755',
+    color: 'white',
     borderRadius: '5px',
     fontWeight: '800',
     padding: '1px 8px',
@@ -60,7 +61,7 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-function NewEvents() {
+function ProfileEvents() {
   const classes = useStyles();
   useEffect(() => {}, []);
   return (
@@ -68,7 +69,7 @@ function NewEvents() {
       <Grid container>
         <Grid item className={classes.topContainer}>
           <Typography variant="h1" className={classes.topText}>
-            New Events
+            Events
           </Typography>
         </Grid>
       </Grid>
@@ -76,23 +77,23 @@ function NewEvents() {
         <Grid className={classes.eventText}>
           <img
             style={{ borderRadius: '8px' }}
-            src="./static/images/icons/event.svg"
+            src="./static/images/icons/prof_event.png"
             alt="event"
           />
           <Grid className={classes.eventInfo}>
             <Typography variant="h5">Intro to Open Source</Typography>
-            <div style={{ display: 'flex' }}>
               <Typography variant="subtitle2" className={classes.eventDate}>
                 16 Jan 2021 (2 days left)
+                <br/>
+                100+ RSVPs
               </Typography>
-            </div>
             <Button
               variant="contained"
-              style={{ backgroundColor: 'white' }}
-              className={classes.rsvp}
+              style={{ backgroundColor: '#291755' }}
+              className={classes.eventButton}
             >
               <img
-                src="./static/images/icons/event_calendar.svg"
+                src="./static/images/icons/event_calendar_w.svg"
                 alt="rsvp"
                 height="12px"
                 style={{ marginRight: '6px' }}
@@ -104,56 +105,28 @@ function NewEvents() {
         <Grid className={classes.eventText}>
           <img
             style={{ borderRadius: '8px' }}
-            src="./static/images/icons/event.svg"
+            src="./static/images/icons/prof_event.png"
             alt="event"
           />
           <Grid className={classes.eventInfo}>
-            <Typography variant="h5">Intro to Open Source</Typography>
-            <div style={{ display: 'flex' }}>
+            <Typography variant="h5">Git & GitHub Basics</Typography>
               <Typography variant="subtitle2" className={classes.eventDate}>
-                16 Jan 2021 (2 days left)
+                10 Jan 2021
+                <br/>
+                300+ views
               </Typography>
-            </div>
             <Button
               variant="contained"
-              style={{ backgroundColor: 'white' }}
-              className={classes.rsvp}
+              style={{ backgroundColor: '#291755' }}
+              className={classes.eventButton}
             >
               <img
-                src="./static/images/icons/event_calendar.svg"
-                alt="rsvp"
+                src="./static/images/icons/play_rec.png"
+                alt="watch recording"
                 height="12px"
                 style={{ marginRight: '6px' }}
               />
-              RSVP
-            </Button>
-          </Grid>
-        </Grid>
-        <Grid className={classes.eventText}>
-          <img
-            style={{ borderRadius: '8px' }}
-            src="./static/images/icons/event.svg"
-            alt="event"
-          />
-          <Grid className={classes.eventInfo}>
-            <Typography variant="h5">Intro to Open Source</Typography>
-            <div style={{ display: 'flex' }}>
-              <Typography variant="subtitle2" className={classes.eventDate}>
-                16 Jan 2021 (2 days left)
-              </Typography>
-            </div>
-            <Button
-              variant="contained"
-              style={{ backgroundColor: 'white' }}
-              className={classes.rsvp}
-            >
-              <img
-                src="./static/images/icons/event_calendar.svg"
-                alt="rsvp"
-                height="12px"
-                style={{ marginRight: '6px' }}
-              />
-              RSVP
+              WATCH RECORDING
             </Button>
           </Grid>
         </Grid>
@@ -162,4 +135,4 @@ function NewEvents() {
   );
 }
 
-export default NewEvents;
+export default ProfileEvents;

@@ -61,7 +61,7 @@ export default function DrawerLayout({ children }) {
 
   const navItems = [
     { name: 'Dashboard', link: '/dashboard' },
-    { name: 'Profiles', link: '/profile' },
+    { name: 'Profile', link: '/profile' },
     { name: 'Events', link: '/events' },
     { name: 'Blogs', link: '/blogs' },
     { name: 'Settings', link: '/settings' },
