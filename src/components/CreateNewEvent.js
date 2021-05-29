@@ -8,7 +8,6 @@ import {
   Typography,
   Divider
 } from '@material-ui/core';
-import GalleryIcon from "./GalleryIcon"
 const useStyles = makeStyles(theme => ({
   
   root: {
@@ -24,14 +23,8 @@ const useStyles = makeStyles(theme => ({
       width: '353px'
     }
   },
-  inputDiv:{
-    background:'rgba(42, 23, 89, 0.25)',
-    borderRadius: '17px',
-    width: '451px',
-    marginBottom:'10px',
-  },
   divider: {
-    width: '430px',
+    width: '450px',
     height: '2px',
     backgroundColor: '#291757'
   },
@@ -54,6 +47,20 @@ const useStyles = makeStyles(theme => ({
     height: '38px',
     borderRadius: '20px',
     // marginRight:'60px',
+  },
+  inputDiv:{
+    background:'rgba(42, 23, 89, 0.25)',
+    borderRadius: '17px',
+    width: '451px',
+    marginBottom:'10px',
+    height: '70px',
+  },
+  input1:{
+    border: '0',
+    padding: '10px',
+    width: '260px',
+    background: 'transparent',
+    outline: '0',
   },
   input: {
     background:'rgba(42, 23, 89, 0.25)',
@@ -84,9 +91,9 @@ const useStyles = makeStyles(theme => ({
     marginBottom: '12px',
   },
   image :{
-    display: 'flex',
+    // display: 'flex',
     width: '350px',
-    height: '173px',
+    height: '183px',
     marginTop: '55px',
     background: '#473672',
     borderRadius: '40px',
@@ -109,15 +116,14 @@ const useStyles = makeStyles(theme => ({
       marginBottom:'20px',
       fontWeight:'bold',
   },
-  bottomPart: {
-    display: 'flex',
-    alignItems: 'center',
-    marginTop: '5px'
-  },
   text:{
       color: '#FFF',
-      fontWeight:'light!important',
-      marginTop: '100px'
+      textAlign: 'center',
+      // marginTop: '130px'
+  },
+  gallery:{
+    marginLeft: '124px',
+    width: '100px',
   },
   button: {
     marginTop: '8px',
@@ -205,23 +211,24 @@ function CreateNewEvent() {
             <div className={classes.inputDiv}>
             <input
               placeholder="Speaker name"
-              className={classes.input}
-              name="email"
-              type="email"
+              className={classes.input1}
+              name="name"
+              type="name"
               variant="outlined"
+              style={{'marginBottom':'0px'}}
               //   onChange={handleChange}
             />
              <Divider className={classes.divider} />
              <input
               placeholder="Speaker LinkedIn profile link" 
-              className={classes.input}
+              className={classes.input1}
               name="email"
               type="email"
               variant="outlined"
               //   onChange={handleChange}
             />
             </div>
-            {/* <div className={classes.bottomPart}> */}
+         
               <input
                 placeholder="Add a description for the event"
                 className={classes.description}
@@ -242,10 +249,12 @@ function CreateNewEvent() {
        </Box>
         <Box maxWidth="28em" minWidth="24em">
         <Card className={classes.image}>
-            <img src={GalleryIcon} alt="gallery-icon" />
+            <img src="/static/images/gallery.svg" alt="gallery-icon" className={classes.gallery} />
             <h3 className={classes.text}>Add a banner image</h3>
             </Card>
+        <img src="/static/images/event_img.svg" alt="gallery-icon" style={{'marginLeft': '21px','marginTop':'20px'}} />
         </Box>
+           
       </Box>
     </>
   );
