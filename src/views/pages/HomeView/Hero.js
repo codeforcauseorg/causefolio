@@ -62,12 +62,8 @@ function Hero({ className, ...rest }) {
           position: 'relative'
         }}
       >
-        <Grid
-          container
-          spacing={0}
-          
-        >
-          <Grid item xs={10} md={5} style={{ zIndex: '20'}}>
+        <Grid container spacing={0}>
+          <Grid item xs={10} md={5} style={{ zIndex: '20' }}>
             <Box
               display="flex"
               flexDirection="column"
@@ -127,7 +123,12 @@ function Hero({ className, ...rest }) {
             </Box>
           </Grid>
 
-          <Grid item xs={14} md={7} style={{display: 'flex', justifyContent: 'flex-end'}}>
+          <Grid
+            item
+            xs={14}
+            md={7}
+            style={{ display: 'flex', justifyContent: 'flex-end' }}
+          >
             <Box position="relative">
               {/* <div className={classes.shape}>
                 <img alt="Shapes" src="/static/home/shapes.svg" />
@@ -146,7 +147,9 @@ function Hero({ className, ...rest }) {
           </Grid>
         </Grid>
       </Container>
-      <div style={{ margin: 0, padding: 0, height: '50vh', objectFit:"cover" }}>
+      <div
+        style={{ margin: 0, padding: 0, height: '50vh', objectFit: 'cover' }}
+      >
         <img
           alt="codeforcauseimg"
           src="/static/home/Footer.svg"

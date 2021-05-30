@@ -16,9 +16,9 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: '#FFF',
     paddingTop: 50,
     paddingBottom: 60,
-    height:'90vh',
+    height: '90vh',
     color: '#000',
-    
+
     overflow: 'hidden',
     [theme.breakpoints.down('md')]: {
       paddingTop: 40,
@@ -92,7 +92,7 @@ function Test({ className, ...rest }) {
       </Container>
       <div
         style={{
-          marginTop:"30vh",
+          marginTop: '30vh',
           padding: 0,
           minHeight: '80vh',
           objectFit: 'cover'
