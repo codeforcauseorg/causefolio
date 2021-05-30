@@ -49,7 +49,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function LandingPage({ className, ...rest }) {
+function Second({ className, ...rest }) {
   const classes = useStyles();
   return (
     <div className={clsx(classes.root, className)} {...rest}>
@@ -151,8 +151,8 @@ function LandingPage({ className, ...rest }) {
   );
 }
 
-Hero.propTypes = {
+Second.propTypes = {
   className: PropTypes.string
 };
 
-export default LandingPage;
+export default Second;
