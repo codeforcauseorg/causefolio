@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import ArrowForwardOutlinedIcon from '@material-ui/icons/ArrowForwardOutlined';
 import {
   Box,
   Button,
@@ -13,12 +12,11 @@ import {
 
 const useStyles = makeStyles(theme => ({
   root: {
-    backgroundColor: '#FFF',
-    paddingTop: 50,
+    backgroundColor: '#291755',
+    paddingTop: 80,
     paddingBottom: 60,
-    color: '#000',
-    height: '92vh',
-    overflow: 'hidden',
+    color: '#FFFFFF',
+    height: '90vh',
     [theme.breakpoints.down('md')]: {
       paddingTop: 40,
       paddingBottom: 60
@@ -51,23 +49,25 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function Hero({ className, ...rest }) {
+function LandingPage({ className, ...rest }) {
   const classes = useStyles();
   return (
     <div className={clsx(classes.root, className)} {...rest}>
       <Container
         maxWidth="lg"
-        style={{
-          paddingTop: '20px',
-          position: 'relative'
-        }}
+        style={{ paddingTop: '40px', position: 'relative' }}
       >
-        <Grid
-          container
-          spacing={0}
-          
-        >
-          <Grid item xs={10} md={5} style={{ zIndex: '20'}}>
+        <img
+          src="/static/home/blob.svg"
+          alt="blob"
+          style={{
+            position: 'absolute',
+            top: '-20%',
+            left: '-20%'
+          }}
+        />
+        <Grid container spacing={0}>
+          <Grid item xs={10} md={5} style={{ zIndex: '20' }}>
             <Box
               display="flex"
               flexDirection="column"
@@ -80,19 +80,20 @@ function Hero({ className, ...rest }) {
                 variant="h1"
                 color="#fff"
                 style={{
-                  fontWeight: 700,
-                  fontSize: '2rem'
+                  fontWeight: 800,
+                  fontSize: '40px'
                 }}
               >
-                A Heading for the landing page
+                Code for Cause
               </Typography>
               <Box mt={2}>
                 <Typography variant="body1">
-                  A brief introduction about platform , what is
+                  An initiative to contribute to Open Source
                   <br />
-                  the purpose of this and what our platform
-                  <br /> represents . two to three lines will work
+                  community by providing training, guidance
+                  <br /> and awareness about the possibilities in the
                   <br />
+                  software field to students &amp; professionals.
                 </Typography>
               </Box>
               <Box mt={2}>
@@ -118,7 +119,7 @@ function Hero({ className, ...rest }) {
                         size="large"
                         variant="contained"
                       >
-                        Get Started <ArrowForwardOutlinedIcon />
+                        Check out
                       </Button>
                     </Box>
                   </Grid>
@@ -127,7 +128,7 @@ function Hero({ className, ...rest }) {
             </Box>
           </Grid>
 
-          <Grid item xs={14} md={7} style={{display: 'flex', justifyContent: 'flex-end'}}>
+          <Grid item xs={14} md={7}>
             <Box position="relative">
               {/* <div className={classes.shape}>
                 <img alt="Shapes" src="/static/home/shapes.svg" />
@@ -136,7 +137,7 @@ function Hero({ className, ...rest }) {
               <div className={classes.image}>
                 <img
                   alt="codeforcauseimg"
-                  src="/static/home/serviceGirl.png"
+                  src="/static/home/illus-1.svg"
                   style={{
                     width: '100%'
                   }}
@@ -146,15 +147,6 @@ function Hero({ className, ...rest }) {
           </Grid>
         </Grid>
       </Container>
-      <div style={{ margin: 0, padding: 0, height: '50vh', objectFit:"cover" }}>
-        <img
-          alt="codeforcauseimg"
-          src="/static/home/Footer.svg"
-          style={{
-            width: '100%'
-          }}
-        />
-      </div>
     </div>
   );
 }
@@ -163,4 +155,4 @@ Hero.propTypes = {
   className: PropTypes.string
 };
 
-export default Hero;
+export default LandingPage;
