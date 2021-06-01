@@ -1,12 +1,13 @@
-import Box from '@material-ui/core/Box';
+import Grid from '@material-ui/core/Grid';
 import React from 'react';
 import DrawerLayout from 'src/layouts/DrawerLayout';
 import Badge from './Badge';
 import ProfileInfo from './ProfileInfo';
 import ProfilePublications from './ProfilePublications';
 import ProfileEvents from './ProfileEvents';
+import CommitChart from './CommitChart';
 
-export default function Dashboard() {
+export default function Profile() {
   return (
     <DrawerLayout>
       <Box display="flex">
