@@ -4,6 +4,7 @@ import React from 'react';
 import DrawerLayout from 'src/layouts/DrawerLayout';
 import BookmarkedEvents from './BookmarkedEvents';
 import Calendar from './Calendar';
+import CreateNewEvent from './CreateNewEvent';
 import NewEvents from './NewEvents';
 import Publications from './Publications';
 import Stats from './Stats';

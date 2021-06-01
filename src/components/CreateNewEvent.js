@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/styles';
+import DrawerLayout from 'src/layouts/DrawerLayout';
 import {
   Button,
   Card,
@@ -14,7 +15,6 @@ const useStyles = makeStyles(theme => ({
     width: '750px',
     height: '473px',
     background: '#FFFFFF',
-    boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
     borderRadius: '20px',
     fontSize: '16px',
     [theme.breakpoints.down('xs')]: {
@@ -90,12 +90,17 @@ const useStyles = makeStyles(theme => ({
     marginBottom: '12px'
   },
   image: {
-    // display: 'flex',
+    marginLeft: '71px',
     width: '350px',
     height: '183px',
     marginTop: '55px',
     background: '#473672',
-    borderRadius: '40px'
+    borderRadius: '40px',
+  [theme.breakpoints.down('xs')]: {
+    height: '220px',
+    marginTop: '45px',
+    width: '253px'
+  }
   },
   description: {
     background: 'rgba(42, 23, 89, 0.25)',
@@ -111,6 +116,12 @@ const useStyles = makeStyles(theme => ({
     },
     marginBottom: '4px'
   },
+  topContainer: {
+    width: '150%',
+    display: 'flex',
+    justifyContent: 'space-between',
+    marginBottom: '10px'
+  },
   topText: {
     marginBottom: '20px',
     fontWeight: 'bold'
@@ -122,7 +133,11 @@ const useStyles = makeStyles(theme => ({
   },
   gallery: {
     marginLeft: '124px',
-    width: '100px'
+    width: '100px',
+    [theme.breakpoints.down('xs')]: {
+      marginLeft: '71px',
+    }
+    
   },
   button: {
     marginTop: '8px',
@@ -130,7 +145,6 @@ const useStyles = makeStyles(theme => ({
     height: '38px',
     borderRadius: '20px',
     color: 'white',
-    textTransform: 'capitalize',
     fontWeight: 'bold',
     fontSize: '13px',
     background: '#291757',
@@ -149,7 +163,9 @@ function CreateNewEvent() {
 
   useEffect(() => {}, []);
   return (
-    <>
+    <DrawerLayout>
+    <div className={classes.root}>
+      <Grid container>
       <Box display="flex">
         <Box flexGrow={1}>
           <Grid container>
@@ -258,11 +274,13 @@ function CreateNewEvent() {
           <img
             src="/static/images/event_img.svg"
             alt="gallery-icon"
-            style={{ marginLeft: '21px', marginTop: '20px' }}
+            style={{ marginLeft: '51px', marginTop: '20px' }}
           />
         </Box>
       </Box>
-    </>
+      </Grid>
+    </div>
+    </DrawerLayout>
   );
 }
 

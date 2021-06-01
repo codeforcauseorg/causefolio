@@ -8,6 +8,7 @@ import HomeView from 'src/views/pages/HomeView';
 import Error404View from 'src/views/pages/Error404View';
 import Badge from 'src/components/Badge';
 import EventDefaultPage from 'src/views/pages/events/eventdefault';
+import CreateNewEvent from './components/CreateNewEvent';
 
 const renderRoutes = () => (
   <Suspense fallback={<LoadingScreen />}>
@@ -24,6 +25,7 @@ const renderRoutes = () => (
       <Route path="/dashboard" exact render={() => <Navigation />} />
       <Route path="/profile" exact render={() => <Badge />} />
       <Route path="/events" exact render={() => <EventDefaultPage />} />
+      <Route path="/createEvent" exact render={() => <CreateNewEvent />} />
       <Route path="*" exact render={() => <Error404View />} />
     </Switch>
   </Suspense>
