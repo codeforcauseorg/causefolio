@@ -86,9 +86,7 @@ function Badge() {
         {/* for demo purpose added badges statically */}
         <Grid item>
           <img src="./static/images/icons/star_yellow.svg" alt="badge"></img>
-          <Typography className={classes.badgesText}>
-            Super Blogger
-          </Typography>
+          <Typography className={classes.badgesText}>Super Blogger</Typography>
         </Grid>
         <Grid item>
           <img src="./static/images/icons/star_orange.svg" alt="badge"></img>

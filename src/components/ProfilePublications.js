@@ -58,7 +58,7 @@ const useStyles = makeStyles(() => ({
     background: '#CCD2E3',
     borderRadius: '5px',
     fontWeight: '800',
-    letterSpacing: '0.44px',
+    letterSpacing: '0.44px'
   }
 }));
 
@@ -67,164 +67,136 @@ function ProfilePublications() {
   useEffect(() => {}, []);
   return (
     <Card className={classes.root}>
-        <Grid container>
-          <Grid item className={classes.topContainer}>
-            <Typography variant="h1" className={classes.topText}>
-              Publications
-            </Typography>
-          </Grid>
+      <Grid container>
+        <Grid item className={classes.topContainer}>
+          <Typography variant="h1" className={classes.topText}>
+            Publications
+          </Typography>
         </Grid>
-        {/* sample blog posts */}
-        <Grid container className={classes.publication}>
-            <Box className={classes.pubText} display="flex">
-                <Box className={classes.pubHeading} display="flex" flexGrow={1}>
-                    <Box display="flex" alignItems="center">
-                        <img
-                        style={{ borderRadius: '3px', marginRight: '10px' }}
-                        src="./static/images/icons/prof_pub.png"
-                        alt="publication"
-                        />
-                        <div style={{ display: 'block' }}>
-                            <Typography style={{ fontSize: '18px', fontWeight: '600' }}>
-                              Blog Title
-                            </Typography>
-                            <div style={{ display: 'flex' }}>
-                                <Typography variant="subtitle1" className={classes.pubRead}>
-                                    2 MIN
-                                </Typography>
-                                <Typography variant="subtitle1" className={classes.pubDate}>
-                                    <b>•</b>
-                                    &ensp;16 Jan
-                                </Typography>
-                            </div>
-                        </div>
-                    </Box>
-                </Box>
-                <Box>
-                    <Button
-                    className={classes.plus}
-                    variant="text"
-                    disableElevation
-                    >
-                      <img
-                          src="./static/images/icons/blog_plus.svg"
-                          alt="blog"
-                      />
-                    </Button>
-                </Box>
+      </Grid>
+      {/* sample blog posts */}
+      <Grid container className={classes.publication}>
+        <Box className={classes.pubText} display="flex">
+          <Box className={classes.pubHeading} display="flex" flexGrow={1}>
+            <Box display="flex" alignItems="center">
+              <img
+                style={{ borderRadius: '3px', marginRight: '10px' }}
+                src="./static/images/icons/prof_pub.png"
+                alt="publication"
+              />
+              <div style={{ display: 'block' }}>
+                <Typography style={{ fontSize: '18px', fontWeight: '600' }}>
+                  Blog Title
+                </Typography>
+                <div style={{ display: 'flex' }}>
+                  <Typography variant="subtitle1" className={classes.pubRead}>
+                    2 MIN
+                  </Typography>
+                  <Typography variant="subtitle1" className={classes.pubDate}>
+                    <b>•</b>
+                    &ensp;16 Jan
+                  </Typography>
+                </div>
+              </div>
             </Box>
-            <Box className={classes.pubText} display="flex">
-                <Box className={classes.pubHeading} display="flex" flexGrow={1}>
-                    <Box display="flex" alignItems="center">
-                        <img
-                        style={{ borderRadius: '3px', marginRight: '10px' }}
-                        src="./static/images/icons/prof_pub.png"
-                        alt="publication"
-                        />
-                        <div style={{ display: 'block' }}>
-                            <Typography style={{ fontSize: '18px', fontWeight: '600' }}>
-                              Blog Title
-                            </Typography>
-                            <div style={{ display: 'flex' }}>
-                                <Typography variant="subtitle1" className={classes.pubRead}>
-                                    2 MIN
-                                </Typography>
-                                <Typography variant="subtitle1" className={classes.pubDate}>
-                                    <b>•</b>
-                                    &ensp;16 Jan
-                                </Typography>
-                            </div>
-                        </div>
-                    </Box>
-                </Box>
-                <Box>
-                    <Button
-                    className={classes.plus}
-                    variant="text"
-                    disableElevation
-                    >
-                      <img
-                          src="./static/images/icons/blog_plus.svg"
-                          alt="blog"
-                      />
-                    </Button>
-                </Box>
+          </Box>
+          <Box>
+            <Button className={classes.plus} variant="text" disableElevation>
+              <img src="./static/images/icons/blog_plus.svg" alt="blog" />
+            </Button>
+          </Box>
+        </Box>
+        <Box className={classes.pubText} display="flex">
+          <Box className={classes.pubHeading} display="flex" flexGrow={1}>
+            <Box display="flex" alignItems="center">
+              <img
+                style={{ borderRadius: '3px', marginRight: '10px' }}
+                src="./static/images/icons/prof_pub.png"
+                alt="publication"
+              />
+              <div style={{ display: 'block' }}>
+                <Typography style={{ fontSize: '18px', fontWeight: '600' }}>
+                  Blog Title
+                </Typography>
+                <div style={{ display: 'flex' }}>
+                  <Typography variant="subtitle1" className={classes.pubRead}>
+                    2 MIN
+                  </Typography>
+                  <Typography variant="subtitle1" className={classes.pubDate}>
+                    <b>•</b>
+                    &ensp;16 Jan
+                  </Typography>
+                </div>
+              </div>
             </Box>
-            <Box className={classes.pubText} display="flex">
-                <Box className={classes.pubHeading} display="flex" flexGrow={1}>
-                    <Box display="flex" alignItems="center">
-                        <img
-                        style={{ borderRadius: '3px', marginRight: '10px' }}
-                        src="./static/images/icons/prof_pub.png"
-                        alt="publication"
-                        />
-                        <div style={{ display: 'block' }}>
-                            <Typography style={{ fontSize: '18px', fontWeight: '600' }}>
-                              Blog Title
-                            </Typography>
-                            <div style={{ display: 'flex' }}>
-                                <Typography variant="subtitle1" className={classes.pubRead}>
-                                    2 MIN
-                                </Typography>
-                                <Typography variant="subtitle1" className={classes.pubDate}>
-                                    <b>•</b>
-                                    &ensp;16 Jan
-                                </Typography>
-                            </div>
-                        </div>
-                    </Box>
-                </Box>
-                <Box>
-                    <Button
-                    className={classes.plus}
-                    variant="text"
-                    disableElevation
-                    >
-                      <img
-                          src="./static/images/icons/blog_plus.svg"
-                          alt="blog"
-                      />
-                    </Button>
-                </Box>
+          </Box>
+          <Box>
+            <Button className={classes.plus} variant="text" disableElevation>
+              <img src="./static/images/icons/blog_plus.svg" alt="blog" />
+            </Button>
+          </Box>
+        </Box>
+        <Box className={classes.pubText} display="flex">
+          <Box className={classes.pubHeading} display="flex" flexGrow={1}>
+            <Box display="flex" alignItems="center">
+              <img
+                style={{ borderRadius: '3px', marginRight: '10px' }}
+                src="./static/images/icons/prof_pub.png"
+                alt="publication"
+              />
+              <div style={{ display: 'block' }}>
+                <Typography style={{ fontSize: '18px', fontWeight: '600' }}>
+                  Blog Title
+                </Typography>
+                <div style={{ display: 'flex' }}>
+                  <Typography variant="subtitle1" className={classes.pubRead}>
+                    2 MIN
+                  </Typography>
+                  <Typography variant="subtitle1" className={classes.pubDate}>
+                    <b>•</b>
+                    &ensp;16 Jan
+                  </Typography>
+                </div>
+              </div>
             </Box>
-            <Box className={classes.pubText} display="flex">
-                <Box className={classes.pubHeading} display="flex" flexGrow={1}>
-                    <Box display="flex" alignItems="center">
-                        <img
-                        style={{ borderRadius: '3px', marginRight: '10px' }}
-                        src="./static/images/icons/prof_pub.png"
-                        alt="publication"
-                        />
-                        <div style={{ display: 'block' }}>
-                            <Typography style={{ fontSize: '18px', fontWeight: '600' }}>
-                              Blog Title
-                            </Typography>
-                            <div style={{ display: 'flex' }}>
-                                <Typography variant="subtitle1" className={classes.pubRead}>
-                                    2 MIN
-                                </Typography>
-                                <Typography variant="subtitle1" className={classes.pubDate}>
-                                    <b>•</b>
-                                    &ensp;16 Jan
-                                </Typography>
-                            </div>
-                        </div>
-                    </Box>
-                </Box>
-                <Box>
-                    <Button
-                    className={classes.plus}
-                    variant="text"
-                    disableElevation
-                    >
-                      <img
-                          src="./static/images/icons/blog_plus.svg"
-                          alt="blog"
-                      />
-                    </Button>
-                </Box>
+          </Box>
+          <Box>
+            <Button className={classes.plus} variant="text" disableElevation>
+              <img src="./static/images/icons/blog_plus.svg" alt="blog" />
+            </Button>
+          </Box>
+        </Box>
+        <Box className={classes.pubText} display="flex">
+          <Box className={classes.pubHeading} display="flex" flexGrow={1}>
+            <Box display="flex" alignItems="center">
+              <img
+                style={{ borderRadius: '3px', marginRight: '10px' }}
+                src="./static/images/icons/prof_pub.png"
+                alt="publication"
+              />
+              <div style={{ display: 'block' }}>
+                <Typography style={{ fontSize: '18px', fontWeight: '600' }}>
+                  Blog Title
+                </Typography>
+                <div style={{ display: 'flex' }}>
+                  <Typography variant="subtitle1" className={classes.pubRead}>
+                    2 MIN
+                  </Typography>
+                  <Typography variant="subtitle1" className={classes.pubDate}>
+                    <b>•</b>
+                    &ensp;16 Jan
+                  </Typography>
+                </div>
+              </div>
             </Box>
-        </Grid>
+          </Box>
+          <Box>
+            <Button className={classes.plus} variant="text" disableElevation>
+              <img src="./static/images/icons/blog_plus.svg" alt="blog" />
+            </Button>
+          </Box>
+        </Box>
+      </Grid>
     </Card>
   );
 }

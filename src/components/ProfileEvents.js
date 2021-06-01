@@ -9,7 +9,7 @@ const useStyles = makeStyles(() => ({
     padding: '19px',
     color: '#291757',
     fontFamily: 'Montserrat',
-    marginBottom: '21px',
+    marginBottom: '21px'
   },
   topContainer: {
     display: 'flex',
@@ -82,11 +82,11 @@ function ProfileEvents() {
           />
           <Grid className={classes.eventInfo}>
             <Typography variant="h5">Intro to Open Source</Typography>
-              <Typography variant="subtitle2" className={classes.eventDate}>
-                16 Jan 2021 (2 days left)
-                <br/>
-                100+ RSVPs
-              </Typography>
+            <Typography variant="subtitle2" className={classes.eventDate}>
+              16 Jan 2021 (2 days left)
+              <br />
+              100+ RSVPs
+            </Typography>
             <Button
               variant="contained"
               style={{ backgroundColor: '#291755' }}
@@ -110,11 +110,11 @@ function ProfileEvents() {
           />
           <Grid className={classes.eventInfo}>
             <Typography variant="h5">Git & GitHub Basics</Typography>
-              <Typography variant="subtitle2" className={classes.eventDate}>
-                10 Jan 2021
-                <br/>
-                300+ views
-              </Typography>
+            <Typography variant="subtitle2" className={classes.eventDate}>
+              10 Jan 2021
+              <br />
+              300+ views
+            </Typography>
             <Button
               variant="contained"
               style={{ backgroundColor: '#291755' }}

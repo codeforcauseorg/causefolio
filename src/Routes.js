@@ -26,7 +26,11 @@ const renderRoutes = () => (
       <Route path="/profile" exact render={() => <Profile />} />
 
       <Route path="/events" exact render={() => <EventDefaultPage />} />
-      <Route path="/events/individual-event" exact render={() => <IndividualEvent />} />
+      <Route
+        path="/events/individual-event"
+        exact
+        render={() => <IndividualEvent />}
+      />
       <Route path="*" exact render={() => <Error404View />} />
     </Switch>
   </Suspense>
