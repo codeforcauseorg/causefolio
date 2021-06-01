@@ -14,7 +14,7 @@ function HomeView() {
   return (
     <Page className={classes.root} title="Code for Cause">
       <Hero />
-      
+
       {/* <Footer /> */}
     </Page>
   );

@@ -9,7 +9,6 @@ import {
   Divider
 } from '@material-ui/core';
 const useStyles = makeStyles(theme => ({
-  
   root: {
     display: 'flex',
     width: '750px',
@@ -28,42 +27,42 @@ const useStyles = makeStyles(theme => ({
     height: '2px',
     backgroundColor: '#291757'
   },
-  cancelbtn:{
+  cancelbtn: {
     background: '#291757',
     color: '#FFF',
     width: '200px',
     height: '38px',
     borderRadius: '20px',
-    marginRight:'15px',
+    marginRight: '15px'
   },
-  createbtn:{
-    marginTop:'60px',
-    marginLeft:'40px',
+  createbtn: {
+    marginTop: '60px',
+    marginLeft: '40px'
   },
-  addbtn:{
+  addbtn: {
     background: '#291757',
     color: '#FFF',
     width: '200px',
     height: '38px',
-    borderRadius: '20px',
+    borderRadius: '20px'
     // marginRight:'60px',
   },
-  inputDiv:{
-    background:'rgba(42, 23, 89, 0.25)',
+  inputDiv: {
+    background: 'rgba(42, 23, 89, 0.25)',
     borderRadius: '17px',
     width: '451px',
-    marginBottom:'10px',
-    height: '70px',
+    marginBottom: '10px',
+    height: '70px'
   },
-  input1:{
+  input1: {
     border: '0',
     padding: '10px',
     width: '260px',
     background: 'transparent',
-    outline: '0',
+    outline: '0'
   },
   input: {
-    background:'rgba(42, 23, 89, 0.25)',
+    background: 'rgba(42, 23, 89, 0.25)',
     borderRadius: '15px',
     border: 'none',
     width: '450px',
@@ -76,7 +75,7 @@ const useStyles = makeStyles(theme => ({
     },
     marginBottom: '12px'
   },
-  date:{
+  date: {
     background: 'rgba(42, 23, 89, 0.25)',
     borderRadius: '25px',
     border: 'none',
@@ -88,15 +87,15 @@ const useStyles = makeStyles(theme => ({
     '&:focus': {
       outline: 'none'
     },
-    marginBottom: '12px',
+    marginBottom: '12px'
   },
-  image :{
+  image: {
     // display: 'flex',
     width: '350px',
     height: '183px',
     marginTop: '55px',
     background: '#473672',
-    borderRadius: '40px',
+    borderRadius: '40px'
   },
   description: {
     background: 'rgba(42, 23, 89, 0.25)',
@@ -112,18 +111,18 @@ const useStyles = makeStyles(theme => ({
     },
     marginBottom: '4px'
   },
-  topText:{
-      marginBottom:'20px',
-      fontWeight:'bold',
+  topText: {
+    marginBottom: '20px',
+    fontWeight: 'bold'
   },
-  text:{
-      color: '#FFF',
-      textAlign: 'center',
-      // marginTop: '130px'
+  text: {
+    color: '#FFF',
+    textAlign: 'center'
+    // marginTop: '130px'
   },
-  gallery:{
+  gallery: {
     marginLeft: '124px',
-    width: '100px',
+    width: '100px'
   },
   button: {
     marginTop: '8px',
@@ -151,84 +150,84 @@ function CreateNewEvent() {
   useEffect(() => {}, []);
   return (
     <>
-     <Box display="flex">
-      <Box flexGrow={1}>
-        <Grid container>
-          <Grid item className={classes.topContainer}>
-            <Typography variant="h1" className={classes.topText}>
-              New Event
-            </Typography>
+      <Box display="flex">
+        <Box flexGrow={1}>
+          <Grid container>
+            <Grid item className={classes.topContainer}>
+              <Typography variant="h1" className={classes.topText}>
+                New Event
+              </Typography>
+            </Grid>
           </Grid>
-        </Grid>
-        <Grid container className={classes.event}>
-          <Grid className={classes.eventText}>
-            <input
-              placeholder="Enter name of the event"
-              className={classes.input}
-              name="email"
-              type="email"
-              variant="outlined"
-              //   onChange={handleChange}
-            />
+          <Grid container className={classes.event}>
+            <Grid className={classes.eventText}>
+              <input
+                placeholder="Enter name of the event"
+                className={classes.input}
+                name="email"
+                type="email"
+                variant="outlined"
+                //   onChange={handleChange}
+              />
 
-            <input
-              placeholder="Add Description of the event"
-              className={classes.description}
-              name="email"
-              type="email"
-              variant="outlined"
-              //   onChange={handleChange}
-            />
-            
-            <input
-              id="date"
-              label="Birthday"
-              type="date"
-              defaultValue="2017-05-24"
-              className={classes.date}
-              InputLabelProps={{
-                shrink: true
-              }}
-              style={{'marginRight' : '30px'}}
-            />
-          <input
-              placeholder="Event Time"
-              className={classes.date}
-              name="time"
-              type="time"
-              variant="outlined"
-              //   onChange={handleChange}
-            />
-          
-            <input
-              placeholder="Event link / Registration link"
-              className={classes.input}
-              name="email"
-              type="email"
-              variant="outlined"
-              //   onChange={handleChange}
-            />
-            <div className={classes.inputDiv}>
-            <input
-              placeholder="Speaker name"
-              className={classes.input1}
-              name="name"
-              type="name"
-              variant="outlined"
-              style={{'marginBottom':'0px'}}
-              //   onChange={handleChange}
-            />
-             <Divider className={classes.divider} />
-             <input
-              placeholder="Speaker LinkedIn profile link" 
-              className={classes.input1}
-              name="email"
-              type="email"
-              variant="outlined"
-              //   onChange={handleChange}
-            />
-            </div>
-         
+              <input
+                placeholder="Add Description of the event"
+                className={classes.description}
+                name="email"
+                type="email"
+                variant="outlined"
+                //   onChange={handleChange}
+              />
+
+              <input
+                id="date"
+                label="Birthday"
+                type="date"
+                defaultValue="2017-05-24"
+                className={classes.date}
+                InputLabelProps={{
+                  shrink: true
+                }}
+                style={{ marginRight: '30px' }}
+              />
+              <input
+                placeholder="Event Time"
+                className={classes.date}
+                name="time"
+                type="time"
+                variant="outlined"
+                //   onChange={handleChange}
+              />
+
+              <input
+                placeholder="Event link / Registration link"
+                className={classes.input}
+                name="email"
+                type="email"
+                variant="outlined"
+                //   onChange={handleChange}
+              />
+              <div className={classes.inputDiv}>
+                <input
+                  placeholder="Speaker name"
+                  className={classes.input1}
+                  name="name"
+                  type="name"
+                  variant="outlined"
+                  style={{ marginBottom: '0px' }}
+                  //   onChange={handleChange}
+                />
+                <Divider className={classes.divider} />
+                <input
+                  placeholder="Speaker LinkedIn profile link"
+                  className={classes.input1}
+                  name="email"
+                  type="email"
+                  variant="outlined"
+                  //   onChange={handleChange}
+                />
+              </div>
+
               <input
                 placeholder="Add a description for the event"
                 className={classes.description}
@@ -237,24 +236,31 @@ function CreateNewEvent() {
                 variant="outlined"
                 //   onChange={handleChange}
               />
-           
+
               <Button className={classes.button}>Add Speaker</Button>
-            {/* </div> */}
+              {/* </div> */}
+            </Grid>
           </Grid>
-        </Grid>
-        <div className={classes.createbtn}>
-        <Button className={classes.cancelbtn}>Cancel</Button>
-        <Button className={classes.addbtn}>Create</Button>
-        </div>
-       </Box>
-        <Box maxWidth="28em" minWidth="24em">
-        <Card className={classes.image}>
-            <img src="/static/images/gallery.svg" alt="gallery-icon" className={classes.gallery} />
-            <h3 className={classes.text}>Add a banner image</h3>
-            </Card>
-        <img src="/static/images/event_img.svg" alt="gallery-icon" style={{'marginLeft': '21px','marginTop':'20px'}} />
+          <div className={classes.createbtn}>
+            <Button className={classes.cancelbtn}>Cancel</Button>
+            <Button className={classes.addbtn}>Create</Button>
+          </div>
         </Box>
-           
+        <Box maxWidth="28em" minWidth="24em">
+          <Card className={classes.image}>
+            <img
+              src="/static/images/gallery.svg"
+              alt="gallery-icon"
+              className={classes.gallery}
+            />
+            <h3 className={classes.text}>Add a banner image</h3>
+          </Card>
+          <img
+            src="/static/images/event_img.svg"
+            alt="gallery-icon"
+            style={{ marginLeft: '21px', marginTop: '20px' }}
+          />
+        </Box>
       </Box>
     </>
   );

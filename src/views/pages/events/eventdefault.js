@@ -1,4 +1,4 @@
-import { Box ,Button} from '@material-ui/core';
+import { Box, Button } from '@material-ui/core';
 import React from 'react';
 import BookmarkedEvents from 'src/components/BookmarkedEvents';
 import UpcomingEvents from 'src/components/NewEvents';
@@ -33,20 +33,18 @@ export default function EventDefaultPage() {
     <DrawerLayout>
       <Box display="flex">
         <Box flexGrow={1}>
-
           {/* <BookmarkedEvents />
           <SearchBar />
           <BookmarkedEvents />
           <Button className={classes.button}>
               Create New Event
             </Button> */}
-            <CreateNewEvent />
+          <CreateNewEvent />
         </Box>
-      
+
         <Box maxWidth="28em" minWidth="24em">
           {/* 
           <Publications /> */}
-        
         </Box>
       </Box>
     </DrawerLayout>
