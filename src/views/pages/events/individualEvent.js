@@ -1,10 +1,4 @@
-import {
-  Avatar,
-  Box,
-  Button,
-  Grid,
-  Typography,
-} from '@material-ui/core';
+import { Avatar, Box, Button, Grid, Typography } from '@material-ui/core';
 // import Avatar from '@material-ui/core/Avatar';
 import AvatarGroup from '@material-ui/lab/AvatarGroup';
 import { makeStyles } from '@material-ui/styles';
@@ -12,12 +6,12 @@ import React from 'react';
 import NewEvents from 'src/components/NewEvents';
 import DrawerLayout from 'src/layouts/DrawerLayout';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
     color: '#291757',
     fontFamily: 'Montserrat',
     marginBottom: '21px',
-    minWidth: '0px',
+    minWidth: '0px'
   },
   banner: {
     width: '100%'
@@ -37,18 +31,18 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'baseline',
     width: '100%',
-    justifyContent: 'space-between',
+    justifyContent: 'space-between'
   },
   introduction: {
     color: 'black',
     fontSize: '32px',
     [theme.breakpoints.down('sm')]: {
-      fontSize: '26px',
+      fontSize: '26px'
     },
     [theme.breakpoints.down('xs')]: {
       fontSize: '22px',
-      marginBottom: '10px',
-    },
+      marginBottom: '10px'
+    }
   },
 
   register: {
@@ -59,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: 16,
     '&:hover': {
       backgroundColor: '#101c4c'
-    },
+    }
   },
   desc: {
     marginTop: '10px',
@@ -67,8 +61,8 @@ const useStyles = makeStyles((theme) => ({
     color: '#576886',
     wordWrap: 'anywhere',
     [theme.breakpoints.down('xs')]: {
-      marginBottom: '10px',
-    },
+      marginBottom: '10px'
+    }
   },
   speaker: {
     marginTop: '5px',
@@ -79,13 +73,13 @@ const useStyles = makeStyles((theme) => ({
     width: '200px',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: '10px',
+    padding: '10px'
   },
 
   hidden: {
     [theme.breakpoints.down('md')]: {
-      display: 'none',
-    },
+      display: 'none'
+    }
   }
 }));
 
@@ -94,7 +88,7 @@ export default function IndividualEvent() {
   return (
     <DrawerLayout>
       <Box display="flex">
-        <Box flexGrow={1} minWidth='0' >
+        <Box flexGrow={1} minWidth="0">
           <div className={classes.root}>
             <img
               className={classes.banner}
@@ -119,27 +113,29 @@ export default function IndividualEvent() {
                 </Button>
               </Grid>
 
-              <Grid container >
-              <AvatarGroup max={4} >
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-                <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />
-                <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />
-                <Avatar alt="Agnes Walker" src="/static/images/avatar/4.jpg" />
-                <Avatar
-                  alt="Trevor Henderson"
-                  src="/static/images/avatar/5.jpg"
+              <Grid container>
+                <AvatarGroup max={4}>
+                  <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+                  <Avatar
+                    alt="Travis Howard"
+                    src="/static/images/avatar/2.jpg"
                   />
-              </AvatarGroup>
-                  </Grid>
+                  <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />
+                  <Avatar
+                    alt="Agnes Walker"
+                    src="/static/images/avatar/4.jpg"
+                  />
+                  <Avatar
+                    alt="Trevor Henderson"
+                    src="/static/images/avatar/5.jpg"
+                  />
+                </AvatarGroup>
+              </Grid>
               <Grid container className={classes.desc}>
                 <Typography variant="h5">
-                  Description of event : 2 to 3
-                  lines: 
-                  <br/>
+                  Description of event : 2 to 3 lines:
+                  <br />
                   lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30
-                  
-                
-                
                 </Typography>
               </Grid>
 

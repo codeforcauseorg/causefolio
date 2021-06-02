@@ -50,7 +50,11 @@ const useStyles = makeStyles(theme => ({
   content: {
     padding: theme.spacing(3),
     marginTop: '80px',
-    width: '100%'
+    width: '100%',
+    maxWidth: `calc(100% - ${drawerWidth}px)`,
+    [theme.breakpoints.down('md')]: {
+      maxWidth: '100%'
+    }
   }
 }));
 
