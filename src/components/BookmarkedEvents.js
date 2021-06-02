@@ -38,7 +38,8 @@ const useStyles = makeStyles(() => ({
     borderRadius: '20px',
     width: '114px',
     height: '147px',
-    marginRight: '16px'
+    marginRight: '16px',
+    marginBottom: '16px'
   },
   checkOut: {
     borderRadius: '16px',
