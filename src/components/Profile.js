@@ -10,22 +10,31 @@ import CommitChart from './CommitChart';
 export default function Profile() {
   return (
     <DrawerLayout>
-      <Box display="flex">
+      <Grid>
         <ProfileInfo />
-      </Box>
-      <Box display="flex" style={{ marginBottom: '21px' }}>
-        <Box flexGrow={1}>
+      </Grid>
+      <Grid
+        container
+        style={{ marginBottom: '21px' }}
+      >
+        <Grid item sm={4} style={{ marginRight: '21px' }}>
+          <CommitChart />
+        </Grid>
+        <Grid item sm>
           <Badge />
-        </Box>
-      </Box>
-      <Box display="flex" style={{ marginBottom: '21px' }}>
-        <Box flexGrow={1}>
+        </Grid>
+      </Grid>
+      <Grid
+        container
+        style={{ marginBottom: '21px' }}
+      >
+        <Grid sm>
           <ProfileEvents />
-        </Box>
-        <Box maxWidth="26em" minWidth="24em">
+        </Grid>
+        <Grid sm>
           <ProfilePublications />
-        </Box>
-      </Box>
+        </Grid>
+      </Grid>
     </DrawerLayout>
   );
 }
