@@ -1,4 +1,10 @@
-import { Avatar, Box, Button, Grid, Typography } from '@material-ui/core';
+import {
+  Avatar,
+  Box,
+  Button,
+  Grid,
+  Typography,
+} from '@material-ui/core';
 // import Avatar from '@material-ui/core/Avatar';
 import AvatarGroup from '@material-ui/lab/AvatarGroup';
 import { makeStyles } from '@material-ui/styles';
@@ -6,13 +12,12 @@ import React from 'react';
 import NewEvents from 'src/components/NewEvents';
 import DrawerLayout from 'src/layouts/DrawerLayout';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     color: '#291757',
     fontFamily: 'Montserrat',
-    marginBottom: '21px'
-    // marginTop: '21px',
-    // width: '900px'
+    marginBottom: '21px',
+    minWidth: '0px',
   },
   banner: {
     width: '100%'
@@ -30,33 +35,40 @@ const useStyles = makeStyles(() => ({
   },
   intro: {
     display: 'flex',
-    alignItems: 'baseline'
+    alignItems: 'baseline',
+    width: '100%',
+    justifyContent: 'space-between',
   },
   introduction: {
     color: 'black',
-    // fontWeight: 'bold',
-    fontSize: '32px'
+    fontSize: '32px',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '26px',
+    },
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '22px',
+      marginBottom: '10px',
+    },
   },
 
-  search: {
+  register: {
     width: '160px',
     backgroundColor: '#291757',
     borderRadius: '20px',
-    marginLeft: '110px',
     marginTop: 12,
-    // marginLeft: 150,
     marginBottom: 16,
     '&:hover': {
       backgroundColor: '#101c4c'
-    }
-  },
-  group: {
-    flexDirection: 'row-reverse'
+    },
   },
   desc: {
     marginTop: '10px',
-    marginBottom: '5px',
-    color: '#576886'
+    marginBottom: '10px',
+    color: '#576886',
+    wordWrap: 'anywhere',
+    [theme.breakpoints.down('xs')]: {
+      marginBottom: '10px',
+    },
   },
   speaker: {
     marginTop: '5px',
@@ -67,7 +79,13 @@ const useStyles = makeStyles(() => ({
     width: '200px',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: '10px'
+    padding: '10px',
+  },
+
+  hidden: {
+    [theme.breakpoints.down('md')]: {
+      display: 'none',
+    },
   }
 }));
 
@@ -76,7 +94,7 @@ export default function IndividualEvent() {
   return (
     <DrawerLayout>
       <Box display="flex">
-        <Box flexGrow={1}>
+        <Box flexGrow={1} minWidth='0' >
           <div className={classes.root}>
             <img
               className={classes.banner}
@@ -94,14 +112,15 @@ export default function IndividualEvent() {
                 <Typography className={classes.introduction} variant="h1">
                   Introduction to product designing
                 </Typography>
-                <Button className={classes.search}>
+                <Button className={classes.register}>
                   <Typography style={{ color: '#fff', fontWeight: 'bold' }}>
                     Register
                   </Typography>
                 </Button>
               </Grid>
 
-              <AvatarGroup max={4}>
+              <Grid container >
+              <AvatarGroup max={4} >
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
                 <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />
                 <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />
@@ -109,18 +128,18 @@ export default function IndividualEvent() {
                 <Avatar
                   alt="Trevor Henderson"
                   src="/static/images/avatar/5.jpg"
-                />
+                  />
               </AvatarGroup>
+                  </Grid>
               <Grid container className={classes.desc}>
                 <Typography variant="h5">
                   Description of event : 2 to 3
-                  lines----------------------------------------------------------
-                  <br />
-                  -----------------------------------------------------------------------------------------------------
-                  <br />
-                  -----------------------------------------------------------------------------------------------------
-                  <br />
-                  -----------------------------------------------------------------------------------------------------
+                  lines: 
+                  <br/>
+                  lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30lorem30
+                  
+                
+                
                 </Typography>
               </Grid>
 
@@ -180,9 +199,11 @@ export default function IndividualEvent() {
           </div>
         </Box>
 
-        <Box maxWidth="28em" minWidth="24em">
-          <NewEvents />
-        </Box>
+        <div className={classes.hidden}>
+          <Box maxWidth="28em" minWidth="24em">
+            <NewEvents />
+          </Box>
+        </div>
       </Box>
     </DrawerLayout>
   );
