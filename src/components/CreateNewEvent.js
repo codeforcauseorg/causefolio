@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect,useState } from 'react';
 import { makeStyles } from '@material-ui/styles';
 import DrawerLayout from 'src/layouts/DrawerLayout';
 import {
@@ -160,7 +160,13 @@ function CreateNewEvent() {
   //   new Date('2014-08-18T21:11:54')
   // );
   const classes = useStyles();
-
+  const [file, setFile] = useState('');
+  const [filename, setFilename] = useState('');
+  const handleUpload =(e)=>{
+    setFile(e.target.files[0]);
+    setFilename(e.target.files[0].name);
+    console.log("clicked");
+  }
   useEffect(() => {}, []);
   return (
     <DrawerLayout>
@@ -263,18 +269,20 @@ function CreateNewEvent() {
           </div>
         </Box>
         <Box maxWidth="28em" minWidth="24em">
-          <Card className={classes.image}>
+          <Card className={classes.image} type="file" onChange={handleUpload}>
             <img
               src="/static/images/gallery.svg"
               alt="gallery-icon"
               className={classes.gallery}
-            />
+            
+            />{filename}
             <h3 className={classes.text}>Add a banner image</h3>
           </Card>
           <img
             src="/static/images/event_img.svg"
             alt="gallery-icon"
             style={{ marginLeft: '51px', marginTop: '20px' }}
+          
           />
         </Box>
       </Box>

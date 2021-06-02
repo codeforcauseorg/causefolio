@@ -1,9 +1,9 @@
 import { Box ,Button} from '@material-ui/core';
 import React from 'react';
 import BookmarkedEvents from 'src/components/BookmarkedEvents';
-// import UpcomingEvents from 'src/components/NewEvents';
+import UpcomingEvents from 'src/components/NewEvents';
 import {useHistory} from "react-router-dom";
-// import Publications from 'src/components/Publications';
+import Publications from 'src/components/Publications';
 import SearchBar from 'src/components/search';
 import DrawerLayout from 'src/layouts/DrawerLayout';
 import { makeStyles } from '@material-ui/core/styles';
@@ -48,8 +48,8 @@ export default function EventDefaultPage() {
         </Box>
 
         <Box maxWidth="28em" minWidth="24em">
-          {/* 
-          <Publications /> */}
+          <UpcomingEvents />
+          <Publications /> 
         </Box>
       </Box>
     </DrawerLayout>

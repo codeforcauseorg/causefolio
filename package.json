@@ -79,6 +79,7 @@
     "react-feather": "^2.0.3",
     "react-firebaseui": "^4.1.0",
     "react-helmet": "^5.2.1",
+    "react-images-upload": "^1.2.8",
     "react-markdown": "^4.3.1",
     "react-material-ui-form-validator": "^2.1.1",
     "react-modal-image": "^2.5.0",
