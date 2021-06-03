@@ -85,21 +85,35 @@ function Badge() {
       <Grid container className={classes.badges}>
         {/* for demo purpose added badges statically */}
         <Grid item>
-          <img src="./static/images/icons/star_yellow.svg" alt="badge" height="60px"></img>
-          <Typography className={classes.badgesText}>
-            Super Blogger
-          </Typography>
+          <img
+            src="./static/images/icons/star_yellow.svg"
+            alt="badge"
+            height="60px"
+          ></img>
+          <Typography className={classes.badgesText}>Super Blogger</Typography>
         </Grid>
         <Grid item>
-          <img src="./static/images/icons/star_orange.svg" alt="badge" height="60px"></img>
+          <img
+            src="./static/images/icons/star_orange.svg"
+            alt="badge"
+            height="60px"
+          ></img>
           <Typography className={classes.badgesText}>GitHub Hero</Typography>
         </Grid>
         <Grid item>
-          <img src="./static/images/icons/star_blue.svg" alt="badge" height="60px"></img>
+          <img
+            src="./static/images/icons/star_blue.svg"
+            alt="badge"
+            height="60px"
+          ></img>
           <Typography className={classes.badgesText}>I am Famous</Typography>
         </Grid>
         <Grid item>
-          <img src="./static/images/icons/star_yellow.svg" alt="badge" height="60px"></img>
+          <img
+            src="./static/images/icons/star_yellow.svg"
+            alt="badge"
+            height="60px"
+          ></img>
           <Typography className={classes.badgesText}>Organizer</Typography>
         </Grid>
       </Grid>
