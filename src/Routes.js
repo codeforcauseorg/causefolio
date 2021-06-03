@@ -9,6 +9,7 @@ import Error404View from 'src/views/pages/Error404View';
 import Profile from 'src/components/Profile';
 import EventDefaultPage from 'src/views/pages/events/eventdefault';
 import IndividualEvent from './views/pages/events/individualEvent';
+import Register from './views/pages/register/Register';
 
 const renderRoutes = () => (
   <Suspense fallback={<LoadingScreen />}>
@@ -22,9 +23,9 @@ const renderRoutes = () => (
           </MainLayout>
         )}
       />
+      <Route path="/register" exact render={() => <Register />} />
       <Route path="/dashboard" exact render={() => <Navigation />} />
       <Route path="/profile" exact render={() => <Profile />} />
-
       <Route path="/events" exact render={() => <EventDefaultPage />} />
       <Route
         path="/events/individual-event"
