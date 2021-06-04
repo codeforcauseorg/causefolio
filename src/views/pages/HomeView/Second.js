@@ -23,9 +23,6 @@ const useStyles = makeStyles(theme => ({
     }
   },
   extraPadding: {
-    // [theme.breakpoints.down('md')]: {
-    //   padding: '0 30px'
-    // },
     textAlign: 'justify'
   },
   image: {
@@ -36,8 +33,6 @@ const useStyles = makeStyles(theme => ({
       maxWidth: '100%',
       height: 'auto',
       backfaceVisibility: 'hidden'
-      // boxShadow: theme.shadows[16]
-      // transform: 'rotateY(-35deg) rotateX(15deg)'
     }
   },
   hide: {
@@ -130,10 +125,6 @@ function Second({ className, ...rest }) {
 
           <Grid item xs={14} md={7}>
             <Box position="relative">
-              {/* <div className={classes.shape}>
-                <img alt="Shapes" src="/static/home/shapes.svg" />
-              </div> */}
-
               <div className={classes.image}>
                 <img
                   alt="codeforcauseimg"
