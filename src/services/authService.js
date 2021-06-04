@@ -45,7 +45,13 @@ class AuthService {
   };
 
   handleAuthentication() {
-    this.firebase.initializeApp(this.config);
+    // this.firebase.initializeApp(this.config);
+    if (!firebase.apps.length) {
+      // firebase.initializeApp({});
+      this.firebase.initializeApp(this.config);
+   }else {
+      firebase.app(); // if already initialized, use that one
+   }
   }
 
   signInWithEmailAndPassword(email, password) {

@@ -11,6 +11,15 @@ var firebaseConfig = {
 };
 
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+  console.log('started');
+}else {
+  // firebase.app(); // if already initialized, use that one
+  firebase.app('[DEFAULT]').delete().then(() => {
+    firebase.initializeApp(firebaseConfig);
+    console.log('deleted')
+  })
+}
 
-export default firebase
+export default firebase;
