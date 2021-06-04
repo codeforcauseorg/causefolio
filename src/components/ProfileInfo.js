@@ -11,6 +11,7 @@ import {
   Chip
 } from '@material-ui/core';
 
+
 const useStyles = makeStyles(theme => ({
   root: {
     fontFamily: 'Montserrat',
@@ -77,9 +78,11 @@ const AntSwitch = withStyles(theme => ({
   checked: {}
 }))(Switch);
 
-function ProfileInfo() {
+function ProfileInfo({ myProfile }) {
   const classes = useStyles();
 
+  let interestedInArr = myProfile.interestedIn.split(',');
+  // console.log('Inetr',interestedInArr);
   return (
     <Grid container className={classes.root}>
       <Box>
@@ -109,28 +112,28 @@ function ProfileInfo() {
         <Box display="flex" justifyContent="flex-end">
           <Box flexGrow={1} />
           <Box xs={12} sm={8}>
-            <IconButton>
+            <IconButton href={myProfile.linkedIn}>
               <img
                 className={classes.tiny}
                 alt="LinkedIn"
                 src="./static/profile/icons/Vector.png"
               />
             </IconButton>
-            <IconButton>
+            <IconButton href={myProfile.twitter}>
               <img
                 className={classes.tiny}
                 alt="Twitter"
                 src="./static/profile/icons/Vector-1.png"
               />
             </IconButton>
-            <IconButton>
+            <IconButton href={myProfile.github}>
               <img
                 className={classes.tiny}
                 alt="GitHub"
                 src="./static/profile/icons/Vector-3.png"
               />
             </IconButton>
-            <IconButton>
+            <IconButton href={myProfile.website}>
               <img
                 className={classes.tiny}
                 alt="Website"
@@ -147,17 +150,16 @@ function ProfileInfo() {
         >
           <Box flexGrow={1} minWidth={200}>
             <Typography variant="h1" style={{ fontWeight: '650' }}>
-              John Doe
+              {myProfile.fullName}
             </Typography>
             <Typography variant="body2" style={{ fontWeight: '650' }}>
-              Software Developer
+              {myProfile.role}
             </Typography>
             <Typography
               variant="body2"
               style={{ maxWidth: '250px', marginTop: '16px' }}
             >
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aenean
-              pharetra, felis
+              {myProfile.description}
             </Typography>
           </Box>
           <Box
@@ -169,12 +171,17 @@ function ProfileInfo() {
             <Typography variant="h2" style={{ fontWeight: '650' }}>
               Interested in:
             </Typography>
-            <Chip className={classes.tags} label="Machine Learning" />
-            <Chip className={classes.tags} label="ui/ux" />
+            {interestedInArr.map((tagName) => {
+              return (
+                <Chip className={classes.tags} label={tagName} />
+              )
+            })}
+
+            {/* <Chip className={classes.tags} label="ui/ux" />
             <Chip className={classes.tags} label="DevOps" />
             <Chip className={classes.tags} label="Public Speaking" />
             <Chip className={classes.tags} label="BlockChain" />
-            <Chip className={classes.tags} label="Web Dev" />
+            <Chip className={classes.tags} label="Web Dev" /> */}
           </Box>
         </Box>
       </Card>
