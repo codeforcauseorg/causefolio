@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useHistory } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/styles';
 import DrawerLayout from 'src/layouts/DrawerLayout';
 import {
@@ -11,7 +11,7 @@ import {
   TextField,
   InputBase
 } from '@material-ui/core';
-import firebase from 'src/firebase';
+import { firebase } from 'src/services/authService';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -126,16 +126,19 @@ function Register() {
 
   const handleRegister = e => {
     e.preventDefault();
-    let userId = user.uid
-    let firebaseDB = firebase.database().ref('/UserInfo/'+userId);
+    let userId = user.uid;
+    var db = firebase.firestore();
 
-    firebaseDB.set(fieldValue, err => {
-      if (err) console.log(err);
-    });
-
+    db.collection('users').doc(userId)
+      .set(fieldValue)
+      .then(() => {
+        console.log('Document written');
+      })
+      .catch(error => {
+        console.error('Error adding document: ', error);
+      });
     setFieldValue(initialFieldValues);
-    history.push("/profile");
-
+    history.push('/profile');
   };
 
   return (

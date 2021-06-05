@@ -8,30 +8,39 @@ import ProfileEvents from './ProfileEvents';
 import CommitChart from './CommitChart';
 import ProjectsCarousel from './ProjectsCarousel';
 
-import firebase from 'src/firebase';
+import { firebase } from 'src/services/authService';
 import { useSelector } from 'react-redux';
 
 export default function Profile() {
-
   const user = useSelector(state => state.account.user);
-  const [myProfile, setMyProfile] = useState(null)
-  useEffect(() => {
-    if (user !== undefined) {
-      
-    
-    let userId = user.uid
-    let firebaseDB = firebase.database().ref('/UserInfo/'+userId);
+  const [myProfile, setMyProfile] = useState(null);
 
-    firebaseDB.on('value',(response) => {
-      if (response.val() !== null) {
-        let data = response.val()
-        console.log('profile', data);
-        setMyProfile(data)
-        // console.log('pp',myProfile);
-      }
-    })
-  }
-  }, [user])
+  useEffect(() => {
+    console.log('Hello from profile');
+    if (user !== undefined) {
+      let userId = user.uid;
+      let db = firebase.firestore();
+
+      let docRef = db.collection('users').doc(userId);
+
+      docRef
+        .get()
+        .then(doc => {
+          if (doc.exists) {
+            // console.log('Document data:', doc.data());
+            let data = doc.data();
+            setMyProfile(data)
+          } else {
+            // doc.data() will be undefined in this case
+            console.log('No such document!');
+          }
+        })
+        .catch(error => {
+          console.log('Error getting document:', error);
+        });
+    }
+  }, [user]);
+
   return (
     <DrawerLayout>
       <Grid>
