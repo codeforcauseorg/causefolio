@@ -171,7 +171,7 @@ function ProfileInfo({ myProfile }) {
             <Typography variant="h2" style={{ fontWeight: '650' }}>
               Interested in:
             </Typography>
-            {interestedInArr.map((tagName) => {
+            {interestedInArr.filter(e => String(e).trim()).map((tagName) => {
               return (
                 <Chip className={classes.tags} label={tagName} />
               )
