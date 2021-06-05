@@ -9,7 +9,7 @@ import {
   InputBase,
   TextField
 } from '@material-ui/core';
-import ImageUploader from 'react-images-upload'
+import ImageUploader from 'react-images-upload';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -47,7 +47,7 @@ const useStyles = makeStyles(theme => ({
     marginLeft: '40px',
     [theme.breakpoints.down('md')]: {
       display: 'flex',
-      flexDirection: 'row-reverse',
+      flexDirection: 'row-reverse'
     }
   },
   addbtn: {
@@ -79,7 +79,7 @@ const useStyles = makeStyles(theme => ({
       borderColor: '#F2F7FF',
       borderRadius: '20px',
       [theme.breakpoints.down('md')]: {
-        width: '50%',
+        width: '50%'
       }
     }
   },
@@ -126,7 +126,7 @@ const useStyles = makeStyles(theme => ({
     marginLeft: '70px',
     [theme.breakpoints.down('xs')]: {
       fontSize: '18px',
-      marginLeft: '30px',
+      marginLeft: '30px'
     }
   },
   gallery: {
@@ -155,17 +155,17 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: '#CCD2E3',
 
     borderRadius: '20px',
-    padding: "12.5px 14px",
+    padding: '12.5px 14px',
     '&:focus': {
       outline: 'none'
     },
 
     '& .MuiOutlinedInput-notchedOutline': {
       // borderColor: '#F2F7FF',
-      borderRadius: '20px',
+      borderRadius: '20px'
     },
     [theme.breakpoints.down('md')]: {
-      width: '100%',
+      width: '100%'
     }
   },
   textField: {
@@ -186,8 +186,8 @@ const useStyles = makeStyles(theme => ({
   },
   imagePreview: {
     '& .uploadPictureContainer': {
-      width: '60%',
-    } 
+      width: '60%'
+    }
   }
 }));
 
@@ -198,14 +198,13 @@ function CreateNewEvent() {
 
   const handleChange = e => {
     // let selectedFile = e.target.files[0];
-
-  }
+  };
 
   function onDrop(picture) {
-    console.log(picture)
+    console.log(picture);
   }
 
-  useEffect(() => { }, []);
+  useEffect(() => {}, []);
   return (
     <DrawerLayout>
       <div className={classes.root}>
@@ -303,14 +302,14 @@ function CreateNewEvent() {
           <Box maxWidth="28em" minWidth="24em" className={classes.paddingRight}>
             <ImageUploader
               withIcon={true}
-              buttonText='Choose image'
+              buttonText="Choose image"
               onChange={onDrop}
               withPreview
               singleImage
               imgExtension={['.jpg', '.gif', '.png', '.gif']}
               maxFileSize={5242880}
               fileContainerStyle={{
-                boxShadow: '2px 2px 3px 1px rgb(0, 0, 0, 0.5)',
+                boxShadow: '2px 2px 3px 1px rgb(0, 0, 0, 0.5)'
               }}
               className={classes.imagePreview}
             />
