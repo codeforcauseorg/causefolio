@@ -20,6 +20,9 @@ const useStyles = makeStyles(theme => ({
     fontWeight: 'bold',
     fontSize: '18px',
     background: '#291757',
+    '&:hover': {
+      backgroundColor: '#101c4c'
+    },
     [theme.breakpoints.down('xs')]: {
       marginTop: '29px',
       marginLeft: '215px'
