@@ -9,7 +9,8 @@ import {
   Typography,
   TextField,
   InputBase,
-  Snackbar
+  Snackbar,
+  CircularProgress
 } from '@material-ui/core';
 import { firebase } from 'src/services/authService';
 import { Alert } from '@material-ui/lab';
@@ -17,8 +18,7 @@ import { Alert } from '@material-ui/lab';
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
-    width: '80%',
-    height: '473px',
+    width: '98%',
     background: '#FFFFFF',
     borderRadius: '20px',
     fontSize: '16px',
@@ -88,10 +88,9 @@ const useStyles = makeStyles(theme => ({
     marginBottom: '10px'
   },
   registerButton: {
-    width: '140px',
+    padding: '8px 16px',
     backgroundColor: '#291757',
     borderRadius: '20px',
-    padding: '5px',
     marginLeft: '16px',
     marginTop: 12,
     marginBottom: 16,
@@ -161,9 +160,14 @@ function Settings() {
     setSnackbar(false);
   };
 
+  if(myProfile === null) {
+    return <DrawerLayout>
+      <CircularProgress />
+    </DrawerLayout>
+  }  
+
   return (
     <DrawerLayout>
-      {myProfile !== null && (
         <div className={classes.root}>
           <Snackbar
             open={snackbar}
@@ -293,7 +297,7 @@ function Settings() {
                         className={classes.registerButton}
                         onClick={() => setDisable(false)}
                       >
-                        <Typography variant="h6" style={{ color: '#fff' }}>
+                        <Typography variant="h6" style={{ color: '#fff', padding: '4px 4px', width: '100%' }} noWrap>
                           Click Here to Update
                         </Typography>
                       </Button>
@@ -311,7 +315,6 @@ function Settings() {
             </Box>
           </Grid>
         </div>
-      )}
     </DrawerLayout>
   );
 }
