@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/styles';
 import DrawerLayout from 'src/layouts/DrawerLayout';
 import {
@@ -6,10 +6,10 @@ import {
   Grid,
   Box,
   Typography,
-  InputBase,
   TextField
 } from '@material-ui/core';
 import ImageUploader from 'react-images-upload';
+// import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -40,7 +40,10 @@ const useStyles = makeStyles(theme => ({
     width: '200px',
     height: '38px',
     borderRadius: '20px',
-    marginRight: '15px'
+    marginRight: '15px',
+    '&:hover': {
+      backgroundColor: '#101c4c'
+    }
   },
   createbtn: {
     marginTop: '60px',
@@ -56,7 +59,10 @@ const useStyles = makeStyles(theme => ({
     width: '200px',
     height: '38px',
     borderRadius: '20px',
-    marginRight: '60px'
+    marginRight: '60px',
+    '&:hover': {
+      backgroundColor: '#101c4c'
+    }
   },
   inputDiv: {
     background: 'rgba(42, 23, 89, 0.25)',
@@ -138,13 +144,16 @@ const useStyles = makeStyles(theme => ({
   },
   button: {
     marginTop: '8px',
-    width: '200px',
-    height: '38px',
+    padding: '8px 24px',
+    marginRight: '24px',
     borderRadius: '20px',
     color: 'white',
     fontWeight: 'bold',
     fontSize: '13px',
     background: '#291757',
+    '&:hover': {
+      backgroundColor: '#101c4c'
+    },
     [theme.breakpoints.down('xs')]: {
       marginTop: '29px',
       marginLeft: '45px'
@@ -193,15 +202,46 @@ const useStyles = makeStyles(theme => ({
 
 function CreateNewEvent() {
   const classes = useStyles();
-
-  // file upload
+  // const user = useSelector(state => state.account.user);
+  const [speaker, setSpeaker] = useState([{}]);
+  const [formData, setFormData] = useState({
+    eventName: '',
+    description: '',
+    date: '',
+    time: '',
+    eventLink: ''
+  })
 
   const handleChange = e => {
-    // let selectedFile = e.target.files[0];
+    setFormData(...formData, formData[e.name] = formData[e.value]);
   };
+
+  const handleSpeakerChange = (e) => {
+    const {id, name, value} = e.target;
+    const s = [...speaker];
+    s[parseInt(id)][name] = value
+    setSpeaker(s);
+    console.log(speaker);
+  };
+
+  const removeSpeaker = () => {
+    speaker.pop();
+    setSpeaker([...speaker]);
+    console.log(speaker);
+  };
+
+  const addSpeaker = () => {
+    setSpeaker([...speaker, {}])
+  }
 
   function onDrop(picture) {
     console.log(picture);
+  }
+
+  const onSubmit = () => {
+    console.log("helllo")
+    formData.speakers = speaker;
+    console.log(formData);
   }
 
   useEffect(() => {}, []);
@@ -224,6 +264,7 @@ function CreateNewEvent() {
                   className={classes.textField}
                   fullWidth
                   name="eventName"
+                  value={formData.eventName}
                   type="eventName"
                   variant="outlined"
                   onChange={handleChange}
@@ -277,26 +318,41 @@ function CreateNewEvent() {
                   variant="outlined"
                   onChange={handleChange}
                 />
-                <fieldset className={classes.socialLinks}>
-                  <InputBase
-                    className={classes.social}
-                    fullWidth
-                    placeholder="Speaker Name"
-                  />
-                  <InputBase
-                    className={classes.social}
-                    fullWidth
-                    placeholder="Speaker LinkedIn Profile Link"
-                  />
-                </fieldset>
+                {speaker.map((item, idx) => (
+                  <fieldset key={idx} className={classes.socialLinks}>
+                    <TextField
+                      className={classes.social}
+                      fullWidth
+                      placeholder="Speaker Name"
+                      name="name"
+                      onChange={handleSpeakerChange}
+                      id={idx.toString()}
+                    />
+                    <TextField
+                      className={classes.social}
+                      fullWidth
+                      placeholder="Speaker LinkedIn Profile Link"
+                      name="linkedIn"
+                      onChange={handleSpeakerChange}
+                      id={idx.toString()}
+                    />
+                  </fieldset>
+                ))}
 
-                <Button className={classes.button}>Add Speaker</Button>
+                {speaker.length > 1 && (
+                  <Button className={classes.button} onClick={removeSpeaker}>
+                    Remove Speaker
+                  </Button>
+                )}
+                <Button className={classes.button} onClick={addSpeaker}>
+                  Add Speaker
+                </Button>
                 {/* </div> */}
               </Grid>
             </Grid>
             <div className={classes.createbtn}>
               <Button className={classes.cancelbtn}>Cancel</Button>
-              <Button className={classes.addbtn}>Create</Button>
+              <Button className={classes.addbtn} onClick={onSubmit}>Create</Button>
             </div>
           </Box>
           <Box maxWidth="28em" minWidth="24em" className={classes.paddingRight}>
