@@ -1,13 +1,18 @@
-import { Box, Button } from '@material-ui/core';
-import React from 'react';
+import {
+  Box,
+  Button,
+  Grid,
+  makeStyles
+} from '@material-ui/core';
+import React, { useState, useEffect } from 'react';
 import BookmarkedEvents from 'src/components/BookmarkedEvents';
-import UpcomingEvents from 'src/components/NewEvents';
-import { useHistory } from 'react-router-dom';
-import Publications from 'src/components/Publications';
+import UserNewEvents from 'src/components/UserNewEvents';
+import UserUpcomingEvents from 'src/components/UserUpcomingEvents';
+import UserEventStats from 'src/components/UserEventStats';
 import SearchBar from 'src/components/search';
 import DrawerLayout from 'src/layouts/DrawerLayout';
-import { makeStyles } from '@material-ui/core/styles';
-// import Logo from 'src/components/Logo1';
+import {useHistory} from 'react-router-dom'
+
 const useStyles = makeStyles(theme => ({
   button: {
     marginLeft: '120px',
@@ -23,8 +28,11 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down('xs')]: {
       marginTop: '29px',
       marginLeft: '215px'
+    },
+    '&:hover': {
+      backgroundColor: '#101c4c'
     }
-  }
+  },
 }));
 
 export default function EventDefaultPage() {
@@ -32,25 +40,33 @@ export default function EventDefaultPage() {
   const history = useHistory();
   const handleClick = () => {
     history.push('/createEvent');
-    console.log('clicked');
   };
+  const [eventsConducted, setEventsConducted] = useState(0);
+  const [eventsAttended, setEventsAttended] = useState(0);
+
+  useEffect(() => {
+    setEventsConducted(2);
+    setEventsAttended(2);
+  }, []);
+
   return (
     <DrawerLayout>
-      <Box display="flex">
-        <Box flexGrow={1}>
+      <Grid container>
+        <Grid justify="center" md={8} sm={12} xs={12}>
           <BookmarkedEvents />
           <SearchBar />
-          <BookmarkedEvents />
-          <Button className={classes.button} onClick={handleClick}>
-            Create New Event
-          </Button>
-        </Box>
-
-        <Box maxWidth="28em" minWidth="24em">
-          <UpcomingEvents />
-          <Publications />
-        </Box>
-      </Box>
+          <UserNewEvents />
+          <Box textAlign="center">
+            <Button className={classes.button} onClick={handleClick}>
+              Create New Event
+            </Button>
+          </Box>
+        </Grid>
+        <Grid md={4} sm={12} xs={12}>
+          <UserUpcomingEvents />
+          <UserEventStats conducted={eventsConducted} attended={eventsAttended} />
+        </Grid>
+      </Grid>
     </DrawerLayout>
   );
 }
