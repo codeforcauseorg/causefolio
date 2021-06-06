@@ -11,6 +11,7 @@ import EventDefaultPage from 'src/views/pages/events/eventdefault';
 import IndividualEvent from './views/pages/events/individualEvent';
 import Register from './views/pages/register/Register';
 import CreateNewEvent from './components/CreateNewEvent';
+import Settings from './views/pages/settings/Settings';
 
 const renderRoutes = () => (
   <Suspense fallback={<LoadingScreen />}>
@@ -34,6 +35,7 @@ const renderRoutes = () => (
         render={() => <IndividualEvent />}
       />
       <Route path="/createEvent" exact render={() => <CreateNewEvent />} />
+      <Route path="/settings" exact render={() => <Settings />} />
       <Route path="*" exact render={() => <Error404View />} />
     </Switch>
   </Suspense>
