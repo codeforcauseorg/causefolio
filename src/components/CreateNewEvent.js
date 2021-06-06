@@ -34,14 +34,6 @@ const useStyles = makeStyles(theme => ({
       borderRadius: '20px'
     }
   },
-  createbtn: {
-    marginTop: '60px',
-    marginLeft: '40px',
-    [theme.breakpoints.down('md')]: {
-      display: 'flex',
-      flexDirection: 'row-reverse'
-    }
-  },
   cancelbtn: {
     background: '#291757',
     color: '#FFF',
@@ -50,8 +42,16 @@ const useStyles = makeStyles(theme => ({
     borderRadius: '20px',
     marginRight: '15px',
     '&:hover': {
-      backgroundColor: '#101c4c'
+      backgroundColor: '#101c4c',
     },
+  },
+  createbtn: {
+    marginTop: '60px',
+    marginLeft: '40px',
+    [theme.breakpoints.down('md')]: {
+      display: 'flex',
+      flexDirection: 'row-reverse'
+    }
   },
   addbtn: {
     background: '#291757',
@@ -61,7 +61,7 @@ const useStyles = makeStyles(theme => ({
     borderRadius: '20px',
     marginRight: '60px',
     '&:hover': {
-      backgroundColor: '#101c4c'
+      backgroundColor: '#101c4c',
     },
   },
   inputDiv: {
