@@ -6,12 +6,15 @@ import firebase from 'firebase';
 class AuthService {
   // Configure Firebase.
   config = {
-    apiKey: 'AIzaSyBogaqI7q74Wml7AD90VVm_89o1cgFFQCo',
-    authDomain: 'code-for-cause-leaders.firebaseapp.com',
-    projectId: 'code-for-cause-leaders'
+    apiKey: "AIzaSyBogaqI7q74Wml7AD90VVm_89o1cgFFQCo",
+    authDomain: "code-for-cause-leaders.firebaseapp.com",
+    projectId: "code-for-cause-leaders",
+    storageBucket: "code-for-cause-leaders.appspot.com",
+    messagingSenderId: "58409560329",
+    appId: "1:58409560329:web:60ffc3c128d3b155a18bd8",
+    measurementId: "G-49RJ8QM95E"  
     // ...
   };
-
   // Configure FirebaseUI.
   uiConfig = {
     // Popup signin flow rather than redirect flow.
@@ -88,7 +91,6 @@ class AuthService {
 
   setSession = accessToken => {
     if (accessToken) {
-      console.log(accessToken);
       localStorage.setItem('accessToken', accessToken);
       axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
     } else {
@@ -116,3 +118,4 @@ class AuthService {
 const authService = new AuthService();
 
 export default authService;
+export { firebase }
