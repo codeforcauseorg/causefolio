@@ -98,7 +98,6 @@ function CommitChart() {
     ]);
   }, []);
 
-  // console.log(commitHistory);
   const classes = useStyles();
   const now = new Date();
 

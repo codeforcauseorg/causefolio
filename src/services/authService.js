@@ -49,12 +49,6 @@ class AuthService {
 
   handleAuthentication() {
     this.firebase.initializeApp(this.config);
-  //   if (!firebase.apps.length) {
-  //     // firebase.initializeApp({});
-  //     this.firebase.initializeApp(this.config);
-  //  }else {
-  //     firebase.app(); // if already initialized, use that one
-  //  }
   }
 
   signInWithEmailAndPassword(email, password) {
@@ -97,7 +91,6 @@ class AuthService {
 
   setSession = accessToken => {
     if (accessToken) {
-      // console.log(accessToken);
       localStorage.setItem('accessToken', accessToken);
       axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
     } else {

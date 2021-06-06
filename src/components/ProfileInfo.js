@@ -80,9 +80,8 @@ const AntSwitch = withStyles(theme => ({
 
 function ProfileInfo({ myProfile }) {
   const classes = useStyles();
-
   let interestedInArr = myProfile.interestedIn.split(',');
-  // console.log('Inetr',interestedInArr);
+
   return (
     <Grid container className={classes.root}>
       <Box>
@@ -176,12 +175,6 @@ function ProfileInfo({ myProfile }) {
                 <Chip className={classes.tags} label={tagName} />
               )
             })}
-
-            {/* <Chip className={classes.tags} label="ui/ux" />
-            <Chip className={classes.tags} label="DevOps" />
-            <Chip className={classes.tags} label="Public Speaking" />
-            <Chip className={classes.tags} label="BlockChain" />
-            <Chip className={classes.tags} label="Web Dev" /> */}
           </Box>
         </Box>
       </Card>

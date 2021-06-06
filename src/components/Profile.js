@@ -16,7 +16,6 @@ export default function Profile() {
   const [myProfile, setMyProfile] = useState(null);
 
   useEffect(() => {
-    console.log('Hello from profile');
     if (user !== undefined) {
       let userId = user.uid;
       let db = firebase.firestore();
@@ -27,11 +26,9 @@ export default function Profile() {
         .get()
         .then(doc => {
           if (doc.exists) {
-            // console.log('Document data:', doc.data());
             let data = doc.data();
             setMyProfile(data)
           } else {
-            // doc.data() will be undefined in this case
             console.log('No such document!');
           }
         })
