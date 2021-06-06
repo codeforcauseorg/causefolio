@@ -1,32 +1,46 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+
 import {
   Box,
   Button,
   Container,
   Grid,
+  Hidden,
   Typography,
   makeStyles
 } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   root: {
+
     backgroundColor: '#291755',
     paddingTop: 80,
     paddingBottom: 60,
     color: '#FFFFFF',
-    height: '90vh',
+    paddingLeft:60,
+    paddingRight:60,
+    
+    height:'90.3vh',
     [theme.breakpoints.down('md')]: {
-      paddingTop: 40,
-      paddingBottom: 60
-    }
+      paddingTop: 15,
+      paddingBottom: 15,
+      
+      
+
+    },
+    [theme.breakpoints.down('sm')]:{
+      height:'auto',
+    },
+    
   },
   extraPadding: {
-    // [theme.breakpoints.down('md')]: {
-    //   padding: '0 30px'
-    // },
-    textAlign: 'justify'
+    padding: '0 70px 0px 0px',
+    textAlign: 'justify',
+    [theme.breakpoints.down('sm')]: {
+      padding: '0'
+    }
   },
   image: {
     perspectiveOrigin: 'left center',
@@ -38,6 +52,13 @@ const useStyles = makeStyles(theme => ({
       backfaceVisibility: 'hidden'
       // boxShadow: theme.shadows[16]
       // transform: 'rotateY(-35deg) rotateX(15deg)'
+    },
+    [theme.breakpoints.down('md')]: {
+      alignItems: 'center',
+      display: 'flex',
+      flexDirection: 'column',
+      height: '100%',
+      justifyContent: 'center'
     }
   },
   hide: {
@@ -57,7 +78,7 @@ function Hero({ className, ...rest }) {
         maxWidth="lg"
         style={{ paddingTop: '40px', position: 'relative' }}
       >
-        <img
+        {/* <img
           src="/static/home/blob.svg"
           alt="blob"
           style={{
@@ -65,9 +86,27 @@ function Hero({ className, ...rest }) {
             top: '-20%',
             left: '-20%'
           }}
-        />
-        <Grid container spacing={0}>
-          <Grid item xs={10} md={5} style={{ zIndex: '20' }}>
+        /> */}
+        <Hidden mdDown>
+              <Grid item xs={12} md={6}>
+                <Box>
+                  <div className={classes.image}>
+                    <img
+                      src="/static/home/blob.svg"
+                      alt="blob"
+                      style={{
+                        position: 'absolute',
+                        top: '-9rem',
+                        left: '-20%'
+                      }}
+                    />
+                  </div>
+                </Box>
+              </Grid>
+          </Hidden>        
+        <Grid container spacing={3}>
+          <Grid item xs={12} md={6} style={{ zIndex: '20' }}>
+            
             <Box
               display="flex"
               flexDirection="column"
@@ -86,26 +125,33 @@ function Hero({ className, ...rest }) {
               >
                 Code for Cause
               </Typography>
-              <Box mt={2}>
-                <Typography variant="body1">
-                  An initiative to contribute to Open Source
-                  <br />
-                  community by providing training, guidance
-                  <br /> and awareness about the possibilities in the
-                  <br />
-                  software field to students &amp; professionals.
-                </Typography>
+              <Hidden mdUp>
+                <Box mt={6} mb={2}>
+                  <div className={classes.image}>
+                    <img
+                      alt="codeforcauseimg"
+                      src="/static/home/illus-1.svg"
+                      style={{
+                        width: '75%',
+                        
+                      }}
+                    />
+                  </div>
+                </Box>
+              </Hidden>
+              <Box mt={5}>
+                  <Typography variant="body1">
+                    An initiative to contribute to the Open Source community by
+                    providing training, guidance, and awareness about the
+                    possibilities in the field of software to students &
+                    professionals.
+                  </Typography>
               </Box>
-              <Box mt={2}>
-                <Grid container spacing={3}>
-                  <Grid item>
+              <Box mt={2} mb={3}>
+                <Grid container>
+                  <Grid item xs={12} md={12}>
                     <Typography variant="h1" color="secondary"></Typography>
-                    <Box
-                      mt={2}
-                      display="flex"
-                      justifyContent="center"
-                      alignItems="center"
-                    >
+                    <Box>
                       <Button
                         style={{
                           backgroundColor: '#ffffff',
@@ -127,24 +173,21 @@ function Hero({ className, ...rest }) {
               </Box>
             </Box>
           </Grid>
-
-          <Grid item xs={14} md={7}>
-            <Box position="relative">
-              {/* <div className={classes.shape}>
-                <img alt="Shapes" src="/static/home/shapes.svg" />
-              </div> */}
-
-              <div className={classes.image}>
-                <img
-                  alt="codeforcauseimg"
-                  src="/static/home/illus-1.svg"
-                  style={{
-                    width: '100%'
-                  }}
-                />
-              </div>
-            </Box>
-          </Grid>
+          <Hidden smDown>
+            <Grid item xs={12} md={6}>
+              <Box>
+                <div className={classes.image}>
+                      <img
+                        alt="codeforcauseimg"
+                        src="/static/home/illus-1.svg"
+                        style={{
+                          width: '100%'
+                        }}
+                      />
+                </div>
+              </Box>
+            </Grid>
+          </Hidden>             
         </Grid>
       </Container>
     </div>
