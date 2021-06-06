@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/styles';
 import DrawerLayout from 'src/layouts/DrawerLayout';
 import {
@@ -10,6 +10,7 @@ import {
   TextField
 } from '@material-ui/core';
 import ImageUploader from 'react-images-upload';
+import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -40,7 +41,10 @@ const useStyles = makeStyles(theme => ({
     width: '200px',
     height: '38px',
     borderRadius: '20px',
-    marginRight: '15px'
+    marginRight: '15px',
+    '&:hover': {
+      backgroundColor: '#101c4c'
+    }
   },
   createbtn: {
     marginTop: '60px',
@@ -56,7 +60,10 @@ const useStyles = makeStyles(theme => ({
     width: '200px',
     height: '38px',
     borderRadius: '20px',
-    marginRight: '60px'
+    marginRight: '60px',
+    '&:hover': {
+      backgroundColor: '#101c4c'
+    }
   },
   inputDiv: {
     background: 'rgba(42, 23, 89, 0.25)',
@@ -145,6 +152,9 @@ const useStyles = makeStyles(theme => ({
     fontWeight: 'bold',
     fontSize: '13px',
     background: '#291757',
+    '&:hover': {
+      backgroundColor: '#101c4c'
+    },
     [theme.breakpoints.down('xs')]: {
       marginTop: '29px',
       marginLeft: '45px'
@@ -193,11 +203,33 @@ const useStyles = makeStyles(theme => ({
 
 function CreateNewEvent() {
   const classes = useStyles();
+  const user = useSelector(state => state.account.user);
+  const [totalSpeaker, setTotalSpeaker] = useState([1]);
 
-  // file upload
+  const initialFieldValues = {
+    eventName: '',
+    description: '',
+    date: '',
+    time: '',
+    eventLink: '',
+    speaker: [{
+      id: '',
+      speakerName: '',
+      speakerLinkedIn : '',
+    }]
+  };
 
   const handleChange = e => {
     // let selectedFile = e.target.files[0];
+  };
+
+  const addSpeaker = () => {
+    setTotalSpeaker([...totalSpeaker, 1]);
+  };
+  const removeSpeaker = () => {
+    totalSpeaker.pop();
+    setTotalSpeaker([...totalSpeaker]);
+    console.log(totalSpeaker);
   };
 
   function onDrop(picture) {
@@ -277,20 +309,29 @@ function CreateNewEvent() {
                   variant="outlined"
                   onChange={handleChange}
                 />
-                <fieldset className={classes.socialLinks}>
-                  <InputBase
-                    className={classes.social}
-                    fullWidth
-                    placeholder="Speaker Name"
-                  />
-                  <InputBase
-                    className={classes.social}
-                    fullWidth
-                    placeholder="Speaker LinkedIn Profile Link"
-                  />
-                </fieldset>
+                {totalSpeaker.map(i => (
+                  <fieldset className={classes.socialLinks}>
+                    <InputBase
+                      className={classes.social}
+                      fullWidth
+                      placeholder="Speaker Name"
+                    />
+                    <InputBase
+                      className={classes.social}
+                      fullWidth
+                      placeholder="Speaker LinkedIn Profile Link"
+                    />
+                  </fieldset>
+                ))}
 
-                <Button className={classes.button}>Add Speaker</Button>
+                {totalSpeaker.length > 1 && (
+                  <Button className={classes.button} onClick={removeSpeaker}>
+                    Remove Speaker
+                  </Button>
+                )}
+                <Button className={classes.button} onClick={addSpeaker}>
+                  Add Speaker
+                </Button>
                 {/* </div> */}
               </Grid>
             </Grid>
