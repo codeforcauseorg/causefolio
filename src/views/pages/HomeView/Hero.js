@@ -14,26 +14,21 @@ import {
 
 const useStyles = makeStyles(theme => ({
   root: {
-
     backgroundColor: '#291755',
     paddingTop: 80,
     paddingBottom: 60,
     color: '#FFFFFF',
-    paddingLeft:60,
-    paddingRight:60,
-    
-    height:'90.3vh',
+    paddingLeft: 60,
+    paddingRight: 60,
+
+    height: '90.3vh',
     [theme.breakpoints.down('md')]: {
       paddingTop: 15,
-      paddingBottom: 15,
-      
-      
-
+      paddingBottom: 15
     },
-    [theme.breakpoints.down('sm')]:{
-      height:'auto',
-    },
-    
+    [theme.breakpoints.down('sm')]: {
+      height: 'auto'
+    }
   },
   extraPadding: {
     padding: '0 70px 0px 0px',
@@ -88,25 +83,24 @@ function Hero({ className, ...rest }) {
           }}
         /> */}
         <Hidden mdDown>
-              <Grid item xs={12} md={6}>
-                <Box>
-                  <div className={classes.image}>
-                    <img
-                      src="/static/home/blob.svg"
-                      alt="blob"
-                      style={{
-                        position: 'absolute',
-                        top: '-9rem',
-                        left: '-20%'
-                      }}
-                    />
-                  </div>
-                </Box>
-              </Grid>
-          </Hidden>        
+          <Grid item xs={12} md={6}>
+            <Box>
+              <div className={classes.image}>
+                <img
+                  src="/static/home/blob.svg"
+                  alt="blob"
+                  style={{
+                    position: 'absolute',
+                    top: '-9rem',
+                    left: '-20%'
+                  }}
+                />
+              </div>
+            </Box>
+          </Grid>
+        </Hidden>
         <Grid container spacing={3}>
           <Grid item xs={12} md={6} style={{ zIndex: '20' }}>
-            
             <Box
               display="flex"
               flexDirection="column"
@@ -132,20 +126,19 @@ function Hero({ className, ...rest }) {
                       alt="codeforcauseimg"
                       src="/static/home/illus-1.svg"
                       style={{
-                        width: '75%',
-                        
+                        width: '75%'
                       }}
                     />
                   </div>
                 </Box>
               </Hidden>
               <Box mt={5}>
-                  <Typography variant="body1">
-                    An initiative to contribute to the Open Source community by
-                    providing training, guidance, and awareness about the
-                    possibilities in the field of software to students &
-                    professionals.
-                  </Typography>
+                <Typography variant="body1">
+                  An initiative to contribute to the Open Source community by
+                  providing training, guidance, and awareness about the
+                  possibilities in the field of software to students &
+                  professionals.
+                </Typography>
               </Box>
               <Box mt={2} mb={3}>
                 <Grid container>
@@ -177,17 +170,17 @@ function Hero({ className, ...rest }) {
             <Grid item xs={12} md={6}>
               <Box>
                 <div className={classes.image}>
-                      <img
-                        alt="codeforcauseimg"
-                        src="/static/home/illus-1.svg"
-                        style={{
-                          width: '100%'
-                        }}
-                      />
+                  <img
+                    alt="codeforcauseimg"
+                    src="/static/home/illus-1.svg"
+                    style={{
+                      width: '100%'
+                    }}
+                  />
                 </div>
               </Box>
             </Grid>
-          </Hidden>             
+          </Hidden>
         </Grid>
       </Container>
     </div>

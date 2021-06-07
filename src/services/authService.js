@@ -6,13 +6,13 @@ import firebase from 'firebase';
 class AuthService {
   // Configure Firebase.
   config = {
-    apiKey: "AIzaSyBogaqI7q74Wml7AD90VVm_89o1cgFFQCo",
-    authDomain: "code-for-cause-leaders.firebaseapp.com",
-    projectId: "code-for-cause-leaders",
-    storageBucket: "code-for-cause-leaders.appspot.com",
-    messagingSenderId: "58409560329",
-    appId: "1:58409560329:web:60ffc3c128d3b155a18bd8",
-    measurementId: "G-49RJ8QM95E"  
+    apiKey: 'AIzaSyBogaqI7q74Wml7AD90VVm_89o1cgFFQCo',
+    authDomain: 'code-for-cause-leaders.firebaseapp.com',
+    projectId: 'code-for-cause-leaders',
+    storageBucket: 'code-for-cause-leaders.appspot.com',
+    messagingSenderId: '58409560329',
+    appId: '1:58409560329:web:60ffc3c128d3b155a18bd8',
+    measurementId: 'G-49RJ8QM95E'
     // ...
   };
   // Configure FirebaseUI.
@@ -118,4 +118,4 @@ class AuthService {
 const authService = new AuthService();
 
 export default authService;
-export { firebase }
+export { firebase };

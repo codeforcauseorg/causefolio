@@ -160,161 +160,167 @@ function Settings() {
     setSnackbar(false);
   };
 
-  if(myProfile === null) {
-    return <DrawerLayout>
-      <CircularProgress />
-    </DrawerLayout>
-  }  
+  if (myProfile === null) {
+    return (
+      <DrawerLayout>
+        <CircularProgress />
+      </DrawerLayout>
+    );
+  }
 
   return (
     <DrawerLayout>
-        <div className={classes.root}>
-          <Snackbar
-            open={snackbar}
-            autoHideDuration={6000}
-            onClose={handleClose}
-          >
-            <Alert onClose={handleClose} severity="success">
-              Your Profile has been Updated!
-              <span role="img" aria-label="partying face">
-                🥳
-              </span>
-            </Alert>
-          </Snackbar>
-          <Grid container>
-            <Box display="flex">
-              <Box flexGrow={1}>
-                <Grid container>
-                  <Grid item className={classes.topContainer}>
-                    <Typography variant="h1" className={classes.topText}>
-                      Update Your Profile
-                    </Typography>
-                  </Grid>
+      <div className={classes.root}>
+        <Snackbar open={snackbar} autoHideDuration={6000} onClose={handleClose}>
+          <Alert onClose={handleClose} severity="success">
+            Your Profile has been Updated!
+            <span role="img" aria-label="partying face">
+              🥳
+            </span>
+          </Alert>
+        </Snackbar>
+        <Grid container>
+          <Box display="flex">
+            <Box flexGrow={1}>
+              <Grid container>
+                <Grid item className={classes.topContainer}>
+                  <Typography variant="h1" className={classes.topText}>
+                    Update Your Profile
+                  </Typography>
                 </Grid>
-                <Grid container className={classes.event}>
-                  <Grid className={classes.eventText}>
-                    <TextField
-                      className={classes.textField}
+              </Grid>
+              <Grid container className={classes.event}>
+                <Grid className={classes.eventText}>
+                  <TextField
+                    className={classes.textField}
+                    fullWidth
+                    disabled={disable}
+                    variant="outlined"
+                    placeholder="Your Full Name"
+                    name="fullName"
+                    value={myProfile.fullName}
+                    onChange={handleInputChange}
+                  />
+                  <TextField
+                    className={classes.textField}
+                    fullWidth
+                    disabled={disable}
+                    variant="outlined"
+                    placeholder="Your Role(Ex: Software Developer)"
+                    name="role"
+                    value={myProfile.role}
+                    onChange={handleInputChange}
+                  />
+                  <TextField
+                    className={classes.textField}
+                    multiline
+                    disabled={disable}
+                    rows={5}
+                    fullWidth
+                    variant="outlined"
+                    placeholder="A Little About You"
+                    name="description"
+                    value={myProfile.description}
+                    onChange={handleInputChange}
+                  />
+                  {/* Social Links */}
+                  <fieldset className={classes.socialLinks}>
+                    <InputBase
+                      className={classes.social}
                       fullWidth
                       disabled={disable}
-                      variant="outlined"
-                      placeholder="Your Full Name"
-                      name="fullName"
-                      value={myProfile.fullName}
+                      placeholder="GitHub Link"
+                      name="github"
+                      value={myProfile.github}
                       onChange={handleInputChange}
                     />
-                    <TextField
-                      className={classes.textField}
+                    <InputBase
+                      className={classes.social}
                       fullWidth
                       disabled={disable}
-                      variant="outlined"
-                      placeholder="Your Role(Ex: Software Developer)"
-                      name="role"
-                      value={myProfile.role}
+                      placeholder="LinkedIn Link"
+                      name="linkedIn"
+                      value={myProfile.linkedIn}
                       onChange={handleInputChange}
                     />
-                    <TextField
-                      className={classes.textField}
-                      multiline
-                      disabled={disable}
-                      rows={5}
-                      fullWidth
-                      variant="outlined"
-                      placeholder="A Little About You"
-                      name="description"
-                      value={myProfile.description}
-                      onChange={handleInputChange}
-                    />
-                    {/* Social Links */}
-                    <fieldset className={classes.socialLinks}>
-                      <InputBase
-                        className={classes.social}
-                        fullWidth
-                        disabled={disable}
-                        placeholder="GitHub Link"
-                        name="github"
-                        value={myProfile.github}
-                        onChange={handleInputChange}
-                      />
-                      <InputBase
-                        className={classes.social}
-                        fullWidth
-                        disabled={disable}
-                        placeholder="LinkedIn Link"
-                        name="linkedIn"
-                        value={myProfile.linkedIn}
-                        onChange={handleInputChange}
-                      />
-                      <InputBase
-                        className={classes.social}
-                        fullWidth
-                        disabled={disable}
-                        placeholder="Twitter Link"
-                        name="twitter"
-                        value={myProfile.twitter}
-                        onChange={handleInputChange}
-                      />
-                      <InputBase
-                        fullWidth
-                        disabled={disable}
-                        placeholder="Personal Website"
-                        name="website"
-                        value={myProfile.website}
-                        onChange={handleInputChange}
-                      />
-                    </fieldset>
-                    <TextField
-                      className={classes.textField}
+                    <InputBase
+                      className={classes.social}
                       fullWidth
                       disabled={disable}
-                      variant="outlined"
-                      placeholder="Interested In (Separate By Comma(,))"
-                      name="interestedIn"
-                      value={myProfile.interestedIn}
+                      placeholder="Twitter Link"
+                      name="twitter"
+                      value={myProfile.twitter}
                       onChange={handleInputChange}
                     />
-                    {!disable ? (
-                      <>
-                        <Button
-                          className={classes.registerButton}
-                          onClick={() => setDisable(true)}
-                        >
-                          <Typography style={{ color: '#fff' }}>
-                            Cancel
-                          </Typography>
-                        </Button>
-                        <Button
-                          className={classes.registerButton}
-                          onClick={handleUpdate}
-                        >
-                          <Typography style={{ color: '#fff' }}>
-                            Update
-                          </Typography>
-                        </Button>
-                      </>
-                    ) : (
+                    <InputBase
+                      fullWidth
+                      disabled={disable}
+                      placeholder="Personal Website"
+                      name="website"
+                      value={myProfile.website}
+                      onChange={handleInputChange}
+                    />
+                  </fieldset>
+                  <TextField
+                    className={classes.textField}
+                    fullWidth
+                    disabled={disable}
+                    variant="outlined"
+                    placeholder="Interested In (Separate By Comma(,))"
+                    name="interestedIn"
+                    value={myProfile.interestedIn}
+                    onChange={handleInputChange}
+                  />
+                  {!disable ? (
+                    <>
                       <Button
                         className={classes.registerButton}
-                        onClick={() => setDisable(false)}
+                        onClick={() => setDisable(true)}
                       >
-                        <Typography variant="h6" style={{ color: '#fff', padding: '4px 4px', width: '100%' }} noWrap>
-                          Click Here to Update
+                        <Typography style={{ color: '#fff' }}>
+                          Cancel
                         </Typography>
                       </Button>
-                    )}
-                  </Grid>
+                      <Button
+                        className={classes.registerButton}
+                        onClick={handleUpdate}
+                      >
+                        <Typography style={{ color: '#fff' }}>
+                          Update
+                        </Typography>
+                      </Button>
+                    </>
+                  ) : (
+                    <Button
+                      className={classes.registerButton}
+                      onClick={() => setDisable(false)}
+                    >
+                      <Typography
+                        variant="h6"
+                        style={{
+                          color: '#fff',
+                          padding: '4px 4px',
+                          width: '100%'
+                        }}
+                        noWrap
+                      >
+                        Click Here to Update
+                      </Typography>
+                    </Button>
+                  )}
                 </Grid>
-              </Box>
-              <Box maxWidth="28em" minWidth="24em">
-                <img
-                  src=".././static/images/event_img.jpg"
-                  alt="gallery-icon"
-                  style={{ marginLeft: '51px', marginTop: '20px' }}
-                />
-              </Box>
+              </Grid>
             </Box>
-          </Grid>
-        </div>
+            <Box maxWidth="28em" minWidth="24em">
+              <img
+                src=".././static/images/event_img.jpg"
+                alt="gallery-icon"
+                style={{ marginLeft: '51px', marginTop: '20px' }}
+              />
+            </Box>
+          </Box>
+        </Grid>
+      </div>
     </DrawerLayout>
   );
 }

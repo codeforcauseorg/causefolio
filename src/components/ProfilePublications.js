@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { Box, Button, Card, Grid, Typography } from '@material-ui/core';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(theme => ({
   root: {
     background: '#CCD2E3',
     borderRadius: '20px',
@@ -10,7 +10,10 @@ const useStyles = makeStyles(() => ({
     color: '#291757',
     fontFamily: 'Montserrat',
     marginBottom: '21px',
-    marginLeft: '21px'
+    marginLeft: '21px',
+    [theme.breakpoints.down('xs')]: {
+      marginLeft: '0px'
+    }
   },
   topContainer: {
     display: 'flex',

@@ -109,19 +109,24 @@ Your application setup is successfully completed!
 <a id="update-repo"></a>
 
 ### 6. Update Fork Repo From Original Repo (Optional)
+
 0. Follow these steps if you are done with <b>Setup Remote</b> ✅.
 1. Update your local Master to be in synch with the original repo.
+
 ```console
 
 $ git pull upstream <name_of_branch>
 
 ```
+
 2. Update the forked repo master by pushing the local repo up.
+
 ```console
 
 $ git push origin <name_of_branch>
 
 ```
+
 <a id="run-app"></a>
 
 ### Running the app
