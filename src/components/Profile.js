@@ -47,24 +47,19 @@ export default function Profile() {
           <>No Data</>
         )}
       </Grid>
-      <Grid container style={{ marginBottom: '21px' }}>
-        <Grid
-          item
-          xs={12}
-          sm={5}
-          style={{ marginRight: '21px', marginBottom: '21px' }}
-        >
+      <Grid container spacing={2} style={{ marginBottom: '21px' }}>
+        <Grid item xs={12} sm={12} md={5} style={{ marginBottom: '21px' }}>
           <CommitChart />
         </Grid>
-        <Grid item xs={12} sm>
+        <Grid item xs={12} sm={12} md={7}>
           <Badge />
         </Grid>
       </Grid>
       <Grid container>
-        <Grid xs={12} sm>
+        <Grid xs={12} sm={6}>
           <ProfileEvents />
         </Grid>
-        <Grid xs={12} sm>
+        <Grid xs={12} sm={6}>
           <ProfilePublications />
         </Grid>
       </Grid>

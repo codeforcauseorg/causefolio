@@ -50,6 +50,7 @@ const useStyles = makeStyles(theme => ({
   },
   profiledesc: {
     maxWidth: '250px',
+    marginTop: '10px',
     wordBreak: 'break-all',
     whiteSpace: 'no-warp',
     overflow: 'hidden',
