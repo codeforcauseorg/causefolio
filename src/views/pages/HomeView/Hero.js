@@ -154,8 +154,8 @@ function Hero({ className, ...rest }) {
                     <Box>
                       <Button
                         style={{
-                          backgroundColor: '#ffffff',
-                          color: '#B20000',
+                          // backgroundColor: '#ffffff',
+                          // color: '#B20000',
                           textTransform: 'capitalize',
                           fontWeight: 700,
                           borderRadius: '20px'

@@ -3,7 +3,7 @@
 import _ from 'lodash';
 import { colors, createMuiTheme, responsiveFontSizes } from '@material-ui/core';
 import typography from './typography';
-import { softShadows, strongShadows } from './shadows';
+import { softShadows } from './shadows';
 import { THEMES } from '../constants';
 
 const baseConfig = {
@@ -24,6 +24,13 @@ const baseConfig = {
     MuiChip: {
       root: {
         backgroundColor: 'rgba(0,0,0,0.075)'
+      }
+    },
+    MuiButton: {
+      root: {
+        '&:hover': {
+          backgroundColor: '#150934'
+        }
       }
     }
   }
@@ -50,81 +57,22 @@ const themeConfigs = [
       background: {
         default: colors.common.white,
         dark: '#f4f6f8',
-        paper: '#291757' // background
+        paper: '#291757'
       },
       primary: {
-        main: colors.indigo[600] // for header and loader
+        main: colors.indigo[600],
+        active: '#150934' // for header and loader
       },
       secondary: {
-        main: '#291757' // for button and selected
+        main: '#A60000' // for button and selected
       },
       text: {
         // for text classes
         primary: colors.blueGrey[900],
-        secondary: colors.blueGrey[600]
+        secondary: colors.common.white
       }
     },
     shadows: softShadows
-  },
-  {
-    name: THEMES.ONE_DARK,
-    palette: {
-      type: 'dark',
-      action: {
-        active: 'rgba(255, 255, 255, 0.54)',
-        hover: 'rgba(255, 255, 255, 0.04)',
-        selected: 'rgba(255, 255, 255, 0.08)',
-        disabled: 'rgba(255, 255, 255, 0.26)',
-        disabledBackground: 'rgba(255, 255, 255, 0.12)',
-        focus: 'rgba(255, 255, 255, 0.12)'
-      },
-      background: {
-        default: '#282C34',
-        dark: '#1c2025',
-        paper: '#282C34'
-      },
-      primary: {
-        main: colors.indigo[600]
-      },
-      secondary: {
-        main: '#8a85ff'
-      },
-      text: {
-        primary: '#e6e5e8',
-        secondary: '#adb0bb'
-      }
-    },
-    shadows: strongShadows
-  },
-  {
-    name: THEMES.UNICORN,
-    palette: {
-      type: 'dark',
-      action: {
-        active: 'rgba(255, 255, 255, 0.54)',
-        hover: 'rgba(255, 255, 255, 0.04)',
-        selected: 'rgba(255, 255, 255, 0.08)',
-        disabled: 'rgba(255, 255, 255, 0.26)',
-        disabledBackground: 'rgba(255, 255, 255, 0.12)',
-        focus: 'rgba(255, 255, 255, 0.12)'
-      },
-      background: {
-        default: '#2a2d3d',
-        dark: '#222431',
-        paper: '#2a2d3d'
-      },
-      primary: {
-        main: '#a67dff'
-      },
-      secondary: {
-        main: '#a67dff'
-      },
-      text: {
-        primary: '#f6f5f8',
-        secondary: '#9699a4'
-      }
-    },
-    shadows: strongShadows
   }
 ];
 

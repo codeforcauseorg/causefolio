@@ -95,10 +95,7 @@ const useStyles = makeStyles(theme => ({
     padding: '5px',
     marginLeft: '16px',
     marginTop: 12,
-    marginBottom: 16,
-    '&:hover': {
-      backgroundColor: '#101c4c'
-    }
+    marginBottom: 16
   }
 }));
 

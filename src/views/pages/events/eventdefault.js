@@ -23,10 +23,10 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down('xs')]: {
       marginTop: '29px',
       marginLeft: '215px'
-    },
-    '&:hover': {
-      backgroundColor: '#101c4c'
     }
+    // '&:hover': {
+    //   backgroundColor: '#101c4c'
+    // }
   }
 }));
 

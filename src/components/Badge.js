@@ -54,10 +54,7 @@ const useStyles = makeStyles(() => ({
     fontWeight: 'bold',
     fontSize: '14px',
     letterSpacing: '0.05em',
-    borderRadius: '20px',
-    '&:hover': {
-      backgroundColor: '#291757'
-    }
+    borderRadius: '20px'
   }
 }));
 
