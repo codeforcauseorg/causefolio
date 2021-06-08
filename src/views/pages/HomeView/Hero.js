@@ -7,6 +7,7 @@ import {
   Button,
   Container,
   Grid,
+  Hidden,
   Typography,
   makeStyles
 } from '@material-ui/core';
@@ -20,26 +21,34 @@ const useStyles = makeStyles(theme => ({
     height: '92vh',
     overflow: 'hidden',
     [theme.breakpoints.down('md')]: {
-      paddingTop: 40,
-      paddingBottom: 60
+      paddingTop: 15,
+      paddingBottom: 15
+    },
+    [theme.breakpoints.down('sm')]: {
+      height: 'auto'
     }
   },
   extraPadding: {
-    // [theme.breakpoints.down('md')]: {
-    //   padding: '0 30px'
-    // },
-    textAlign: 'justify'
+    padding: '0 70px 0px 0px',
+    textAlign: 'justify',
+    [theme.breakpoints.down('sm')]: {
+      padding: '0'
+    }
   },
   image: {
     perspectiveOrigin: 'left center',
     transformStyle: 'preserve-3d',
     perspective: 1500,
     '& > img': {
-      maxWidth: '100%',
       height: 'auto',
       backfaceVisibility: 'hidden'
-      // boxShadow: theme.shadows[16]
-      // transform: 'rotateY(-35deg) rotateX(15deg)'
+    },
+    [theme.breakpoints.down('md')]: {
+      alignItems: 'center',
+      display: 'flex',
+      flexDirection: 'column',
+      height: '100%',
+      justifyContent: 'center'
     }
   },
   hide: {
@@ -82,7 +91,20 @@ function Hero({ className, ...rest }) {
               >
                 A Heading for the landing page
               </Typography>
-              <Box mt={2}>
+              <Hidden mdUp>
+                <Box mt={6} mb={2}>
+                  <div className={classes.image}>
+                    <img
+                      alt="codeforcauseimg"
+                      src="/static/home/illus-1.svg"
+                      style={{
+                        width: '75%'
+                      }}
+                    />
+                  </div>
+                </Box>
+              </Hidden>
+              <Box mt={5}>
                 <Typography variant="body1">
                   A brief introduction about platform , what is
                   <br />
@@ -91,16 +113,11 @@ function Hero({ className, ...rest }) {
                   <br />
                 </Typography>
               </Box>
-              <Box mt={2}>
-                <Grid container spacing={3}>
-                  <Grid item>
+              <Box mt={2} mb={3}>
+                <Grid container>
+                  <Grid item xs={12} md={12}>
                     <Typography variant="h1" color="secondary"></Typography>
-                    <Box
-                      mt={2}
-                      display="flex"
-                      justifyContent="center"
-                      alignItems="center"
-                    >
+                    <Box>
                       <Button
                         style={{
                           backgroundColor: '#ffffff',

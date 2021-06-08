@@ -36,11 +36,37 @@ const useStyles = makeStyles(theme => ({
     marginLeft: '75px',
     position: 'absolute',
     width: theme.spacing(20),
-    height: theme.spacing(20)
+    height: theme.spacing(20),
+    [theme.breakpoints.down('xs')]: {
+      width: theme.spacing(18),
+      height: theme.spacing(18),
+      fontSize: '24px',
+      marginLeft: '35px'
+    }
   },
   tiny: {
     width: theme.spacing(3),
     height: theme.spacing(3)
+  },
+  profiledesc: {
+    maxWidth: '250px',
+    marginTop: '10px',
+    wordBreak: 'break-all',
+    whiteSpace: 'no-warp',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    display: '-webkit-box',
+    WebkitBoxOrient: 'vertical',
+    WebkitLineClamp: '5',
+    lineHeight: '1',
+    maxHeight: '1.5'
+  },
+  publictext: {
+    fontWeight: '650',
+    paddingRight: '10px',
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '25px'
+    }
   }
 }));
 
@@ -77,8 +103,9 @@ const AntSwitch = withStyles(theme => ({
   checked: {}
 }))(Switch);
 
-function ProfileInfo() {
+function ProfileInfo({ myProfile }) {
   const classes = useStyles();
+  let interestedInArr = myProfile.interestedIn.split(',');
 
   return (
     <Grid container className={classes.root}>
@@ -95,10 +122,7 @@ function ProfileInfo() {
         justifyContent="flex-end"
         style={{ position: 'absolute', right: '60px', paddingTop: '50px' }}
       >
-        <Typography
-          variant="h2"
-          style={{ fontWeight: '650', paddingRight: '10px' }}
-        >
+        <Typography variant="h2" className={classes.publictext}>
           Public View
         </Typography>
 
@@ -109,28 +133,28 @@ function ProfileInfo() {
         <Box display="flex" justifyContent="flex-end">
           <Box flexGrow={1} />
           <Box xs={12} sm={8}>
-            <IconButton>
+            <IconButton href={myProfile.linkedIn}>
               <img
                 className={classes.tiny}
                 alt="LinkedIn"
                 src="./static/profile/icons/Vector.png"
               />
             </IconButton>
-            <IconButton>
+            <IconButton href={myProfile.twitter}>
               <img
                 className={classes.tiny}
                 alt="Twitter"
                 src="./static/profile/icons/Vector-1.png"
               />
             </IconButton>
-            <IconButton>
+            <IconButton href={myProfile.github}>
               <img
                 className={classes.tiny}
                 alt="GitHub"
                 src="./static/profile/icons/Vector-3.png"
               />
             </IconButton>
-            <IconButton>
+            <IconButton href={myProfile.website}>
               <img
                 className={classes.tiny}
                 alt="Website"
@@ -147,17 +171,13 @@ function ProfileInfo() {
         >
           <Box flexGrow={1} minWidth={200}>
             <Typography variant="h1" style={{ fontWeight: '650' }}>
-              John Doe
+              {myProfile.fullName}
             </Typography>
             <Typography variant="body2" style={{ fontWeight: '650' }}>
-              Software Developer
+              {myProfile.role}
             </Typography>
-            <Typography
-              variant="body2"
-              style={{ maxWidth: '250px', marginTop: '16px' }}
-            >
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aenean
-              pharetra, felis
+            <Typography variant="body2" className={classes.profiledesc}>
+              {myProfile.description}
             </Typography>
           </Box>
           <Box
@@ -169,12 +189,11 @@ function ProfileInfo() {
             <Typography variant="h2" style={{ fontWeight: '650' }}>
               Interested in:
             </Typography>
-            <Chip className={classes.tags} label="Machine Learning" />
-            <Chip className={classes.tags} label="ui/ux" />
-            <Chip className={classes.tags} label="DevOps" />
-            <Chip className={classes.tags} label="Public Speaking" />
-            <Chip className={classes.tags} label="BlockChain" />
-            <Chip className={classes.tags} label="Web Dev" />
+            {interestedInArr
+              .filter(e => String(e).trim())
+              .map(tagName => {
+                return <Chip className={classes.tags} label={tagName} />;
+              })}
           </Box>
         </Box>
       </Card>

@@ -121,7 +121,7 @@ function Account() {
               <Typography variant="h6">
                 <Box
                   style={{
-                    color: '#A60000'
+                    color: '#fff'
                   }}
                 >
                   {`Hello ${truncate(user.displayName)}`}
@@ -167,7 +167,11 @@ function Account() {
           open={!!anchorEl}
           onClose={handleCloseMenu}
         >
-          <MenuItem onClick={handleLogout}>Logout</MenuItem>
+          <MenuItem
+            style={{
+              backgroundColor: 'rgb(255, 255, 255, 0.95)',
+              fontWeight: 500
+            }} onClick={handleLogout}>Logout</MenuItem>
         </Menu>
       </div>
     </div>

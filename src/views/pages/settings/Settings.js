@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/styles';
 import DrawerLayout from 'src/layouts/DrawerLayout';
 import {
@@ -9,15 +8,17 @@ import {
   Box,
   Typography,
   TextField,
-  InputBase
+  InputBase,
+  Snackbar,
+  CircularProgress
 } from '@material-ui/core';
 import { firebase } from 'src/services/authService';
+import { Alert } from '@material-ui/lab';
 
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
-    width: '80%',
-    height: '473px',
+    width: '98%',
     background: '#FFFFFF',
     borderRadius: '20px',
     fontSize: '16px',
@@ -39,10 +40,8 @@ const useStyles = makeStyles(theme => ({
   text: {
     color: '#FFF',
     textAlign: 'center'
-    // marginTop: '130px'
   },
   gallery: {
-    // marginLeft: '124px',
     width: '20%',
     [theme.breakpoints.down('xs')]: {
       marginLeft: '71px'
@@ -89,66 +88,101 @@ const useStyles = makeStyles(theme => ({
     marginBottom: '10px'
   },
   registerButton: {
-    width: '140px',
+    padding: '8px 16px',
     backgroundColor: '#291757',
     borderRadius: '20px',
-    padding: '5px',
     marginLeft: '16px',
     marginTop: 12,
     marginBottom: 16
   }
 }));
 
-function Register() {
+function Settings() {
   const classes = useStyles();
   const user = useSelector(state => state.account.user);
-  let history = useHistory();
 
-  const initialFieldValues = {
-    fullName: '',
-    role: '',
-    description: '',
-    linkedIn: '',
-    github: '',
-    twitter: '',
-    website: '',
-    interestedIn: ''
-  };
-  const [fieldValue, setFieldValue] = useState(initialFieldValues);
+  const [disable, setDisable] = useState(true);
+  const [myProfile, setMyProfile] = useState(null);
+  const [snackbar, setSnackbar] = useState(false);
+
+  //  For fetching the user's info
+  useEffect(() => {
+    if (user !== undefined) {
+      let userId = user.uid;
+      let db = firebase.firestore();
+      let docRef = db.collection('users').doc(userId);
+
+      docRef
+        .get()
+        .then(doc => {
+          if (doc.exists) {
+            let data = doc.data();
+            setMyProfile(data);
+          } else {
+            console.log('No such document!');
+          }
+        })
+        .catch(error => {
+          console.log('Error getting document:', error);
+        });
+    }
+  }, [user, disable]);
 
   const handleInputChange = e => {
     let { name, value } = e.target;
-    setFieldValue({ ...fieldValue, [name]: value });
+    setMyProfile({ ...myProfile, [name]: value });
   };
 
-  const handleRegister = e => {
-    e.preventDefault();
-    let userId = user.uid;
+  const handleUpdate = e => {
     var db = firebase.firestore();
+    let userId = user.uid;
 
     db.collection('users')
       .doc(userId)
-      .set(fieldValue)
+      .set(myProfile)
       .then(() => {
         console.log('Document written');
       })
       .catch(error => {
         console.error('Error adding document: ', error);
       });
-    setFieldValue(initialFieldValues);
-    history.push('/profile');
+    setDisable(true);
+    setSnackbar(true);
   };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setSnackbar(false);
+  };
+
+  if (myProfile === null) {
+    return (
+      <DrawerLayout>
+        <CircularProgress />
+      </DrawerLayout>
+    );
+  }
 
   return (
     <DrawerLayout>
       <div className={classes.root}>
+        <Snackbar open={snackbar} autoHideDuration={6000} onClose={handleClose}>
+          <Alert onClose={handleClose} severity="success">
+            Your Profile has been Updated!
+            <span role="img" aria-label="partying face">
+              🥳
+            </span>
+          </Alert>
+        </Snackbar>
         <Grid container>
           <Box display="flex">
             <Box flexGrow={1}>
               <Grid container>
                 <Grid item className={classes.topContainer}>
                   <Typography variant="h1" className={classes.topText}>
-                    Register
+                    Update Your Profile
                   </Typography>
                 </Grid>
               </Grid>
@@ -157,30 +191,33 @@ function Register() {
                   <TextField
                     className={classes.textField}
                     fullWidth
+                    disabled={disable}
                     variant="outlined"
                     placeholder="Your Full Name"
                     name="fullName"
-                    value={fieldValue.fullName}
+                    value={myProfile.fullName}
                     onChange={handleInputChange}
                   />
                   <TextField
                     className={classes.textField}
                     fullWidth
+                    disabled={disable}
                     variant="outlined"
                     placeholder="Your Role(Ex: Software Developer)"
                     name="role"
-                    value={fieldValue.role}
+                    value={myProfile.role}
                     onChange={handleInputChange}
                   />
                   <TextField
                     className={classes.textField}
                     multiline
+                    disabled={disable}
                     rows={5}
                     fullWidth
                     variant="outlined"
                     placeholder="A Little About You"
                     name="description"
-                    value={fieldValue.description}
+                    value={myProfile.description}
                     onChange={handleInputChange}
                   />
                   {/* Social Links */}
@@ -188,52 +225,86 @@ function Register() {
                     <InputBase
                       className={classes.social}
                       fullWidth
+                      disabled={disable}
                       placeholder="GitHub Link"
                       name="github"
-                      value={fieldValue.github}
+                      value={myProfile.github}
                       onChange={handleInputChange}
                     />
                     <InputBase
                       className={classes.social}
                       fullWidth
+                      disabled={disable}
                       placeholder="LinkedIn Link"
                       name="linkedIn"
-                      value={fieldValue.linkedIn}
+                      value={myProfile.linkedIn}
                       onChange={handleInputChange}
                     />
                     <InputBase
                       className={classes.social}
                       fullWidth
+                      disabled={disable}
                       placeholder="Twitter Link"
                       name="twitter"
-                      value={fieldValue.twitter}
+                      value={myProfile.twitter}
                       onChange={handleInputChange}
                     />
                     <InputBase
                       fullWidth
+                      disabled={disable}
                       placeholder="Personal Website"
                       name="website"
-                      value={fieldValue.website}
+                      value={myProfile.website}
                       onChange={handleInputChange}
                     />
                   </fieldset>
                   <TextField
                     className={classes.textField}
                     fullWidth
+                    disabled={disable}
                     variant="outlined"
                     placeholder="Interested In (Separate By Comma(,))"
                     name="interestedIn"
-                    value={fieldValue.interestedIn}
+                    value={myProfile.interestedIn}
                     onChange={handleInputChange}
                   />
-                  <Button
-                    className={classes.registerButton}
-                    onClick={handleRegister}
-                  >
-                    <Typography style={{ color: '#fff' }}>
-                      Register Me
-                    </Typography>
-                  </Button>{' '}
+                  {!disable ? (
+                    <>
+                      <Button
+                        className={classes.registerButton}
+                        onClick={() => setDisable(true)}
+                      >
+                        <Typography style={{ color: '#fff' }}>
+                          Cancel
+                        </Typography>
+                      </Button>
+                      <Button
+                        className={classes.registerButton}
+                        onClick={handleUpdate}
+                      >
+                        <Typography style={{ color: '#fff' }}>
+                          Update
+                        </Typography>
+                      </Button>
+                    </>
+                  ) : (
+                    <Button
+                      className={classes.registerButton}
+                      onClick={() => setDisable(false)}
+                    >
+                      <Typography
+                        variant="h6"
+                        style={{
+                          color: '#fff',
+                          padding: '4px 4px',
+                          width: '100%'
+                        }}
+                        noWrap
+                      >
+                        Click Here to Update
+                      </Typography>
+                    </Button>
+                  )}
                 </Grid>
               </Grid>
             </Box>
@@ -251,4 +322,4 @@ function Register() {
   );
 }
 
-export default Register;
+export default Settings;
