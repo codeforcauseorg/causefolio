@@ -5,8 +5,6 @@ import Hero from './Hero';
 // import LandingPage from './LandingPage';
 // import Second from './Second';
 
-
-
 const useStyles = makeStyles(() => ({
   root: {}
 }));
@@ -22,4 +20,3 @@ function HomeView() {
 }
 
 export default HomeView;
-                      

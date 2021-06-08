@@ -75,7 +75,7 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down('sm')]: {
       height: '8vh'
     }
-  },
+  }
 }));
 
 function LandingPage({ className, ...rest }) {
@@ -119,7 +119,7 @@ function LandingPage({ className, ...rest }) {
                   </Typography>
                 </Box>
                 <Box mt={3} display="flex">
-                  <Typography variant="h6" >
+                  <Typography variant="h6">
                     A brief introduction about platform , what is the purpose of
                     thisand what our<br></br> platform representstwo to three
                     lines will work
