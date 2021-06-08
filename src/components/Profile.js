@@ -27,7 +27,7 @@ export default function Profile() {
         .then(doc => {
           if (doc.exists) {
             let data = doc.data();
-            setMyProfile(data)
+            setMyProfile(data);
           } else {
             console.log('No such document!');
           }
@@ -41,21 +41,25 @@ export default function Profile() {
   return (
     <DrawerLayout>
       <Grid>
-        { myProfile !== null ? <ProfileInfo myProfile={myProfile} /> : <>No Data</>}
+        {myProfile !== null ? (
+          <ProfileInfo myProfile={myProfile} />
+        ) : (
+          <>No Data</>
+        )}
       </Grid>
-      <Grid container style={{ marginBottom: '21px' }}>
-        <Grid item sm={4} style={{ marginRight: '21px' }}>
+      <Grid container spacing={2} style={{ marginBottom: '21px' }}>
+        <Grid item xs={12} sm={12} md={5} style={{ marginBottom: '21px' }}>
           <CommitChart />
         </Grid>
-        <Grid item sm>
+        <Grid item xs={12} sm={12} md={7}>
           <Badge />
         </Grid>
       </Grid>
       <Grid container>
-        <Grid sm>
+        <Grid xs={12} sm={6}>
           <ProfileEvents />
         </Grid>
-        <Grid sm>
+        <Grid xs={12} sm={6}>
           <ProfilePublications />
         </Grid>
       </Grid>

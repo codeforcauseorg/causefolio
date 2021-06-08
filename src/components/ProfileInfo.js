@@ -11,7 +11,6 @@ import {
   Chip
 } from '@material-ui/core';
 
-
 const useStyles = makeStyles(theme => ({
   root: {
     fontFamily: 'Montserrat',
@@ -37,11 +36,37 @@ const useStyles = makeStyles(theme => ({
     marginLeft: '75px',
     position: 'absolute',
     width: theme.spacing(20),
-    height: theme.spacing(20)
+    height: theme.spacing(20),
+    [theme.breakpoints.down('xs')]: {
+      width: theme.spacing(18),
+      height: theme.spacing(18),
+      fontSize: '24px',
+      marginLeft: '35px'
+    }
   },
   tiny: {
     width: theme.spacing(3),
     height: theme.spacing(3)
+  },
+  profiledesc: {
+    maxWidth: '250px',
+    marginTop: '10px',
+    wordBreak: 'break-all',
+    whiteSpace: 'no-warp',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    display: '-webkit-box',
+    WebkitBoxOrient: 'vertical',
+    WebkitLineClamp: '5',
+    lineHeight: '1',
+    maxHeight: '1.5'
+  },
+  publictext: {
+    fontWeight: '650',
+    paddingRight: '10px',
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '25px'
+    }
   }
 }));
 
@@ -97,10 +122,7 @@ function ProfileInfo({ myProfile }) {
         justifyContent="flex-end"
         style={{ position: 'absolute', right: '60px', paddingTop: '50px' }}
       >
-        <Typography
-          variant="h2"
-          style={{ fontWeight: '650', paddingRight: '10px' }}
-        >
+        <Typography variant="h2" className={classes.publictext}>
           Public View
         </Typography>
 
@@ -154,10 +176,7 @@ function ProfileInfo({ myProfile }) {
             <Typography variant="body2" style={{ fontWeight: '650' }}>
               {myProfile.role}
             </Typography>
-            <Typography
-              variant="body2"
-              style={{ maxWidth: '250px', marginTop: '16px' }}
-            >
+            <Typography variant="body2" className={classes.profiledesc}>
               {myProfile.description}
             </Typography>
           </Box>
@@ -170,11 +189,11 @@ function ProfileInfo({ myProfile }) {
             <Typography variant="h2" style={{ fontWeight: '650' }}>
               Interested in:
             </Typography>
-            {interestedInArr.filter(e => String(e).trim()).map((tagName) => {
-              return (
-                <Chip className={classes.tags} label={tagName} />
-              )
-            })}
+            {interestedInArr
+              .filter(e => String(e).trim())
+              .map(tagName => {
+                return <Chip className={classes.tags} label={tagName} />;
+              })}
           </Box>
         </Box>
       </Card>

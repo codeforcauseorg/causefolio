@@ -1,7 +1,7 @@
 import React from 'react';
-import { Box } from '@material-ui/core'
+import { Box } from '@material-ui/core';
 
-const UserEventStats = (props) => {
+const UserEventStats = props => {
   const box = {
     display: 'flex',
     height: '80px',
@@ -32,7 +32,14 @@ const UserEventStats = (props) => {
   };
 
   return (
-    <Box style={{ display: 'flex', flexDirection: 'column', gap: '20px', padding: '21px' }}>
+    <Box
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '20px',
+        padding: '21px'
+      }}
+    >
       <Box style={box}>
         <p>
           events

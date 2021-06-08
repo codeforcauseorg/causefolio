@@ -129,7 +129,8 @@ function Register() {
     let userId = user.uid;
     var db = firebase.firestore();
 
-    db.collection('users').doc(userId)
+    db.collection('users')
+      .doc(userId)
       .set(fieldValue)
       .then(() => {
         console.log('Document written');

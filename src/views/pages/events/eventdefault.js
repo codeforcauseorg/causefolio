@@ -1,9 +1,4 @@
-import {
-  Box,
-  Button,
-  Grid,
-  makeStyles
-} from '@material-ui/core';
+import { Box, Button, Grid, makeStyles } from '@material-ui/core';
 import React, { useState, useEffect } from 'react';
 import BookmarkedEvents from 'src/components/BookmarkedEvents';
 import UserNewEvents from 'src/components/UserNewEvents';
@@ -11,7 +6,7 @@ import UserUpcomingEvents from 'src/components/UserUpcomingEvents';
 import UserEventStats from 'src/components/UserEventStats';
 import SearchBar from 'src/components/search';
 import DrawerLayout from 'src/layouts/DrawerLayout';
-import {useHistory} from 'react-router-dom'
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
   button: {
@@ -32,7 +27,7 @@ const useStyles = makeStyles(theme => ({
     '&:hover': {
       backgroundColor: '#101c4c'
     }
-  },
+  }
 }));
 
 export default function EventDefaultPage() {
@@ -64,7 +59,10 @@ export default function EventDefaultPage() {
         </Grid>
         <Grid md={4} sm={12} xs={12}>
           <UserUpcomingEvents />
-          <UserEventStats conducted={eventsConducted} attended={eventsAttended} />
+          <UserEventStats
+            conducted={eventsConducted}
+            attended={eventsAttended}
+          />
         </Grid>
       </Grid>
     </DrawerLayout>
