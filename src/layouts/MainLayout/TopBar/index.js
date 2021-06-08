@@ -125,7 +125,7 @@ function TopBar({ className, onMobileNavOpen, ...rest }) {
   };
 
   return (
-    <AppBar className={clsx(classes.root, className)} {...rest}>
+    <AppBar elevation={0} className={clsx(classes.root, className)} {...rest}>
       <Toolbar className={classes.toolbar}>
         <RouterLink to="/">
           <Logo className={classes.logo} />

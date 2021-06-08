@@ -42,11 +42,8 @@ const useStyles = makeStyles(theme => ({
     transformStyle: 'preserve-3d',
     perspective: 1500,
     '& > img': {
-      maxWidth: '100%',
       height: 'auto',
       backfaceVisibility: 'hidden'
-      // boxShadow: theme.shadows[16]
-      // transform: 'rotateY(-35deg) rotateX(15deg)'
     },
     [theme.breakpoints.down('md')]: {
       alignItems: 'center',
@@ -71,7 +68,7 @@ function Hero({ className, ...rest }) {
     <div className={clsx(classes.root, className)} {...rest}>
       <Container
         maxWidth="lg"
-        style={{ paddingTop: '40px', position: 'relative' }}
+        style={{ padding: '40px 0px 0px', position: 'relative' }}
       >
         {/* <img
           src="/static/home/blob.svg"
@@ -83,16 +80,24 @@ function Hero({ className, ...rest }) {
           }}
         /> */}
         <Hidden mdDown>
-          <Grid item xs={12} md={6}>
+          <Grid
+            item
+            xs={12}
+            md={6}
+            style={{
+              position: 'absolute',
+              top: '-35%',
+              left: '-15%',
+              width: '200%'
+            }}
+          >
             <Box>
               <div className={classes.image}>
                 <img
                   src="/static/home/blob.svg"
                   alt="blob"
                   style={{
-                    position: 'absolute',
-                    top: '-9rem',
-                    left: '-20%'
+                    width: '120%'
                   }}
                 />
               </div>
@@ -134,10 +139,12 @@ function Hero({ className, ...rest }) {
               </Hidden>
               <Box mt={5}>
                 <Typography variant="body1">
-                  An initiative to contribute to the Open Source community by
-                  providing training, guidance, and awareness about the
-                  possibilities in the field of software to students &
-                  professionals.
+                  An initiative to contribute to Open Source
+                  <br />
+                  community by providing training, guidance
+                  <br /> and awareness about the possibilities in the
+                  <br />
+                  software field to students &amp; professionals.
                 </Typography>
               </Box>
               <Box mt={2} mb={3}>
