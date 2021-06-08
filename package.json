@@ -62,7 +62,7 @@
     "jwt-decode": "^2.2.0",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
-    "notistack": "^0.9.9",
+    "notistack": "^1.0.9",
     "nprogress": "^0.2.0",
     "prismjs": "^1.20.0",
     "prop-types": "^15.7.2",
