@@ -76,16 +76,6 @@ const useStyles = makeStyles(theme => ({
       height: '8vh'
     }
   },
-  h1: {
-    [theme.breakpoints.up('md')]: {
-      fontSize: '55px'
-    }
-  },
-  body1: {
-    [theme.breakpoints.up('md')]: {
-      fontSize: '20px'
-    }
-  }
 }));
 
 function LandingPage({ className, ...rest }) {
@@ -124,12 +114,12 @@ function LandingPage({ className, ...rest }) {
                 style={{ justifyContent: 'center', flexDirection: 'column' }}
               >
                 <Box mt={10} display="flex">
-                  <Typography variant="h1" style={{ fontWeight: '700' }} className={classes.h1}>
+                  <Typography variant="h1" style={{ fontWeight: '700' }}>
                     A Heading for the<br></br> Landing Page
                   </Typography>
                 </Box>
                 <Box mt={3} display="flex">
-                  <Typography variant="h6" className={classes.body1}>
+                  <Typography variant="h6" >
                     A brief introduction about platform , what is the purpose of
                     thisand what our<br></br> platform representstwo to three
                     lines will work
