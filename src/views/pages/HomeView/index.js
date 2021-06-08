@@ -1,8 +1,10 @@
 import { makeStyles } from '@material-ui/core';
 import React from 'react';
 import Page from 'src/components/Page';
+import Hero from './Hero';
+// import LandingPage from './LandingPage';
 // import Second from './Second';
-import Test from './Test';
+
 
 
 const useStyles = makeStyles(() => ({
@@ -14,7 +16,7 @@ function HomeView() {
 
   return (
     <Page className={classes.root} title="Code for Cause">
-      <Test />
+      <Hero />
     </Page>
   );
 }

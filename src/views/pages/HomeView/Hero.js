@@ -1,54 +1,38 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import ArrowForwardOutlinedIcon from '@material-ui/icons/ArrowForwardOutlined';
 import {
   Box,
   Button,
   Container,
   Grid,
-  Hidden,
   Typography,
   makeStyles
 } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    backgroundColor: '#FFF',
-    paddingTop: 50,
+    backgroundColor: '#291755',
+    paddingTop: 80,
     paddingBottom: 60,
-    color: '#000',
-    height: '92vh',
-    overflow: 'hidden',
+    color: '#FFFFFF',
+    height: '90vh',
     [theme.breakpoints.down('md')]: {
-      paddingTop: 15,
-      paddingBottom: 15
-    },
-    [theme.breakpoints.down('sm')]: {
-      height: 'auto'
+      paddingTop: 40,
+      paddingBottom: 60
     }
   },
   extraPadding: {
-    padding: '0 70px 0px 0px',
-    textAlign: 'justify',
-    [theme.breakpoints.down('sm')]: {
-      padding: '0'
-    }
+    textAlign: 'justify'
   },
   image: {
     perspectiveOrigin: 'left center',
     transformStyle: 'preserve-3d',
     perspective: 1500,
     '& > img': {
+      maxWidth: '100%',
       height: 'auto',
       backfaceVisibility: 'hidden'
-    },
-    [theme.breakpoints.down('md')]: {
-      alignItems: 'center',
-      display: 'flex',
-      flexDirection: 'column',
-      height: '100%',
-      justifyContent: 'center'
     }
   },
   hide: {
@@ -66,11 +50,17 @@ function Hero({ className, ...rest }) {
     <div className={clsx(classes.root, className)} {...rest}>
       <Container
         maxWidth="lg"
-        style={{
-          paddingTop: '20px',
-          position: 'relative'
-        }}
+        style={{ paddingTop: '40px', position: 'relative' }}
       >
+        <img
+          src="/static/home/blob.svg"
+          alt="blob"
+          style={{
+            position: 'absolute',
+            top: '-20%',
+            left: '-20%'
+          }}
+        />
         <Grid container spacing={0}>
           <Grid item xs={10} md={5} style={{ zIndex: '20' }}>
             <Box
@@ -85,39 +75,32 @@ function Hero({ className, ...rest }) {
                 variant="h1"
                 color="#fff"
                 style={{
-                  fontWeight: 700,
-                  fontSize: '2rem'
+                  fontWeight: 800,
+                  fontSize: '40px'
                 }}
               >
-                A Heading for the landing page
+                Code for Cause
               </Typography>
-              <Hidden mdUp>
-                <Box mt={6} mb={2}>
-                  <div className={classes.image}>
-                    <img
-                      alt="codeforcauseimg"
-                      src="/static/home/illus-1.svg"
-                      style={{
-                        width: '75%'
-                      }}
-                    />
-                  </div>
-                </Box>
-              </Hidden>
-              <Box mt={5}>
+              <Box mt={2}>
                 <Typography variant="body1">
-                  A brief introduction about platform , what is
+                  An initiative to contribute to Open Source
                   <br />
-                  the purpose of this and what our platform
-                  <br /> represents . two to three lines will work
+                  community by providing training, guidance
+                  <br /> and awareness about the possibilities in the
                   <br />
+                  software field to students &amp; professionals.
                 </Typography>
               </Box>
-              <Box mt={2} mb={3}>
-                <Grid container>
-                  <Grid item xs={12} md={12}>
+              <Box mt={2}>
+                <Grid container spacing={3}>
+                  <Grid item>
                     <Typography variant="h1" color="secondary"></Typography>
-                    <Box>
+                    <Box
+                      mt={2}
+                      display="flex"
+                      justifyContent="center"
+                      alignItems="center"
+                    >
                       <Button
                         style={{
                           backgroundColor: '#ffffff',
@@ -131,7 +114,7 @@ function Hero({ className, ...rest }) {
                         size="large"
                         variant="contained"
                       >
-                        Get Started <ArrowForwardOutlinedIcon />
+                        Check out
                       </Button>
                     </Box>
                   </Grid>
@@ -140,21 +123,12 @@ function Hero({ className, ...rest }) {
             </Box>
           </Grid>
 
-          <Grid
-            item
-            xs={14}
-            md={7}
-            style={{ display: 'flex', justifyContent: 'flex-end' }}
-          >
+          <Grid item xs={14} md={7}>
             <Box position="relative">
-              {/* <div className={classes.shape}>
-                <img alt="Shapes" src="/static/home/shapes.svg" />
-              </div> */}
-
               <div className={classes.image}>
                 <img
                   alt="codeforcauseimg"
-                  src="/static/home/serviceGirl.png"
+                  src="/static/home/illus-1.svg"
                   style={{
                     width: '100%'
                   }}
@@ -164,17 +138,6 @@ function Hero({ className, ...rest }) {
           </Grid>
         </Grid>
       </Container>
-      <div
-        style={{ margin: 0, padding: 0, height: '50vh', objectFit: 'cover' }}
-      >
-        <img
-          alt="codeforcauseimg"
-          src="/static/home/Footer.svg"
-          style={{
-            width: '100%'
-          }}
-        />
-      </div>
     </div>
   );
 }
