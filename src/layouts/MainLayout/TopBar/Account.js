@@ -171,7 +171,11 @@ function Account() {
             style={{
               backgroundColor: 'rgb(255, 255, 255, 0.95)',
               fontWeight: 500
-            }} onClick={handleLogout}>Logout</MenuItem>
+            }}
+            onClick={handleLogout}
+          >
+            Logout
+          </MenuItem>
         </Menu>
       </div>
     </div>

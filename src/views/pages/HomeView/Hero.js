@@ -15,13 +15,13 @@ import {
 const useStyles = makeStyles(theme => ({
   root: {
     backgroundColor: '#291755',
-    paddingTop: 80,
+    paddingTop: 30,
     paddingBottom: 60,
     color: '#FFFFFF',
     paddingLeft: 60,
     paddingRight: 60,
 
-    height: '90.3vh',
+    height: 'auto',
     [theme.breakpoints.down('md')]: {
       paddingTop: 15,
       paddingBottom: 15
