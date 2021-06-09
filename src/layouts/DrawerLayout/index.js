@@ -2,17 +2,28 @@ import { Drawer, Hidden, IconButton } from '@material-ui/core';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import List from '@material-ui/core/List';
+import { Box, Typography, Avatar } from '@material-ui/core';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { makeStyles } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
+
 import clsx from 'clsx';
 import React, { useState } from 'react';
 import { useHistory } from 'react-router';
 import Logo1 from '../../components/Logo1';
-import MenuIcon from '@material-ui/icons/Menu';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faCalendarAlt,
+  faCogs,
+  faUser,
+  faColumns,
+  faSignOutAlt
+} from '@fortawesome/free-solid-svg-icons';
+import MenuIcon from '@material-ui/icons/Menu';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import { faBloggerB } from '@fortawesome/free-brands-svg-icons';
 const drawerWidth = 300;
 
 const useStyles = makeStyles(theme => ({
@@ -28,6 +39,11 @@ const useStyles = makeStyles(theme => ({
       width: '100%'
     }
   },
+  itemicon: {
+    color: 'white',
+    fontSize: '18px',
+    marginRight: '15px'
+  },
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
@@ -40,7 +56,7 @@ const useStyles = makeStyles(theme => ({
   textStyle: {
     color: '#FFFFFF',
     fontWeight: '600',
-    fontSize: '30px'
+    fontSize: '25px'
   },
   disabled: {
     color: 'rgb(255,255,255,0.5)'
@@ -55,6 +71,34 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down('md')]: {
       maxWidth: '100%'
     }
+  },
+  buttoncon: {
+    backgroundColor: 'rgb(88,74,124)'
+  },
+  idHeading: {
+    display: 'block',
+    fontSize: '14px',
+    color: 'white',
+    marginLeft: '10px',
+    marginTop: '10px'
+  },
+  idtext: {
+    display: 'flex',
+    textAlign: 'left',
+    color: 'white',
+    fontWeight: '600',
+    fontSize: '12px',
+    marginRight: '12px'
+  },
+  iduser: {
+    display: 'flex',
+    textAlign: 'left',
+    color: 'white',
+    fontSize: '12px'
+  },
+  idavatar: {
+    width: theme.spacing(7),
+    height: theme.spacing(7)
   }
 }));
 
@@ -71,14 +115,13 @@ export default function DrawerLayout({ children }) {
   const handleToggle = () => {
     setToggle(!toggle);
   };
-
   const navItems = [
-    { name: 'Dashboard', link: '/dashboard' },
-    { name: 'Profile', link: '/profile' },
-    { name: 'Events', link: '/events' },
-    { name: 'Blogs', link: '/blogs' },
-    { name: 'Settings', link: '/settings' },
-    { name: 'Log out', link: '/logout' }
+    { name: 'Dashboard', link: '/dashboard', icon: faColumns },
+    { name: 'Profile', link: '/profile', icon: faUser },
+    { name: 'Events', link: '/events', icon: faCalendarAlt },
+    { name: 'Blogs', link: '/blogs', icon: faBloggerB },
+    { name: 'Settings', link: '/settings', icon: faCogs },
+    { name: 'Log out', link: '/logout', icon: faSignOutAlt }
   ];
 
   return (
@@ -106,9 +149,40 @@ export default function DrawerLayout({ children }) {
           }}
           anchor="left"
         >
+          <Box className={classes.idHeading} display="flex">
+            <Box display="flex" alignItems="center">
+              <Avatar
+                className={classes.idavatar}
+                alt="ProfileIcon"
+                src="./static/profile/icons/icons.png"
+              />
+              <div style={{ display: 'block', marginLeft: '10px' }}>
+                <Typography style={{ fontSize: '18px', fontWeight: '600' }}>
+                  John Doe
+                </Typography>
+                <div style={{ display: 'flex' }}>
+                  <Typography variant="subtitle1" className={classes.idtext}>
+                    ID
+                  </Typography>
+                  <Typography variant="subtitle1" className={classes.iduser}>
+                    <b>:</b>
+                    &ensp;10294DEW83A
+                  </Typography>
+                </div>
+              </div>
+            </Box>
+          </Box>
           <List>
-            {navItems.map(({ name, link }, idx) => (
-              <ListItem button key={idx} style={{ paddingLeft: '20%' }}>
+            {navItems.map(({ name, link, icon }, idx) => (
+              <ListItem button key={idx}>
+                <ListItemIcon
+                  className={clsx(
+                    classes.itemicon,
+                    window.location.pathname !== link ? classes.disabled : ''
+                  )}
+                >
+                  <FontAwesomeIcon icon={icon} size="lg" />
+                </ListItemIcon>
                 <ListItemText
                   onClick={() => {
                     history.push(link);
@@ -134,26 +208,61 @@ export default function DrawerLayout({ children }) {
       </Hidden>
       <Hidden mdUp>
         <Drawer open={toggle}>
-          {navItems.map(({ name, link }, idx) => (
-            <ListItem button key={idx} style={{ paddingLeft: '20%' }}>
-              <ListItemText
-                onClick={() => {
-                  history.push(link);
-                }}
-                primary={
-                  <Typography
-                    type="body2"
-                    className={clsx(
-                      classes.textStyle,
-                      window.location.pathname !== link ? classes.disabled : ''
-                    )}
-                  >
-                    {name}
-                  </Typography>
-                }
+          <Box className={classes.idHeading} display="flex">
+            <Box display="flex" alignItems="center">
+              <Avatar
+                className={classes.idavatar}
+                alt="ProfileIcon"
+                src="./static/profile/icons/icons.png"
               />
-            </ListItem>
-          ))}
+              <div style={{ display: 'block', marginLeft: '10px' }}>
+                <Typography style={{ fontSize: '18px', fontWeight: '600' }}>
+                  John Doe
+                </Typography>
+                <div style={{ display: 'flex' }}>
+                  <Typography variant="subtitle1" className={classes.idtext}>
+                    ID
+                  </Typography>
+                  <Typography variant="subtitle1" className={classes.iduser}>
+                    <b>:</b>
+                    &ensp;10294DEW83A
+                  </Typography>
+                </div>
+              </div>
+            </Box>
+          </Box>
+          <List>
+            {navItems.map(({ name, link, icon }, idx) => (
+              <ListItem button key={idx}>
+                <ListItemIcon
+                  className={clsx(
+                    classes.itemicon,
+                    window.location.pathname !== link ? classes.disabled : ''
+                  )}
+                >
+                  <FontAwesomeIcon icon={icon} size="lg" />
+                </ListItemIcon>
+                <ListItemText
+                  onClick={() => {
+                    history.push(link);
+                  }}
+                  primary={
+                    <Typography
+                      type="body2"
+                      className={clsx(
+                        classes.textStyle,
+                        window.location.pathname !== link
+                          ? classes.disabled
+                          : ''
+                      )}
+                    >
+                      {name}
+                    </Typography>
+                  }
+                />
+              </ListItem>
+            ))}
+          </List>
         </Drawer>
       </Hidden>
       <div className={classes.content}>{children}</div>

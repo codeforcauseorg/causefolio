@@ -10,12 +10,11 @@ import {
   makeStyles,
   Link
 } from '@material-ui/core';
-import Logo from 'src/components/Logo';
+
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import PhoneIcon from '@material-ui/icons/Phone';
 const useStyles = makeStyles(theme => ({
   root: {
     backgroundColor: '#291755',
