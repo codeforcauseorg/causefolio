@@ -385,7 +385,7 @@ function CreateNewEvent() {
               </Grid>
             </Grid>
             <div className={classes.createbtn}>
-              <Button className={classes.cancelbtn}>Cancel</Button>
+              <Button className={classes.cancelbtn} onClick={() => history.push('/events')}>Cancel</Button>
               <Button className={classes.addbtn} onClick={handleSubmit}>
                 Create
               </Button>
