@@ -45,9 +45,6 @@ const useStyles = makeStyles(theme => ({
     height: '38px',
     borderRadius: '20px',
     marginRight: '15px',
-    '&:hover': {
-      backgroundColor: '#101c4c'
-    }
   },
   createbtn: {
     marginTop: '60px',
@@ -64,9 +61,6 @@ const useStyles = makeStyles(theme => ({
     height: '38px',
     borderRadius: '20px',
     marginRight: '60px',
-    '&:hover': {
-      backgroundColor: '#101c4c'
-    }
   },
   inputDiv: {
     background: 'rgba(42, 23, 89, 0.25)',
@@ -155,9 +149,6 @@ const useStyles = makeStyles(theme => ({
     fontWeight: 'bold',
     fontSize: '13px',
     background: '#291757',
-    '&:hover': {
-      backgroundColor: '#101c4c'
-    },
     [theme.breakpoints.down('xs')]: {
       marginTop: '29px',
       marginLeft: '45px'
@@ -255,7 +246,7 @@ function CreateNewEvent() {
   const handleSubmit = () => {
     let userId = user.uid;
     formData.speakers = speaker;
-    formData.userId = userId;
+    formData.createdBy = userId;
     formData.bannerImg = imageURL;
 
     let db = firebase.firestore();
