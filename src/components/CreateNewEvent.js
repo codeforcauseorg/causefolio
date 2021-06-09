@@ -244,9 +244,10 @@ function CreateNewEvent() {
     if (picture.length === 0) return;
     // For the Loader
     setImageURL(null);
+    let userId = user.uid;
     let file = picture[0];
     let storageRef = firebase.storage().ref();
-    let fileRef = storageRef.child(file.name);
+    let fileRef = storageRef.child(`${userId}/${file.name}`);
     await fileRef.put(file);
     setImageURL(await fileRef.getDownloadURL());
   };
