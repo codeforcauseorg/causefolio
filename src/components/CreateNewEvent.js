@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/styles';
 import DrawerLayout from 'src/layouts/DrawerLayout';
 import {
@@ -7,9 +7,13 @@ import {
   Box,
   Typography,
   InputBase,
-  TextField
+  TextField,
+  LinearProgress
 } from '@material-ui/core';
 import ImageUploader from 'react-images-upload';
+import { useSelector } from 'react-redux';
+import { firebase } from 'src/services/authService';
+import { useHistory } from 'react-router';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -40,7 +44,7 @@ const useStyles = makeStyles(theme => ({
     width: '200px',
     height: '38px',
     borderRadius: '20px',
-    marginRight: '15px'
+    marginRight: '15px',
   },
   createbtn: {
     marginTop: '60px',
@@ -56,7 +60,7 @@ const useStyles = makeStyles(theme => ({
     width: '200px',
     height: '38px',
     borderRadius: '20px',
-    marginRight: '60px'
+    marginRight: '60px',
   },
   inputDiv: {
     background: 'rgba(42, 23, 89, 0.25)',
@@ -193,18 +197,74 @@ const useStyles = makeStyles(theme => ({
 
 function CreateNewEvent() {
   const classes = useStyles();
-
-  // file upload
+  let history = useHistory();
+  const user = useSelector(state => state.account.user);
+  const [speaker, setSpeaker] = useState([{}]);
+  const [imageURL, setImageURL] = useState('');
+  const initialFieldValues = {
+    eventName: '',
+    description: '',
+    date: '',
+    time: '',
+    eventLink: ''
+  };
+  const [formData, setFormData] = useState(initialFieldValues);
 
   const handleChange = e => {
-    // let selectedFile = e.target.files[0];
+    let { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   };
 
-  function onDrop(picture) {
-    console.log(picture);
-  }
+  const handleSpeakerChange = e => {
+    let { id, name, value } = e.target;
+    let s = [...speaker];
+    s[parseInt(id)][name] = value;
+    setSpeaker(s);
+  };
 
-  useEffect(() => {}, []);
+  const addSpeaker = () => {
+    setSpeaker([...speaker, {}]);
+  };
+
+  const removeSpeaker = () => {
+    speaker.pop();
+    setSpeaker([...speaker]);
+  };
+
+  const onDrop = async picture => {
+    if (picture.length === 0) return;
+    // For the Loader
+    setImageURL(null);
+    let userId = user.uid;
+    let file = picture[0];
+    let storageRef = firebase.storage().ref();
+    let fileRef = storageRef.child(`${userId}/${file.name}`);
+    await fileRef.put(file);
+    setImageURL(await fileRef.getDownloadURL());
+  };
+
+  const handleSubmit = () => {
+    let userId = user.uid;
+    formData.speakers = speaker;
+    formData.createdBy = userId;
+    formData.bannerImg = imageURL;
+
+    let db = firebase.firestore();
+    let ref = db.collection('events');
+
+    ref
+      .add(formData)
+      .then(() => {
+        console.log('Document written');
+        setFormData(initialFieldValues);
+        setSpeaker([{}]);
+        history.push('/events/individual-event');
+      })
+      .catch(error => {
+        console.error('Error adding document: ', error);
+      });
+  };
+
   return (
     <DrawerLayout>
       <div className={classes.root}>
@@ -224,7 +284,7 @@ function CreateNewEvent() {
                   className={classes.textField}
                   fullWidth
                   name="eventName"
-                  type="eventName"
+                  value={formData.eventName}
                   variant="outlined"
                   onChange={handleChange}
                 />
@@ -233,9 +293,10 @@ function CreateNewEvent() {
                   placeholder="Add Description of the event"
                   className={classes.textField}
                   multiline
+                  rows={4}
                   fullWidth
-                  name="email"
-                  type="email"
+                  name="description"
+                  value={formData.description}
                   variant="outlined"
                   onChange={handleChange}
                 />
@@ -246,7 +307,10 @@ function CreateNewEvent() {
                       id="date"
                       type="date"
                       defaultValue="2017-05-24"
+                      name="date"
+                      value={formData.date}
                       className={classes.date}
+                      onChange={handleChange}
                       InputLabelProps={{
                         shrink: true
                       }}
@@ -257,9 +321,9 @@ function CreateNewEvent() {
                     <TextField
                       fullWidth
                       className={classes.input1}
-                      placeholder="Event Time"
-                      name="time"
                       type="time"
+                      name="time"
+                      value={formData.time}
                       id="time"
                       defaultValue="07:30"
                       variant="outlined"
@@ -272,31 +336,55 @@ function CreateNewEvent() {
                   fullWidth
                   className={classes.textField}
                   placeholder="Event link / Registration link"
-                  name="link"
-                  type="link"
+                  name="eventLink"
+                  value={formData.eventLink}
                   variant="outlined"
                   onChange={handleChange}
                 />
-                <fieldset className={classes.socialLinks}>
-                  <InputBase
-                    className={classes.social}
-                    fullWidth
-                    placeholder="Speaker Name"
-                  />
-                  <InputBase
-                    className={classes.social}
-                    fullWidth
-                    placeholder="Speaker LinkedIn Profile Link"
-                  />
-                </fieldset>
+                {speaker.map((item, idx) => (
+                  <fieldset className={classes.socialLinks}>
+                    <InputBase
+                      className={classes.social}
+                      fullWidth
+                      id={idx.toString()}
+                      name="speakerName"
+                      value={speaker.speakerName}
+                      placeholder="Speaker Name"
+                      onChange={handleSpeakerChange}
+                    />
+                    <InputBase
+                      className={classes.social}
+                      fullWidth
+                      id={idx.toString()}
+                      name="speakerLinkedIn"
+                      value={speaker.speakerLinkedIn}
+                      placeholder="Speaker LinkedIn Profile Link"
+                      onChange={handleSpeakerChange}
+                    />
+                  </fieldset>
+                ))}
 
-                <Button className={classes.button}>Add Speaker</Button>
+                {speaker.length > 1 && (
+                  <Button className={classes.button} onClick={removeSpeaker}>
+                    Remove Speaker
+                  </Button>
+                )}
+                <Button className={classes.button} onClick={addSpeaker}>
+                  Add Speaker
+                </Button>
                 {/* </div> */}
               </Grid>
             </Grid>
             <div className={classes.createbtn}>
-              <Button className={classes.cancelbtn}>Cancel</Button>
-              <Button className={classes.addbtn}>Create</Button>
+              <Button
+                className={classes.cancelbtn}
+                onClick={() => history.push('/events')}
+              >
+                Cancel
+              </Button>
+              <Button className={classes.addbtn} onClick={handleSubmit}>
+                Create
+              </Button>
             </div>
           </Box>
           <Box maxWidth="28em" minWidth="24em" className={classes.paddingRight}>
@@ -304,7 +392,7 @@ function CreateNewEvent() {
               withIcon={true}
               buttonText="Choose image"
               onChange={onDrop}
-              withPreview
+              withPreview={imageURL !== null}
               singleImage
               imgExtension={['.jpg', '.gif', '.png', '.gif']}
               maxFileSize={5242880}
@@ -313,6 +401,7 @@ function CreateNewEvent() {
               }}
               className={classes.imagePreview}
             />
+            {imageURL === null && <LinearProgress aria-label="Uploading" />}
             <img
               src="/static/images/event_img.svg"
               alt="gallery-icon"
