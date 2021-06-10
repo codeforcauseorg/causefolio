@@ -30,7 +30,7 @@ const renderRoutes = () => (
       <Route path="/profile" exact render={() => <Profile />} />
       <Route path="/events" exact render={() => <EventDefaultPage />} />
       <Route
-        path="/events/individual-event"
+        path="/events/:eventID"
         exact
         render={() => <IndividualEvent />}
       />

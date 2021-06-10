@@ -254,11 +254,11 @@ function CreateNewEvent() {
 
     ref
       .add(formData)
-      .then(() => {
+      .then((docRef) => {
         console.log('Document written');
         setFormData(initialFieldValues);
         setSpeaker([{}]);
-        history.push('/events/individual-event');
+        history.push(`/events/${docRef.id}`);
       })
       .catch(error => {
         console.error('Error adding document: ', error);
