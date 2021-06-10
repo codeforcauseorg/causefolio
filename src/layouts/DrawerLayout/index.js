@@ -55,7 +55,7 @@ const useStyles = makeStyles(theme => ({
   },
   textStyle: {
     color: '#FFFFFF',
-    fontWeight: '600',
+    fontWeight: '550',
     fontSize: '25px'
   },
   disabled: {
@@ -80,7 +80,8 @@ const useStyles = makeStyles(theme => ({
     fontSize: '14px',
     color: 'white',
     marginLeft: '10px',
-    marginTop: '10px'
+    marginTop: '20px',
+    marginBottom: '20px'
   },
   idtext: {
     display: 'flex',
@@ -88,7 +89,7 @@ const useStyles = makeStyles(theme => ({
     color: 'white',
     fontWeight: '600',
     fontSize: '12px',
-    marginRight: '12px'
+    marginRight: '5px'
   },
   iduser: {
     display: 'flex',
@@ -97,8 +98,10 @@ const useStyles = makeStyles(theme => ({
     fontSize: '12px'
   },
   idavatar: {
-    width: theme.spacing(7),
-    height: theme.spacing(7)
+    marginLeft: '0px',
+    marginRight: '12px',
+    width: theme.spacing(6),
+    height: theme.spacing(6)
   }
 }));
 

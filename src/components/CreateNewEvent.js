@@ -44,7 +44,7 @@ const useStyles = makeStyles(theme => ({
     width: '200px',
     height: '38px',
     borderRadius: '20px',
-    marginRight: '15px',
+    marginRight: '15px'
   },
   createbtn: {
     marginTop: '60px',
@@ -60,7 +60,7 @@ const useStyles = makeStyles(theme => ({
     width: '200px',
     height: '38px',
     borderRadius: '20px',
-    marginRight: '60px',
+    marginRight: '60px'
   },
   inputDiv: {
     background: 'rgba(42, 23, 89, 0.25)',

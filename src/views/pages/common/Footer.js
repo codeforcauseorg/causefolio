@@ -19,9 +19,8 @@ const useStyles = makeStyles(theme => ({
   root: {
     backgroundColor: '#291755',
 
-    margin: '0',
-    paddingLeft: 0,
-    paddingRight: 0,
+    paddingLeft: 10,
+    paddingRight: 10,
     [theme.breakpoints.down('md')]: {
       paddingLeft: 10,
       paddingRight: 10
@@ -54,7 +53,6 @@ const useStyles = makeStyles(theme => ({
   },
   extraMarginTop: {
     paddingTop: theme.spacing(2),
-
     paddingBottom: theme.spacing(4)
   },
   extraMargin: {
@@ -63,9 +61,6 @@ const useStyles = makeStyles(theme => ({
   copyRightPadding: {
     paddingTop: theme.spacing(2),
     paddingBottom: theme.spacing(4)
-  },
-  positionleft: {
-    float: 'right'
   }
 }));
 
@@ -79,8 +74,7 @@ function Footer({ className, ...rest }) {
   const disbase = {
     display: 'flex',
     color: 'white',
-    alignItems: 'flex-end',
-    justifyContent: 'space-between'
+    alignItems: 'flex-end'
   };
   return (
     <div className={clsx(classes.root, className)} {...rest}>
@@ -89,9 +83,9 @@ function Footer({ className, ...rest }) {
           <Grid
             className={classes.copyRightPadding}
             xs={12}
-            sm={6}
-            md={5}
-            lg={9}
+            sm={12}
+            md={9}
+            lg={10}
           >
             <Typography display="block" variant="body2" color="textSecondary">
               {'Copyright © '}
@@ -126,15 +120,15 @@ function Footer({ className, ...rest }) {
           <Grid
             item
             xs={12}
-            sm={6}
-            md={5}
-            lg={3}
+            sm={12}
+            md={3}
+            lg={2}
             className={classes.extraMarginTop}
           >
             <Typography variant="h4" gutterBottom>
               Contact us
             </Typography>
-            <Grid item xs={3} md={3}>
+            <Grid item xs={3} sm={3} md={3}>
               <List style={flexColumn}>
                 <ListItem
                   className={classes.centerCls}
