@@ -8,6 +8,7 @@ import HomeView from 'src/views/pages/HomeView';
 import Error404View from 'src/views/pages/Error404View';
 import Badge from 'src/components/Badge';
 import EventDefaultPage from 'src/views/pages/events/eventdefault';
+import Firebasecurd from "src/firebase/Firebasecurd"
 
 const renderRoutes = () => (
   <Suspense fallback={<LoadingScreen />}>
@@ -25,6 +26,7 @@ const renderRoutes = () => (
       <Route path="/profile" exact render={() => <Badge />} />
 
       <Route path="/events" exact render={() => <EventDefaultPage />} />
+      <Route path="/firebase" exact render={() => <Firebasecurd/>} />
       <Route path="*" exact render={() => <Error404View />} />
     </Switch>
   </Suspense>

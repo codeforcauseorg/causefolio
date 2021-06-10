@@ -6,9 +6,13 @@ import firebase from 'firebase';
 class AuthService {
   // Configure Firebase.
   config = {
-    apiKey: 'AIzaSyBogaqI7q74Wml7AD90VVm_89o1cgFFQCo',
-    authDomain: 'code-for-cause-leaders.firebaseapp.com',
-    projectId: 'code-for-cause-leaders'
+    apiKey: "AIzaSyDwQ_BVaf3LXTqCjEUZk_al7bEdSbM3XIc",
+    authDomain: "crudoperation-7e481.firebaseapp.com",
+    projectId: "crudoperation-7e481",
+    storageBucket: "crudoperation-7e481.appspot.com",
+    messagingSenderId: "615119619499",
+    appId: "1:615119619499:web:7a81027209c502106bfeee",
+    measurementId: "G-10JP8V60VE"
     // ...
   };
 
