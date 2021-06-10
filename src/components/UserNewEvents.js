@@ -1,6 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { Button, Grid, Typography } from '@material-ui/core';
+import { useSelector } from 'react-redux';
+import { firebase } from 'src/services/authService';
+import { useHistory } from 'react-router';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -54,7 +57,28 @@ const useStyles = makeStyles(() => ({
 
 function UserNewEvents() {
   const classes = useStyles();
-  useEffect(() => {}, []);
+  const user = useSelector(state => state.account.user);
+  const history = useHistory();
+  const [newEvents, setNewEvents] = useState([]);
+  const [eventID] = useState([]);
+
+  useEffect(() => {
+    const fetchLatestEvents = async () => {
+      if (user === undefined) return;
+      let db = firebase.firestore();
+      // Fetch Latest Events
+      let newEventCollection = await db.collection('events').orderBy('createdOn').limit(4).get();
+
+      setNewEvents(
+        newEventCollection.docs.map(doc => {
+          eventID.push(doc.id);
+          return doc.data();
+        })
+      );
+    };
+    fetchLatestEvents();
+  }, [user, history]);
+
   return (
     <div className={classes.root}>
       <Grid container>
@@ -76,135 +100,41 @@ function UserNewEvents() {
         </Grid>
       </Grid>
       <Grid container className={classes.bmEvents}>
-        {/* sample bookmarked events */}
-        <Grid className={classes.bmText}>
-          <Grid
-            container
-            style={{
-              backgroundColor: '#291757CC',
-              width: '114px',
-              height: '147px',
-              borderRadius: '20px'
-            }}
-            align="center"
-            justify="center"
-            direction="column"
-          >
-            <Typography variant="h5" style={{ marginBottom: '14px' }}>
-              Event-1
-            </Typography>
-            <div style={{ display: 'inline-block', margin: '0 auto' }}>
-              <Typography variant="subtitle1" style={{ fontSize: '10px' }}>
-                29TH MARCH
-              </Typography>
-              <Typography variant="subtitle1" style={{ fontSize: '10px' }}>
-                6:00 PM
-              </Typography>
-            </div>
-            <Button
-              style={{ backgroundColor: 'white' }}
-              className={classes.checkOut}
+        {newEvents?.map((event, idx) => (
+          <Grid className={classes.bmText}>
+            <Grid
+              container
+              style={{
+                backgroundColor: '#291757CC',
+                width: '114px',
+                height: '147px',
+                borderRadius: '20px'
+              }}
+              align="center"
+              justify="center"
+              direction="column"
             >
-              CHECK OUT
-            </Button>
+              <Typography variant="h5" style={{ marginBottom: '14px' }}>
+                {event?.eventName}
+              </Typography>
+              <div style={{ display: 'inline-block', margin: '0 auto' }}>
+                <Typography variant="subtitle1" style={{ fontSize: '10px' }}>
+                  {event?.date}
+                </Typography>
+                <Typography variant="subtitle1" style={{ fontSize: '10px' }}>
+                  {event?.time}
+                </Typography>
+              </div>
+              <Button
+                style={{ backgroundColor: 'white' }}
+                className={classes.checkOut}
+                onClick={() => history.push(`/events/${eventID[idx]}`)}
+              >
+                CHECK OUT
+              </Button>
+            </Grid>
           </Grid>
-        </Grid>
-        <Grid className={classes.bmText}>
-          <Grid
-            container
-            style={{
-              backgroundColor: '#291757CC',
-              width: '114px',
-              height: '147px',
-              borderRadius: '20px'
-            }}
-            align="center"
-            justify="center"
-            direction="column"
-          >
-            <Typography variant="h5" style={{ marginBottom: '14px' }}>
-              Event-2
-            </Typography>
-            <div style={{ display: 'inline-block', margin: '0 auto' }}>
-              <Typography variant="subtitle1" style={{ fontSize: '10px' }}>
-                29TH MARCH
-              </Typography>
-              <Typography variant="subtitle1" style={{ fontSize: '10px' }}>
-                6:00 PM
-              </Typography>
-            </div>
-            <Button
-              style={{ backgroundColor: 'white' }}
-              className={classes.checkOut}
-            >
-              CHECK OUT
-            </Button>
-          </Grid>
-        </Grid>
-        <Grid className={classes.bmText}>
-          <Grid
-            container
-            style={{
-              backgroundColor: '#291757CC',
-              width: '114px',
-              height: '147px',
-              borderRadius: '20px'
-            }}
-            align="center"
-            justify="center"
-            direction="column"
-          >
-            <Typography variant="h5" style={{ marginBottom: '14px' }}>
-              Event-3
-            </Typography>
-            <div style={{ display: 'inline-block', margin: '0 auto' }}>
-              <Typography variant="subtitle1" style={{ fontSize: '10px' }}>
-                29TH MARCH
-              </Typography>
-              <Typography variant="subtitle1" style={{ fontSize: '10px' }}>
-                6:00 PM
-              </Typography>
-            </div>
-            <Button
-              style={{ backgroundColor: 'white' }}
-              className={classes.checkOut}
-            >
-              CHECK OUT
-            </Button>
-          </Grid>
-        </Grid>
-        <Grid className={classes.bmText}>
-          <Grid
-            container
-            style={{
-              backgroundColor: '#291757CC',
-              width: '114px',
-              height: '147px',
-              borderRadius: '20px'
-            }}
-            align="center"
-            justify="center"
-            direction="column"
-          >
-            <Typography variant="h5" style={{ marginBottom: '14px' }}>
-              Event-4
-            </Typography>
-            <div style={{ display: 'inline-block', margin: '0 auto' }}>
-              <Typography variant="subtitle1" style={{ fontSize: '10px' }}>
-                29TH MARCH
-              </Typography>
-              <Typography variant="subtitle1" style={{ fontSize: '10px' }}>
-                6:00 PM
-              </Typography>
-            </div>
-            <Button
-              style={{ backgroundColor: 'white' }}
-              className={classes.checkOut}
-            >
-              CHECK OUT
-            </Button>
-          </Grid>
-        </Grid>
+        ))}
       </Grid>
     </div>
   );

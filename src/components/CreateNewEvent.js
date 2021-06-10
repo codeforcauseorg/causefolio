@@ -248,7 +248,7 @@ function CreateNewEvent() {
     formData.speakers = speaker;
     formData.createdBy = userId;
     formData.bannerImg = imageURL;
-
+    formData.createdOn = new Date().toLocaleString();
     let db = firebase.firestore();
     let ref = db.collection('events');
 

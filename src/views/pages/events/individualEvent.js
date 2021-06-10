@@ -85,7 +85,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function IndividualEvent({ match }) {
+export default function IndividualEvent() {
   const classes = useStyles();
   const { eventID } = useParams();
   let history = useHistory();
@@ -107,7 +107,7 @@ export default function IndividualEvent({ match }) {
       setEvent(userEvent.data());
     };
     fetchUserEvent();
-  }, [user, eventID]);
+  }, [user, eventID,history]);
 
   return (
     <DrawerLayout>

@@ -74,7 +74,6 @@ function UserUpcomingEvents() {
       let userEventCollection = await db.collection('events').where("createdBy", "==", `${userId}`).get();
 
       setUserEvents(userEventCollection.docs.map(doc => {
-        console.log(doc.data());
         return doc.data()
       }))
       
