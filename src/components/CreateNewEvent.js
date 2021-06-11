@@ -12,7 +12,10 @@ import {
 } from '@material-ui/core';
 import ImageUploader from 'react-images-upload';
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5496ddafb4b5fa7aaf5bd1295bf15cc070a0fe07
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
@@ -60,6 +63,34 @@ const useStyles = makeStyles(theme => ({
     borderRadius: '20px',
     marginRight: '60px'
   },
+<<<<<<< HEAD
+=======
+  inputDiv: {
+    background: 'rgba(42, 23, 89, 0.25)',
+    borderRadius: '17px',
+    width: '451px',
+    marginBottom: '10px',
+    height: '70px'
+  },
+  input1: {
+    border: '0',
+    // padding: '10px',
+    font: 'inherit',
+    width: '100%',
+    backgroundColor: '#CCD2E3',
+    borderRadius: '20px',
+    outline: '0',
+    borderBlockColor: 'green',
+    borderColor: 'green',
+    '& .MuiOutlinedInput-notchedOutline': {
+      borderColor: '#F2F7FF',
+      borderRadius: '20px',
+      [theme.breakpoints.down('md')]: {
+        width: '50%'
+      }
+    }
+  },
+>>>>>>> 5496ddafb4b5fa7aaf5bd1295bf15cc070a0fe07
   image: {
     marginLeft: '71px',
     width: '350px',
@@ -130,6 +161,10 @@ const useStyles = makeStyles(theme => ({
   date: {
     marginBottom: '16px',
     backgroundColor: '#CCD2E3',
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5496ddafb4b5fa7aaf5bd1295bf15cc070a0fe07
     borderRadius: '20px',
     padding: '12.5px 14px',
     '&:focus': {
@@ -142,6 +177,7 @@ const useStyles = makeStyles(theme => ({
     },
     [theme.breakpoints.down('md')]: {
       width: '100%'
+<<<<<<< HEAD
     }
   },
   input1: {
@@ -160,6 +196,8 @@ const useStyles = makeStyles(theme => ({
       [theme.breakpoints.down('md')]: {
         width: '50%'
       }
+=======
+>>>>>>> 5496ddafb4b5fa7aaf5bd1295bf15cc070a0fe07
     }
   },
   textField: {
@@ -178,16 +216,22 @@ const useStyles = makeStyles(theme => ({
     paddingRight: '80px',
     marginLeft: '40px'
   },
+<<<<<<< HEAD
  
 
+=======
+>>>>>>> 5496ddafb4b5fa7aaf5bd1295bf15cc070a0fe07
   imagePreview: {
     '& .uploadPictureContainer': {
       width: '60%'
     }
+<<<<<<< HEAD
   },
   red:{
     color: 'red',
     marginBottom:'4px',
+=======
+>>>>>>> 5496ddafb4b5fa7aaf5bd1295bf15cc070a0fe07
   }
 }));
 
@@ -378,6 +422,7 @@ function CreateNewEvent() {
                 boxShadow: '2px 2px 3px 1px rgb(0, 0, 0, 0.5)'
               }}
               className={classes.imagePreview}
+<<<<<<< HEAD
               {...register("eventLink", { required: true })}
               />
                 {errors.eventLink && (
@@ -392,6 +437,14 @@ function CreateNewEvent() {
               style={{ marginLeft: '10px', marginTop: '20px' }}
               />
            
+=======
+            />
+            <img
+              src="/static/images/event_img.svg"
+              alt="gallery-icon"
+              style={{ marginLeft: '10px', marginTop: '20px' }}
+            />
+>>>>>>> 5496ddafb4b5fa7aaf5bd1295bf15cc070a0fe07
           </Box>
         </Box>
       </div>

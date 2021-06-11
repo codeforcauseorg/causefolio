@@ -1,8 +1,8 @@
-import { Box ,Button} from '@material-ui/core';
+import { Box, Button } from '@material-ui/core';
 import React from 'react';
 import BookmarkedEvents from 'src/components/BookmarkedEvents';
 import UpcomingEvents from 'src/components/NewEvents';
-import {useHistory} from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 import Publications from 'src/components/Publications';
 import SearchBar from 'src/components/search';
 import DrawerLayout from 'src/layouts/DrawerLayout';
@@ -27,14 +27,13 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-
 export default function EventDefaultPage() {
   const classes = useStyles();
   const history = useHistory();
-  const handleClick = () =>{
-    history.push('/createEvent')
-    console.log("clicked");
-  }
+  const handleClick = () => {
+    history.push('/createEvent');
+    console.log('clicked');
+  };
   return (
     <DrawerLayout>
       <Box display="flex">
@@ -43,13 +42,13 @@ export default function EventDefaultPage() {
           <SearchBar />
           <BookmarkedEvents />
           <Button className={classes.button} onClick={handleClick}>
-              Create New Event
-            </Button>
+            Create New Event
+          </Button>
         </Box>
 
         <Box maxWidth="28em" minWidth="24em">
           <UpcomingEvents />
-          <Publications /> 
+          <Publications />
         </Box>
       </Box>
     </DrawerLayout>
