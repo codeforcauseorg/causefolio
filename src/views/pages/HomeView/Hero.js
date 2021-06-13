@@ -70,15 +70,6 @@ function Hero({ className, ...rest }) {
         maxWidth="lg"
         style={{ padding: '40px 0px 0px', position: 'relative' }}
       >
-        {/* <img
-          src="/static/home/blob.svg"
-          alt="blob"
-          style={{
-            position: 'absolute',
-            top: '-20%',
-            left: '-20%'
-          }}
-        /> */}
         <Hidden mdDown>
           <Grid
             item

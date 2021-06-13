@@ -8,7 +8,12 @@ const useStyles = makeStyles(() => ({
   root: {
     backgroundColor: '#291755',
     overflowX: 'hidden',
-    minHeight:'90.3vh'
+    display: "flex",
+    flexDirection: "column",
+    minHeight: 'calc(100vh - 64px)'
+  },
+  hero: {
+    flexGrow: 1
   }
 }));
 
@@ -17,7 +22,7 @@ function HomeView() {
 
   return (
     <Page className={classes.root} title="Code for Cause">
-      <Hero />
+      <Hero className={classes.hero} />
       <Footer />
     </Page>
   );

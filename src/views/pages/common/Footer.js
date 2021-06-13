@@ -71,11 +71,13 @@ function Footer({ className, ...rest }) {
     flexDirection: 'column',
     padding: 0
   };
+
   const disbase = {
     display: 'flex',
     color: 'white',
     alignItems: 'flex-end'
   };
+
   return (
     <div className={clsx(classes.root, className)} {...rest}>
       <Container maxWidth="lg">
@@ -85,7 +87,7 @@ function Footer({ className, ...rest }) {
             xs={12}
             sm={12}
             md={9}
-            lg={10}
+            lg={9}
           >
             <Typography display="block" variant="body2" color="textSecondary">
               {'Copyright © '}
