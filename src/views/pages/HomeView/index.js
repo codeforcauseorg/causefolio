@@ -3,9 +3,13 @@ import React from 'react';
 import Page from 'src/components/Page';
 // import DrawerLayout from 'src/layouts/DrawerLayout';
 import Hero from './Hero';
-
+import Footer from '../common/Footer';
 const useStyles = makeStyles(() => ({
-  root: {}
+  root: {
+    backgroundColor: '#291755',
+    overflowX: 'hidden',
+    minHeight:'90.3vh'
+  }
 }));
 
 function HomeView() {
@@ -14,8 +18,7 @@ function HomeView() {
   return (
     <Page className={classes.root} title="Code for Cause">
       <Hero />
-
-      {/* <Footer /> */}
+      <Footer />
     </Page>
   );
 }
