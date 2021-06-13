@@ -60,18 +60,18 @@ function UserNewEvents() {
   const user = useSelector(state => state.account.user);
   const history = useHistory();
   const [newEvents, setNewEvents] = useState([]);
-  const [eventID] = useState([]);
+  const [eventID,setEventID] = useState([]);
 
   useEffect(() => {
     const fetchLatestEvents = async () => {
       if (user === undefined) return;
       let db = firebase.firestore();
       // Fetch Latest Events
-      let newEventCollection = await db.collection('events').orderBy('createdOn').limit(4).get();
+      let newEventCollection = await db.collection('events').orderBy('createdOn').limit(10).get();
 
       setNewEvents(
         newEventCollection.docs.map(doc => {
-          eventID.push(doc.id);
+          setEventID((prevState) => [...prevState, doc.id])
           return doc.data();
         })
       );
