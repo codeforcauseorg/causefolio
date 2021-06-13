@@ -60,7 +60,7 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-function UserUpcomingEvents() {
+function UserUpcomingEvents({ setConducted }) {
   const classes = useStyles();
   const user = useSelector(state => state.account.user);
   const [userEvents, setUserEvents] = useState([])
@@ -76,11 +76,15 @@ function UserUpcomingEvents() {
       setUserEvents(userEventCollection.docs.map(doc => {
         return doc.data()
       }))
-      
+
     }
     fetchUserEvents()
   }, [user]);
 
+  if (userEvents.length > 0) {
+    setConducted(userEvents.length)
+  }
+  
   return (
     <Card className={classes.root}>
       <Grid container>

@@ -4,7 +4,7 @@ import BookmarkedEvents from 'src/components/BookmarkedEvents';
 import UserNewEvents from 'src/components/UserNewEvents';
 import UserUpcomingEvents from 'src/components/UserUpcomingEvents';
 import UserEventStats from 'src/components/UserEventStats';
-import SearchBar from 'src/components/search';
+// import SearchBar from 'src/components/search';
 import DrawerLayout from 'src/layouts/DrawerLayout';
 import { useHistory } from 'react-router-dom';
 
@@ -29,7 +29,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function EventDefaultPage() {
   const classes = useStyles();
-  const [bookmarkEvent, setBookmarkEvent] = useState(null)
+  const [bookmarkEvent] = useState(null)
   const history = useHistory();
   const handleClick = () => {
     history.push('/createEvent');
@@ -38,7 +38,6 @@ export default function EventDefaultPage() {
   const [eventsAttended, setEventsAttended] = useState(0);
 
   useEffect(() => {
-    setEventsConducted(2);
     setEventsAttended(2);
   }, []);
 
@@ -56,7 +55,7 @@ export default function EventDefaultPage() {
           </Box>
         </Grid>
         <Grid md={4} sm={12} xs={12}>
-          <UserUpcomingEvents />
+          <UserUpcomingEvents setConducted={setEventsConducted} />
           <UserEventStats
             conducted={eventsConducted}
             attended={eventsAttended}
