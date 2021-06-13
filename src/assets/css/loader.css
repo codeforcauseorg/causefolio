@@ -1,92 +1,42 @@
-.sampleContainer {
-    margin-top: 250px;
+/* Demo */
+ body {
+     
+	 height: 100vh;
+	 display: flex;
+	 align-items: center;
+	 justify-content: center;
+	 background: linear-gradient(#ecf0f1, #fff);
 }
-.loader {
-    position: relative;
-    width: 44px;
-    height: 8px;
-    margin: 12px auto;
+/* Animation */
+ @keyframes rotate {
+	 to {
+		 transform: rotate(360deg);
+	}
 }
-.dot {
-    display: inline-block;
-    width: 8px;
-    height: 8px;
-    border-radius: 4px;
-    background: rgb(88,74,124);
-    position: absolute;
+/* Variables */
+/* Loading Icon */
+ .loading {
+	 width: 100px;
+	 height: 100px;
+     margin-top: 15.625em;
+     margin-left: 45%;
 }
-.dot_1 {
-    animation: animateDot1 1.5s linear infinite;
-    left: 12px;
-    background: #e579b8;
+ .loading__ring {
+	 position: absolute;
+	 width: 100px;
+	 height: 100px;
 }
-.dot_2 {
-    animation: animateDot2 1.5s linear infinite;
-    animation-delay: 0.5s;
-    left: 24px;
+ .loading__ring:first-child {
+	 transform: skew(30deg, 20deg);
 }
-.dot_3 {
-    animation: animateDot3 1.5s linear infinite;
-    left: 12px;
+ .loading__ring:last-child {
+	 transform: skew(-30deg, -20deg) scale(-1, 1);
 }
-.dot_4 {
-    animation: animateDot4 1.5s linear infinite;
-    animation-delay: 0.5s;
-    left: 24px;
+ .loading__ring:last-child svg {
+	 animation-delay: -0.5s;
 }
-@keyframes animateDot1 {
-    0% {
-        transform: rotate(0deg) translateX(-12px);
-   }
-    25% {
-        transform: rotate(180deg) translateX(-12px);
-   }
-    75% {
-        transform: rotate(180deg) translateX(-12px);
-   }
-    100% {
-        transform: rotate(360deg) translateX(-12px);
-   }
+ .loading__ring svg {
+	 animation: rotate 1s linear infinite;
+	 fill: rgba(88, 74, 124,0.9);
 }
-@keyframes animateDot2 {
-    0% {
-        transform: rotate(0deg) translateX(-12px);
-   }
-    25% {
-        transform: rotate(-180deg) translateX(-12px);
-   }
-    75% {
-        transform: rotate(-180deg) translateX(-12px);
-   }
-    100% {
-        transform: rotate(-360deg) translateX(-12px);
-   }
-}
-@keyframes animateDot3 {
-    0% {
-        transform: rotate(0deg) translateX(12px);
-   }
-    25% {
-        transform: rotate(180deg) translateX(12px);
-   }
-    75% {
-        transform: rotate(180deg) translateX(12px);
-   }
-    100% {
-        transform: rotate(360deg) translateX(12px);
-   }
-}
-@keyframes animateDot4 {
-    0% {
-        transform: rotate(0deg) translateX(12px);
-   }
-    25% {
-        transform: rotate(-180deg) translateX(12px);
-   }
-    75% {
-        transform: rotate(-180deg) translateX(12px);
-   }
-    100% {
-        transform: rotate(-360deg) translateX(12px);
-   }
-}
+ 

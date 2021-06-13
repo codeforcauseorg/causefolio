@@ -7,7 +7,8 @@ import Footer from '../common/Footer';
 const useStyles = makeStyles(() => ({
   root: {
     backgroundColor: '#291755',
-    overflowX: 'hidden'
+    overflowX: 'hidden',
+    minHeight:'90.3vh'
   }
 }));
 
