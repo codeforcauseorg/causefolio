@@ -51,7 +51,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function TopBar({ className, onMobileNavOpen, ...rest }) {
+function TopBar({ className, onMobileNavOpen, variant, ...rest }) {
   const classes = useStyles();
   const [state, setState] = React.useState({
     top: false,
@@ -125,10 +125,10 @@ function TopBar({ className, onMobileNavOpen, ...rest }) {
   };
 
   return (
-    <AppBar className={clsx(classes.root, className)} {...rest}>
+    <AppBar elevation={0} className={clsx(classes.root, className)} {...rest}>
       <Toolbar className={classes.toolbar}>
         <RouterLink to="/">
-          <Logo className={classes.logo} />
+          <Logo className={classes.logo} variant={variant} />
         </RouterLink>
         <Hidden smDown>
           <Box ml={2} flexGrow={1} />

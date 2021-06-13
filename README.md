@@ -13,6 +13,7 @@ One stop destination for showcasing the community you have built.
   - [Setup local repo](#setup-repo)
   - [Setup Firebase credentials](#setup-firebase)
   - [Setup remote](#setup-remote)
+  - [Update fork repo](#update-repo)
   - [Run app](#run-app)
   - [Build app](#build-app)
 - [Contributing and PR](#contributing)
@@ -104,6 +105,28 @@ upstream        https://github.com/codeforcauseorg/causefolio.git (push)
 ```
 
 Your application setup is successfully completed!
+
+<a id="update-repo"></a>
+
+### 6. Update Fork Repo From Original Repo (Optional)
+
+0. Follow these steps if you are done with <b>Setup Remote</b> ✅.
+1. Update your local Master to be in synch with the original repo.
+
+```console
+
+$ git pull upstream <name_of_branch>
+
+```
+
+2. Update the forked repo master by pushing the local repo up.
+
+```console
+
+$ git push origin <name_of_branch>
+
+```
+
 <a id="run-app"></a>
 
 ### Running the app
@@ -117,7 +140,7 @@ $ npm run start
 
 ### Build Setup
 
-- After doing changes, Run the command `npm run build` to build the app for production to the `build` folder.
+- After doing changes, run the command `npm run build` to build the app for production to the `build` folder.
 
 ```bash
 # build for production
@@ -130,7 +153,7 @@ npm run build
 
 - PRs should be generated against `development`.
 - Remember to run `npm run format` before creating pull request.
-- Netlify willl create a preview inside pull request, Please check if your work is fine.
+- Netlify will create a preview inside pull request. Please check if your work is fine.
 
 <a id="projectstructure"></a>
 

@@ -14,7 +14,6 @@ class AuthService {
     appId: '1:58409560329:web:60ffc3c128d3b155a18bd8',
     measurementId: 'G-49RJ8QM95E'
   };
-
   // Configure FirebaseUI.
   uiConfig = {
     // Popup signin flow rather than redirect flow.
@@ -91,7 +90,6 @@ class AuthService {
 
   setSession = accessToken => {
     if (accessToken) {
-      console.log(accessToken);
       localStorage.setItem('accessToken', accessToken);
       axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
     } else {
@@ -119,3 +117,4 @@ class AuthService {
 const authService = new AuthService();
 
 export default authService;
+export { firebase };
