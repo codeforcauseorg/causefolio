@@ -1,16 +1,22 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/styles';
 import DrawerLayout from 'src/layouts/DrawerLayout';
-import {useForm } from "react-hook-form";
+import {
+  ValidatorForm,
+  TextValidator,
+} from 'react-material-ui-form-validator';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import {
   Button,
   Grid,
   Box,
   Typography,
-  InputBase,
-  TextField
+  LinearProgress
 } from '@material-ui/core';
 import ImageUploader from 'react-images-upload';
+import { useSelector } from 'react-redux';
+import firebase from 'firebase';
+import { useHistory } from 'react-router';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -21,13 +27,12 @@ const useStyles = makeStyles(theme => ({
     fontSize: '16px'
   },
   speakerInput: {
-    borderBottom: '1.3px solid #291757',
     marginBottom: '10px'
   },
-  socialLinks: {
+  speaker: {
     marginBottom: '16px',
     marginTop: '8px',
-    backgroundColor: '#CCD2E3',
+    backgroundColor: 'rgb(232, 240, 254)',
     borderRadius: '20px',
     padding: '20px',
     '& .MuiOutlinedInput-notchedOutline': {
@@ -51,7 +56,6 @@ const useStyles = makeStyles(theme => ({
       flexDirection: 'row-reverse'
     }
   },
-
   addbtn: {
     background: '#291757',
     color: '#FFF',
@@ -59,6 +63,30 @@ const useStyles = makeStyles(theme => ({
     height: '38px',
     borderRadius: '20px',
     marginRight: '60px'
+  },
+  inputDiv: {
+    background: 'rgba(42, 23, 89, 0.25)',
+    borderRadius: '17px',
+    width: '451px',
+    marginBottom: '10px',
+    height: '70px'
+  },
+  input1: {
+    border: '0',
+    font: 'inherit',
+    width: '100%',
+    backgroundColor: 'rgb(232, 240, 254)',
+    borderRadius: '20px',
+    outline: '0',
+    borderBlockColor: 'green',
+    borderColor: 'green',
+    '& .MuiOutlinedInput-notchedOutline': {
+      borderColor: '#F2F7FF',
+      borderRadius: '20px',
+      [theme.breakpoints.down('md')]: {
+        width: '50%'
+      }
+    }
   },
   image: {
     marginLeft: '71px',
@@ -129,7 +157,7 @@ const useStyles = makeStyles(theme => ({
   },
   date: {
     marginBottom: '16px',
-    backgroundColor: '#CCD2E3',
+    backgroundColor: 'rgb(232, 240, 254)',
     borderRadius: '20px',
     padding: '12.5px 14px',
     '&:focus': {
@@ -144,28 +172,10 @@ const useStyles = makeStyles(theme => ({
       width: '100%'
     }
   },
-  input1: {
-    border: '0',
-    marginBottom:'15px',
-    font: 'inherit',
-    width: '100%',
-    backgroundColor: '#CCD2E3',
-    borderRadius: '20px',
-    outline: '0',
-    borderBlockColor: 'green',
-    borderColor: 'green',
-    '& .MuiOutlinedInput-notchedOutline': {
-      borderColor: '#F2F7FF',
-      borderRadius: '20px',
-      [theme.breakpoints.down('md')]: {
-        width: '50%'
-      }
-    }
-  },
   textField: {
     marginBottom: '16px',
     marginTop: '8px',
-    backgroundColor: '#CCD2E3',
+    backgroundColor: 'rgb(232, 240, 254)',
     borderRadius: '20px',
     borderBlockColor: 'green',
     borderColor: 'green',
@@ -178,8 +188,6 @@ const useStyles = makeStyles(theme => ({
     paddingRight: '80px',
     marginLeft: '40px'
   },
- 
-
   imagePreview: {
     '& .uploadPictureContainer': {
       width: '60%'
@@ -189,209 +197,265 @@ const useStyles = makeStyles(theme => ({
 
 function CreateNewEvent() {
   const classes = useStyles();
-
-  // file upload
-
+  let history = useHistory();
+  const user = useSelector(state => state.account.user);
+  const [speaker, setSpeaker] = useState([{}]);
+  const [imageURL, setImageURL] = useState('');
+  const initialFieldValues = {
+    eventName: '',
+    description: '',
+    date: '',
+    time: '',
+    eventLink: '',
+    speakerName:'',
+    speakerLinkedIn:''
+  };
+  const [formData, setFormData] = useState(initialFieldValues);
+  const [submit, setsubmit] = useState(0);
   const handleChange = e => {
-    // let selectedFile = e.target.files[0];
+    let { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   };
 
-  function onDrop(picture) {
-    console.log(picture);
-  }
+  const handleSpeakerChange = e => {
+    let { id, name, value } = e.target;
+    let s = [...speaker];
+    s[parseInt(id)][name] = value;
+    setSpeaker(s);
+  };
 
-  const { register, handleSubmit, control, formState: { errors } } = useForm();
-  const onSubmit = data => console.log(data);
+  const addSpeaker = () => {
+    setSpeaker([...speaker, {}]);
+  };
 
-  useEffect(() => {}, []);
+  const removeSpeaker = () => {
+    speaker.pop();
+    setSpeaker([...speaker]);
+  };
+
+  const onDrop = async picture => {
+    if (picture.length === 0) return;
+    // For the Loader
+    setImageURL(null);
+    let userId = user.uid;
+    let file = picture[0];
+    let storageRef = firebase.storage().ref();
+    let fileRef = storageRef.child(`${userId}/${file.name}`);
+    await fileRef.put(file);
+    setImageURL(await fileRef.getDownloadURL());
+  };
+
+  const handleSubmit = () => {
+    let userId = user.uid;
+    formData.speakers = speaker;
+    formData.createdBy = userId;
+    formData.bannerImg = imageURL;
+
+    let db = firebase.firestore();
+    let ref = db.collection('events');
+
+    ref
+      .add(formData)
+      .then(() => {
+        console.log('Document written');
+        setFormData(initialFieldValues);
+        setSpeaker([{}]);
+        history.push('/events/individual-event');
+      })
+      .catch(error => {
+        console.error('Error adding document: ', error);
+      });
+  };
+
   return (
-
     <DrawerLayout>
-      <form onSubmit={handleSubmit(onSubmit)}>
-      <div className={classes.root}>
-        <Box display="flex" style={{ width: '100%' }}>
-          <Box flexGrow={1}>
-            <Grid container>
-              <Grid item className={classes.topContainer}>
-                <Typography variant="h1" className={classes.topText}>
-                  New Event
-                </Typography>
-              </Grid>
-            </Grid>
-            <Grid container className={classes.event}>
-              <Grid style={{ width: '100%' }}>
-                <TextField
-                  placeholder="Enter name of the event"
-                  className={classes.textField}
-                  fullWidth
-                  name="eventName"
-                  type="eventName"
-                  control={control}
-                  variant="outlined"
-                  onChange={handleChange}
-                  {...register("eventName", {required: true,minLength:2,
-                    maxLength: 20,
-                    pattern: /^[A-Za-z]+$/i
-                  })} 
-                  />
-                    {errors?.eventName?.type === "required" && <p className={classes.red}>This field is required</p>}
-                    {errors?.eventName?.type === "maxLength" && (
-                    <p className={classes.red}>First name cannot exceed 20 characters</p>
-                  )}
-                  {errors?.eventName?.type === "pattern" && (
-                    <p className={classes.red}>Alphabetical characters only</p>
-                  )}
-     
-                <TextField
-                  placeholder="Add Description of the event"
-                  className={classes.textField}
-                  multiline
-                  control={control}
-                  fullWidth
-                  name="eventDescription"
-                  type="text"
-                  variant="outlined"
-                  onChange={handleChange}
-                  {...register("eventDescription", { required: true , maxLength: 60 })}
-                  />
-                    {errors.eventDescription && (
-                <p className={classes.red}>
-                  This field is required
-                </p>
-              )}
-
-                <Grid container>
-                  <Grid item xs={12} sm={12} md={6}>
-                    <TextField
-                      id="date"
-                      type="date"
-                      control={control}
-                      name="eventDate"
-                      defaultValue="2017-05-24"
-                      className={classes.date}
-                      InputLabelProps={{
-                        shrink: true
-                      }}
-                      style={{ marginRight: '30px' }}
-                      {...register("eventDate", { required: true })}
-                      />
-                        {errors.eventDate && (
-                    <p className={classes.red}>
-                      This field is required
-                    </p>
-                  )}
-                  </Grid>
-                  <Grid item xs={12} sm={12} md={6}>
-                    <TextField
-                      fullWidth
-                      control={control}
-                      className={classes.input1}
-                      placeholder="Event Time"
-                      name="eventTime"
-                      type="time"
-                      id="time"
-                      defaultValue="07:30"
-                      variant="outlined"
-                      onChange={handleChange}
-                      {...register("eventTime", { required: true })}
-                      />
-                        {errors.eventTime && (
-                    <p className={classes.red}>
-                      This field is required
-                    </p>
-                  )}
-                  </Grid>
+        <div className={classes.root}>
+          <Box display="flex" style={{ width: '100%' }}>
+            <ValidatorForm onSubmit={handleSubmit}>
+            <Box flexGrow={1}>
+              <Grid container>
+                <Grid item className={classes.topContainer}>
+                  <Typography variant="h1" className={classes.topText}>
+                    New Event
+                  </Typography>
                 </Grid>
-
-                <TextField
-                  fullWidth
-                  control={control}
-                  className={classes.textField}
-                  placeholder="Event link / Registration link"
-                  name="eventLink"
-                  type="link"
-                  variant="outlined"
-                  onChange={handleChange}
-                  {...register("eventLink", { required: true })}
+              </Grid>
+              <Grid container className={classes.event}>
+                <Grid style={{ width: '100%' }}>
+                  <TextValidator
+                    required
+                    key="eventName"
+                    placeholder="Enter name of the event"
+                    className={classes.textField}
+                    fullWidth
+                    name="eventName"
+                    value={formData.eventName}
+                    variant="outlined"
+                    onChange={handleChange}
+                    validators={['required']}
+                    errorMessages={['This is a required field']}
                   />
-                    {errors.eventLink && (
-                <p className={classes.red}>
-                  This field is required
-                </p>
-              )}
-                <fieldset className={classes.socialLinks}>
-                  <InputBase
-                   control={control}
-                    className={classes.speakerInput}
+                  <TextValidator
+                    required
+                    key="description"
+                    placeholder="Add Description of the event"
+                    className={classes.textField}
+                    multiline
+                    rows={4}
                     fullWidth
-                    placeholder="Speaker Name"
-                    name="speakerName"
-                    {...register("speakerName", { required: true ,minLength:2,
-                      maxLength: 20,
-                      pattern: /^[A-Za-z]+$/i
-                    })} 
-                    />
-                      {errors?.eventName?.type === "required" && <p className={classes.red}>This field is required</p>}
-                      {errors?.eventName?.type === "maxLength" && (
-                      <p className={classes.red}>Speaker name cannot exceed 20 characters</p>
-                    )}
-                    {errors?.eventName?.type === "pattern" && (
-                      <p className={classes.red}>Alphabetical characters only</p>
-                    )}
-       
-                  <InputBase
-                    className={classes.speakerInput}
+                    name="description"
+                    value={formData.description}
+                    variant="outlined"
+                    onChange={handleChange}
+                    validators={['required']}
+                    errorMessages={['This is a required field']}
+                  />
+
+                  <Grid container>
+                    <Grid item xs={12} sm={12} md={6}>
+                      <TextValidator
+                        required    
+                        key="date"
+                        id="date"
+                        type="date"
+                        defaultValue="2017-05-24"
+                        name="date"
+                        value={formData.date}
+                        className={classes.date}
+                        onChange={handleChange}
+                        validators={['required']}
+                        errorMessages={['This is a required field']}
+                        InputLabelProps={{
+                          shrink: true
+                        }}
+                        style={{ marginRight: '30px' }}
+                      />
+                    </Grid>
+                    <Grid item xs={12} sm={12} md={6}>
+                      <TextValidator
+                        required
+                        key='time'
+                        fullWidth
+                        className={classes.input1}
+                        type="time"
+                        name="time"
+                        value={formData.time}
+                        id="time"
+                        defaultValue="07:30"
+                        variant="outlined"
+                        onChange={handleChange}
+                        validators={['required']}
+                        errorMessages={['This is a required field']}
+                      />
+                    </Grid>
+                  </Grid>
+                  <TextValidator
+                    required
+                    key="eventLink"
                     fullWidth
-                    control={control}
-                    name="eventProfileLink"
-                    placeholder="Speaker LinkedIn Profile Link"
-                    {...register("eventProfileLink", { required: true })}
-                    />
-                      {errors.eventProfileLink && (
-                  <p className={classes.red}>
-                    This field is required
-                  </p>
+                    className={classes.textField}
+                    placeholder="Event link / Registration link"
+                    name="eventLink"
+                    value={formData.eventLink}
+                    variant="outlined"
+                    onChange={handleChange}
+                    validators={['required']}
+                    errorMessages={['This is a required field']}
+                  />
+                  {speaker.map((item, idx) => (
+                    <fieldset className={classes.speaker}>
+                      <TextValidator
+                        key="speakerName"
+                        required
+                        className={classes.speakerInput}
+                        fullWidth
+                        id={idx.toString()}
+                        name="speakerName"
+                        value={speaker.speakerName}
+                        placeholder="Speaker Name"
+                        onChange={handleSpeakerChange}
+                        validators={['required']}
+                        errorMessages={['This is a required field']}
+                      />
+                      <TextValidator
+                        key="speakerLinkedIn"
+                        required
+                        className={classes.speakerInput}
+                        fullWidth
+                        id={idx.toString()}
+                        name="speakerLinkedIn"
+                        value={speaker.speakerLinkedIn}
+                        placeholder="Speaker LinkedIn Profile Link"
+                        onChange={handleSpeakerChange}
+                        validators={[
+                          'required',
+                          'matchRegexp:^(http(s)?://)?([w]+.)?linkedin.com/(pub|in|profile)'
+                        ]}
+                        errorMessages={[
+                          'This is a required field',
+                          'Please enter a valid URL'
+                        ]}
+                      />
+                    </fieldset>
+                  ))}
+
+                  {speaker.length > 1 && (
+                    <Button className={classes.button} onClick={removeSpeaker}>
+                      Remove Speaker
+                    </Button>
+                  )}
+                  <Button className={classes.button} onClick={addSpeaker}>
+                    Add Speaker
+                  </Button>
+                </Grid>
+              </Grid>
+              <div className={classes.createbtn}>
+                <Button
+                  className={classes.cancelbtn}
+                  onClick={() => history.push('/events')}
+                >
+                  Cancel
+                </Button>
+                {submit === 0 ? (
+                <Button className={classes.addbtn} onClick={handleSubmit}>
+                  Create
+                </Button>
+                 ) : (
+                  <div className={classes.submissions}>
+                    <CircularProgress />
+                  </div>
                 )}
-                </fieldset>
-                 <Button  className={classes.button}>Add Speaker</Button>
-             </Grid>
-            </Grid>
-            <div className={classes.createbtn}>
-              <Button className={classes.cancelbtn}>Cancel</Button>
-              <Button type="submit" className={classes.addbtn}>Create</Button>
-            </div>
-          </Box>
-          <Box maxWidth="28em" minWidth="24em" className={classes.paddingRight}>
-            <ImageUploader
-              withIcon={true}
-              buttonText="Choose image"
-              onChange={onDrop}
-              withPreview
-              singleImage
-              imgExtension={['.jpg', '.gif', '.png', '.gif']}
-              maxFileSize={5242880}
-              fileContainerStyle={{
-                boxShadow: '2px 2px 3px 1px rgb(0, 0, 0, 0.5)'
-              }}
-              className={classes.imagePreview}
-              {...register("eventLink", { required: true })}
+              </div>
+            </Box>
+            </ValidatorForm>
+            <Box
+              maxWidth="28em"
+              minWidth="24em"
+              className={classes.paddingRight}
+            >
+              <ImageUploader
+                withIcon={true}
+                buttonText="Choose image"
+                onChange={onDrop}
+                withPreview={imageURL !== null}
+                singleImage
+                imgExtension={['.jpg', '.gif', '.png']}
+                maxFileSize={5242880}
+                fileContainerStyle={{
+                  boxShadow: '2px 2px 3px 1px rgb(0, 0, 0, 0.5)'
+                }}
+                className={classes.imagePreview}
               />
-                {errors.eventLink && (
-            <p className={classes.red}>
-              Please add a Image
-            </p>
-          )}
-            <img
-              src="/static/images/event_img.svg"
-              alt="gallery-icon"
-              name="galleryIcon"
-              style={{ marginLeft: '10px', marginTop: '20px' }}
+              {imageURL === null && <LinearProgress aria-label="Uploading" />}
+              <img
+                src="/static/images/event_img.svg"
+                alt="gallery-icon"
+                style={{ marginLeft: '10px', marginTop: '20px' }}
               />
-           
+            </Box>
           </Box>
-        </Box>
-      </div>
-      </form>
+        </div>
+      
     </DrawerLayout>
   );
 }
