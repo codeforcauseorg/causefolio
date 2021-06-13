@@ -29,6 +29,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function EventDefaultPage() {
   const classes = useStyles();
+  const [bookmarkEvent, setBookmarkEvent] = useState(null)
   const history = useHistory();
   const handleClick = () => {
     history.push('/createEvent');
@@ -45,8 +46,8 @@ export default function EventDefaultPage() {
     <DrawerLayout>
       <Grid container>
         <Grid justify="center" md={8} sm={12} xs={12}>
-          <BookmarkedEvents />
-          <SearchBar />
+          { bookmarkEvent !== null && <BookmarkedEvents /> }
+          {/* <SearchBar /> */}
           <UserNewEvents />
           <Box textAlign="center">
             <Button className={classes.button} onClick={handleClick}>
