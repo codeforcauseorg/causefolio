@@ -286,7 +286,6 @@ function CreateNewEvent() {
                 <Grid style={{ width: '100%' }}>
                   <TextValidator
                     required
-                
                     placeholder="Enter name of the event"
                     className={classes.textField}
                     fullWidth
@@ -299,7 +298,6 @@ function CreateNewEvent() {
                   />
                   <TextValidator
                     required
-                
                     placeholder="Add Description of the event"
                     className={classes.textField}
                     multiline
@@ -317,7 +315,6 @@ function CreateNewEvent() {
                     <Grid item xs={12} sm={12} md={6}>
                       <TextValidator
                         required    
-                    
                         id="date"
                         type="date"
                         defaultValue="2017-05-24"
@@ -336,7 +333,6 @@ function CreateNewEvent() {
                     <Grid item xs={12} sm={12} md={6}>
                       <TextValidator
                         required
-                   
                         fullWidth
                         className={classes.input1}
                         type="time"
@@ -353,7 +349,6 @@ function CreateNewEvent() {
                   </Grid>
                   <TextValidator
                     required
-               
                     fullWidth
                     className={classes.textField}
                     placeholder="Event link / Registration link"
