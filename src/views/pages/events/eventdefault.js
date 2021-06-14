@@ -22,9 +22,10 @@ const useStyles = makeStyles(theme => ({
     background: '#291757',
     [theme.breakpoints.down('xs')]: {
       marginTop: '29px',
-      marginLeft: '215px'
-    }
+      marginLeft: '215px',
+      transition: 'all 0.1s ease 0s',
   }
+}
 }));
 
 export default function EventDefaultPage() {

@@ -5,7 +5,7 @@ import {
   ValidatorForm,
   TextValidator,
 } from 'react-material-ui-form-validator';
-import CircularProgress from '@material-ui/core/CircularProgress';
+// import CircularProgress from '@material-ui/core/CircularProgress';
 import {
   Button,
   Grid,
@@ -199,6 +199,8 @@ function CreateNewEvent() {
   const classes = useStyles();
   let history = useHistory();
   const user = useSelector(state => state.account.user);
+  
+  console.log(user);
   const [speaker, setSpeaker] = useState([{}]);
   const [imageURL, setImageURL] = useState('');
   const initialFieldValues = {
@@ -211,7 +213,7 @@ function CreateNewEvent() {
     speakerLinkedIn:''
   };
   const [formData, setFormData] = useState(initialFieldValues);
-  const [submit, setsubmit] = useState(0);
+  // const [submit, setsubmit] = useState(0);
   const handleChange = e => {
     let { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -284,7 +286,7 @@ function CreateNewEvent() {
                 <Grid style={{ width: '100%' }}>
                   <TextValidator
                     required
-                    key="eventName"
+                
                     placeholder="Enter name of the event"
                     className={classes.textField}
                     fullWidth
@@ -297,7 +299,7 @@ function CreateNewEvent() {
                   />
                   <TextValidator
                     required
-                    key="description"
+                
                     placeholder="Add Description of the event"
                     className={classes.textField}
                     multiline
@@ -315,7 +317,7 @@ function CreateNewEvent() {
                     <Grid item xs={12} sm={12} md={6}>
                       <TextValidator
                         required    
-                        key="date"
+                    
                         id="date"
                         type="date"
                         defaultValue="2017-05-24"
@@ -334,7 +336,7 @@ function CreateNewEvent() {
                     <Grid item xs={12} sm={12} md={6}>
                       <TextValidator
                         required
-                        key='time'
+                   
                         fullWidth
                         className={classes.input1}
                         type="time"
@@ -351,7 +353,7 @@ function CreateNewEvent() {
                   </Grid>
                   <TextValidator
                     required
-                    key="eventLink"
+               
                     fullWidth
                     className={classes.textField}
                     placeholder="Event link / Registration link"
@@ -365,7 +367,6 @@ function CreateNewEvent() {
                   {speaker.map((item, idx) => (
                     <fieldset className={classes.speaker}>
                       <TextValidator
-                        key="speakerName"
                         required
                         className={classes.speakerInput}
                         fullWidth
@@ -378,7 +379,6 @@ function CreateNewEvent() {
                         errorMessages={['This is a required field']}
                       />
                       <TextValidator
-                        key="speakerLinkedIn"
                         required
                         className={classes.speakerInput}
                         fullWidth
@@ -410,21 +410,23 @@ function CreateNewEvent() {
                 </Grid>
               </Grid>
               <div className={classes.createbtn}>
+                {/* Cancel butt */}
                 <Button
                   className={classes.cancelbtn}
                   onClick={() => history.push('/events')}
                 >
                   Cancel
                 </Button>
-                {submit === 0 ? (
+                {/* Create Button */}
+                {/* {submit === 0 ? ( */}
                 <Button className={classes.addbtn} onClick={handleSubmit}>
                   Create
                 </Button>
-                 ) : (
+                 {/* ) : ( */}
                   <div className={classes.submissions}>
-                    <CircularProgress />
+                    {/* <CircularProgress /> */}
                   </div>
-                )}
+                {/* )} */}
               </div>
             </Box>
             </ValidatorForm>
