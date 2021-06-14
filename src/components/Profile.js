@@ -1,6 +1,8 @@
 import Grid from '@material-ui/core/Grid';
 import React, { useEffect, useState } from 'react';
 import DrawerLayout from 'src/layouts/DrawerLayout';
+import { firebase } from 'src/services/authService';
+import { useSelector } from 'react-redux';
 import Badge from './Badge';
 import ProfileInfo from './ProfileInfo';
 import ProfilePublications from './ProfilePublications';
@@ -8,31 +10,28 @@ import ProfileEvents from './ProfileEvents';
 import CommitChart from './CommitChart';
 import ProjectsCarousel from './ProjectsCarousel';
 
-import { firebase } from 'src/services/authService';
-import { useSelector } from 'react-redux';
-
 export default function Profile() {
-  const user = useSelector(state => state.account.user);
+  const user = useSelector((state) => state.account.user);
   const [myProfile, setMyProfile] = useState(null);
 
   useEffect(() => {
-    if (user !== undefined) {
-      let userId = user.uid;
-      let db = firebase.firestore();
+    if (user !== undefined && user !== null) {
+      const userId = user.uid;
+      const db = firebase.firestore();
 
-      let docRef = db.collection('users').doc(userId);
+      const docRef = db.collection('users').doc(userId);
 
       docRef
         .get()
-        .then(doc => {
+        .then((doc) => {
           if (doc.exists) {
-            let data = doc.data();
+            const data = doc.data();
             setMyProfile(data);
           } else {
             console.log('No such document!');
           }
         })
-        .catch(error => {
+        .catch((error) => {
           console.log('Error getting document:', error);
         });
     }

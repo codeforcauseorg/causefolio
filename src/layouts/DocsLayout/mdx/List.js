@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     marginLeft: theme.spacing(4),
     marginBottom: theme.spacing(2)

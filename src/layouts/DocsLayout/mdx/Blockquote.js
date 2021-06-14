@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     paddingLeft: theme.spacing(2),
     paddingBottom: theme.spacing(1),

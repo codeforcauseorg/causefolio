@@ -10,12 +10,12 @@ import Typography from '@material-ui/core/Typography';
 import clsx from 'clsx';
 import React, { useState } from 'react';
 import { useHistory } from 'react-router';
-import Logo1 from '../../components/Logo1';
 import MenuIcon from '@material-ui/icons/Menu';
+import Logo1 from '../../components/Logo1';
 
 const drawerWidth = 300;
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex'
   },
@@ -113,7 +113,7 @@ export default function DrawerLayout({ children }) {
                   onClick={() => {
                     history.push(link);
                   }}
-                  primary={
+                  primary={(
                     <Typography
                       type="body2"
                       className={clsx(
@@ -125,7 +125,7 @@ export default function DrawerLayout({ children }) {
                     >
                       {name}
                     </Typography>
-                  }
+                  )}
                 />
               </ListItem>
             ))}
@@ -140,7 +140,7 @@ export default function DrawerLayout({ children }) {
                 onClick={() => {
                   history.push(link);
                 }}
-                primary={
+                primary={(
                   <Typography
                     type="body2"
                     className={clsx(
@@ -150,7 +150,7 @@ export default function DrawerLayout({ children }) {
                   >
                     {name}
                   </Typography>
-                }
+                )}
               />
             </ListItem>
           ))}

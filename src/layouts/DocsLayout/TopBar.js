@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import { AppBar, Box, Toolbar, makeStyles } from '@material-ui/core';
+import {
+  AppBar, Box, Toolbar, makeStyles
+} from '@material-ui/core';
 import Logo from 'src/components/Logo';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.background.default,
     color: theme.palette.text.primary,
@@ -40,9 +41,5 @@ function TopBar() {
     </AppBar>
   );
 }
-
-TopBar.propTypes = {
-  onMobileNavOpen: PropTypes.func
-};
 
 export default TopBar;

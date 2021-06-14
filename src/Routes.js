@@ -20,7 +20,7 @@ const renderRoutes = () => (
       <Route
         path="/"
         exact
-        render={props => (
+        render={(props) => (
           <MainLayout>
             <HomeView {...props} />
           </MainLayout>

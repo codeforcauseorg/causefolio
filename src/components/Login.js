@@ -12,7 +12,7 @@ import {
 } from '@material-ui/core';
 import auth from '../services/authService';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     width: '750px',
@@ -117,18 +117,18 @@ export default function Login({ handleClose }) {
     const { email, password } = loginCredentials;
     auth
       .signInWithEmailAndPassword(email, password)
-      .then(result => {
+      .then((result) => {
         console.log(result.user);
         return result.user.updateProfile({
           displayName: 'Dummy Name'
         });
       })
-      .catch(e => {
+      .catch((e) => {
         console.log('error on signin', e);
       });
   };
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     setLoginCredentials({
       ...loginCredentials,
       [event.target.name]: event.target.value
@@ -141,8 +141,8 @@ export default function Login({ handleClose }) {
         <img
           src="/static/images/icons/cross.svg"
           className={classes.cross}
-          onClick={handleClose}
           alt="cross icon"
+          onClick={handleClose}
         />
         <Grid item xs={12} sm={6}>
           <CardMedia

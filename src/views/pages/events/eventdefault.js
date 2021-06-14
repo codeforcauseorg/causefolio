@@ -1,4 +1,6 @@
-import { Box, Button, Grid, makeStyles } from '@material-ui/core';
+import {
+  Box, Button, Grid, makeStyles
+} from '@material-ui/core';
 import React, { useState, useEffect } from 'react';
 import BookmarkedEvents from 'src/components/BookmarkedEvents';
 import UserNewEvents from 'src/components/UserNewEvents';
@@ -8,7 +10,7 @@ import UserEventStats from 'src/components/UserEventStats';
 import DrawerLayout from 'src/layouts/DrawerLayout';
 import { useHistory } from 'react-router-dom';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   button: {
     marginLeft: '120px',
     marginTop: '20px',
@@ -29,7 +31,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function EventDefaultPage() {
   const classes = useStyles();
-  const [bookmarkEvent] = useState(null)
+  const [bookmarkEvent] = useState(null);
   const history = useHistory();
   const handleClick = () => {
     history.push('/createEvent');

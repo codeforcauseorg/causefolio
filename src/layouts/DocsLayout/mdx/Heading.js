@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Typography, makeStyles } from '@material-ui/core';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   h1: {
     marginTop: theme.spacing(6),
     marginBottom: theme.spacing(2)

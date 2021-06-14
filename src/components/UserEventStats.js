@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box } from '@material-ui/core';
 
-const UserEventStats = props => {
+const UserEventStats = (props) => {
   const box = {
     display: 'flex',
     height: '80px',

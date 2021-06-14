@@ -191,7 +191,7 @@ function Calendar() {
         </div>
       </div>
       <Grid container className={classes.grid}>
-        {daysName.map(day => (
+        {daysName.map((day) => (
           <Grid item>
             <Typography
               display="inline"
@@ -205,7 +205,7 @@ function Calendar() {
         ))}
       </Grid>
       <Grid container className={classes.grid}>
-        {firstRow.map(date => (
+        {firstRow.map((date) => (
           <Grid item>
             <Typography
               display="inline"
@@ -224,7 +224,7 @@ function Calendar() {
         ))}
       </Grid>
       <Grid container className={classes.grid}>
-        {secondRow.map(date => (
+        {secondRow.map((date) => (
           <Grid item>
             <Typography
               display="inline"
@@ -240,7 +240,7 @@ function Calendar() {
         ))}
       </Grid>
       <Grid container className={classes.grid}>
-        {thirdRow.map(date => (
+        {thirdRow.map((date) => (
           <Grid item>
             <Typography
               display="inline"
@@ -256,7 +256,7 @@ function Calendar() {
         ))}
       </Grid>
       <Grid container className={classes.grid}>
-        {fourthRow.map(date => (
+        {fourthRow.map((date) => (
           <Grid item>
             <Typography
               display="inline"
@@ -272,7 +272,7 @@ function Calendar() {
         ))}
       </Grid>
       <Grid container className={classes.grid}>
-        {fifthRow.map(date => (
+        {fifthRow.map((date) => (
           <Grid item>
             <Typography
               display="inline"

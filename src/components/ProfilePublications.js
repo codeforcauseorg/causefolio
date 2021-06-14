@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/styles';
-import { Box, Button, Card, Grid, Typography } from '@material-ui/core';
+import {
+  Box, Button, Card, Grid, Typography
+} from '@material-ui/core';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     background: '#CCD2E3',
     borderRadius: '20px',

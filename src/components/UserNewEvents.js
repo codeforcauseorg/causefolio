@@ -63,21 +63,21 @@ const useStyles = makeStyles(() => ({
 
 function UserNewEvents() {
   const classes = useStyles();
-  const user = useSelector(state => state.account.user);
+  const user = useSelector((state) => state.account.user);
   const history = useHistory();
   const [newEvents, setNewEvents] = useState([]);
-  const [eventID,setEventID] = useState([]);
+  const [eventID, setEventID] = useState([]);
 
   useEffect(() => {
     const fetchLatestEvents = async () => {
       if (user === undefined) return;
-      let db = firebase.firestore();
+      const db = firebase.firestore();
       // Fetch Latest Events
-      let newEventCollection = await db.collection('events').orderBy('createdOn').limit(10).get();
+      const newEventCollection = await db.collection('events').orderBy('createdOn').limit(10).get();
 
       setNewEvents(
-        newEventCollection.docs.map(doc => {
-          setEventID((prevState) => [...prevState, doc.id])
+        newEventCollection.docs.map((doc) => {
+          setEventID((prevState) => [...prevState, doc.id]);
           return doc.data();
         })
       );
@@ -107,7 +107,7 @@ function UserNewEvents() {
       </Grid>
       <Grid container className={classes.bmEvents}>
         {newEvents?.map((event, idx) => (
-          <Grid className={classes.bmText}>
+          <Grid key={idx} className={classes.bmText}>
             <Grid
               container
               style={{
@@ -131,10 +131,22 @@ function UserNewEvents() {
                   {event?.time}
                 </Typography>
               </div>
+              {
+                eventID ? (
+                  <Button
+                    style={event?.eventName.length <= 11 ? { marginTop: '21px', backgroundColor: 'white' } : { marginTop: '1px', backgroundColor: 'white' }}
+                    className={classes.checkOut}
+                  >
+                    CHECK OUT
+                  </Button>
+                ) : (
+                  ''
+                )
+              }
               <Button
-                style={ event?.eventName.length <= 11 ? {marginTop: '21px', backgroundColor: 'white'} : {marginTop: '1px',backgroundColor: 'white'} }
+                style={event?.eventName.length <= 11 ? { marginTop: '21px', backgroundColor: 'white' } : { marginTop: '1px', backgroundColor: 'white' }}
                 className={classes.checkOut}
-                onClick={() => history.push(`/events/${eventID[idx]}`)}
+                // onClick={() => history.push(`/events/${eventID[idx]}`)}
               >
                 CHECK OUT
               </Button>

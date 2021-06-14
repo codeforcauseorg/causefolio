@@ -15,7 +15,7 @@ import { useSelector } from 'react-redux';
 import { firebase } from 'src/services/authService';
 import { useHistory } from 'react-router';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     width: '100%',
@@ -197,8 +197,8 @@ const useStyles = makeStyles(theme => ({
 
 function CreateNewEvent() {
   const classes = useStyles();
-  let history = useHistory();
-  const user = useSelector(state => state.account.user);
+  const history = useHistory();
+  const user = useSelector((state) => state.account.user);
   const [speaker, setSpeaker] = useState([{}]);
   const [imageURL, setImageURL] = useState('');
   const initialFieldValues = {
@@ -210,15 +210,15 @@ function CreateNewEvent() {
   };
   const [formData, setFormData] = useState(initialFieldValues);
 
-  const handleChange = e => {
-    let { name, value } = e.target;
+  const handleChange = (e) => {
+    const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSpeakerChange = e => {
-    let { id, name, value } = e.target;
-    let s = [...speaker];
-    s[parseInt(id)][name] = value;
+  const handleSpeakerChange = (e) => {
+    const { id, name, value } = e.target;
+    const s = [...speaker];
+    s[parseInt(id, 10)][name] = value;
     setSpeaker(s);
   };
 
@@ -231,36 +231,35 @@ function CreateNewEvent() {
     setSpeaker([...speaker]);
   };
 
-  const onDrop = async picture => {
+  const onDrop = async (picture) => {
     if (picture.length === 0) return;
     // For the Loader
     setImageURL(null);
-    let userId = user.uid;
-    let file = picture[0];
-    let storageRef = firebase.storage().ref();
-    let fileRef = storageRef.child(`${userId}/${file.name}`);
+    const userId = user.uid;
+    const file = picture[0];
+    const storageRef = firebase.storage().ref();
+    const fileRef = storageRef.child(`${userId}/${file.name}`);
     await fileRef.put(file);
     setImageURL(await fileRef.getDownloadURL());
   };
 
   const handleSubmit = () => {
-    let userId = user.uid;
+    const userId = user.uid;
     formData.speakers = speaker;
     formData.createdBy = userId;
     formData.bannerImg = imageURL;
     formData.createdOn = new Date().toLocaleString();
-    let db = firebase.firestore();
-    let ref = db.collection('events');
+    const db = firebase.firestore();
+    const ref = db.collection('events');
 
     ref
       .add(formData)
       .then((docRef) => {
-        console.log('Document written');
         setFormData(initialFieldValues);
         setSpeaker([{}]);
         history.push(`/events/${docRef.id}`);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error('Error adding document: ', error);
       });
   };
@@ -389,7 +388,7 @@ function CreateNewEvent() {
           </Box>
           <Box maxWidth="28em" minWidth="24em" className={classes.paddingRight}>
             <ImageUploader
-              withIcon={true}
+              withIcon
               buttonText="Choose image"
               onChange={onDrop}
               withPreview={imageURL !== null}

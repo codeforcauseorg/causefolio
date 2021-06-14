@@ -13,7 +13,7 @@ import {
 } from '@material-ui/core';
 import { firebase } from 'src/services/authService';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     width: '80%',
@@ -101,8 +101,8 @@ const useStyles = makeStyles(theme => ({
 
 function Register() {
   const classes = useStyles();
-  const user = useSelector(state => state.account.user);
-  let history = useHistory();
+  const user = useSelector((state) => state.account.user);
+  const history = useHistory();
 
   const initialFieldValues = {
     fullName: '',
@@ -116,15 +116,15 @@ function Register() {
   };
   const [fieldValue, setFieldValue] = useState(initialFieldValues);
 
-  const handleInputChange = e => {
-    let { name, value } = e.target;
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
     setFieldValue({ ...fieldValue, [name]: value });
   };
 
-  const handleRegister = e => {
+  const handleRegister = (e) => {
     e.preventDefault();
-    let userId = user.uid;
-    var db = firebase.firestore();
+    const userId = user.uid;
+    const db = firebase.firestore();
 
     db.collection('users')
       .doc(userId)
@@ -132,7 +132,7 @@ function Register() {
       .then(() => {
         console.log('Document written');
       })
-      .catch(error => {
+      .catch((error) => {
         console.error('Error adding document: ', error);
       });
     setFieldValue(initialFieldValues);
@@ -233,7 +233,8 @@ function Register() {
                     <Typography style={{ color: '#fff' }}>
                       Register Me
                     </Typography>
-                  </Button>{' '}
+                  </Button>
+                  {' '}
                 </Grid>
               </Grid>
             </Box>
