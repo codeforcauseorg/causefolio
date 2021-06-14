@@ -44,9 +44,15 @@ const useStyles = makeStyles(() => ({
     marginRight: '16px',
     marginBottom: '16px'
   },
+  eventHeading: {
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    display: '-webkit-box',
+    WebkitLineClamp: 2,
+    WebkitBoxOrient: 'vertical',
+  },
   checkOut: {
     borderRadius: '16px',
-    marginTop: '21px',
     color: '#291757',
     fontSize: '10px',
     margin: '0 auto',
@@ -108,13 +114,13 @@ function UserNewEvents() {
                 backgroundColor: '#291757CC',
                 width: '114px',
                 height: '147px',
-                borderRadius: '20px'
+                borderRadius: '20px',
               }}
               align="center"
               justify="center"
               direction="column"
             >
-              <Typography variant="h5" style={{ marginBottom: '14px' }}>
+              <Typography className={classes.eventHeading} variant="h5" style={{ marginBottom: '14px' }}>
                 {event?.eventName}
               </Typography>
               <div style={{ display: 'inline-block', margin: '0 auto' }}>
@@ -126,7 +132,7 @@ function UserNewEvents() {
                 </Typography>
               </div>
               <Button
-                style={{ backgroundColor: 'white' }}
+                style={ event?.eventName.length <= 11 ? {marginTop: '21px', backgroundColor: 'white'} : {marginTop: '1px',backgroundColor: 'white'} }
                 className={classes.checkOut}
                 onClick={() => history.push(`/events/${eventID[idx]}`)}
               >
