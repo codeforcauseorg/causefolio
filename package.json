@@ -76,7 +76,7 @@
     "react-draft-wysiwyg": "^1.14.4",
     "react-dropzone": "^10.2.2",
     "react-feather": "^2.0.3",
-    "react-helmet": "^5.2.1",
+    "react-helmet": "^6.1.0",
     "react-images-upload": "^1.2.8",
     "react-markdown": "^4.3.1",
     "react-material-ui-form-validator": "^2.1.1",
