@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { Button, Card, Grid, Typography } from '@material-ui/core';
+import { useSelector } from 'react-redux';
+import { firebase } from 'src/services/authService';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -58,9 +60,31 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-function UserUpcomingEvents() {
+function UserUpcomingEvents({ setConducted }) {
   const classes = useStyles();
+  const user = useSelector(state => state.account.user);
+  const [userEvents, setUserEvents] = useState([])
 
+  useEffect(() => {
+    const fetchUserEvents = async () => {
+      if (user === undefined) return 
+
+      let userId = user.uid;
+      let db = firebase.firestore();
+      let userEventCollection = await db.collection('events').where("createdBy", "==", `${userId}`).get();
+
+      setUserEvents(userEventCollection.docs.map(doc => {
+        return doc.data()
+      }))
+
+    }
+    fetchUserEvents()
+  }, [user]);
+
+  if (userEvents.length > 0) {
+    setConducted(userEvents.length)
+  }
+  
   return (
     <Card className={classes.root}>
       <Grid container>
@@ -70,18 +94,19 @@ function UserUpcomingEvents() {
           </Typography>
         </Grid>
       </Grid>
-      <Grid container className={classes.event}>
+      {userEvents.map((event,idx) => (
+      <Grid container key={idx} className={classes.event}>
         <Grid className={classes.eventText}>
           <img
-            style={{ borderRadius: '8px' }}
-            src=".././static/images/icons/event.svg"
+            style={{ borderRadius: '8px', width: '74px', height: '71px' }}
+            src={event.bannerImg}
             alt="event"
           />
           <Grid className={classes.eventInfo}>
-            <Typography variant="h5">Intro to Open Source</Typography>
+            <Typography variant="h5">{event.eventName}</Typography>
             <div style={{ display: 'flex' }}>
               <Typography variant="subtitle2" className={classes.eventDate}>
-                16 Jan 2021 (2 days left)
+                {event.date}{`, Time: (${event.time})`}
               </Typography>
             </div>
             <Button
@@ -89,55 +114,12 @@ function UserUpcomingEvents() {
               style={{ backgroundColor: 'white' }}
               className={classes.button}
             >
-              30 Registrations
-            </Button>
-          </Grid>
-        </Grid>
-        <Grid className={classes.eventText}>
-          <img
-            style={{ borderRadius: '8px' }}
-            src=".././static/images/icons/event.svg"
-            alt="event"
-          />
-          <Grid className={classes.eventInfo}>
-            <Typography variant="h5">Intro to Open Source</Typography>
-            <div style={{ display: 'flex' }}>
-              <Typography variant="subtitle2" className={classes.eventDate}>
-                16 Jan 2021 (2 days left)
-              </Typography>
-            </div>
-            <Button
-              variant="contained"
-              style={{ backgroundColor: 'white' }}
-              className={classes.button}
-            >
-              300 Registrations
-            </Button>
-          </Grid>
-        </Grid>
-        <Grid className={classes.eventText}>
-          <img
-            style={{ borderRadius: '8px' }}
-            src=".././static/images/icons/event.svg"
-            alt="event"
-          />
-          <Grid className={classes.eventInfo}>
-            <Typography variant="h5">Intro to Open Source</Typography>
-            <div style={{ display: 'flex' }}>
-              <Typography variant="subtitle2" className={classes.eventDate}>
-                16 Jan 2021 (2 days left)
-              </Typography>
-            </div>
-            <Button
-              variant="contained"
-              style={{ backgroundColor: 'white' }}
-              className={classes.button}
-            >
-              300 Registrations
+              {event.speakers.map(speaker => {return speaker.speakerName })}
             </Button>
           </Grid>
         </Grid>
       </Grid>
+      ))}
     </Card>
   );
 }

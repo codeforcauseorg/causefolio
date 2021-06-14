@@ -248,17 +248,17 @@ function CreateNewEvent() {
     formData.speakers = speaker;
     formData.createdBy = userId;
     formData.bannerImg = imageURL;
-
+    formData.createdOn = new Date().toLocaleString();
     let db = firebase.firestore();
     let ref = db.collection('events');
 
     ref
       .add(formData)
-      .then(() => {
+      .then((docRef) => {
         console.log('Document written');
         setFormData(initialFieldValues);
         setSpeaker([{}]);
-        history.push('/events/individual-event');
+        history.push(`/events/${docRef.id}`);
       })
       .catch(error => {
         console.error('Error adding document: ', error);
