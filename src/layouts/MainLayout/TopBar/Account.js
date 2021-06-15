@@ -36,6 +36,10 @@ function Account() {
   const dispatch = useDispatch();
   const classes = useStyles();
 
+  const handleCloseMenu = () => {
+    setAnchorEl(null);
+  };
+
   const handleLogout = () => {
     handleCloseMenu();
     dispatch(logout());
@@ -52,10 +56,6 @@ function Account() {
 
   const handleOpenMenu = (event) => {
     setAnchorEl(event.currentTarget);
-  };
-
-  const handleCloseMenu = () => {
-    setAnchorEl(null);
   };
 
   const truncate = (input) => {

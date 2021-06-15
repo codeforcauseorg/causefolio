@@ -118,14 +118,10 @@ export default function Login({ handleClose }) {
     auth
       .signInWithEmailAndPassword(email, password)
       .then((result) => {
-        console.log(result.user);
         return result.user.updateProfile({
           displayName: 'Dummy Name'
         });
       })
-      .catch((e) => {
-        console.log('error on signin', e);
-      });
   };
 
   const handleChange = (event) => {
@@ -143,6 +139,7 @@ export default function Login({ handleClose }) {
           className={classes.cross}
           alt="cross icon"
           onClick={handleClose}
+          role="presentation"
         />
         <Grid item xs={12} sm={6}>
           <CardMedia

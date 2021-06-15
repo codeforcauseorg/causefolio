@@ -67,6 +67,17 @@ function TopBar({
   const navItems = [
     // { title: 'Team', link: '/team' }
   ];
+  
+  const toggleDrawer = (anchor, open) => (event) => {
+    if (
+      event.type === 'keydown'
+      && (event.key === 'Tab' || event.key === 'Shift')
+    ) {
+      return;
+    }
+
+    setState({ ...state, [anchor]: open });
+  };
 
   const list = () => (
     <div
@@ -114,17 +125,6 @@ function TopBar({
       </Box>
     </div>
   );
-
-  const toggleDrawer = (anchor, open) => (event) => {
-    if (
-      event.type === 'keydown'
-      && (event.key === 'Tab' || event.key === 'Shift')
-    ) {
-      return;
-    }
-
-    setState({ ...state, [anchor]: open });
-  };
 
   return (
     <AppBar elevation={0} className={clsx(classes.root, className)} {...rest}>

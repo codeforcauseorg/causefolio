@@ -128,13 +128,8 @@ function Register() {
 
     db.collection('users')
       .doc(userId)
-      .set(fieldValue)
-      .then(() => {
-        console.log('Document written');
-      })
-      .catch((error) => {
-        console.error('Error adding document: ', error);
-      });
+      .set(fieldValue);
+      
     setFieldValue(initialFieldValues);
     history.push('/profile');
   };

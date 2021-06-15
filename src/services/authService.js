@@ -63,9 +63,6 @@ class AuthService {
         if (!authenticated) {
           this.keycloak.login();
         }
-      })
-      .catch((e) => {
-        console.log(e);
       });
   };
 

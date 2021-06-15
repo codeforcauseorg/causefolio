@@ -118,12 +118,7 @@ function Settings() {
           if (doc.exists) {
             const data = doc.data();
             setMyProfile(data);
-          } else {
-            console.log('No such document!');
           }
-        })
-        .catch((error) => {
-          console.log('Error getting document:', error);
         });
     }
   }, [user, disable]);
@@ -139,10 +134,8 @@ function Settings() {
 
     db.collection('users')
       .doc(userId)
-      .set(myProfile)
-      .catch((error) => {
-        console.error('Error adding document: ', error);
-      });
+      .set(myProfile);
+        
     setDisable(true);
     setSnackbar(true);
   };

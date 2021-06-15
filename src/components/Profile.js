@@ -27,13 +27,8 @@ export default function Profile() {
           if (doc.exists) {
             const data = doc.data();
             setMyProfile(data);
-          } else {
-            console.log('No such document!');
           }
         })
-        .catch((error) => {
-          console.log('Error getting document:', error);
-        });
     }
   }, [user]);
 

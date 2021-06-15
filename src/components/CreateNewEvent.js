@@ -259,9 +259,6 @@ function CreateNewEvent() {
         setFormData(initialFieldValues);
         setSpeaker([{}]);
         history.push(`/events/${docRef.id}`);
-      })
-      .catch((error) => {
-        console.error('Error adding document: ', error);
       });
   };
 
