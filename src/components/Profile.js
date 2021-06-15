@@ -28,7 +28,7 @@ export default function Profile() {
             const data = doc.data();
             setMyProfile(data);
           }
-        })
+        });
     }
   }, [user]);
 

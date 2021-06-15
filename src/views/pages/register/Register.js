@@ -129,7 +129,7 @@ function Register() {
     db.collection('users')
       .doc(userId)
       .set(fieldValue);
-      
+
     setFieldValue(initialFieldValues);
     history.push('/profile');
   };

@@ -117,11 +117,11 @@ export default function Login({ handleClose }) {
     const { email, password } = loginCredentials;
     auth
       .signInWithEmailAndPassword(email, password)
-      .then((result) => {
-        return result.user.updateProfile({
+      .then((result) => (
+        result.user.updateProfile({
           displayName: 'Dummy Name'
-        });
-      })
+        })
+      ));
   };
 
   const handleChange = (event) => {

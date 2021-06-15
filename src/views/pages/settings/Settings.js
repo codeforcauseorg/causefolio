@@ -135,7 +135,7 @@ function Settings() {
     db.collection('users')
       .doc(userId)
       .set(myProfile);
-        
+
     setDisable(true);
     setSnackbar(true);
   };
