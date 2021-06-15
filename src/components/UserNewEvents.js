@@ -85,6 +85,11 @@ function UserNewEvents() {
     fetchLatestEvents();
   }, [user, history]);
 
+  const handleClick = (idx) => {
+    if(eventID.length <= 0 ) return
+    history.push(`/events/${eventID[idx]}`)
+  }
+
   return (
     <div className={classes.root}>
       <Grid container>
@@ -136,7 +141,7 @@ function UserNewEvents() {
                   <Button
                     style={event?.eventName.length <= 11 ? { marginTop: '21px', backgroundColor: 'white' } : { marginTop: '1px', backgroundColor: 'white' }}
                     className={classes.checkOut}
-                    onClick={() => history.push(`/events/${eventID[idx]}`)}
+                    onClick={() => handleClick(idx)}
                   >
                     CHECK OUT
                   </Button>
