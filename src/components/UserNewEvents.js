@@ -136,6 +136,7 @@ function UserNewEvents() {
                   <Button
                     style={event?.eventName.length <= 11 ? { marginTop: '21px', backgroundColor: 'white' } : { marginTop: '1px', backgroundColor: 'white' }}
                     className={classes.checkOut}
+                    onClick={() => history.push(`/events/${eventID[idx]}`)}
                   >
                     CHECK OUT
                   </Button>
@@ -143,13 +144,6 @@ function UserNewEvents() {
                   ''
                 )
               }
-              <Button
-                style={event?.eventName.length <= 11 ? { marginTop: '21px', backgroundColor: 'white' } : { marginTop: '1px', backgroundColor: 'white' }}
-                className={classes.checkOut}
-                // onClick={() => history.push(`/events/${eventID[idx]}`)}
-              >
-                CHECK OUT
-              </Button>
             </Grid>
           </Grid>
         ))}
