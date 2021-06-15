@@ -15,7 +15,7 @@ import { useSelector } from 'react-redux';
 import { firebase } from 'src/services/authService';
 import { useHistory } from 'react-router';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     width: '100%',
@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
     width: '200px',
     height: '38px',
     borderRadius: '20px',
-    marginRight: '15px',
+    marginRight: '15px'
   },
   createbtn: {
     marginTop: '60px',
@@ -60,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
     width: '200px',
     height: '38px',
     borderRadius: '20px',
-    marginRight: '60px',
+    marginRight: '60px'
   },
   inputDiv: {
     background: 'rgba(42, 23, 89, 0.25)',
@@ -198,7 +198,7 @@ const useStyles = makeStyles((theme) => ({
 function CreateNewEvent() {
   const classes = useStyles();
   const history = useHistory();
-  const user = useSelector((state) => state.account.user);
+  const user = useSelector(state => state.account.user);
   const [speaker, setSpeaker] = useState([{}]);
   const [imageURL, setImageURL] = useState('');
   const initialFieldValues = {
@@ -210,12 +210,12 @@ function CreateNewEvent() {
   };
   const [formData, setFormData] = useState(initialFieldValues);
 
-  const handleChange = (e) => {
+  const handleChange = e => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSpeakerChange = (e) => {
+  const handleSpeakerChange = e => {
     const { id, name, value } = e.target;
     const s = [...speaker];
     s[parseInt(id, 10)][name] = value;
@@ -231,7 +231,7 @@ function CreateNewEvent() {
     setSpeaker([...speaker]);
   };
 
-  const onDrop = async (picture) => {
+  const onDrop = async picture => {
     if (picture.length === 0 || user === null || user === undefined) return;
     // For the Loader
     setImageURL(null);
@@ -244,7 +244,7 @@ function CreateNewEvent() {
   };
 
   const handleSubmit = () => {
-    if(user === null || user === undefined) return
+    if (user === null || user === undefined) return;
     const userId = user.uid;
     formData.speakers = speaker;
     formData.createdBy = userId;
@@ -255,12 +255,12 @@ function CreateNewEvent() {
 
     ref
       .add(formData)
-      .then((docRef) => {
+      .then(docRef => {
         setFormData(initialFieldValues);
         setSpeaker([{}]);
         history.push(`/events/${docRef.id}`);
       })
-      .catch((error) => {
+      .catch(error => {
         console.error('Error adding document: ', error);
       });
   };

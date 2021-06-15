@@ -49,7 +49,7 @@ const useStyles = makeStyles(() => ({
     textOverflow: 'ellipsis',
     display: '-webkit-box',
     WebkitLineClamp: 2,
-    WebkitBoxOrient: 'vertical',
+    WebkitBoxOrient: 'vertical'
   },
   checkOut: {
     borderRadius: '16px',
@@ -63,7 +63,7 @@ const useStyles = makeStyles(() => ({
 
 function UserNewEvents() {
   const classes = useStyles();
-  const user = useSelector((state) => state.account.user);
+  const user = useSelector(state => state.account.user);
   const history = useHistory();
   const [newEvents, setNewEvents] = useState([]);
   const [eventID, setEventID] = useState([]);
@@ -73,11 +73,15 @@ function UserNewEvents() {
       if (user === undefined) return;
       const db = firebase.firestore();
       // Fetch Latest Events
-      const newEventCollection = await db.collection('events').orderBy('createdOn').limit(10).get();
+      const newEventCollection = await db
+        .collection('events')
+        .orderBy('createdOn')
+        .limit(10)
+        .get();
 
       setNewEvents(
-        newEventCollection.docs.map((doc) => {
-          setEventID((prevState) => [...prevState, doc.id]);
+        newEventCollection.docs.map(doc => {
+          setEventID(prevState => [...prevState, doc.id]);
           return doc.data();
         })
       );
@@ -85,10 +89,10 @@ function UserNewEvents() {
     fetchLatestEvents();
   }, [user, history]);
 
-  const handleClick = (idx) => {
-    if(eventID.length <= 0 ) return
-    history.push(`/events/${eventID[idx]}`)
-  }
+  const handleClick = idx => {
+    if (eventID.length <= 0) return;
+    history.push(`/events/${eventID[idx]}`);
+  };
 
   return (
     <div className={classes.root}>
@@ -119,13 +123,17 @@ function UserNewEvents() {
                 backgroundColor: '#291757CC',
                 width: '114px',
                 height: '147px',
-                borderRadius: '20px',
+                borderRadius: '20px'
               }}
               align="center"
               justify="center"
               direction="column"
             >
-              <Typography className={classes.eventHeading} variant="h5" style={{ marginBottom: '14px' }}>
+              <Typography
+                className={classes.eventHeading}
+                variant="h5"
+                style={{ marginBottom: '14px' }}
+              >
                 {event?.eventName}
               </Typography>
               <div style={{ display: 'inline-block', margin: '0 auto' }}>
@@ -136,19 +144,21 @@ function UserNewEvents() {
                   {event?.time}
                 </Typography>
               </div>
-              {
-                eventID.length > 0 ? (
-                  <Button
-                    style={event?.eventName.length <= 11 ? { marginTop: '21px', backgroundColor: 'white' } : { marginTop: '1px', backgroundColor: 'white' }}
-                    className={classes.checkOut}
-                    onClick={() => handleClick(idx)}
-                  >
-                    CHECK OUT
-                  </Button>
-                ) : (
-                  ''
-                )
-              }
+              {eventID.length > 0 ? (
+                <Button
+                  style={
+                    event?.eventName.length <= 11
+                      ? { marginTop: '21px', backgroundColor: 'white' }
+                      : { marginTop: '1px', backgroundColor: 'white' }
+                  }
+                  className={classes.checkOut}
+                  onClick={() => handleClick(idx)}
+                >
+                  CHECK OUT
+                </Button>
+              ) : (
+                ''
+              )}
             </Grid>
           </Grid>
         ))}
