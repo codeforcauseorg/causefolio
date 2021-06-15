@@ -232,7 +232,7 @@ function CreateNewEvent() {
   };
 
   const onDrop = async (picture) => {
-    if (picture.length === 0) return;
+    if (picture.length === 0 || user === null || user === undefined) return;
     // For the Loader
     setImageURL(null);
     const userId = user.uid;
@@ -244,6 +244,7 @@ function CreateNewEvent() {
   };
 
   const handleSubmit = () => {
+    if(user === null || user === undefined) return
     const userId = user.uid;
     formData.speakers = speaker;
     formData.createdBy = userId;

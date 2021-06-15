@@ -132,7 +132,7 @@ function UserNewEvents() {
                 </Typography>
               </div>
               {
-                eventID ? (
+                eventID.length > 0 ? (
                   <Button
                     style={event?.eventName.length <= 11 ? { marginTop: '21px', backgroundColor: 'white' } : { marginTop: '1px', backgroundColor: 'white' }}
                     className={classes.checkOut}

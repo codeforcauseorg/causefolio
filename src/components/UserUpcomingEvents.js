@@ -69,7 +69,7 @@ function UserUpcomingEvents({ setConducted }) {
 
   useEffect(() => {
     const fetchUserEvents = async () => {
-      if (user === undefined) return;
+      if (user === undefined || user === null) return;
 
       const userId = user.uid;
       const db = firebase.firestore();

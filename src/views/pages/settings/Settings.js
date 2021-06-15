@@ -107,7 +107,7 @@ function Settings() {
 
   //  For fetching the user's info
   useEffect(() => {
-    if (user !== undefined) {
+    if (user !== undefined && user !== null) {
       const userId = user.uid;
       const db = firebase.firestore();
       const docRef = db.collection('users').doc(userId);
