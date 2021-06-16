@@ -29,7 +29,6 @@ const useStyles = makeStyles((theme) => ({
   speaker: {
     marginBottom: '10px'
   },
- 
   speakerInput: {
     marginBottom: '16px',
     marginTop: '8px',
@@ -66,7 +65,6 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '20px',
     marginRight: '60px'
   },
- 
   input1: {
     border: '0',
     font: 'inherit',
@@ -203,17 +201,17 @@ function CreateNewEvent() {
     date: '',
     time: '',
     eventLink: '',
-    speakerName:'',
-    speakerLinkedIn:''
+    speakerName: '',
+    speakerLinkedIn: '',
   };
   const [formData, setFormData] = useState(initialFieldValues);
   // const [submit, setsubmit] = useState(0);
-  const handleChange = e => {
-    let { name, value } = e.target;
+  const handleChange = (e) => {
+    const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSpeakerChange = e => {
+  const handleSpeakerChange = (e) => {
     let { id, name, value } = e.target;
     let s = [...speaker];
     s[parseInt(id)][name] = value;
