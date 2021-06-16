@@ -11,7 +11,6 @@ import {
   Grid,
   Box,
   Typography,
-  TextField,
   LinearProgress
 } from '@material-ui/core';
 import ImageUploader from 'react-images-upload';
@@ -27,13 +26,15 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '20px',
     fontSize: '16px'
   },
-  speakerInput: {
+  speaker: {
     marginBottom: '10px'
   },
-  speaker: {
+ 
+  speakerInput: {
     marginBottom: '16px',
     marginTop: '8px',
     backgroundColor: 'rgb(232, 240, 254)',
+    border:'0',
     borderRadius: '20px',
     padding: '20px',
     '& .MuiOutlinedInput-notchedOutline': {
@@ -65,22 +66,16 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '20px',
     marginRight: '60px'
   },
-  inputDiv: {
-    background: 'rgba(42, 23, 89, 0.25)',
-    borderRadius: '17px',
-    width: '451px',
-    marginBottom: '10px',
-    height: '70px'
-  },
+ 
   input1: {
     border: '0',
     font: 'inherit',
+    // border: '1px solid #848c83',
     width: '100%',
     backgroundColor: 'rgb(232, 240, 254)',
     borderRadius: '20px',
     outline: '0',
-    borderBlockColor: 'green',
-    borderColor: 'green',
+    padding: '12px',
     '& .MuiOutlinedInput-notchedOutline': {
       borderColor: '#F2F7FF',
       borderRadius: '20px',
@@ -161,12 +156,12 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: 'rgb(232, 240, 254)',
     borderRadius: '20px',
     padding: '12.5px 14px',
+    // border:'1px solid #848c83',
     '&:focus': {
       outline: 'none'
     },
 
     '& .MuiOutlinedInput-notchedOutline': {
-      // borderColor: '#F2F7FF',
       borderRadius: '20px'
     },
     [theme.breakpoints.down('md')]: {
@@ -176,10 +171,10 @@ const useStyles = makeStyles((theme) => ({
   textField: {
     marginBottom: '16px',
     marginTop: '8px',
+    border: '0',
     backgroundColor: 'rgb(232, 240, 254)',
     borderRadius: '20px',
-    borderBlockColor: 'green',
-    borderColor: 'green',
+    padding: '20px',
     '& .MuiOutlinedInput-notchedOutline': {
       borderColor: '#F2F7FF',
       borderRadius: '20px'
@@ -264,10 +259,14 @@ function CreateNewEvent() {
         history.push(`/events/${docRef.id}`);
       });
   };
+  // const handleSubmit = () =>{
+  //   console.log('submit');
+  // }
 
   return (
         <DrawerLayout>
     <div className={classes.root}>
+    <ValidatorForm onSubmit={handleSubmit} onError={errors => console.log(errors)}>
         <Box display="flex" style={{ width: '100%' }}>
           <Box flexGrow={1}>
             <Grid container>
@@ -279,31 +278,35 @@ function CreateNewEvent() {
             </Grid>
             <Grid container className={classes.event}>
               <Grid style={{ width: '100%' }}>
-                <TextField
+                <TextValidator
                   placeholder="Enter name of the event"
                   className={classes.textField}
                   fullWidth
                   name="eventName"
                   value={formData.eventName}
-                  variant="outlined"
+                  // variant="outlined"
                   onChange={handleChange}
+                  validators={['required']}
+                  errorMessages={['This is a required field']}
                 />
 
-                <TextField
-                  placeholder="Add Description of the event"
+                <TextValidator
+                 placeholder="Add Description of the event"
                   className={classes.textField}
                   multiline
                   rows={4}
                   fullWidth
                   name="description"
                   value={formData.description}
-                  variant="outlined"
+                  // variant="outlined"
                   onChange={handleChange}
+                  validators={['required']}
+                  errorMessages={['This is a required field']}
                 />
 
                 <Grid container>
                   <Grid item xs={12} sm={12} md={6}>
-                    <TextField
+                    <TextValidator
                       id="date"
                       type="date"
                       defaultValue="2017-05-24"
@@ -315,10 +318,12 @@ function CreateNewEvent() {
                         shrink: true
                       }}
                       style={{ marginRight: '30px' }}
+                      validators={['required']}
+                      errorMessages={['This is a required field']}
                     />
                   </Grid>
                   <Grid item xs={12} sm={12} md={6}>
-                    <TextField
+                    <TextValidator
                       fullWidth
                       className={classes.input1}
                       type="time"
@@ -326,43 +331,62 @@ function CreateNewEvent() {
                       value={formData.time}
                       id="time"
                       defaultValue="07:30"
-                      variant="outlined"
+                      // variant="outlined"
                       onChange={handleChange}
+                      validators={['required']}
+                      errorMessages={['This is a required field']}
                     />
                   </Grid>
                 </Grid>
 
-                <TextField
+                <TextValidator
                   fullWidth
                   className={classes.textField}
                   placeholder="Event link / Registration link"
                   name="eventLink"
                   value={formData.eventLink}
-                  variant="outlined"
+                  // variant="outlined"
                   onChange={handleChange}
+                  validators={[
+                    'required']}
+                  errorMessages={[
+                    'This is a required field',
+                    'Please enter a valid contact number'
+                  ]}
                 />
                 {speaker.map((item, idx) => (
-                  <fieldset className={classes.socialLinks}>
-                    <InputBase
-                      className={classes.social}
+                  <fieldset className={classes.speakerInput}>
+                    <TextValidator
+                      className={classes.speaker}
                       fullWidth
                       id={idx.toString()}
                       name="speakerName"
-                      value={speaker.speakerName}
+                      value={item.speakerName}
                       placeholder="Speaker Name"
                       onChange={handleSpeakerChange}
+                      validators={['required']}
+                      errorMessages={['This is a required field']}
                     />
-                    <InputBase
-                      className={classes.social}
+                    <TextValidator
+                     key="linkedIn"
+                      className={classes.speaker}
                       fullWidth
                       id={idx.toString()}
                       name="speakerLinkedIn"
-                      value={speaker.speakerLinkedIn}
+                      value={item.speakerLinkedIn}
                       placeholder="Speaker LinkedIn Profile Link"
                       onChange={handleSpeakerChange}
+                      validators={[
+                        'required',
+                        'matchRegexp:^(http(s)?://)?([w]+.)?linkedin.com/(pub|in|profile)'
+                      ]}
+                      errorMessages={[
+                        'This is a required field',
+                        'Please enter a valid URL'
+                      ]}
                     />
                   </fieldset>
-                ))}
+                 ))} 
 
                 {speaker.length > 1 && (
                   <Button className={classes.button} onClick={removeSpeaker}>
@@ -381,7 +405,7 @@ function CreateNewEvent() {
               >
                 Cancel
               </Button>
-              <Button className={classes.addbtn} onClick={handleSubmit}>
+              <Button className={classes.addbtn} type="submit">
                 Create
               </Button>
             </div>
@@ -393,7 +417,7 @@ function CreateNewEvent() {
               onChange={onDrop}
               withPreview={imageURL !== null}
               singleImage
-              imgExtension={['.jpg', '.gif', '.png', '.gif']}
+              imgExtension={['.jpg', '.gif', '.png']}
               maxFileSize={5242880}
               fileContainerStyle={{
                 boxShadow: '2px 2px 3px 1px rgb(0, 0, 0, 0.5)'
@@ -408,6 +432,7 @@ function CreateNewEvent() {
             />
           </Box>
    </Box>
+    </ValidatorForm>
     </div>
     </DrawerLayout>
   );
