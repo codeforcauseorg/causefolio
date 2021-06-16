@@ -2,17 +2,21 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/styles';
 import DrawerLayout from 'src/layouts/DrawerLayout';
 import {
+  ValidatorForm,
+  TextValidator,
+} from 'react-material-ui-form-validator';
+// import CircularProgress from '@material-ui/core/CircularProgress';
+import {
   Button,
   Grid,
   Box,
   Typography,
-  InputBase,
   TextField,
   LinearProgress
 } from '@material-ui/core';
 import ImageUploader from 'react-images-upload';
 import { useSelector } from 'react-redux';
-import { firebase } from 'src/services/authService';
+import firebase from 'firebase';
 import { useHistory } from 'react-router';
 
 const useStyles = makeStyles((theme) => ({
@@ -23,14 +27,13 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '20px',
     fontSize: '16px'
   },
-  social: {
-    borderBottom: '1.3px solid #291757',
+  speakerInput: {
     marginBottom: '10px'
   },
-  socialLinks: {
+  speaker: {
     marginBottom: '16px',
     marginTop: '8px',
-    backgroundColor: '#CCD2E3',
+    backgroundColor: 'rgb(232, 240, 254)',
     borderRadius: '20px',
     padding: '20px',
     '& .MuiOutlinedInput-notchedOutline': {
@@ -71,10 +74,9 @@ const useStyles = makeStyles((theme) => ({
   },
   input1: {
     border: '0',
-    // padding: '10px',
     font: 'inherit',
     width: '100%',
-    backgroundColor: '#CCD2E3',
+    backgroundColor: 'rgb(232, 240, 254)',
     borderRadius: '20px',
     outline: '0',
     borderBlockColor: 'green',
@@ -156,8 +158,7 @@ const useStyles = makeStyles((theme) => ({
   },
   date: {
     marginBottom: '16px',
-    backgroundColor: '#CCD2E3',
-
+    backgroundColor: 'rgb(232, 240, 254)',
     borderRadius: '20px',
     padding: '12.5px 14px',
     '&:focus': {
@@ -175,7 +176,7 @@ const useStyles = makeStyles((theme) => ({
   textField: {
     marginBottom: '16px',
     marginTop: '8px',
-    backgroundColor: '#CCD2E3',
+    backgroundColor: 'rgb(232, 240, 254)',
     borderRadius: '20px',
     borderBlockColor: 'green',
     borderColor: 'green',
@@ -206,19 +207,21 @@ function CreateNewEvent() {
     description: '',
     date: '',
     time: '',
-    eventLink: ''
+    eventLink: '',
+    speakerName:'',
+    speakerLinkedIn:''
   };
   const [formData, setFormData] = useState(initialFieldValues);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+  // const [submit, setsubmit] = useState(0);
+  const handleChange = e => {
+    let { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSpeakerChange = (e) => {
-    const { id, name, value } = e.target;
-    const s = [...speaker];
-    s[parseInt(id, 10)][name] = value;
+  const handleSpeakerChange = e => {
+    let { id, name, value } = e.target;
+    let s = [...speaker];
+    s[parseInt(id)][name] = value;
     setSpeaker(s);
   };
 
@@ -405,8 +408,8 @@ function CreateNewEvent() {
               style={{ marginLeft: '10px', marginTop: '20px' }}
             />
           </Box>
-        </Box>
-      </div>
+        </div>
+      
     </DrawerLayout>
   );
 }
