@@ -15,7 +15,7 @@ import {
 import { firebase } from 'src/services/authService';
 import { Alert } from '@material-ui/lab';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     width: '98%',
@@ -99,7 +99,7 @@ const useStyles = makeStyles(theme => ({
 
 function Settings() {
   const classes = useStyles();
-  const user = useSelector(state => state.account.user);
+  const user = useSelector((state) => state.account.user);
 
   const [disable, setDisable] = useState(true);
   const [myProfile, setMyProfile] = useState(null);
@@ -107,45 +107,35 @@ function Settings() {
 
   //  For fetching the user's info
   useEffect(() => {
-    if (user !== undefined) {
-      let userId = user.uid;
-      let db = firebase.firestore();
-      let docRef = db.collection('users').doc(userId);
+    if (user !== undefined && user !== null) {
+      const userId = user.uid;
+      const db = firebase.firestore();
+      const docRef = db.collection('users').doc(userId);
 
       docRef
         .get()
-        .then(doc => {
+        .then((doc) => {
           if (doc.exists) {
-            let data = doc.data();
+            const data = doc.data();
             setMyProfile(data);
-          } else {
-            console.log('No such document!');
           }
-        })
-        .catch(error => {
-          console.log('Error getting document:', error);
         });
     }
   }, [user, disable]);
 
-  const handleInputChange = e => {
-    let { name, value } = e.target;
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
     setMyProfile({ ...myProfile, [name]: value });
   };
 
-  const handleUpdate = e => {
-    var db = firebase.firestore();
-    let userId = user.uid;
+  const handleUpdate = () => {
+    const db = firebase.firestore();
+    const userId = user.uid;
 
     db.collection('users')
       .doc(userId)
-      .set(myProfile)
-      .then(() => {
-        console.log('Document written');
-      })
-      .catch(error => {
-        console.error('Error adding document: ', error);
-      });
+      .set(myProfile);
+
     setDisable(true);
     setSnackbar(true);
   };

@@ -11,7 +11,7 @@ import {
 } from '@material-ui/core';
 import Page from 'src/components/Page';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.background.dark,
     minHeight: '100%',

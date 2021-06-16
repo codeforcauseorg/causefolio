@@ -12,7 +12,7 @@ import {
   makeStyles
 } from '@material-ui/core';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: '#291755',
     paddingTop: 80,
@@ -142,7 +142,9 @@ function Hero({ className, ...rest }) {
                   An initiative to contribute to Open Source
                   <br />
                   community by providing training, guidance
-                  <br /> and awareness about the possibilities in the
+                  <br />
+                  {' '}
+                  and awareness about the possibilities in the
                   <br />
                   software field to students &amp; professionals.
                 </Typography>
@@ -150,7 +152,7 @@ function Hero({ className, ...rest }) {
               <Box mt={2} mb={3}>
                 <Grid container>
                   <Grid item xs={12} md={12}>
-                    <Typography variant="h1" color="secondary"></Typography>
+                    <Typography variant="h1" color="secondary" />
                     <Box>
                       <Button
                         style={{

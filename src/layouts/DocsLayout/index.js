@@ -5,7 +5,7 @@ import { Container, makeStyles } from '@material-ui/core';
 import TopBar from './TopBar';
 import components from './mdx';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   wrapper: {
     backgroundColor: theme.palette.background.default,
     display: 'flex',

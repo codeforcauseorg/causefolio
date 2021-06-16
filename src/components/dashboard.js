@@ -8,7 +8,7 @@ import NewEvents from './NewEvents';
 import Publications from './Publications';
 import Stats from './Stats';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   content: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.default

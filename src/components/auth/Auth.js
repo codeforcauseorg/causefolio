@@ -14,9 +14,9 @@ function Auth({ children }) {
       });
 
       authService.handleAuthentication();
-      authService.firebase.auth().onAuthStateChanged(user => {
+      authService.firebase.auth().onAuthStateChanged((user) => {
         dispatch(setUserData(user));
-        user.getIdToken().then(token => {
+        user.getIdToken().then((token) => {
           authService.setSession(token);
         });
       });

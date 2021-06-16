@@ -16,7 +16,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: '#F2F7FF',
     paddingTop: theme.spacing(12),
@@ -206,11 +206,12 @@ function Footer({ className, ...rest }) {
         <Grid className={classes.copyRightPadding}>
           <Typography display="block" variant="body2" color="textSecondary">
             {'Copyright © '}
-            {new Date().getFullYear()}{' '}
+            {new Date().getFullYear()}
+            {' '}
             <Link color="inherit" href="https://codeforcause.org">
               Code For Cause
             </Link>
-            {'. All rights reserved.'}
+            . All rights reserved.
           </Typography>
 
           <Typography

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/styles';
-import { Card, Grid, Typography, Button } from '@material-ui/core';
+import {
+  Card, Grid, Typography, Button
+} from '@material-ui/core';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -63,7 +65,7 @@ function Badge() {
   const [numberOfBadgesUnlocked, setNumberOFBadgeUnlocked] = useState(0);
 
   useEffect(() => {
-    //for demo purpose set to 6
+    // for demo purpose set to 6
     setNumberOFBadgeUnlocked(6);
   }, []);
 
@@ -75,7 +77,9 @@ function Badge() {
             Badges Earned
           </Typography>
           <Typography variant="h1" className={classes.topText}>
-            {numberOfBadgesUnlocked} Unlocked
+            {numberOfBadgesUnlocked}
+            {' '}
+            Unlocked
           </Typography>
         </Grid>
       </Grid>
@@ -86,7 +90,7 @@ function Badge() {
             src="./static/images/icons/star_yellow.svg"
             alt="badge"
             height="60px"
-          ></img>
+          />
           <Typography className={classes.badgesText}>Super Blogger</Typography>
         </Grid>
         <Grid item>
@@ -94,7 +98,7 @@ function Badge() {
             src="./static/images/icons/star_orange.svg"
             alt="badge"
             height="60px"
-          ></img>
+          />
           <Typography className={classes.badgesText}>GitHub Hero</Typography>
         </Grid>
         <Grid item>
@@ -102,7 +106,7 @@ function Badge() {
             src="./static/images/icons/star_blue.svg"
             alt="badge"
             height="60px"
-          ></img>
+          />
           <Typography className={classes.badgesText}>I am Famous</Typography>
         </Grid>
         <Grid item>
@@ -110,7 +114,7 @@ function Badge() {
             src="./static/images/icons/star_yellow.svg"
             alt="badge"
             height="60px"
-          ></img>
+          />
           <Typography className={classes.badgesText}>Organizer</Typography>
         </Grid>
       </Grid>

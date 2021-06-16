@@ -11,7 +11,7 @@ import {
   Chip
 } from '@material-ui/core';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     fontFamily: 'Montserrat',
     color: '#291757'
@@ -70,7 +70,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const AntSwitch = withStyles(theme => ({
+const AntSwitch = withStyles((theme) => ({
   root: {
     width: 56,
     height: 32,
@@ -105,7 +105,7 @@ const AntSwitch = withStyles(theme => ({
 
 function ProfileInfo({ myProfile }) {
   const classes = useStyles();
-  let interestedInArr = myProfile.interestedIn.split(',');
+  const interestedInArr = myProfile.interestedIn.split(',');
 
   return (
     <Grid container className={classes.root}>
@@ -190,10 +190,8 @@ function ProfileInfo({ myProfile }) {
               Interested in:
             </Typography>
             {interestedInArr
-              .filter(e => String(e).trim())
-              .map(tagName => {
-                return <Chip className={classes.tags} label={tagName} />;
-              })}
+              .filter((e) => String(e).trim())
+              .map((tagName) => <Chip className={classes.tags} label={tagName} />)}
           </Box>
         </Box>
       </Card>

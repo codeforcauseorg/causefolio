@@ -11,7 +11,7 @@ import {
   Button
 } from '@material-ui/core';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     minHeight: '350px',
     color: '#FFF',

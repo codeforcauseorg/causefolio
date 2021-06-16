@@ -52,7 +52,7 @@ const themeConfigs = [
     palette: {
       type: 'light',
       action: {
-        active: colors.blueGrey[600] //small icons
+        active: colors.blueGrey[600] // small icons
       },
       background: {
         default: colors.common.white,
@@ -77,7 +77,7 @@ const themeConfigs = [
 ];
 
 export function createTheme(settings = {}) {
-  let themeConfig = themeConfigs.find(theme => theme.name === settings.theme);
+  let themeConfig = themeConfigs.find((theme) => theme.name === settings.theme);
 
   if (!themeConfig) {
     console.warn(new Error(`The theme ${settings.theme} is not valid`));

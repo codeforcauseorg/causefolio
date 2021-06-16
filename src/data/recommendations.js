@@ -1,4 +1,4 @@
-export const recommendations = [
+export default recommendations = [
   {
     id: '1',
     name: 'Gaganpreet Kaur Kalsi',
