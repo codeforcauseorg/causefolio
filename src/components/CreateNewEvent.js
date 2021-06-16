@@ -266,8 +266,8 @@ function CreateNewEvent() {
   };
 
   return (
-    <DrawerLayout>
-      <div className={classes.root}>
+        <DrawerLayout>
+    <div className={classes.root}>
         <Box display="flex" style={{ width: '100%' }}>
           <Box flexGrow={1}>
             <Grid container>
@@ -372,7 +372,6 @@ function CreateNewEvent() {
                 <Button className={classes.button} onClick={addSpeaker}>
                   Add Speaker
                 </Button>
-                {/* </div> */}
               </Grid>
             </Grid>
             <div className={classes.createbtn}>
@@ -408,8 +407,8 @@ function CreateNewEvent() {
               style={{ marginLeft: '10px', marginTop: '20px' }}
             />
           </Box>
-        </div>
-      
+   </Box>
+    </div>
     </DrawerLayout>
   );
 }
