@@ -1,10 +1,10 @@
-import { 
+import React, { useState, useEffect } from 'react';
+import {
   Box, 
   Button, 
   Grid, 
-  makeStyles
+  makeStyles 
 } from '@material-ui/core';
-import React, { useState, useEffect } from 'react';
 import BookmarkedEvents from 'src/components/BookmarkedEvents';
 import UserNewEvents from 'src/components/UserNewEvents';
 import UserUpcomingEvents from 'src/components/UserUpcomingEvents';
@@ -13,7 +13,7 @@ import SearchBar from 'src/components/search';
 import DrawerLayout from 'src/layouts/DrawerLayout';
 import { useHistory } from 'react-router-dom';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   button: {
     marginLeft: '120px',
     marginTop: '20px',
