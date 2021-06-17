@@ -3,7 +3,8 @@ import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import List from '@material-ui/core/List';
 import { Box, Typography, Avatar } from '@material-ui/core';
-import ListItem from '@material-ui/core/ListItem';
+
+import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText';
 import { makeStyles } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -42,7 +43,7 @@ const useStyles = makeStyles(theme => ({
   itemicon: {
     color: 'white',
     fontSize: '18px',
-    marginRight: '15px'
+    marginRight: '15px',
   },
   drawer: {
     width: drawerWidth,
@@ -102,14 +103,26 @@ const useStyles = makeStyles(theme => ({
     marginRight: '12px',
     width: theme.spacing(6),
     height: theme.spacing(6)
+  },
+  
+  idbtn:{
+    backgroundColor:'rgba(254,254,254,0.2)',
+    "&:hover": {
+      backgroundColor: "rgba(254,254,254,0.2)",
+    }
+  },
+  disablebtn:{
+    backgroundColor:'inherit',
+    "&:hover": {
+      backgroundColor: "rgba(21, 9, 52, 0.2)",
+    }
   }
+  
 }));
-
 export default function DrawerLayout({ children }) {
   const classes = useStyles();
   const history = useHistory();
   const [toggle, setToggle] = useState(false);
-
   const myStyles = {
     display: 'flex',
     justifyContent: 'space-between'
@@ -126,7 +139,6 @@ export default function DrawerLayout({ children }) {
     { name: 'Settings', link: '/settings', icon: faCogs },
     { name: 'Log out', link: '/logout', icon: faSignOutAlt }
   ];
-
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -177,7 +189,14 @@ export default function DrawerLayout({ children }) {
           </Box>
           <List>
             {navItems.map(({ name, link, icon }, idx) => (
-              <ListItem button key={idx}>
+              <ListItem 
+              button 
+              key={idx}
+              className={clsx(
+                classes.idbtn,
+                window.location.pathname !== link ? classes.disablebtn : ''
+              )}
+              >
                 <ListItemIcon
                   className={clsx(
                     classes.itemicon,
@@ -236,7 +255,11 @@ export default function DrawerLayout({ children }) {
           </Box>
           <List>
             {navItems.map(({ name, link, icon }, idx) => (
-              <ListItem button key={idx}>
+              <ListItem button key={idx}
+              className={clsx(
+                classes.idbtn,
+                window.location.pathname !== link ? classes.disablebtn : ''
+              )}>
                 <ListItemIcon
                   className={clsx(
                     classes.itemicon,

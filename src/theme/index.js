@@ -30,7 +30,8 @@ const baseConfig = {
       root: {
         '&:hover': {
           backgroundColor: '#150934'
-        }
+        },
+        
       }
     }
   }
