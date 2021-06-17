@@ -189,7 +189,7 @@ const useStyles = makeStyles((theme) => ({
 function CreateNewEvent() {
   const classes = useStyles();
   const history = useHistory();
-  const user = useSelector(state => state.account.user);
+  const user = useSelector((state) => state.account.user);
   const [speaker, setSpeaker] = useState([{}]);
   const [imageURL, setImageURL] = useState('');
   const initialFieldValues = {
@@ -203,14 +203,14 @@ function CreateNewEvent() {
   };
   const [formData, setFormData] = useState(initialFieldValues);
   // const [submit, setsubmit] = useState(0);
-  const handleChange = e => {
+  const handleChange = (e)=> {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSpeakerChange = e => {
+  const handleSpeakerChange = (e) => {
     const { id, name, value } = e.target;
-    let s = [...speaker];
+    const s = [...speaker];
     s[parseInt(id)][name] = value;
     setSpeaker(s);
   };
@@ -246,7 +246,7 @@ function CreateNewEvent() {
     const db = firebase.firestore();
     const ref = db.collection('events');
 
-    ref.add(formData).then(docRef => {
+    ref.add(formData).then((docRef) => {
       setFormData(initialFieldValues);
       setSpeaker([{}]);
       history.push(`/events/${docRef.id}`);
@@ -261,7 +261,7 @@ function CreateNewEvent() {
       <div className={classes.root}>
         <ValidatorForm
           onSubmit={handleSubmit}
-          onError={errors => console.log(errors)}
+          onError={(errors) => console.log(errors)}
         >
           <Box display="flex" style={{ width: '100%' }}>
             <Box flexGrow={1}>
