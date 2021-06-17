@@ -1,8 +1,8 @@
 import { 
-Box, 
-Button,
-Grid, 
-makeStyles 
+  Box, 
+  Button, 
+  Grid, 
+  makeStyles
 } from '@material-ui/core';
 import React, { useState, useEffect } from 'react';
 import BookmarkedEvents from 'src/components/BookmarkedEvents';
@@ -13,7 +13,7 @@ import SearchBar from 'src/components/search';
 import DrawerLayout from 'src/layouts/DrawerLayout';
 import { useHistory } from 'react-router-dom';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   button: {
     marginLeft: '120px',
     marginTop: '20px',
