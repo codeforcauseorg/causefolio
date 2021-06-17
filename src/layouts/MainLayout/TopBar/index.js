@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function TopBar({
-  className, onMobileNavOpen, variant, ...rest
+  className, /*onMobileNavOpen,*/ variant, ...rest
 }) {
   const classes = useStyles();
   const [state, setState] = React.useState({
