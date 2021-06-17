@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Box, 
-  Button, 
-  Grid, 
-  makeStyles 
+Box, 
+Button, 
+Grid, 
+makeStyles 
 } from '@material-ui/core';
 import BookmarkedEvents from 'src/components/BookmarkedEvents';
 import UserNewEvents from 'src/components/UserNewEvents';

@@ -211,7 +211,7 @@ function CreateNewEvent() {
   const handleSpeakerChange = (e) => {
     const { id, name, value } = e.target;
     const s = [...speaker];
-    s[parseInt(id),10][name] = value;
+    s[parseInt(id)][name] = value;
     setSpeaker(s);
   };
 
