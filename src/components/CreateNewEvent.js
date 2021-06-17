@@ -203,7 +203,7 @@ function CreateNewEvent() {
   };
   const [formData, setFormData] = useState(initialFieldValues);
   // const [submit, setsubmit] = useState(0);
-  const handleChange = (e)=> {
+  const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
@@ -224,7 +224,7 @@ function CreateNewEvent() {
     setSpeaker([...speaker]);
   };
 
-  const onDrop = async picture => {
+  const onDrop = async (picture) => {
     if (picture.length === 0 || user === null || user === undefined) return;
     // For the Loader
     setImageURL(null);
