@@ -15,7 +15,7 @@ import {
 import { firebase } from 'src/services/authService';
 import { Alert } from '@material-ui/lab';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     width: '98%',
@@ -99,7 +99,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Settings() {
   const classes = useStyles();
-  const user = useSelector((state) => state.account.user);
+  const user = useSelector(state => state.account.user);
 
   const [disable, setDisable] = useState(true);
   const [myProfile, setMyProfile] = useState(null);
@@ -112,18 +112,16 @@ function Settings() {
       const db = firebase.firestore();
       const docRef = db.collection('users').doc(userId);
 
-      docRef
-        .get()
-        .then((doc) => {
-          if (doc.exists) {
-            const data = doc.data();
-            setMyProfile(data);
-          }
-        });
+      docRef.get().then(doc => {
+        if (doc.exists) {
+          const data = doc.data();
+          setMyProfile(data);
+        }
+      });
     }
   }, [user, disable]);
 
-  const handleInputChange = (e) => {
+  const handleInputChange = e => {
     const { name, value } = e.target;
     setMyProfile({ ...myProfile, [name]: value });
   };

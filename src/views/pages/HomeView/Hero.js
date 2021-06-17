@@ -12,7 +12,7 @@ import {
   makeStyles
 } from '@material-ui/core';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
     backgroundColor: '#291755',
     paddingTop: 30,
@@ -133,9 +133,7 @@ function Hero({ className, ...rest }) {
                   An initiative to contribute to Open Source
                   <br />
                   community by providing training, guidance
-                  <br />
-                  {' '}
-                  and awareness about the possibilities in the
+                  <br /> and awareness about the possibilities in the
                   <br />
                   software field to students &amp; professionals.
                 </Typography>

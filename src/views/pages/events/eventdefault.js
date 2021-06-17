@@ -1,6 +1,4 @@
-import {
-  Box, Button, Grid, makeStyles
-} from '@material-ui/core';
+import { Box, Button, Grid, makeStyles } from '@material-ui/core';
 import React, { useState, useEffect } from 'react';
 import BookmarkedEvents from 'src/components/BookmarkedEvents';
 import UserNewEvents from 'src/components/UserNewEvents';
@@ -10,7 +8,7 @@ import UserEventStats from 'src/components/UserEventStats';
 import DrawerLayout from 'src/layouts/DrawerLayout';
 import { useHistory } from 'react-router-dom';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   button: {
     marginLeft: '120px',
     marginTop: '20px',
@@ -47,7 +45,7 @@ export default function EventDefaultPage() {
     <DrawerLayout>
       <Grid container>
         <Grid justify="center" md={8} sm={12} xs={12}>
-          { bookmarkEvent !== null && <BookmarkedEvents /> }
+          {bookmarkEvent !== null && <BookmarkedEvents />}
           {/* <SearchBar /> */}
           <UserNewEvents />
           <Box textAlign="center">

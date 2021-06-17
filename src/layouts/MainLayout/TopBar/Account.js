@@ -30,8 +30,8 @@ const useStyles = makeStyles(() => ({
 }));
 
 function Account() {
-  const user = useSelector((state) => state.account.user);
-  const loginFlag = useSelector((state) => state.account.login);
+  const user = useSelector(state => state.account.user);
+  const loginFlag = useSelector(state => state.account.login);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const dispatch = useDispatch();
   const classes = useStyles();
@@ -54,11 +54,11 @@ function Account() {
     dispatch(login());
   };
 
-  const handleOpenMenu = (event) => {
+  const handleOpenMenu = event => {
     setAnchorEl(event.currentTarget);
   };
 
-  const truncate = (input) => {
+  const truncate = input => {
     const first = input.split(' ')[0];
     if (first.length > 13) {
       return `${first.substring(0, 10)}...`;

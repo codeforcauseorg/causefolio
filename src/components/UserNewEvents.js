@@ -63,7 +63,7 @@ const useStyles = makeStyles(() => ({
 
 function UserNewEvents() {
   const classes = useStyles();
-  const user = useSelector((state) => state.account.user);
+  const user = useSelector(state => state.account.user);
   const history = useHistory();
   const [newEvents, setNewEvents] = useState([]);
   const [eventID, setEventID] = useState([]);
@@ -80,8 +80,8 @@ function UserNewEvents() {
         .get();
 
       setNewEvents(
-        newEventCollection.docs.map((doc) => {
-          setEventID((prevState) => [...prevState, doc.id]);
+        newEventCollection.docs.map(doc => {
+          setEventID(prevState => [...prevState, doc.id]);
           return doc.data();
         })
       );
@@ -89,7 +89,7 @@ function UserNewEvents() {
     fetchLatestEvents();
   }, [user, history]);
 
-  const handleClick = (idx) => {
+  const handleClick = idx => {
     if (eventID.length <= 0) return;
     history.push(`/events/${eventID[idx]}`);
   };

@@ -21,7 +21,7 @@ import { HashLink as Link } from 'react-router-hash-link';
 import Account from './Account';
 import Item from './Item';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
     backgroundColor: '#291755',
     paddingLeft: 70,
@@ -51,9 +51,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-function TopBar({
-  className, /*onMobileNavOpen,*/ variant, ...rest
-}) {
+function TopBar({ className, /*onMobileNavOpen,*/ variant, ...rest }) {
   const classes = useStyles();
   const [state, setState] = React.useState({
     top: false,
@@ -68,10 +66,10 @@ function TopBar({
     // { title: 'Team', link: '/team' }
   ];
 
-  const toggleDrawer = (anchor, open) => (event) => {
+  const toggleDrawer = (anchor, open) => event => {
     if (
-      event.type === 'keydown'
-      && (event.key === 'Tab' || event.key === 'Shift')
+      event.type === 'keydown' &&
+      (event.key === 'Tab' || event.key === 'Shift')
     ) {
       return;
     }
@@ -134,7 +132,7 @@ function TopBar({
         </RouterLink>
         <Hidden smDown>
           <Box ml={2} flexGrow={1} />
-          {navItems.map((item) => (
+          {navItems.map(item => (
             <Item
               active={item.link === pathname}
               title={item.title}

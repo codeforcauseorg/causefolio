@@ -20,7 +20,7 @@ const renderRoutes = () => (
       <Route
         path="/"
         exact
-        render={(props) => (
+        render={props => (
           <MainLayout>
             <HomeView {...props} />
           </MainLayout>
@@ -31,11 +31,7 @@ const renderRoutes = () => (
       <Route path="/profile" exact render={() => <Profile />} />
       <Route path="/events" exact render={() => <EventDefaultPage />} />
       <Route path="/landing" exact render={() => <LandingPage />} />
-      <Route
-        path="/events/:eventID"
-        exact
-        render={() => <IndividualEvent />}
-      />
+      <Route path="/events/:eventID" exact render={() => <IndividualEvent />} />
       <Route path="/createEvent" exact render={() => <CreateNewEvent />} />
       <Route path="/settings" exact render={() => <Settings />} />
       <Route path="*" exact render={() => <Error404View />} />

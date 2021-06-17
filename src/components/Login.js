@@ -12,7 +12,7 @@ import {
 } from '@material-ui/core';
 import auth from '../services/authService';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     width: '750px',
@@ -115,16 +115,14 @@ export default function Login({ handleClose }) {
 
   const handleLogin = () => {
     const { email, password } = loginCredentials;
-    auth
-      .signInWithEmailAndPassword(email, password)
-      .then((result) => (
-        result.user.updateProfile({
-          displayName: 'Dummy Name'
-        })
-      ));
+    auth.signInWithEmailAndPassword(email, password).then(result =>
+      result.user.updateProfile({
+        displayName: 'Dummy Name'
+      })
+    );
   };
 
-  const handleChange = (event) => {
+  const handleChange = event => {
     setLoginCredentials({
       ...loginCredentials,
       [event.target.name]: event.target.value

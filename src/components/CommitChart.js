@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/styles';
-import {
-  Card, Grid, Typography, Paper
-} from '@material-ui/core';
+import { Card, Grid, Typography, Paper } from '@material-ui/core';
 import { Chart, Bar } from 'react-chartjs-2';
 
 Chart.defaults.global.legend.display = false;

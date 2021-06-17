@@ -7,8 +7,8 @@ const useStyles = makeStyles(() => ({
   root: {
     backgroundColor: '#291755',
     overflowX: 'hidden',
-    display: "flex",
-    flexDirection: "column",
+    display: 'flex',
+    flexDirection: 'column',
     minHeight: 'calc(100vh - 64px)'
   },
   hero: {

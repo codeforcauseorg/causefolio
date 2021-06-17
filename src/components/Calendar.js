@@ -191,8 +191,8 @@ function Calendar() {
         </div>
       </div>
       <Grid container className={classes.grid}>
-        {daysName.map((day) => (
-          <Grid item>
+        {daysName.map((day, idx) => (
+          <Grid key={idx} item>
             <Typography
               display="inline"
               variant="subtitle1"
@@ -205,8 +205,8 @@ function Calendar() {
         ))}
       </Grid>
       <Grid container className={classes.grid}>
-        {firstRow.map((date) => (
-          <Grid item>
+        {firstRow.map((date, idx) => (
+          <Grid key={idx} item>
             <Typography
               display="inline"
               variant="subtitle1"
@@ -224,8 +224,8 @@ function Calendar() {
         ))}
       </Grid>
       <Grid container className={classes.grid}>
-        {secondRow.map((date) => (
-          <Grid item>
+        {secondRow.map((date, idx) => (
+          <Grid key={idx} item>
             <Typography
               display="inline"
               variant="subtitle1"
@@ -240,8 +240,8 @@ function Calendar() {
         ))}
       </Grid>
       <Grid container className={classes.grid}>
-        {thirdRow.map((date) => (
-          <Grid item>
+        {thirdRow.map((date, idx) => (
+          <Grid key={idx} item>
             <Typography
               display="inline"
               variant="subtitle1"
@@ -256,8 +256,8 @@ function Calendar() {
         ))}
       </Grid>
       <Grid container className={classes.grid}>
-        {fourthRow.map((date) => (
-          <Grid item>
+        {fourthRow.map((date, idx) => (
+          <Grid key={idx} item>
             <Typography
               display="inline"
               variant="subtitle1"
@@ -272,8 +272,8 @@ function Calendar() {
         ))}
       </Grid>
       <Grid container className={classes.grid}>
-        {fifthRow.map((date) => (
-          <Grid item>
+        {fifthRow.map((date, idx) => (
+          <Grid key={idx} item>
             <Typography
               display="inline"
               variant="subtitle1"
