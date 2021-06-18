@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/styles';
-import { Button, Grid, Typography, CircularProgress } from '@material-ui/core';
-import DrawerLayout from 'src/layouts/DrawerLayout';
+import { Button, Grid, Typography } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 import { firebase } from 'src/services/authService';
 import { useHistory } from 'react-router';
@@ -94,14 +93,6 @@ function UserNewEvents() {
     if (eventID.length <= 0) return;
     history.push(`/events/${eventID[idx]}`);
   };
-
-  if (newEvents.length <= 0) {
-    return (
-      // <DrawerLayout>
-        <CircularProgress />
-      // </DrawerLayout>
-    );
-  }
 
   return (
     <div className={classes.root}>

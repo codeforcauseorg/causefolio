@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { Button, Card, Grid, Typography } from '@material-ui/core';
-import { useSelector } from 'react-redux';
-import { firebase } from 'src/services/authService';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -60,29 +58,11 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-function UserUpcomingEvents({ setConducted }) {
+function UserUpcomingEvents({ userEvents, setEventsConducted }) {
   const classes = useStyles();
-  const user = useSelector(state => state.account.user);
-  const [userEvents, setUserEvents] = useState([]);
-
-  useEffect(() => {
-    const fetchUserEvents = async () => {
-      if (user === undefined || user === null) return;
-
-      const userId = user.uid;
-      const db = firebase.firestore();
-      const userEventCollection = await db
-        .collection('events')
-        .where('createdBy', '==', `${userId}`)
-        .get();
-
-      setUserEvents(userEventCollection.docs.map(doc => doc.data()));
-    };
-    fetchUserEvents();
-  }, [user]);
 
   if (userEvents.length > 0) {
-    setConducted(userEvents.length);
+    setEventsConducted(userEvents.length);
   }
 
   return (
