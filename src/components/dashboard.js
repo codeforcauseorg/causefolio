@@ -44,7 +44,7 @@ export default function Dashboard() {
       <main className={classes.content}>
         <Box display="flex">
           <Box flexGrow={1}>
-            {userEvents.length > 0 ? <Calendar userEvents={userEvents} /> : ''}
+            {userEvents.length > 0 ? <Calendar /> : ''}
             <Stats />
             <BookmarkedEvents />
           </Box>

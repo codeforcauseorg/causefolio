@@ -66,7 +66,7 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-function Calendar({userEvents}) {
+function Calendar() {
   const [monthNameIndex, setMonthNameIndex] = useState();
   const [year, setYear] = useState();
   const [firstRow, setFirstRow] = useState([]);
@@ -75,13 +75,6 @@ function Calendar({userEvents}) {
   const [fourthRow, setFourthRow] = useState([]);
   const [fifthRow, setFifthRow] = useState([]);
   const now = new Date();
-  console.log('ii',userEvents);
-  let Kyear = new Date().getFullYear();
-  let Kmonth = new Date().getMonth() + 1;
-  
-  userEvents.map(eve => {
-    console.log(`${Kyear}-${Kmonth}`)
-  })
 
   const monthsName = [
     'January',
