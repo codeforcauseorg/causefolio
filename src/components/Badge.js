@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/styles';
-import {
-  Card, Grid, Typography, Button
-} from '@material-ui/core';
+import { Card, Grid, Typography, Button } from '@material-ui/core';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -77,9 +75,7 @@ function Badge() {
             Badges Earned
           </Typography>
           <Typography variant="h1" className={classes.topText}>
-            {numberOfBadgesUnlocked}
-            {' '}
-            Unlocked
+            {numberOfBadgesUnlocked} Unlocked
           </Typography>
         </Grid>
       </Grid>

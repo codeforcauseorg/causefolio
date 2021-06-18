@@ -1,6 +1,4 @@
-import {
-  Avatar, Box, Button, Grid, Typography
-} from '@material-ui/core';
+import { Avatar, Box, Button, Grid, Typography } from '@material-ui/core';
 // import Avatar from '@material-ui/core/Avatar';
 import AvatarGroup from '@material-ui/lab/AvatarGroup';
 import { makeStyles } from '@material-ui/styles';
@@ -11,7 +9,7 @@ import NewEvents from 'src/components/NewEvents';
 import DrawerLayout from 'src/layouts/DrawerLayout';
 import { firebase } from 'src/services/authService';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
     color: '#291757',
     fontFamily: 'Montserrat',
@@ -92,14 +90,17 @@ export default function IndividualEvent() {
   const { eventID } = useParams();
   const history = useHistory();
   const [event, setEvent] = useState(null);
-  const user = useSelector((state) => state.account.user);
+  const user = useSelector(state => state.account.user);
 
   useEffect(() => {
     const fetchUserEvent = async () => {
       if (user === undefined || eventID === undefined) return;
 
       const db = firebase.firestore();
-      const userEvent = await db.collection('events').doc(eventID).get();
+      const userEvent = await db
+        .collection('events')
+        .doc(eventID)
+        .get();
 
       // 404
       if (!userEvent.exists) {
@@ -125,10 +126,7 @@ export default function IndividualEvent() {
             <Grid container>
               <Grid item className={classes.topContainer}>
                 <Typography className={classes.topText}>
-                  {event?.date}
-                  {' '}
-                  |
-                  {event?.time}
+                  {event?.date} |{event?.time}
                 </Typography>
               </Grid>
               <Grid item className={classes.intro}>
@@ -175,7 +173,7 @@ export default function IndividualEvent() {
 
                 <Grid container>
                   <Grid item>
-                    {event?.speakers.map((speaker) => (
+                    {event?.speakers.map(speaker => (
                       <Typography
                         className={classes.speaker}
                         variant="p"

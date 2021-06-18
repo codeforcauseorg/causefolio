@@ -12,7 +12,7 @@ import {
 } from '@material-ui/core';
 import TopBar from 'src/layouts/MainLayout/TopBar';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
     backgroundColor: '#FFF',
     height: '90vh',
@@ -116,19 +116,14 @@ function LandingPage({ className, ...rest }) {
                 <Box mt={10} display="flex">
                   <Typography variant="h1" style={{ fontWeight: '700' }}>
                     A Heading for the
-                    <br />
-                    {' '}
-                    Landing Page
+                    <br /> Landing Page
                   </Typography>
                 </Box>
                 <Box mt={3} display="flex">
                   <Typography variant="h6">
                     A brief introduction about platform , what is the purpose of
                     thisand what our
-                    <br />
-                    {' '}
-                    platform representstwo to three
-                    lines will work
+                    <br /> platform representstwo to three lines will work
                   </Typography>
                 </Box>
                 <Box mt={3} display="flex">
@@ -145,9 +140,7 @@ function LandingPage({ className, ...rest }) {
                     size="large"
                     variant="contained"
                   >
-                    Get Started
-                    {' '}
-                    <ArrowForwardOutlinedIcon />
+                    Get Started <ArrowForwardOutlinedIcon />
                   </Button>
                 </Box>
               </Box>

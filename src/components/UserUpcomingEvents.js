@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/styles';
-import {
-  Button, Card, Grid, Typography
-} from '@material-ui/core';
+import { Button, Card, Grid, Typography } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 import { firebase } from 'src/services/authService';
 
@@ -64,7 +62,7 @@ const useStyles = makeStyles(() => ({
 
 function UserUpcomingEvents({ setConducted }) {
   const classes = useStyles();
-  const user = useSelector((state) => state.account.user);
+  const user = useSelector(state => state.account.user);
   const [userEvents, setUserEvents] = useState([]);
 
   useEffect(() => {
@@ -73,9 +71,12 @@ function UserUpcomingEvents({ setConducted }) {
 
       const userId = user.uid;
       const db = firebase.firestore();
-      const userEventCollection = await db.collection('events').where('createdBy', '==', `${userId}`).get();
+      const userEventCollection = await db
+        .collection('events')
+        .where('createdBy', '==', `${userId}`)
+        .get();
 
-      setUserEvents(userEventCollection.docs.map((doc) => doc.data()));
+      setUserEvents(userEventCollection.docs.map(doc => doc.data()));
     };
     fetchUserEvents();
   }, [user]);
@@ -114,7 +115,7 @@ function UserUpcomingEvents({ setConducted }) {
                 style={{ backgroundColor: 'white' }}
                 className={classes.button}
               >
-                {event.speakers.map((speaker) => speaker.speakerName)}
+                {event.speakers.map(speaker => speaker.speakerName)}
               </Button>
             </Grid>
           </Grid>

@@ -13,7 +13,7 @@ import {
 } from '@material-ui/core';
 import { firebase } from 'src/services/authService';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     width: '80%',
@@ -101,7 +101,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Register() {
   const classes = useStyles();
-  const user = useSelector((state) => state.account.user);
+  const user = useSelector(state => state.account.user);
   const history = useHistory();
 
   const initialFieldValues = {
@@ -116,12 +116,12 @@ function Register() {
   };
   const [fieldValue, setFieldValue] = useState(initialFieldValues);
 
-  const handleInputChange = (e) => {
+  const handleInputChange = e => {
     const { name, value } = e.target;
     setFieldValue({ ...fieldValue, [name]: value });
   };
 
-  const handleRegister = (e) => {
+  const handleRegister = e => {
     e.preventDefault();
     const userId = user.uid;
     const db = firebase.firestore();
@@ -228,8 +228,7 @@ function Register() {
                     <Typography style={{ color: '#fff' }}>
                       Register Me
                     </Typography>
-                  </Button>
-                  {' '}
+                  </Button>{' '}
                 </Grid>
               </Grid>
             </Box>

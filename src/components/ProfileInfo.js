@@ -11,7 +11,7 @@ import {
   Chip
 } from '@material-ui/core';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
     fontFamily: 'Montserrat',
     color: '#291757'
@@ -70,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const AntSwitch = withStyles((theme) => ({
+const AntSwitch = withStyles(theme => ({
   root: {
     width: 56,
     height: 32,
@@ -190,8 +190,10 @@ function ProfileInfo({ myProfile }) {
               Interested in:
             </Typography>
             {interestedInArr
-              .filter((e) => String(e).trim())
-              .map((tagName) => <Chip className={classes.tags} label={tagName} />)}
+              .filter(e => String(e).trim())
+              .map(tagName => (
+                <Chip className={classes.tags} label={tagName} />
+              ))}
           </Box>
         </Box>
       </Card>

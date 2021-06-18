@@ -12,16 +12,16 @@ import {
   makeStyles
 } from '@material-ui/core';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
     backgroundColor: '#291755',
-    paddingTop: 80,
+    paddingTop: 30,
     paddingBottom: 60,
     color: '#FFFFFF',
     paddingLeft: 60,
     paddingRight: 60,
 
-    height: '90.3vh',
+    height: 'auto',
     [theme.breakpoints.down('md')]: {
       paddingTop: 15,
       paddingBottom: 15
@@ -70,15 +70,6 @@ function Hero({ className, ...rest }) {
         maxWidth="lg"
         style={{ padding: '40px 0px 0px', position: 'relative' }}
       >
-        {/* <img
-          src="/static/home/blob.svg"
-          alt="blob"
-          style={{
-            position: 'absolute',
-            top: '-20%',
-            left: '-20%'
-          }}
-        /> */}
         <Hidden mdDown>
           <Grid
             item
@@ -142,9 +133,7 @@ function Hero({ className, ...rest }) {
                   An initiative to contribute to Open Source
                   <br />
                   community by providing training, guidance
-                  <br />
-                  {' '}
-                  and awareness about the possibilities in the
+                  <br /> and awareness about the possibilities in the
                   <br />
                   software field to students &amp; professionals.
                 </Typography>
