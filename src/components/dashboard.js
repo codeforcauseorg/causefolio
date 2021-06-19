@@ -6,6 +6,7 @@ import DrawerLayout from 'src/layouts/DrawerLayout';
 import { firebase } from 'src/services/authService';
 import BookmarkedEvents from './BookmarkedEvents';
 import Calendar from './Calendar';
+import Loader from './Loader';
 import NewEvents from './NewEvents';
 import Publications from './Publications';
 import Stats from './Stats';
@@ -21,34 +22,42 @@ export default function Dashboard() {
   const classes = useStyles();
   const user = useSelector((state) => state.account.user);
   const [userEvents, setUserEvents] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchUserEvents = async () => {
       if (user === undefined || user === null) return;
       const userId = user.uid;
       const db = firebase.firestore();
-      const userEventCollection = await db.collection('events').where('createdBy', '==', `${userId}`).get()
+      const userEventCollection = await db.collection('events').where('createdBy', '==', `${userId}`).get();
 
-      setUserEvents(userEventCollection.docs.map((doc) => doc.data()));
+      setUserEvents(
+        userEventCollection.docs.map(doc => doc.data()),
+        setLoading(false)
+      );
     };
     fetchUserEvents();
   }, [user]);
 
   return (
     <DrawerLayout>
-      <main className={classes.content}>
-        <Box display="flex">
-          <Box flexGrow={1}>
-            {userEvents.length > 0 ? <Calendar userEvents={userEvents} /> : ''}
-            <Stats />
-            <BookmarkedEvents />
+      {!loading ? (
+        <main className={classes.content}>
+          <Box display="flex">
+            <Box flexGrow={1}>
+              {userEvents.length > 0 && <Calendar userEvents={userEvents} />}
+              <Stats />
+              <BookmarkedEvents />
+            </Box>
+            <Box maxWidth="28em" minWidth="24em">
+              <NewEvents />
+              <Publications />
+            </Box>
           </Box>
-          <Box maxWidth="28em" minWidth="24em">
-            <NewEvents />
-            <Publications />
-          </Box>
-        </Box>
-      </main>
+        </main>
+      ) : (
+        <Loader></Loader>
+      )}
     </DrawerLayout>
   );
 }
