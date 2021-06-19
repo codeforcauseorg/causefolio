@@ -66,7 +66,7 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-function Calendar() {
+function Calendar({ userEvents }) {
   const [monthNameIndex, setMonthNameIndex] = useState();
   const [year, setYear] = useState();
   const [firstRow, setFirstRow] = useState([]);
@@ -97,14 +97,32 @@ function Calendar() {
     0
   ).getDate();
   let currentDate = 0;
-  //  for demo purpose this events variable is created
-  var number = parseInt('12',10)
-  const events = {
-    [now.getMonth()]: {
-      [number] : true,
-      19: true,
-      24: true
+
+  // For fetching the current month events
+
+  const [numberObj, setNumberObj] = useState({});
+  let currYear = now.getFullYear();
+  let currMonth = now.getMonth() + 1;
+
+  useEffect(() => {
+    if (userEvents.length > 0) {
+      userEvents.forEach(event => {
+        let newDate = event.date.split('-').map(d => parseInt(d)).join('/');
+        let eYear = newDate.split('/')[0];
+        let eMonth = newDate.split('/')[1];
+        if (`${eYear}/${eMonth}` === `${currYear}/${currMonth}`) {
+          setNumberObj(prevObj => ({
+            ...prevObj,
+            [parseInt(event.date.slice(-2))]: true
+          }));
+        }
+      });
     }
+  }, [userEvents, currYear, currMonth]);
+
+  //  for demo purpose this events variable is created
+  const events = {
+    [now.getMonth()]: numberObj
   };
   const getFirstRow = () => {
     const dates = [];
