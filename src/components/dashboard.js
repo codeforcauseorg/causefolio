@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function Dashboard() {
   const classes = useStyles();
-  const user = useSelector((state) => state.account.user);
+  const user = useSelector(state => state.account.user);
   const [userEvents, setUserEvents] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -29,7 +29,10 @@ export default function Dashboard() {
       if (user === undefined || user === null) return;
       const userId = user.uid;
       const db = firebase.firestore();
-      const userEventCollection = await db.collection('events').where('createdBy', '==', `${userId}`).get();
+      const userEventCollection = await db
+        .collection('events')
+        .where('createdBy', '==', `${userId}`)
+        .get();
 
       setUserEvents(
         userEventCollection.docs.map(doc => doc.data()),

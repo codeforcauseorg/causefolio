@@ -134,6 +134,7 @@ function TopBar({ className, /*onMobileNavOpen,*/ variant, ...rest }) {
           <Box ml={2} flexGrow={1} />
           {navItems.map(item => (
             <Item
+              key={item.title}
               active={item.link === pathname}
               title={item.title}
               link={item.link}

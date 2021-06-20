@@ -337,7 +337,7 @@ function CreateNewEvent() {
                   onChange={handleChange}
                 />
                 {speaker.map((item, idx) => (
-                  <fieldset className={classes.socialLinks}>
+                  <fieldset key={idx} className={classes.socialLinks}>
                     <InputBase
                       className={classes.social}
                       fullWidth

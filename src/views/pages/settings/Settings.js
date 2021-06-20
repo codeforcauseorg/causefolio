@@ -9,7 +9,7 @@ import {
   Typography,
   TextField,
   InputBase,
-  Snackbar,
+  Snackbar
 } from '@material-ui/core';
 import { firebase } from 'src/services/authService';
 import { Alert } from '@material-ui/lab';

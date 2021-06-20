@@ -53,7 +53,10 @@ export default function EventDefaultPage() {
         .where('createdBy', '==', `${userId}`)
         .get()
         .then(userEventCollection => {
-          setUserEvents(userEventCollection.docs.map(doc => doc.data()),setLoading(false));
+          setUserEvents(
+            userEventCollection.docs.map(doc => doc.data()),
+            setLoading(false)
+          );
         });
     };
     fetchUserEvents();
@@ -76,9 +79,7 @@ export default function EventDefaultPage() {
             </Grid>
             <Grid md={4} sm={12} xs={12}>
               {userEvents.length > 0 && (
-                <UserUpcomingEvents
-                  userEvents={userEvents}
-                />
+                <UserUpcomingEvents userEvents={userEvents} />
               )}
               <UserEventStats
                 conducted={userEvents.length}

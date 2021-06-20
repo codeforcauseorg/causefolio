@@ -192,7 +192,7 @@ function ProfileInfo({ myProfile }) {
             {interestedInArr
               .filter(e => String(e).trim())
               .map(tagName => (
-                <Chip className={classes.tags} label={tagName} />
+                <Chip key={tagName} className={classes.tags} label={tagName} />
               ))}
           </Box>
         </Box>

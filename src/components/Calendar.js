@@ -107,7 +107,10 @@ function Calendar({ userEvents }) {
   useEffect(() => {
     if (userEvents.length > 0) {
       userEvents.forEach(event => {
-        let newDate = event.date.split('-').map(d => parseInt(d)).join('/');
+        let newDate = event.date
+          .split('-')
+          .map(d => parseInt(d))
+          .join('/');
         let eYear = newDate.split('/')[0];
         let eMonth = newDate.split('/')[1];
         if (`${eYear}/${eMonth}` === `${currYear}/${currMonth}`) {

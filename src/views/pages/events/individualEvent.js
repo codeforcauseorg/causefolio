@@ -173,10 +173,11 @@ export default function IndividualEvent() {
 
                 <Grid container>
                   <Grid item>
-                    {event?.speakers.map(speaker => (
+                    {event?.speakers.map((speaker, idx) => (
                       <Typography
+                        key={idx}
                         className={classes.speaker}
-                        variant="p"
+                        variant="h6"
                         fontWeight="bold"
                       >
                         {speaker.speakerName}
