@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Stats = () => {
+const Stats = ({ conducted }) => {
   const heading = {
     color: '#291755',
     marginBottom: '10px'
@@ -52,7 +52,7 @@ const Stats = () => {
             <br />
             conducted
           </p>
-          <div style={circle}>2</div>
+          <div style={circle}>{conducted}</div>
         </div>
         <div style={box}>
           <p>
@@ -60,7 +60,7 @@ const Stats = () => {
             <br />
             attended
           </p>
-          <div style={circle}>2</div>
+          <div style={circle}>0</div>
         </div>
       </div>
     </div>

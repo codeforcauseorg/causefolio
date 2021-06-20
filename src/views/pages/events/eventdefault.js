@@ -37,7 +37,6 @@ export default function EventDefaultPage() {
   const handleClick = () => {
     history.push('/createEvent');
   };
-  const [eventsConducted, setEventsConducted] = useState(null);
   const [eventsAttended] = useState(0);
   const [loading, setLoading] = useState(true);
 
@@ -79,11 +78,10 @@ export default function EventDefaultPage() {
               {userEvents.length > 0 && (
                 <UserUpcomingEvents
                   userEvents={userEvents}
-                  setEventsConducted={setEventsConducted}
                 />
               )}
               <UserEventStats
-                conducted={eventsConducted}
+                conducted={userEvents.length}
                 attended={eventsAttended}
               />
             </Grid>

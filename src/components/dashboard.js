@@ -46,7 +46,7 @@ export default function Dashboard() {
           <Box display="flex">
             <Box flexGrow={1}>
               {userEvents.length > 0 && <Calendar userEvents={userEvents} />}
-              <Stats />
+              <Stats conducted={userEvents.length} />
               <BookmarkedEvents />
             </Box>
             <Box maxWidth="28em" minWidth="24em">

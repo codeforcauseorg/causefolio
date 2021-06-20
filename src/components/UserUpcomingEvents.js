@@ -58,12 +58,8 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-function UserUpcomingEvents({ userEvents, setEventsConducted }) {
+function UserUpcomingEvents({ userEvents }) {
   const classes = useStyles();
-
-  if (userEvents.length > 0) {
-    setEventsConducted(userEvents.length);
-  }
 
   return (
     <Card className={classes.root}>
