@@ -8,6 +8,7 @@ import HomeView from 'src/views/pages/HomeView';
 import Error404View from 'src/views/pages/Error404View';
 import Profile from 'src/components/Profile';
 import EventDefaultPage from 'src/views/pages/events/eventdefault';
+import Firebasecurd from "src/firebase/Firebasecurd"
 import IndividualEvent from './views/pages/events/individualEvent';
 import Register from './views/pages/register/Register';
 import CreateNewEvent from './components/CreateNewEvent';
@@ -30,6 +31,7 @@ const renderRoutes = () => (
       <Route path="/dashboard" exact render={() => <Navigation />} />
       <Route path="/profile" exact render={() => <Profile />} />
       <Route path="/events" exact render={() => <EventDefaultPage />} />
+      <Route path="/firebase" exact render={() => <Firebasecurd/>} />
       <Route path="/landing" exact render={() => <LandingPage />} />
       <Route path="/events/:eventID" exact render={() => <IndividualEvent />} />
       <Route path="/createEvent" exact render={() => <CreateNewEvent />} />

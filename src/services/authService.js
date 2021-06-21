@@ -13,7 +13,6 @@ class AuthService {
     messagingSenderId: '58409560329',
     appId: '1:58409560329:web:60ffc3c128d3b155a18bd8',
     measurementId: 'G-49RJ8QM95E'
-    // ...
   };
 
   // Configure FirebaseUI.
