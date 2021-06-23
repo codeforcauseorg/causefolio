@@ -20,7 +20,7 @@ function HomeView() {
   const classes = useStyles();
 
   return (
-    <Page className={classes.root} title="Code for Cause">
+    <Page id="cfc" className={classes.root} title="CauseFolio">
       <Hero className={classes.hero} />
       <Footer />
     </Page>

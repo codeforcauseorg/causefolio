@@ -156,7 +156,7 @@ function Hero({ className, ...rest }) {
                         size="large"
                         variant="contained"
                       >
-                        Check out
+                        Login and Create Profile
                       </Button>
                     </Box>
                   </Grid>

@@ -11,13 +11,14 @@ import {
   AppBar
 } from '@material-ui/core';
 import TopBar from 'src/layouts/MainLayout/TopBar';
+import HomeView from '.';
+import { HashLink } from 'react-router-hash-link';
 
 const useStyles = makeStyles(theme => ({
   root: {
     backgroundColor: '#FFF',
-    height: '90vh',
+    height: '100vh',
     color: '#000',
-
     overflow: 'hidden',
     [theme.breakpoints.down('md')]: {
       paddingTop: 0,
@@ -38,10 +39,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     '& > img': {
       maxWidth: '100%',
-
       backfaceVisibility: 'hidden'
-      // boxShadow: theme.shadows[16]
-      // transform: 'rotateY(-35deg) rotateX(15deg)'
     },
     [theme.breakpoints.down('sm')]: {
       maxWidth: '40vh'
@@ -52,11 +50,13 @@ const useStyles = makeStyles(theme => ({
   },
   Button: {
     textTransform: 'capitalize'
-    // padding :
   },
   container: {
     paddingTop: '10vh',
     margin: '0 5px',
+    [theme.breakpoints.down('md')]: {
+      minHeight: '87%'
+    },
     [theme.breakpoints.down('sm')]: {
       margin: '0',
       paddingTop: '2vh',
@@ -67,8 +67,6 @@ const useStyles = makeStyles(theme => ({
   },
   footer: {
     padding: 0,
-    objectFit: 'cover',
-    position: 'fixed',
     left: 0,
     bottom: 0,
     height: '30vh',
@@ -81,100 +79,105 @@ const useStyles = makeStyles(theme => ({
 function LandingPage({ className, ...rest }) {
   const classes = useStyles();
   return (
-    <div>
-      <AppBar>
-        <TopBar variant="black" />
-      </AppBar>
-      <div className={clsx(classes.root, className)} {...rest}>
-        <Grid
-          container
-          spacing={2}
-          className={classes.container}
-          direction="row"
-          justify="center"
-          alignItems="center"
-        >
+    <>
+      <div>
+        <AppBar>
+          <TopBar variant="black" />
+        </AppBar>
+        <div className={clsx(classes.root, className)} {...rest}>
           <Grid
-            item
-            xs={12}
-            sm={6}
-            style={{ height: '80%' }}
+            container
+            spacing={2}
+            className={classes.container}
             direction="row"
             justify="center"
             alignItems="center"
           >
-            <Box
-              style={{
-                display: 'flex',
-                justifyContent: 'center'
-              }}
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              style={{ height: '80%' }}
+              direction="row"
+              justify="center"
+              alignItems="center"
             >
               <Box
-                display="flex"
-                style={{ justifyContent: 'center', flexDirection: 'column' }}
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center'
+                }}
               >
-                <Box mt={10} display="flex">
-                  <Typography variant="h1" style={{ fontWeight: '700' }}>
-                    A Heading for the
-                    <br /> Landing Page
-                  </Typography>
-                </Box>
-                <Box mt={3} display="flex">
-                  <Typography variant="h6">
-                    A brief introduction about platform , what is the purpose of
-                    thisand what our
-                    <br /> platform representstwo to three lines will work
-                  </Typography>
-                </Box>
-                <Box mt={3} display="flex">
-                  <Button
-                    style={{
-                      backgroundColor: '#ffffff',
-                      color: '#B20000',
-                      textTransform: 'capitalize',
-                      fontWeight: 700,
-                      borderRadius: '20px'
-                    }}
-                    component="a"
-                    href="/register"
-                    size="large"
-                    variant="contained"
-                  >
-                    Get Started <ArrowForwardOutlinedIcon />
-                  </Button>
+                <Box
+                  display="flex"
+                  style={{ justifyContent: 'center', flexDirection: 'column' }}
+                >
+                  <Box mt={10} display="flex">
+                    <Typography variant="h1" style={{ fontWeight: '700' }}>
+                      CauseFolio
+                      <br /> Where Leaders Live
+                    </Typography>
+                  </Box>
+                  <Box mt={3} display="flex">
+                    <Typography variant="h6">
+                      A community driven event management platform where
+                      <br /> community leaders showcase their real portfolio
+                    </Typography>
+                  </Box>
+                  <Box mt={3} display="flex">
+                    <HashLink smooth to="#cfc">
+                      <Button
+                        style={{
+                          backgroundColor: '#ffffff',
+                          color: '#B20000',
+                          textTransform: 'capitalize',
+                          fontWeight: 700,
+                          borderRadius: '20px'
+                        }}
+                        size="large"
+                        variant="contained"
+                      >
+                        Know More <ArrowForwardOutlinedIcon />
+                      </Button>
+                    </HashLink>
+                  </Box>
                 </Box>
               </Box>
-            </Box>
+            </Grid>
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              style={{ display: 'flex', justifyContent: 'center' }}
+            >
+              <div className={classes.image}>
+                <img
+                  alt="codeforcauseimg"
+                  src="/static/home/serviceGirl.png"
+                  style={{ width: '55vh' }}
+                />
+              </div>
+            </Grid>
           </Grid>
-          <Grid
-            item
-            xs={12}
-            sm={6}
-            style={{ display: 'flex', justifyContent: 'center' }}
-          >
-            <div className={classes.image}>
+
+          <Grid container xs={12} sm={12}>
+            <Grid item className={classes.footer}>
               <img
                 alt="codeforcauseimg"
-                src="/static/home/serviceGirl.png"
-                style={{ width: '55vh' }}
+                src="/static/home/Footer.svg"
+                style={{
+                  width: '100vw'
+                }}
               />
-            </div>
+            </Grid>
           </Grid>
-        </Grid>
-
-        <Grid container xs={12} sm={12}>
-          <Grid item className={classes.footer}>
-            <img
-              alt="codeforcauseimg"
-              src="/static/home/Footer.svg"
-              style={{
-                width: '100vw'
-              }}
-            />
-          </Grid>
-        </Grid>
+        </div>
       </div>
-    </div>
+      <div
+        style={{ height: '20vh', width: '100%', backgroundColor: '#291755' }}
+      ></div>
+      <HomeView />
+    </>
   );
 }
 
