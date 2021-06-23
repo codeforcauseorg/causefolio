@@ -87,7 +87,7 @@ function Badge() {
             alt="badge"
             height="60px"
           />
-          <Typography className={classes.badgesText}>Super Blogger</Typography>
+          <Typography className={classes.badgesText}>Beginner</Typography>
         </Grid>
         <Grid item>
           <img
@@ -95,9 +95,9 @@ function Badge() {
             alt="badge"
             height="60px"
           />
-          <Typography className={classes.badgesText}>GitHub Hero</Typography>
+          <Typography className={classes.badgesText}>Ambassador</Typography>
         </Grid>
-        <Grid item>
+        {/* <Grid item>
           <img
             src="./static/images/icons/star_blue.svg"
             alt="badge"
@@ -112,7 +112,7 @@ function Badge() {
             height="60px"
           />
           <Typography className={classes.badgesText}>Organizer</Typography>
-        </Grid>
+        </Grid> */}
       </Grid>
       <div className={classes.buttonContainer}>
         <Button variant="contained" className={classes.button}>

@@ -91,7 +91,7 @@ function UserUpcomingEvents({ userEvents }) {
                 style={{ backgroundColor: 'white' }}
                 className={classes.button}
               >
-                {event.speakers.map(speaker => speaker.speakerName)}
+                {event.totalAttendees} Attendees
               </Button>
             </Grid>
           </Grid>

@@ -250,6 +250,7 @@ function CreateNewEvent() {
     formData.createdBy = userId;
     formData.bannerImg = imageURL;
     formData.createdOn = new Date().toLocaleString();
+    formData.totalAttendees = 0;
     const db = firebase.firestore();
     const ref = db.collection('events');
 
