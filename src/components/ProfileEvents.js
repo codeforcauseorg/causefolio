@@ -61,9 +61,16 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-function ProfileEvents() {
+function ProfileEvents({ userEvents }) {
   const classes = useStyles();
   useEffect(() => {}, []);
+
+  const handleClick = link => {
+    if (link.length <= 0) return;
+    const win = window.open(`${link}`, '_blank');
+    win.focus();
+  };
+
   return (
     <Card className={classes.root}>
       <Grid container>
@@ -74,62 +81,37 @@ function ProfileEvents() {
         </Grid>
       </Grid>
       <Grid container className={classes.event}>
-        <Grid className={classes.eventText}>
-          <img
-            style={{ borderRadius: '8px' }}
-            src="./static/images/icons/prof_event.png"
-            alt="event"
-          />
-          <Grid className={classes.eventInfo}>
-            <Typography variant="h5">Intro to Open Source</Typography>
-            <Typography variant="subtitle2" className={classes.eventDate}>
-              16 Jan 2021 (2 days left)
-              <br />
-              100+ RSVPs
-            </Typography>
-            <Button
-              variant="contained"
-              style={{ backgroundColor: '#291755' }}
-              className={classes.eventButton}
-            >
-              <img
-                src="./static/images/icons/event_calendar_w.svg"
-                alt="rsvp"
-                height="12px"
-                style={{ marginRight: '6px' }}
-              />
-              RSVP
-            </Button>
+        {userEvents?.map(event => (
+          <Grid className={classes.eventText}>
+            <img
+              style={{ borderRadius: '8px', width: '74px', height: '71px' }}
+              src={event.bannerImg}
+              alt="event"
+            />
+            <Grid className={classes.eventInfo}>
+              <Typography variant="h5">{event.eventName}</Typography>
+              <Typography variant="subtitle2" className={classes.eventDate}>
+                {event.date}
+                <br />
+                {event.totalAttendees} RSVPs
+              </Typography>
+              <Button
+                variant="contained"
+                style={{ backgroundColor: '#291755' }}
+                className={classes.eventButton}
+                onClick={() => handleClick(`${event.eventLink}`)}
+              >
+                <img
+                  src="./static/images/icons/event_calendar_w.svg"
+                  alt="rsvp"
+                  height="12px"
+                  style={{ marginRight: '6px' }}
+                />
+                RSVP
+              </Button>
+            </Grid>
           </Grid>
-        </Grid>
-        <Grid className={classes.eventText}>
-          <img
-            style={{ borderRadius: '8px' }}
-            src="./static/images/icons/prof_event.png"
-            alt="event"
-          />
-          <Grid className={classes.eventInfo}>
-            <Typography variant="h5">Git & GitHub Basics</Typography>
-            <Typography variant="subtitle2" className={classes.eventDate}>
-              10 Jan 2021
-              <br />
-              300+ views
-            </Typography>
-            <Button
-              variant="contained"
-              style={{ backgroundColor: '#291755' }}
-              className={classes.eventButton}
-            >
-              <img
-                src="./static/images/icons/play_rec.png"
-                alt="watch recording"
-                height="12px"
-                style={{ marginRight: '6px' }}
-              />
-              WATCH RECORDING
-            </Button>
-          </Grid>
-        </Grid>
+        ))}
       </Grid>
     </Card>
   );

@@ -5,7 +5,7 @@ import { firebase } from 'src/services/authService';
 import { useSelector } from 'react-redux';
 import Badge from './Badge';
 import ProfileInfo from './ProfileInfo';
-import ProfilePublications from './ProfilePublications';
+// import ProfilePublications from './ProfilePublications';
 import ProfileEvents from './ProfileEvents';
 import CommitChart from './CommitChart';
 import ProjectsCarousel from './ProjectsCarousel';
@@ -15,6 +15,7 @@ import Loader from './Loader';
 export default function Profile() {
   const user = useSelector(state => state.account.user);
   const [myProfile, setMyProfile] = useState(null);
+  const [userEvents, setUserEvents] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -23,6 +24,15 @@ export default function Profile() {
       const db = firebase.firestore();
 
       const docRef = db.collection('users').doc(userId);
+
+      // For getting user's upcoming events
+      db.collection('events')
+        .where('createdBy', '==', `${userId}`)
+        .limit(2)
+        .get()
+        .then(userEventCollection => {
+          setUserEvents(userEventCollection.docs.map(doc => doc.data()));
+        });
 
       docRef
         .get()
@@ -61,10 +71,12 @@ export default function Profile() {
           </Grid>
           <Grid container>
             <Grid xs={12} sm={6}>
-              <ProfileEvents />
+              {userEvents.length > 0 && (
+                <ProfileEvents userEvents={userEvents} />
+              )}
             </Grid>
             <Grid xs={12} sm={6}>
-              <ProfilePublications />
+              {/* <ProfilePublications /> */}
             </Grid>
           </Grid>
           <ProjectsCarousel />
