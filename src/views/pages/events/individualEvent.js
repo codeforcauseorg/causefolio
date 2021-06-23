@@ -1,13 +1,24 @@
-import { Avatar, Box, Button, Grid, Typography } from '@material-ui/core';
+import {
+  Avatar,
+  Box,
+  Button,
+  Grid,
+  Typography,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  useMediaQuery
+} from '@material-ui/core';
 // import Avatar from '@material-ui/core/Avatar';
 import AvatarGroup from '@material-ui/lab/AvatarGroup';
 import { makeStyles } from '@material-ui/styles';
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router';
-import NewEvents from 'src/components/NewEvents';
 import DrawerLayout from 'src/layouts/DrawerLayout';
 import { firebase } from 'src/services/authService';
+import { useTheme } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -57,6 +68,13 @@ const useStyles = makeStyles(theme => ({
     marginTop: 12,
     marginBottom: 16
   },
+  attending: {
+    width: '160px',
+    backgroundColor: '#576886',
+    borderRadius: '20px',
+    marginTop: 12,
+    marginBottom: 16
+  },
   desc: {
     marginTop: '10px',
     marginBottom: '10px',
@@ -96,11 +114,21 @@ export default function IndividualEvent() {
     const fetchUserEvent = async () => {
       if (user === undefined || eventID === undefined) return;
 
+      const userId = user.uid;
       const db = firebase.firestore();
       const userEvent = await db
         .collection('events')
         .doc(eventID)
         .get();
+
+      // To check if user already attending the event
+      const userRef = await db.collection('users').doc(userId);
+      userRef.get().then(doc => {
+        if (doc.exists) {
+          let data = doc.data();
+          setAttending(data.attending.includes(`${eventID}`));
+        }
+      });
 
       // 404
       if (!userEvent.exists) {
@@ -112,8 +140,62 @@ export default function IndividualEvent() {
     fetchUserEvent();
   }, [user, eventID, history]);
 
+  // For Attending
+  const [open, setOpen] = useState(false);
+  const [attending, setAttending] = useState(false);
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleAttending = async () => {
+    if (user === undefined || eventID === undefined) return;
+
+    const userID = user.uid;
+
+    const increment = firebase.firestore.FieldValue.increment(1);
+    const db = firebase.firestore();
+    const eventRef = await db.collection('events').doc(eventID);
+    const userRef = await db.collection('users').doc(userID);
+
+    eventRef.update({ totalAttendees: increment }).then(() => {
+      userRef.update({
+        attending: firebase.firestore.FieldValue.arrayUnion(eventID)
+      });
+      setAttending(true);
+      setOpen(false);
+    });
+  };
+
   return (
     <DrawerLayout>
+      <Dialog
+        fullScreen={fullScreen}
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="responsive-dialog-title"
+      >
+        <DialogContent>
+          <DialogContentText>
+            Are you sure that you want to attend this event?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button autoFocus onClick={handleClose} color="primary">
+            No
+          </Button>
+          <Button onClick={handleAttending} color="primary" autoFocus>
+            Yes
+          </Button>
+        </DialogActions>
+      </Dialog>
+
       <Box display="flex">
         <Box flexGrow={1} minWidth="0">
           <div className={classes.root}>
@@ -133,11 +215,22 @@ export default function IndividualEvent() {
                 <Typography className={classes.introduction} variant="h1">
                   {event?.eventName}
                 </Typography>
-                <Button href={event?.eventLink} className={classes.register}>
-                  <Typography style={{ color: '#fff', fontWeight: 'bold' }}>
-                    Register
-                  </Typography>
-                </Button>
+                <Grid item style={{ display: 'flex', gap: '10px' }}>
+                  <Button href={event?.eventLink} className={classes.register}>
+                    <Typography style={{ color: '#fff', fontWeight: 'bold' }}>
+                      Register
+                    </Typography>
+                  </Button>
+                  <Button
+                    onClick={handleClickOpen}
+                    className={attending ? classes.attending : classes.register}
+                    disabled={attending}
+                  >
+                    <Typography style={{ color: '#fff', fontWeight: 'bold' }}>
+                      {attending ? 'Attending' : 'Attend'}
+                    </Typography>
+                  </Button>
+                </Grid>
               </Grid>
 
               <Grid container>
@@ -205,12 +298,6 @@ export default function IndividualEvent() {
             </Grid>
           </div>
         </Box>
-
-        <div className={classes.hidden}>
-          <Box maxWidth="28em" minWidth="24em">
-            <NewEvents />
-          </Box>
-        </div>
       </Box>
     </DrawerLayout>
   );
