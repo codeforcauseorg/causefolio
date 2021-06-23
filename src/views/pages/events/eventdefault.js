@@ -37,7 +37,7 @@ export default function EventDefaultPage() {
   const handleClick = () => {
     history.push('/createEvent');
   };
-  const [eventsAttended] = useState(0);
+  const [eventsAttended, setEventsAttended] = useState(0);
   const [loading, setLoading] = useState(true);
 
   const [userEvents, setUserEvents] = useState([]);
@@ -49,6 +49,19 @@ export default function EventDefaultPage() {
 
       const userId = user.uid;
       const db = firebase.firestore();
+
+      // For getting the user's total attending events
+      db.collection('users')
+        .doc(userId)
+        .get()
+        .then(doc => {
+          if (doc.exists) {
+            let data = doc.data();
+            setEventsAttended(data.attending.length);
+          }
+        });
+
+      // For getting user's upcoming events
       db.collection('events')
         .where('createdBy', '==', `${userId}`)
         .get()
