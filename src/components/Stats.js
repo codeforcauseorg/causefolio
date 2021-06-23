@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Stats = ({ conducted }) => {
+const Stats = ({ conducted, attending }) => {
   const heading = {
     color: '#291755',
     marginBottom: '10px'
@@ -60,7 +60,7 @@ const Stats = ({ conducted }) => {
             <br />
             attended
           </p>
-          <div style={circle}>0</div>
+          <div style={circle}>{attending}</div>
         </div>
       </div>
     </div>

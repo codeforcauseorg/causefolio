@@ -8,7 +8,7 @@ import BookmarkedEvents from './BookmarkedEvents';
 import Calendar from './Calendar';
 import Loader from './Loader';
 import NewEvents from './NewEvents';
-import Publications from './Publications';
+// import Publications from './Publications';
 import Stats from './Stats';
 
 const useStyles = makeStyles(theme => ({
@@ -23,6 +23,7 @@ export default function Dashboard() {
   const user = useSelector(state => state.account.user);
   const [userEvents, setUserEvents] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [attending, setAttending] = useState(0);
 
   useEffect(() => {
     const fetchUserEvents = async () => {
@@ -33,6 +34,14 @@ export default function Dashboard() {
         .collection('events')
         .where('createdBy', '==', `${userId}`)
         .get();
+
+      const userRef = await db.collection('users').doc(userId);
+      userRef.get().then(doc => {
+        if (doc.exists) {
+          let data = doc.data();
+          setAttending(data.attending.length);
+        }
+      });
 
       setUserEvents(
         userEventCollection.docs.map(doc => doc.data()),
@@ -49,12 +58,12 @@ export default function Dashboard() {
           <Box display="flex">
             <Box flexGrow={1}>
               {userEvents.length > 0 && <Calendar userEvents={userEvents} />}
-              <Stats conducted={userEvents.length} />
+              <Stats conducted={userEvents.length} attending={attending} />
               <BookmarkedEvents />
             </Box>
             <Box maxWidth="28em" minWidth="24em">
               <NewEvents />
-              <Publications />
+              {/* <Publications /> */}
             </Box>
           </Box>
         </main>
