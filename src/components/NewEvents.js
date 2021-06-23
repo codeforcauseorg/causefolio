@@ -109,8 +109,8 @@ function NewEvents() {
       </Grid>
       <Grid container className={classes.event}>
         {attendingEvent.length > 0 &&
-          attendingEvent.map(event => (
-            <Grid className={classes.eventText}>
+          attendingEvent.map((event, idx) => (
+            <Grid key={idx} className={classes.eventText}>
               <img
                 style={{ borderRadius: '8px', width: '74px', height: '71px' }}
                 src={event.bannerImg}

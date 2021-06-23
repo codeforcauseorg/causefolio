@@ -81,8 +81,8 @@ function ProfileEvents({ userEvents }) {
         </Grid>
       </Grid>
       <Grid container className={classes.event}>
-        {userEvents?.map(event => (
-          <Grid className={classes.eventText}>
+        {userEvents?.map((event, idx) => (
+          <Grid key={idx} className={classes.eventText}>
             <img
               style={{ borderRadius: '8px', width: '74px', height: '71px' }}
               src={event.bannerImg}
