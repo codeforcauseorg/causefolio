@@ -13,6 +13,7 @@ One stop destination for showcasing the community you have built.
   - [Setup local repo](#setup-repo)
   - [Setup Firebase credentials](#setup-firebase)
   - [Setup remote](#setup-remote)
+  - [Update fork repo](#update-repo)
   - [Run app](#run-app)
   - [Build app](#build-app)
 - [Contributing and PR](#contributing)
@@ -104,6 +105,28 @@ upstream        https://github.com/codeforcauseorg/causefolio.git (push)
 ```
 
 Your application setup is successfully completed!
+
+<a id="update-repo"></a>
+
+### 6. Update Fork Repo From Original Repo (Optional)
+
+0. Follow these steps if you are done with <b>Setup Remote</b> ✅.
+1. Update your local Master to be in synch with the original repo.
+
+```console
+
+$ git pull upstream <name_of_branch>
+
+```
+
+2. Update the forked repo master by pushing the local repo up.
+
+```console
+
+$ git push origin <name_of_branch>
+
+```
+
 <a id="run-app"></a>
 
 ### Running the app
@@ -117,7 +140,7 @@ $ npm run start
 
 ### Build Setup
 
-- After doing changes, Run the command `npm run build` to build the app for production to the `build` folder.
+- After doing changes, run the command `npm run build` to build the app for production to the `build` folder.
 
 ```bash
 # build for production
@@ -130,7 +153,7 @@ npm run build
 
 - PRs should be generated against `development`.
 - Remember to run `npm run format` before creating pull request.
-- Netlify willl create a preview inside pull request, Please check if your work is fine.
+- Netlify will create a preview inside pull request. Please check if your work is fine.
 
 <a id="projectstructure"></a>
 
@@ -156,24 +179,8 @@ npm run build
 
 <a id="contributors"></a>
 
-## Contributors✨
+## Thanks to all the contributors ❤️
 
-<table>
-<tr>
-<td align="center"><a href="https://github.com/kunal-kushwaha"><img src="https://avatars.githubusercontent.com/u/42698533?s=100" width="100px;" alt="" /><br /><sub><b>Kunal Kushwaha</b></sub></a><br /><p>Project Head</p></td>
-
-<td align="center"><a href="https://github.com/Abhishek-kumar09"><img src="https://avatars.githubusercontent.com/Abhishek-kumar09?s=100" width="100px;" alt="" /><br /><sub><b>Abhishek Kumar</b></sub></a><br /><p>Maintainer</p></td>
-
-<td align="center"><a href="https://github.com/SHITIZ-AGGARWAL"><img src="https://avatars.githubusercontent.com/SHITIZ-AGGARWAL?s=100" width="100px;" alt="" /><br /><sub><b>Shitiz Aggarwal</b></sub></a><br /><p>Designer, Frontend</p></td>
-
-<td align="center"><a href="https://github.com/mindninjaX"><img src="https://avatars.githubusercontent.com/mindninjaX?s=100" width="100px;" alt="" /><br /><sub><b>Rishabh Singh</b></sub></a><br /><p>UI/UX Designer</p></td>
-<td align="center"><a href="https://github.com/zeborg"><img src="https://avatars.githubusercontent.com/zeborg?s=100" width="100px;" alt="" /><br /><sub><b>Abhinav Sinha</b></sub></a><br /><p>UI/UX & Frontend</p></td>
-<td align="center"><a href="https://github.com/AdityaTeltia"><img src="https://avatars.githubusercontent.com/AdityaTeltia?s=100" width="100px;" alt="" /><br /><sub><b>Aditya Teltia</b></sub></a><br /><p>Contributor</p></td>
-<td align="center"><a href="https://github.com/mdPial"><img src="https://avatars.githubusercontent.com/mdPial?s=100" width="100px;" alt="" /><br /><sub><b>Md. Pial Ahamed</b></sub></a><br /><p>Contributor</p></td>
-</tr>
-
-<tr>
-<td align="center"><a href="https://github.com/rizwan2000rm"><img src="https://avatars.githubusercontent.com/rizwan2000rm?s=100" width="100px;" alt="" /><br /><sub><b>Rizwan Memon</b></sub></a><br /><p>Contributor</p></td>
-
-</tr>
-</table>
+<a href = "https://github.com/codeforcauseorg/causefolio/graphs/contributors">
+  <img src = "https://contrib.rocks/image?repo=codeforcauseorg/causefolio"/>
+</a>

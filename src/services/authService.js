@@ -8,7 +8,11 @@ class AuthService {
   config = {
     apiKey: 'AIzaSyBogaqI7q74Wml7AD90VVm_89o1cgFFQCo',
     authDomain: 'code-for-cause-leaders.firebaseapp.com',
-    projectId: 'code-for-cause-leaders'
+    projectId: 'code-for-cause-leaders',
+    storageBucket: 'code-for-cause-leaders.appspot.com',
+    messagingSenderId: '58409560329',
+    appId: '1:58409560329:web:60ffc3c128d3b155a18bd8',
+    measurementId: 'G-49RJ8QM95E'
     // ...
   };
 
@@ -53,16 +57,11 @@ class AuthService {
   }
 
   login = () => {
-    this.keycloak
-      .init()
-      .then(authenticated => {
-        if (!authenticated) {
-          this.keycloak.login();
-        }
-      })
-      .catch(function(e) {
-        console.log(e);
-      });
+    this.keycloak.init().then(authenticated => {
+      if (!authenticated) {
+        this.keycloak.login();
+      }
+    });
   };
 
   loginInWithToken = () =>
@@ -88,7 +87,6 @@ class AuthService {
 
   setSession = accessToken => {
     if (accessToken) {
-      console.log(accessToken);
       localStorage.setItem('accessToken', accessToken);
       axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
     } else {
@@ -116,3 +114,4 @@ class AuthService {
 const authService = new AuthService();
 
 export default authService;
+export { firebase };

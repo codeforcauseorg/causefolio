@@ -76,7 +76,7 @@ function NewEvents() {
         <Grid className={classes.eventText}>
           <img
             style={{ borderRadius: '8px' }}
-            src="./static/images/icons/event.svg"
+            src=".././static/images/icons/event.svg"
             alt="event"
           />
           <Grid className={classes.eventInfo}>
@@ -92,7 +92,7 @@ function NewEvents() {
               className={classes.rsvp}
             >
               <img
-                src="./static/images/icons/event_calendar.svg"
+                src=".././static/images/icons/event_calendar.svg"
                 alt="rsvp"
                 height="12px"
                 style={{ marginRight: '6px' }}
@@ -104,8 +104,8 @@ function NewEvents() {
         <Grid className={classes.eventText}>
           <img
             style={{ borderRadius: '8px' }}
-            src="./static/images/icons/event.svg"
-            alt="publication"
+            src=".././static/images/icons/event.svg"
+            alt="event"
           />
           <Grid className={classes.eventInfo}>
             <Typography variant="h5">Intro to Open Source</Typography>
@@ -120,7 +120,7 @@ function NewEvents() {
               className={classes.rsvp}
             >
               <img
-                src="./static/images/icons/event_calendar.svg"
+                src=".././static/images/icons/event_calendar.svg"
                 alt="rsvp"
                 height="12px"
                 style={{ marginRight: '6px' }}
@@ -132,8 +132,8 @@ function NewEvents() {
         <Grid className={classes.eventText}>
           <img
             style={{ borderRadius: '8px' }}
-            src="./static/images/icons/event.svg"
-            alt="publication"
+            src=".././static/images/icons/event.svg"
+            alt="event"
           />
           <Grid className={classes.eventInfo}>
             <Typography variant="h5">Intro to Open Source</Typography>
@@ -148,7 +148,7 @@ function NewEvents() {
               className={classes.rsvp}
             >
               <img
-                src="./static/images/icons/event_calendar.svg"
+                src=".././static/images/icons/event_calendar.svg"
                 alt="rsvp"
                 height="12px"
                 style={{ marginRight: '6px' }}

@@ -11,8 +11,6 @@ import {
   makeStyles
 } from '@material-ui/core';
 import Logo from 'src/components/Logo';
-import Item from './Item';
-import Account from './Account';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import CloseIcon from '@material-ui/icons/Close';
@@ -20,6 +18,8 @@ import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import { HashLink as Link } from 'react-router-hash-link';
+import Account from './Account';
+import Item from './Item';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -51,7 +51,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function TopBar({ className, onMobileNavOpen, ...rest }) {
+function TopBar({ className, /*onMobileNavOpen,*/ variant, ...rest }) {
   const classes = useStyles();
   const [state, setState] = React.useState({
     top: false,
@@ -60,11 +60,22 @@ function TopBar({ className, onMobileNavOpen, ...rest }) {
     right: false
   });
 
-  const pathname = window.location.pathname;
+  const { pathname } = window.location;
 
   const navItems = [
     // { title: 'Team', link: '/team' }
   ];
+
+  const toggleDrawer = (anchor, open) => event => {
+    if (
+      event.type === 'keydown' &&
+      (event.key === 'Tab' || event.key === 'Shift')
+    ) {
+      return;
+    }
+
+    setState({ ...state, [anchor]: open });
+  };
 
   const list = () => (
     <div
@@ -113,27 +124,17 @@ function TopBar({ className, onMobileNavOpen, ...rest }) {
     </div>
   );
 
-  const toggleDrawer = (anchor, open) => event => {
-    if (
-      event.type === 'keydown' &&
-      (event.key === 'Tab' || event.key === 'Shift')
-    ) {
-      return;
-    }
-
-    setState({ ...state, [anchor]: open });
-  };
-
   return (
-    <AppBar className={clsx(classes.root, className)} {...rest}>
+    <AppBar elevation={0} className={clsx(classes.root, className)} {...rest}>
       <Toolbar className={classes.toolbar}>
         <RouterLink to="/">
-          <Logo className={classes.logo} />
+          <Logo className={classes.logo} variant={variant} />
         </RouterLink>
         <Hidden smDown>
           <Box ml={2} flexGrow={1} />
-          {navItems.map((item, index) => (
+          {navItems.map(item => (
             <Item
+              key={item.title}
               active={item.link === pathname}
               title={item.title}
               link={item.link}
@@ -164,9 +165,9 @@ function TopBar({ className, onMobileNavOpen, ...rest }) {
             </IconButton>
           </Box>
           <Drawer
-            width={'100%'}
+            width="100%"
             anchor="right"
-            open={state['right']}
+            open={state.right}
             onClose={toggleDrawer('right', false)}
           >
             {headerMoblie()}
