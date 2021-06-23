@@ -124,6 +124,7 @@ function Register() {
   const handleRegister = e => {
     e.preventDefault();
     const userId = user.uid;
+    fieldValue.attending = [];
     const db = firebase.firestore();
 
     db.collection('users')
