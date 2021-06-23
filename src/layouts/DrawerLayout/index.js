@@ -144,9 +144,9 @@ export default function DrawerLayout({ children }) {
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar style={myStyles}>
           <Logo1 />
-          <Typography variant="h6" noWrap>
+          {/* <Typography variant="h6" noWrap>
             User Name
-          </Typography>
+          </Typography> */}
           <Hidden mdUp>
             <IconButton size="small" onClick={handleToggle}>
               <MenuIcon />
