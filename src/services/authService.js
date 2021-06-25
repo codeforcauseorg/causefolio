@@ -2,6 +2,7 @@ import jwtDecode from 'jwt-decode';
 import axios from 'src/utils/axios';
 
 import firebase from 'firebase';
+require('firebase/auth');
 
 class AuthService {
   // Configure Firebase.
@@ -115,3 +116,9 @@ const authService = new AuthService();
 
 export default authService;
 export { firebase };
+
+export const signInWithGoogle = () => {
+  const provider = new firebase.auth.GoogleAuthProvider();
+  provider.setCustomParameters({ prompt: 'select_account' });
+  return firebase.auth().signInWithPopup(provider);
+};
