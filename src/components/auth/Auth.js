@@ -15,6 +15,16 @@ function Auth({ children }) {
 
       authService.handleAuthentication();
       authService.firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+          const userItems = JSON.stringify({
+            displayName: user.displayName,
+            photoURL: user.photoURL,
+            uid: user.uid
+          });
+          localStorage.setItem('causefolioUser', userItems);
+        } else {
+          localStorage.setItem('causefolioUser', user);
+        }
         dispatch(setUserData(user));
         user.getIdToken().then(token => {
           authService.setSession(token);

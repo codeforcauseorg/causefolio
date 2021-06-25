@@ -122,3 +122,7 @@ export const signInWithGoogle = () => {
   provider.setCustomParameters({ prompt: 'select_account' });
   return firebase.auth().signInWithPopup(provider);
 };
+
+export const getLoggedUser = () => {
+  return JSON.parse(localStorage.getItem('causefolioUser'));
+};
