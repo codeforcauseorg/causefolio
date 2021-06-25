@@ -25,6 +25,7 @@ import {
 import MenuIcon from '@material-ui/icons/Menu';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import { faBloggerB } from '@fortawesome/free-brands-svg-icons';
+import { useSelector } from 'react-redux';
 const drawerWidth = 300;
 
 const useStyles = makeStyles(theme => ({
@@ -120,6 +121,7 @@ const useStyles = makeStyles(theme => ({
 }));
 export default function DrawerLayout({ children }) {
   const classes = useStyles();
+  const user = useSelector(state => state.account.user);
   const history = useHistory();
   const [toggle, setToggle] = useState(false);
   const myStyles = {
@@ -168,11 +170,11 @@ export default function DrawerLayout({ children }) {
               <Avatar
                 className={classes.idavatar}
                 alt="ProfileIcon"
-                src="./static/profile/icons/icons.png"
+                src={user?.photoURL}
               />
               <div style={{ display: 'block', marginLeft: '10px' }}>
                 <Typography style={{ fontSize: '18px', fontWeight: '600' }}>
-                  John Doe
+                  {user?.displayName}
                 </Typography>
                 <div style={{ display: 'flex' }}>
                   <Typography variant="subtitle1" className={classes.idtext}>
