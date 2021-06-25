@@ -12,12 +12,14 @@ import CreateNewEvent from './components/CreateNewEvent';
 import Settings from './views/pages/settings/Settings';
 import LandingPage from './views/pages/HomeView/LandingPage';
 import AuthGuard from './components/auth/AuthGuard';
+import LoginPage from 'src/views/pages/login';
 
 const renderRoutes = () => (
   <Suspense fallback={<LoadingScreen />}>
     <Switch>
       <Route path="/" exact render={() => <LandingPage />} />
       <Route path="/register" exact render={() => <Register />} />
+      <Route path="/login" exact render={() => <LoginPage />} />
       <Route
         path="/dashboard"
         exact

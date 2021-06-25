@@ -7,7 +7,7 @@ function AuthGuard({ children }) {
   const user = getLoggedUser();
 
   if (!user) {
-    return <Redirect to="/" />;
+    return <Redirect to="/login" />;
   }
 
   return children;
