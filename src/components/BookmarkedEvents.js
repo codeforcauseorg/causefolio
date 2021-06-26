@@ -43,6 +43,13 @@ const useStyles = makeStyles(() => ({
     marginRight: '16px',
     marginBottom: '16px'
   },
+  eventHeading: {
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    display: '-webkit-box',
+    WebkitLineClamp: 2,
+    WebkitBoxOrient: 'vertical'
+  },
   checkOut: {
     borderRadius: '16px',
     marginTop: '21px',
@@ -123,7 +130,11 @@ function BookmarkedEvents() {
                 justify="center"
                 direction="column"
               >
-                <Typography variant="h5" style={{ marginBottom: '14px' }}>
+                <Typography
+                  className={classes.eventHeading}
+                  variant="h5"
+                  style={{ marginBottom: '14px' }}
+                >
                   {event.eventName}
                 </Typography>
                 <div style={{ display: 'inline-block', margin: '0 auto' }}>
@@ -135,9 +146,13 @@ function BookmarkedEvents() {
                   </Typography>
                 </div>
                 <Button
-                  style={{ backgroundColor: 'white' }}
                   className={classes.checkOut}
                   href={`/events/${eventID[idx]}`}
+                  style={
+                    event?.eventName.length <= 11
+                      ? { marginTop: '21px', backgroundColor: 'white' }
+                      : { marginTop: '1px', backgroundColor: 'white' }
+                  }
                 >
                   CHECK OUT
                 </Button>
