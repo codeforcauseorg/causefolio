@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
@@ -9,19 +9,25 @@ import {
   Grid,
   Hidden,
   Typography,
-  makeStyles
+  makeStyles,
+  Dialog
 } from '@material-ui/core';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
+import { firebase } from 'src/services/authService';
+import Login from '../../../components/Login';
+import { login, dismissLogin } from 'src/actions/accountActions';
 
 const useStyles = makeStyles(theme => ({
   root: {
     backgroundColor: '#291755',
-    paddingTop: 80,
+    paddingTop: 30,
     paddingBottom: 60,
     color: '#FFFFFF',
     paddingLeft: 60,
     paddingRight: 60,
 
-    height: '90.3vh',
+    height: 'auto',
     [theme.breakpoints.down('md')]: {
       paddingTop: 15,
       paddingBottom: 15
@@ -64,21 +70,65 @@ const useStyles = makeStyles(theme => ({
 
 function Hero({ className, ...rest }) {
   const classes = useStyles();
+  const user = useSelector(state => state.account.user);
+  const loginFlag = useSelector(state => state.account.login);
+  const [text, setText] = useState('');
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (user === null || user === undefined) {
+      setText('Login and Create Profile');
+      return;
+    }
+    // setText("Go to Dashboard")
+    const userId = user.uid;
+    const db = firebase.firestore();
+
+    db.collection('users')
+      .doc(userId)
+      .get()
+      .then(doc => {
+        if (doc.exists) {
+          setText('Go To Dashboard');
+        } else {
+          setText('Register');
+        }
+      });
+  }, [user]);
+
+  const handleClick = () => {
+    if (user !== null && user !== undefined) {
+      if (text === 'Go To Dashboard') {
+        history.push('/dashboard');
+      }
+      if (text === 'Register') {
+        history.push('/register');
+      }
+    } else {
+      dispatch(login());
+    }
+  };
+
+  const handleClose = () => {
+    dispatch(dismissLogin());
+  };
+
   return (
     <div className={clsx(classes.root, className)} {...rest}>
+      <Dialog
+        maxWidth
+        open={!user && !!loginFlag}
+        onClose={handleClose}
+        aria-labelledby="form-dialog-title"
+        className={classes.dialog}
+      >
+        <Login handleClose={handleClose} />
+      </Dialog>
       <Container
         maxWidth="lg"
         style={{ padding: '40px 0px 0px', position: 'relative' }}
       >
-        {/* <img
-          src="/static/home/blob.svg"
-          alt="blob"
-          style={{
-            position: 'absolute',
-            top: '-20%',
-            left: '-20%'
-          }}
-        /> */}
         <Hidden mdDown>
           <Grid
             item
@@ -150,23 +200,25 @@ function Hero({ className, ...rest }) {
               <Box mt={2} mb={3}>
                 <Grid container>
                   <Grid item xs={12} md={12}>
-                    <Typography variant="h1" color="secondary"></Typography>
+                    <Typography variant="h1" color="secondary" />
                     <Box>
-                      <Button
-                        style={{
-                          backgroundColor: '#ffffff',
-                          color: '#B20000',
-                          textTransform: 'capitalize',
-                          fontWeight: 700,
-                          borderRadius: '20px'
-                        }}
-                        component="a"
-                        href="/register"
-                        size="large"
-                        variant="contained"
-                      >
-                        Check out
-                      </Button>
+                      {text.length > 0 && (
+                        <Button
+                          style={{
+                            backgroundColor: '#ffffff',
+                            color: '#B20000',
+                            textTransform: 'capitalize',
+                            fontWeight: 700,
+                            borderRadius: '20px'
+                          }}
+                          component="a"
+                          onClick={handleClick}
+                          size="large"
+                          variant="contained"
+                        >
+                          {text}
+                        </Button>
+                      )}
                     </Box>
                   </Grid>
                 </Grid>

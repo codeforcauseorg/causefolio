@@ -101,9 +101,9 @@ function CommitChart() {
   const classes = useStyles();
   const now = new Date();
 
-  var days = [];
+  const days = [];
 
-  for (var i = 29; i >= 0; i--) {
+  for (let i = 29; i >= 0; i--) {
     const y = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(
       now - i * 86400000
     );

@@ -58,7 +58,7 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-function UserUpcomingEvents() {
+function UserUpcomingEvents({ userEvents }) {
   const classes = useStyles();
 
   return (
@@ -70,74 +70,33 @@ function UserUpcomingEvents() {
           </Typography>
         </Grid>
       </Grid>
-      <Grid container className={classes.event}>
-        <Grid className={classes.eventText}>
-          <img
-            style={{ borderRadius: '8px' }}
-            src=".././static/images/icons/event.svg"
-            alt="event"
-          />
-          <Grid className={classes.eventInfo}>
-            <Typography variant="h5">Intro to Open Source</Typography>
-            <div style={{ display: 'flex' }}>
-              <Typography variant="subtitle2" className={classes.eventDate}>
-                16 Jan 2021 (2 days left)
-              </Typography>
-            </div>
-            <Button
-              variant="contained"
-              style={{ backgroundColor: 'white' }}
-              className={classes.button}
-            >
-              30 Registrations
-            </Button>
+      {userEvents.map((event, idx) => (
+        <Grid container key={idx} className={classes.event}>
+          <Grid className={classes.eventText}>
+            <img
+              style={{ borderRadius: '8px', width: '74px', height: '71px' }}
+              src={event.bannerImg}
+              alt="event"
+            />
+            <Grid className={classes.eventInfo}>
+              <Typography variant="h5">{event.eventName}</Typography>
+              <div style={{ display: 'flex' }}>
+                <Typography variant="subtitle2" className={classes.eventDate}>
+                  {event.date}
+                  {`, Time: (${event.time})`}
+                </Typography>
+              </div>
+              <Button
+                variant="contained"
+                style={{ backgroundColor: 'white' }}
+                className={classes.button}
+              >
+                {event.totalAttendees} Attendees
+              </Button>
+            </Grid>
           </Grid>
         </Grid>
-        <Grid className={classes.eventText}>
-          <img
-            style={{ borderRadius: '8px' }}
-            src=".././static/images/icons/event.svg"
-            alt="event"
-          />
-          <Grid className={classes.eventInfo}>
-            <Typography variant="h5">Intro to Open Source</Typography>
-            <div style={{ display: 'flex' }}>
-              <Typography variant="subtitle2" className={classes.eventDate}>
-                16 Jan 2021 (2 days left)
-              </Typography>
-            </div>
-            <Button
-              variant="contained"
-              style={{ backgroundColor: 'white' }}
-              className={classes.button}
-            >
-              300 Registrations
-            </Button>
-          </Grid>
-        </Grid>
-        <Grid className={classes.eventText}>
-          <img
-            style={{ borderRadius: '8px' }}
-            src=".././static/images/icons/event.svg"
-            alt="event"
-          />
-          <Grid className={classes.eventInfo}>
-            <Typography variant="h5">Intro to Open Source</Typography>
-            <div style={{ display: 'flex' }}>
-              <Typography variant="subtitle2" className={classes.eventDate}>
-                16 Jan 2021 (2 days left)
-              </Typography>
-            </div>
-            <Button
-              variant="contained"
-              style={{ backgroundColor: 'white' }}
-              className={classes.button}
-            >
-              300 Registrations
-            </Button>
-          </Grid>
-        </Grid>
-      </Grid>
+      ))}
     </Card>
   );
 }

@@ -44,7 +44,7 @@ const useStyles = makeStyles(theme => ({
     width: '200px',
     height: '38px',
     borderRadius: '20px',
-    marginRight: '15px',
+    marginRight: '15px'
   },
   createbtn: {
     marginTop: '60px',
@@ -60,7 +60,7 @@ const useStyles = makeStyles(theme => ({
     width: '200px',
     height: '38px',
     borderRadius: '20px',
-    marginRight: '60px',
+    marginRight: '60px'
   },
   inputDiv: {
     background: 'rgba(42, 23, 89, 0.25)',
@@ -197,7 +197,7 @@ const useStyles = makeStyles(theme => ({
 
 function CreateNewEvent() {
   const classes = useStyles();
-  let history = useHistory();
+  const history = useHistory();
   const user = useSelector(state => state.account.user);
   const [speaker, setSpeaker] = useState([{}]);
   const [imageURL, setImageURL] = useState('');
@@ -211,14 +211,14 @@ function CreateNewEvent() {
   const [formData, setFormData] = useState(initialFieldValues);
 
   const handleChange = e => {
-    let { name, value } = e.target;
+    const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
   const handleSpeakerChange = e => {
-    let { id, name, value } = e.target;
-    let s = [...speaker];
-    s[parseInt(id)][name] = value;
+    const { id, name, value } = e.target;
+    const s = [...speaker];
+    s[parseInt(id, 10)][name] = value;
     setSpeaker(s);
   };
 
@@ -232,37 +232,33 @@ function CreateNewEvent() {
   };
 
   const onDrop = async picture => {
-    if (picture.length === 0) return;
+    if (picture.length === 0 || user === null || user === undefined) return;
     // For the Loader
     setImageURL(null);
-    let userId = user.uid;
-    let file = picture[0];
-    let storageRef = firebase.storage().ref();
-    let fileRef = storageRef.child(`${userId}/${file.name}`);
+    const userId = user.uid;
+    const file = picture[0];
+    const storageRef = firebase.storage().ref();
+    const fileRef = storageRef.child(`${userId}/${file.name}`);
     await fileRef.put(file);
     setImageURL(await fileRef.getDownloadURL());
   };
 
   const handleSubmit = () => {
-    let userId = user.uid;
+    if (user === null || user === undefined) return;
+    const userId = user.uid;
     formData.speakers = speaker;
     formData.createdBy = userId;
     formData.bannerImg = imageURL;
+    formData.createdOn = new Date().toLocaleString();
+    formData.totalAttendees = 0;
+    const db = firebase.firestore();
+    const ref = db.collection('events');
 
-    let db = firebase.firestore();
-    let ref = db.collection('events');
-
-    ref
-      .add(formData)
-      .then(() => {
-        console.log('Document written');
-        setFormData(initialFieldValues);
-        setSpeaker([{}]);
-        history.push('/events/individual-event');
-      })
-      .catch(error => {
-        console.error('Error adding document: ', error);
-      });
+    ref.add(formData).then(docRef => {
+      setFormData(initialFieldValues);
+      setSpeaker([{}]);
+      history.push(`/events/${docRef.id}`);
+    });
   };
 
   return (
@@ -342,7 +338,7 @@ function CreateNewEvent() {
                   onChange={handleChange}
                 />
                 {speaker.map((item, idx) => (
-                  <fieldset className={classes.socialLinks}>
+                  <fieldset key={idx} className={classes.socialLinks}>
                     <InputBase
                       className={classes.social}
                       fullWidth
@@ -389,7 +385,7 @@ function CreateNewEvent() {
           </Box>
           <Box maxWidth="28em" minWidth="24em" className={classes.paddingRight}>
             <ImageUploader
-              withIcon={true}
+              withIcon
               buttonText="Choose image"
               onChange={onDrop}
               withPreview={imageURL !== null}

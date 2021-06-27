@@ -110,7 +110,7 @@ const useStyles = makeStyles(theme => ({
 function Register() {
   const classes = useStyles();
   const user = useSelector(state => state.account.user);
-  let history = useHistory();
+  const history = useHistory();
 
   const initialFieldValues = {
     fullName: '',
@@ -125,24 +125,20 @@ function Register() {
   const [fieldValue, setFieldValue] = useState(initialFieldValues);
 
   const handleInputChange = e => {
-    let { name, value } = e.target;
+    const { name, value } = e.target;
     setFieldValue({ ...fieldValue, [name]: value });
   };
 
   const handleRegister = e => {
     e.preventDefault();
-    let userId = user.uid;
-    var db = firebase.firestore();
+    const userId = user.uid;
+    fieldValue.attending = [];
+    const db = firebase.firestore();
 
     db.collection('users')
       .doc(userId)
-      .set(fieldValue)
-      .then(() => {
-        console.log('Document written');
-      })
-      .catch(error => {
-        console.error('Error adding document: ', error);
-      });
+      .set(fieldValue);
+
     setFieldValue(initialFieldValues);
     history.push('/profile');
   };

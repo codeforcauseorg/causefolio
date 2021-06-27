@@ -105,7 +105,7 @@ const AntSwitch = withStyles(theme => ({
 
 function ProfileInfo({ myProfile }) {
   const classes = useStyles();
-  let interestedInArr = myProfile.interestedIn.split(',');
+  const interestedInArr = myProfile.interestedIn.split(',');
 
   return (
     <Grid container className={classes.root}>
@@ -191,9 +191,9 @@ function ProfileInfo({ myProfile }) {
             </Typography>
             {interestedInArr
               .filter(e => String(e).trim())
-              .map(tagName => {
-                return <Chip className={classes.tags} label={tagName} />;
-              })}
+              .map(tagName => (
+                <Chip key={tagName} className={classes.tags} label={tagName} />
+              ))}
           </Box>
         </Box>
       </Card>

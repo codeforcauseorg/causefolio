@@ -1,6 +1,6 @@
 // mentors data----------------
 
-export const members = {
+export default members = {
   anuj: {
     name: 'Anuj Garg',
     position: 'Instructor',

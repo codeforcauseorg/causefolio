@@ -25,7 +25,7 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-const HeaderItem = ({ title, link, active }) => {
+const HeaderItem = ({ link, active }) => {
   const classes = useStyles();
   return (
     <Box ml={2}>

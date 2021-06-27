@@ -63,7 +63,7 @@ function Badge() {
   const [numberOfBadgesUnlocked, setNumberOFBadgeUnlocked] = useState(0);
 
   useEffect(() => {
-    //for demo purpose set to 6
+    // for demo purpose set to 6
     setNumberOFBadgeUnlocked(6);
   }, []);
 
@@ -86,23 +86,23 @@ function Badge() {
             src="./static/images/icons/star_yellow.svg"
             alt="badge"
             height="60px"
-          ></img>
-          <Typography className={classes.badgesText}>Super Blogger</Typography>
+          />
+          <Typography className={classes.badgesText}>Beginner</Typography>
         </Grid>
         <Grid item>
           <img
             src="./static/images/icons/star_orange.svg"
             alt="badge"
             height="60px"
-          ></img>
-          <Typography className={classes.badgesText}>GitHub Hero</Typography>
+          />
+          <Typography className={classes.badgesText}>Ambassador</Typography>
         </Grid>
-        <Grid item>
+        {/* <Grid item>
           <img
             src="./static/images/icons/star_blue.svg"
             alt="badge"
             height="60px"
-          ></img>
+          />
           <Typography className={classes.badgesText}>I am Famous</Typography>
         </Grid>
         <Grid item>
@@ -110,9 +110,9 @@ function Badge() {
             src="./static/images/icons/star_yellow.svg"
             alt="badge"
             height="60px"
-          ></img>
+          />
           <Typography className={classes.badgesText}>Organizer</Typography>
-        </Grid>
+        </Grid> */}
       </Grid>
       <div className={classes.buttonContainer}>
         <Button variant="contained" className={classes.button}>

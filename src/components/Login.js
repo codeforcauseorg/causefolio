@@ -8,9 +8,10 @@ import {
   Divider,
   Checkbox,
   Button,
-  Grid
+  Grid,
+  Avatar
 } from '@material-ui/core';
-import auth from '../services/authService';
+import auth, { signInWithGoogle } from '../services/authService';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -61,7 +62,7 @@ const useStyles = makeStyles(theme => ({
   divider: {
     width: '308px',
     height: '2px',
-    marginTop: '45px',
+    marginTop: '20px',
     borderRadius: '25px',
     backgroundColor: '#291757'
   },
@@ -77,7 +78,7 @@ const useStyles = makeStyles(theme => ({
   },
   button: {
     marginLeft: '246px',
-    marginTop: '40px',
+    marginTop: '5px',
     width: '100px',
     height: '28px',
     borderRadius: '20px',
@@ -90,6 +91,31 @@ const useStyles = makeStyles(theme => ({
       marginTop: '29px',
       marginLeft: '215px'
     }
+  },
+  googleBtn: {
+    textTransform: 'none',
+    fontSize: '13px',
+    display: 'flex',
+    borderRadius: '20px',
+    alignItems: 'center',
+    boxShadow: theme.shadows[3],
+    backgroundColor: '#291757',
+    color: theme.palette.primary.contrastText,
+    transition: 'background-color 0.5s',
+    padding: '7px 30px',
+    '&:hover': {
+      backgroundColor: theme.palette.primary.dark,
+      transition: 'background-color 0.5s',
+      cursor: 'pointer'
+    }
+  },
+  avatar: {
+    width: '20px',
+    height: '20px'
+  },
+  text: {
+    flexGrow: 1,
+    textAlign: 'center'
   },
   cross: {
     width: '12px',
@@ -115,17 +141,11 @@ export default function Login({ handleClose }) {
 
   const handleLogin = () => {
     const { email, password } = loginCredentials;
-    auth
-      .signInWithEmailAndPassword(email, password)
-      .then(result => {
-        console.log(result.user);
-        return result.user.updateProfile({
-          displayName: 'Dummy Name'
-        });
+    auth.signInWithEmailAndPassword(email, password).then(result =>
+      result.user.updateProfile({
+        displayName: 'Dummy Name'
       })
-      .catch(e => {
-        console.log('error on signin', e);
-      });
+    );
   };
 
   const handleChange = event => {
@@ -135,14 +155,21 @@ export default function Login({ handleClose }) {
     });
   };
 
+  const handleSignInWithGoogle = () => {
+    signInWithGoogle().catch(e => {
+      console.log(e);
+    });
+  };
+
   return (
     <Card className={classes.root}>
       <Grid container>
         <img
           src="/static/images/icons/cross.svg"
           className={classes.cross}
-          onClick={handleClose}
           alt="cross icon"
+          onClick={handleClose}
+          role="presentation"
         />
         <Grid item xs={12} sm={6}>
           <CardMedia
@@ -182,6 +209,30 @@ export default function Login({ handleClose }) {
               variant="outlined"
               onChange={handleChange}
             />
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                paddingRight: '90px'
+              }}
+            >
+              <Typography style={{ color: '#291757', fontWeight: 'bold' }}>
+                OR
+              </Typography>
+              <Button
+                className={classes.googleBtn}
+                onClick={() => handleSignInWithGoogle()}
+              >
+                <Avatar
+                  src="../static/images/google-logo.png"
+                  className={classes.avatar}
+                />
+                <Typography component="p" variant="h6" className={classes.text}>
+                  Login with Google
+                </Typography>
+              </Button>
+            </div>
             <Divider className={classes.divider} />
             <div className={classes.bottomPart}>
               <Checkbox className={classes.checkbox} />

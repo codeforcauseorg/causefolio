@@ -1,5 +1,4 @@
 /* eslint-disable no-console */
-/* eslint-disable import/prefer-default-export */
 import _ from 'lodash';
 import { colors, createMuiTheme, responsiveFontSizes } from '@material-ui/core';
 import typography from './typography';
@@ -52,7 +51,7 @@ const themeConfigs = [
     palette: {
       type: 'light',
       action: {
-        active: colors.blueGrey[600] //small icons
+        active: colors.blueGrey[600] // small icons
       },
       background: {
         default: colors.common.white,

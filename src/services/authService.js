@@ -2,6 +2,7 @@ import jwtDecode from 'jwt-decode';
 import axios from 'src/utils/axios';
 
 import firebase from 'firebase';
+require('firebase/auth');
 
 class AuthService {
   // Configure Firebase.
@@ -15,6 +16,7 @@ class AuthService {
     measurementId: 'G-49RJ8QM95E'
     // ...
   };
+
   // Configure FirebaseUI.
   uiConfig = {
     // Popup signin flow rather than redirect flow.
@@ -56,16 +58,11 @@ class AuthService {
   }
 
   login = () => {
-    this.keycloak
-      .init()
-      .then(authenticated => {
-        if (!authenticated) {
-          this.keycloak.login();
-        }
-      })
-      .catch(function(e) {
-        console.log(e);
-      });
+    this.keycloak.init().then(authenticated => {
+      if (!authenticated) {
+        this.keycloak.login();
+      }
+    });
   };
 
   loginInWithToken = () =>
@@ -119,3 +116,13 @@ const authService = new AuthService();
 
 export default authService;
 export { firebase };
+
+export const signInWithGoogle = () => {
+  const provider = new firebase.auth.GoogleAuthProvider();
+  provider.setCustomParameters({ prompt: 'select_account' });
+  return firebase.auth().signInWithPopup(provider);
+};
+
+export const getLoggedUser = () => {
+  return JSON.parse(localStorage.getItem('causefolioUser'));
+};

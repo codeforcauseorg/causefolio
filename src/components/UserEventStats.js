@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box } from '@material-ui/core';
 
-const UserEventStats = props => {
+const UserEventStats = ({ conducted, attended }) => {
   const box = {
     display: 'flex',
     height: '80px',
@@ -46,7 +46,7 @@ const UserEventStats = props => {
           <br />
           conducted
         </p>
-        <div style={circle}>{props.conducted}</div>
+        <div style={circle}>{conducted}</div>
       </Box>
       <Box style={box}>
         <p>
@@ -54,7 +54,7 @@ const UserEventStats = props => {
           <br />
           attended
         </p>
-        <div style={circle}>{props.attended}</div>
+        <div style={circle}>{attended}</div>
       </Box>
     </Box>
   );

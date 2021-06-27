@@ -1,6 +1,6 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+
 import PersonIcon from '@material-ui/icons/Person';
 
 import {
@@ -18,7 +18,7 @@ import {
 import { login, dismissLogin, logout } from 'src/actions/accountActions';
 import Login from 'src/components/Login';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
   button: {
     minWidth: '120px'
   },
@@ -35,6 +35,10 @@ function Account() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const dispatch = useDispatch();
   const classes = useStyles();
+
+  const handleCloseMenu = () => {
+    setAnchorEl(null);
+  };
 
   const handleLogout = () => {
     handleCloseMenu();
@@ -54,14 +58,10 @@ function Account() {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleCloseMenu = () => {
-    setAnchorEl(null);
-  };
-
   const truncate = input => {
     const first = input.split(' ')[0];
     if (first.length > 13) {
-      return first.substring(0, 10) + '...';
+      return `${first.substring(0, 10)}...`;
     }
     return first;
   };
@@ -171,7 +171,11 @@ function Account() {
             style={{
               backgroundColor: 'rgb(255, 255, 255, 0.95)',
               fontWeight: 500
-            }} onClick={handleLogout}>Logout</MenuItem>
+            }}
+            onClick={handleLogout}
+          >
+            Logout
+          </MenuItem>
         </Menu>
       </div>
     </div>

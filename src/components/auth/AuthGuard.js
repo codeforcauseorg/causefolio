@@ -1,12 +1,12 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { getLoggedUser } from 'src/services/authService';
 
 function AuthGuard({ children }) {
-  const account = useSelector(state => state.account);
+  const user = getLoggedUser();
 
-  if (!account.user) {
+  if (!user) {
     return <Redirect to="/login" />;
   }
 

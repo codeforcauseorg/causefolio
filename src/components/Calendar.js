@@ -66,7 +66,7 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-function Calendar() {
+function Calendar({ userEvents }) {
   const [monthNameIndex, setMonthNameIndex] = useState();
   const [year, setYear] = useState();
   const [firstRow, setFirstRow] = useState([]);
@@ -75,6 +75,7 @@ function Calendar() {
   const [fourthRow, setFourthRow] = useState([]);
   const [fifthRow, setFifthRow] = useState([]);
   const now = new Date();
+
   const monthsName = [
     'January',
     'February',
@@ -96,13 +97,35 @@ function Calendar() {
     0
   ).getDate();
   let currentDate = 0;
+
+  // For fetching the current month events
+
+  const [numberObj, setNumberObj] = useState({});
+  let currYear = now.getFullYear();
+  let currMonth = now.getMonth() + 1;
+
+  useEffect(() => {
+    if (userEvents.length > 0) {
+      userEvents.forEach(event => {
+        let newDate = event.date
+          .split('-')
+          .map(d => parseInt(d))
+          .join('/');
+        let eYear = newDate.split('/')[0];
+        let eMonth = newDate.split('/')[1];
+        if (`${eYear}/${eMonth}` === `${currYear}/${currMonth}`) {
+          setNumberObj(prevObj => ({
+            ...prevObj,
+            [parseInt(event.date.slice(-2))]: true
+          }));
+        }
+      });
+    }
+  }, [userEvents, currYear, currMonth]);
+
   //  for demo purpose this events variable is created
   const events = {
-    [now.getMonth()]: {
-      5: true,
-      19: true,
-      24: true
-    }
+    [now.getMonth()]: numberObj
   };
   const getFirstRow = () => {
     const dates = [];
@@ -191,8 +214,8 @@ function Calendar() {
         </div>
       </div>
       <Grid container className={classes.grid}>
-        {daysName.map(day => (
-          <Grid item>
+        {daysName.map((day, idx) => (
+          <Grid key={idx} item>
             <Typography
               display="inline"
               variant="subtitle1"
@@ -205,8 +228,8 @@ function Calendar() {
         ))}
       </Grid>
       <Grid container className={classes.grid}>
-        {firstRow.map(date => (
-          <Grid item>
+        {firstRow.map((date, idx) => (
+          <Grid key={idx} item>
             <Typography
               display="inline"
               variant="subtitle1"
@@ -224,8 +247,8 @@ function Calendar() {
         ))}
       </Grid>
       <Grid container className={classes.grid}>
-        {secondRow.map(date => (
-          <Grid item>
+        {secondRow.map((date, idx) => (
+          <Grid key={idx} item>
             <Typography
               display="inline"
               variant="subtitle1"
@@ -240,8 +263,8 @@ function Calendar() {
         ))}
       </Grid>
       <Grid container className={classes.grid}>
-        {thirdRow.map(date => (
-          <Grid item>
+        {thirdRow.map((date, idx) => (
+          <Grid key={idx} item>
             <Typography
               display="inline"
               variant="subtitle1"
@@ -256,8 +279,8 @@ function Calendar() {
         ))}
       </Grid>
       <Grid container className={classes.grid}>
-        {fourthRow.map(date => (
-          <Grid item>
+        {fourthRow.map((date, idx) => (
+          <Grid key={idx} item>
             <Typography
               display="inline"
               variant="subtitle1"
@@ -272,8 +295,8 @@ function Calendar() {
         ))}
       </Grid>
       <Grid container className={classes.grid}>
-        {fifthRow.map(date => (
-          <Grid item>
+        {fifthRow.map((date, idx) => (
+          <Grid key={idx} item>
             <Typography
               display="inline"
               variant="subtitle1"
