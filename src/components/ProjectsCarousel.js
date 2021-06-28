@@ -114,27 +114,27 @@ const ProjectCard = () => {
           <Grid container style={{ padding: '2px' }}>
             <img
               className={classes.ratingStar}
-              src="./static/images/icons/rating_star_red.svg"
+              src=".././static/images/icons/rating_star_red.svg"
               alt="rating"
             />
             <img
               className={classes.ratingStar}
-              src="./static/images/icons/rating_star_red.svg"
+              src=".././static/images/icons/rating_star_red.svg"
               alt="rating"
             />
             <img
               className={classes.ratingStar}
-              src="./static/images/icons/rating_star_red.svg"
+              src=".././static/images/icons/rating_star_red.svg"
               alt="rating"
             />
             <img
               className={classes.ratingStar}
-              src="./static/images/icons/rating_star_red.svg"
+              src=".././static/images/icons/rating_star_red.svg"
               alt="rating"
             />
             <img
               className={classes.ratingStar}
-              src="./static/images/icons/rating_star_white.svg"
+              src=".././static/images/icons/rating_star_white.svg"
               alt="rating"
             />
           </Grid>
@@ -144,14 +144,14 @@ const ProjectCard = () => {
           </Typography>
           <Grid container style={{ padding: '5px', alignItems: 'center' }}>
             <div style={{ display: 'flex', marginRight: '10px' }}>
-              <img src="./static/images/avatar-1.png" alt="contributor" />
+              <img src=".././static/images/avatar-1.png" alt="contributor" />
               <img
-                src="./static/images/avatar-2.png"
+                src=".././static/images/avatar-2.png"
                 style={{ marginLeft: '-15px' }}
                 alt="contributor"
               />
               <img
-                src="./static/images/avatar-3.png"
+                src=".././static/images/avatar-3.png"
                 style={{ marginLeft: '-15px' }}
                 alt="contributor"
               />
@@ -165,7 +165,7 @@ const ProjectCard = () => {
             <Grid>
               <Button variant="outlined" className={classes.starButton}>
                 <img
-                  src="./static/images/icons/star_button.svg"
+                  src=".././static/images/icons/star_button.svg"
                   style={{ marginRight: '5px' }}
                   alt="star"
                 />
@@ -178,7 +178,7 @@ const ProjectCard = () => {
                 style={{ backgroundColor: '#291757' }}
               >
                 <img
-                  src="./static/images/icons/fork_button.svg"
+                  src=".././static/images/icons/fork_button.svg"
                   style={{ marginRight: '5px' }}
                   alt="fork"
                 />

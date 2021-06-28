@@ -103,7 +103,7 @@ const AntSwitch = withStyles(theme => ({
   checked: {}
 }))(Switch);
 
-function ProfileInfo({ myProfile }) {
+function ProfileInfo({ myProfile, profileType }) {
   const classes = useStyles();
   const interestedInArr = myProfile.interestedIn.split(',');
 
@@ -112,23 +112,24 @@ function ProfileInfo({ myProfile }) {
       <Box>
         <Avatar
           alt="ProfileIcon"
-          src="./static/profile/icons/icons.png"
+          src=".././static/profile/icons/icons.png"
           className={classes.medium}
         />
       </Box>
 
-      <Box
-        display="flex"
-        justifyContent="flex-end"
-        style={{ position: 'absolute', right: '60px', paddingTop: '50px' }}
-      >
-        <Typography variant="h2" className={classes.publictext}>
-          Public View
-        </Typography>
+      {profileType === 'private' && (
+        <Box
+          display="flex"
+          justifyContent="flex-end"
+          style={{ position: 'absolute', right: '60px', paddingTop: '50px' }}
+        >
+          <Typography variant="h2" className={classes.publictext}>
+            Public View
+          </Typography>
 
-        <AntSwitch />
-      </Box>
-
+          <AntSwitch />
+        </Box>
+      )}
       <Card className={classes.cards}>
         <Box display="flex" justifyContent="flex-end">
           <Box flexGrow={1} />
@@ -137,28 +138,28 @@ function ProfileInfo({ myProfile }) {
               <img
                 className={classes.tiny}
                 alt="LinkedIn"
-                src="./static/profile/icons/Vector.png"
+                src=".././static/profile/icons/Vector.png"
               />
             </IconButton>
             <IconButton href={myProfile.twitter}>
               <img
                 className={classes.tiny}
                 alt="Twitter"
-                src="./static/profile/icons/Vector-1.png"
+                src=".././static/profile/icons/Vector-1.png"
               />
             </IconButton>
             <IconButton href={myProfile.github}>
               <img
                 className={classes.tiny}
                 alt="GitHub"
-                src="./static/profile/icons/Vector-3.png"
+                src=".././static/profile/icons/Vector-3.png"
               />
             </IconButton>
             <IconButton href={myProfile.website}>
               <img
                 className={classes.tiny}
                 alt="Website"
-                src="./static/profile/icons/Vector-2.png"
+                src=".././static/profile/icons/Vector-2.png"
               />
             </IconButton>
           </Box>
@@ -191,8 +192,8 @@ function ProfileInfo({ myProfile }) {
             </Typography>
             {interestedInArr
               .filter(e => String(e).trim())
-              .map(tagName => (
-                <Chip key={tagName} className={classes.tags} label={tagName} />
+              .map((tagName, idx) => (
+                <Chip key={idx} className={classes.tags} label={tagName} />
               ))}
           </Box>
         </Box>
