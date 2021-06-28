@@ -17,6 +17,7 @@ export default function Profile() {
   const [myProfile, setMyProfile] = useState(null);
   const [userEvents, setUserEvents] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [profileType] = useState('private');
 
   useEffect(() => {
     if (user !== undefined && user !== null) {
@@ -56,7 +57,7 @@ export default function Profile() {
         <>
           <Grid>
             {myProfile !== null ? (
-              <ProfileInfo myProfile={myProfile} />
+              <ProfileInfo myProfile={myProfile} profileType={profileType} />
             ) : (
               <>No Data</>
             )}
