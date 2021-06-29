@@ -50,6 +50,7 @@
     "change-case": "^4.1.1",
     "chart.js": "^2.9.3",
     "clsx": "^1.1.0",
+    "copy-to-clipboard": "^3.3.1",
     "date-fns": "^2.22.1",
     "firebase": "^8.6.7",
     "history": "^4.10.1",
