@@ -134,7 +134,11 @@ function ProfileInfo({ myProfile, profileType }) {
         <Box>
           <Avatar
             alt="ProfileIcon"
-            src=".././static/profile/icons/icons.png"
+            src={
+              myProfile.photoURL.length > 0
+                ? myProfile.photoURL
+                : '.././static/profile/icons/icons.png'
+            }
             className={classes.medium}
           />
         </Box>
