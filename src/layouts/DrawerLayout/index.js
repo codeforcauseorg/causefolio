@@ -91,7 +91,7 @@ const useStyles = makeStyles(theme => ({
     color: 'white',
     fontWeight: '600',
     fontSize: '12px',
-    marginRight: '5px'
+    marginRight: '4px'
   },
   iduser: {
     display: 'flex',
@@ -179,10 +179,10 @@ export default function DrawerLayout({ children }) {
                 <div style={{ display: 'flex' }}>
                   <Typography variant="subtitle1" className={classes.idtext}>
                     ID
+                    <b>:</b>
                   </Typography>
                   <Typography variant="subtitle1" className={classes.iduser}>
-                    <b>:</b>
-                    &ensp;10294DEW83A
+                    {user?.uid}
                   </Typography>
                 </div>
               </div>

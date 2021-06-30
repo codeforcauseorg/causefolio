@@ -13,6 +13,7 @@ import Settings from './views/pages/settings/Settings';
 import LandingPage from './views/pages/HomeView/LandingPage';
 import AuthGuard from './components/auth/AuthGuard';
 import LoginPage from 'src/views/pages/login';
+import PublicProfile from 'src/components/PublicProfile';
 
 const renderRoutes = () => (
   <Suspense fallback={<LoadingScreen />}>
@@ -37,6 +38,11 @@ const renderRoutes = () => (
             <Profile />
           </AuthGuard>
         )}
+      />
+      <Route
+        path="/publicProfile/:userID"
+        exact
+        render={() => <PublicProfile />}
       />
       <Route path="/events" exact render={() => <EventDefaultPage />} />
       <Route

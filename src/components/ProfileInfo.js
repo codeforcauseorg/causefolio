@@ -10,7 +10,10 @@ import {
   Box,
   Chip
 } from '@material-ui/core';
-
+import { useState } from 'react';
+import copy from 'copy-to-clipboard';
+import { SnackbarProvider, useSnackbar } from 'notistack';
+import { useSelector } from 'react-redux';
 const useStyles = makeStyles(theme => ({
   root: {
     fontFamily: 'Montserrat',
@@ -103,100 +106,125 @@ const AntSwitch = withStyles(theme => ({
   checked: {}
 }))(Switch);
 
-function ProfileInfo({ myProfile }) {
+function ProfileInfo({ myProfile, profileType }) {
   const classes = useStyles();
   const interestedInArr = myProfile.interestedIn.split(',');
+  const [copyText, setCopyText] = useState(true);
+  const { enqueueSnackbar } = useSnackbar();
+  const user = useSelector(state => state.account.user);
+
+  const handleClick = () => {
+    let variant = 'success';
+    let publicUrl =
+      window.location.protocol +
+      '//' +
+      window.location.host +
+      '/publicProfile/' +
+      user.uid;
+    if (copyText) {
+      copy(publicUrl);
+      enqueueSnackbar('Your Public Profile Link Is Copied!🥳', { variant });
+    }
+    setCopyText(!copyText);
+  };
 
   return (
     <Grid container className={classes.root}>
-      <Box>
-        <Avatar
-          alt="ProfileIcon"
-          src="./static/profile/icons/icons.png"
-          className={classes.medium}
-        />
-      </Box>
-
-      <Box
-        display="flex"
-        justifyContent="flex-end"
-        style={{ position: 'absolute', right: '60px', paddingTop: '50px' }}
-      >
-        <Typography variant="h2" className={classes.publictext}>
-          Public View
-        </Typography>
-
-        <AntSwitch />
-      </Box>
-
-      <Card className={classes.cards}>
-        <Box display="flex" justifyContent="flex-end">
-          <Box flexGrow={1} />
-          <Box xs={12} sm={8}>
-            <IconButton href={myProfile.linkedIn}>
-              <img
-                className={classes.tiny}
-                alt="LinkedIn"
-                src="./static/profile/icons/Vector.png"
-              />
-            </IconButton>
-            <IconButton href={myProfile.twitter}>
-              <img
-                className={classes.tiny}
-                alt="Twitter"
-                src="./static/profile/icons/Vector-1.png"
-              />
-            </IconButton>
-            <IconButton href={myProfile.github}>
-              <img
-                className={classes.tiny}
-                alt="GitHub"
-                src="./static/profile/icons/Vector-3.png"
-              />
-            </IconButton>
-            <IconButton href={myProfile.website}>
-              <img
-                className={classes.tiny}
-                alt="Website"
-                src="./static/profile/icons/Vector-2.png"
-              />
-            </IconButton>
-          </Box>
+      <SnackbarProvider maxSnack={3}>
+        <Box>
+          <Avatar
+            alt="ProfileIcon"
+            src={
+              myProfile.photoURL.length > 0
+                ? myProfile.photoURL
+                : '.././static/profile/icons/icons.png'
+            }
+            className={classes.medium}
+          />
         </Box>
 
-        <Box
-          display="flex"
-          flexWrap="wrap"
-          style={{ paddingLeft: '60px', paddingTop: '10px' }}
-        >
-          <Box flexGrow={1} minWidth={200}>
-            <Typography variant="h1" style={{ fontWeight: '650' }}>
-              {myProfile.fullName}
-            </Typography>
-            <Typography variant="body2" style={{ fontWeight: '650' }}>
-              {myProfile.role}
-            </Typography>
-            <Typography variant="body2" className={classes.profiledesc}>
-              {myProfile.description}
-            </Typography>
-          </Box>
+        {profileType === 'private' && (
           <Box
-            flexGrow={1.5}
-            maxWidth={380}
-            mt={1}
-            style={{ marginTop: '50px' }}
+            display="flex"
+            justifyContent="flex-end"
+            style={{ position: 'absolute', right: '60px', paddingTop: '50px' }}
           >
-            <Typography variant="h2" style={{ fontWeight: '650' }}>
-              Interested in:
+            <Typography variant="h2" className={classes.publictext}>
+              Public View
             </Typography>
-            {interestedInArr
-              .filter(e => String(e).trim())
-              .map(tagName => (
-                <Chip key={tagName} className={classes.tags} label={tagName} />
-              ))}
+
+            <AntSwitch onClick={handleClick} />
           </Box>
-        </Box>
-      </Card>
+        )}
+        <Card className={classes.cards}>
+          <Box display="flex" justifyContent="flex-end">
+            <Box flexGrow={1} />
+            <Box xs={12} sm={8}>
+              <IconButton href={myProfile.linkedIn}>
+                <img
+                  className={classes.tiny}
+                  alt="LinkedIn"
+                  src=".././static/profile/icons/Vector.png"
+                />
+              </IconButton>
+              <IconButton href={myProfile.twitter}>
+                <img
+                  className={classes.tiny}
+                  alt="Twitter"
+                  src=".././static/profile/icons/Vector-1.png"
+                />
+              </IconButton>
+              <IconButton href={myProfile.github}>
+                <img
+                  className={classes.tiny}
+                  alt="GitHub"
+                  src=".././static/profile/icons/Vector-3.png"
+                />
+              </IconButton>
+              <IconButton href={myProfile.website}>
+                <img
+                  className={classes.tiny}
+                  alt="Website"
+                  src=".././static/profile/icons/Vector-2.png"
+                />
+              </IconButton>
+            </Box>
+          </Box>
+
+          <Box
+            display="flex"
+            flexWrap="wrap"
+            style={{ paddingLeft: '60px', paddingTop: '10px' }}
+          >
+            <Box flexGrow={1} minWidth={200}>
+              <Typography variant="h1" style={{ fontWeight: '650' }}>
+                {myProfile.fullName}
+              </Typography>
+              <Typography variant="body2" style={{ fontWeight: '650' }}>
+                {myProfile.role}
+              </Typography>
+              <Typography variant="body2" className={classes.profiledesc}>
+                {myProfile.description}
+              </Typography>
+            </Box>
+            <Box
+              flexGrow={1.5}
+              maxWidth={380}
+              mt={1}
+              style={{ marginTop: '50px' }}
+            >
+              <Typography variant="h2" style={{ fontWeight: '650' }}>
+                Interested in:
+              </Typography>
+              {interestedInArr
+                .filter(e => String(e).trim())
+                .map((tagName, idx) => (
+                  <Chip key={idx} className={classes.tags} label={tagName} />
+                ))}
+            </Box>
+          </Box>
+        </Card>
+      </SnackbarProvider>
     </Grid>
   );
 }

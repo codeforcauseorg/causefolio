@@ -83,7 +83,7 @@ function Badge() {
         {/* for demo purpose added badges statically */}
         <Grid item>
           <img
-            src="./static/images/icons/star_yellow.svg"
+            src=".././static/images/icons/star_yellow.svg"
             alt="badge"
             height="60px"
           />
@@ -91,7 +91,7 @@ function Badge() {
         </Grid>
         <Grid item>
           <img
-            src="./static/images/icons/star_orange.svg"
+            src=".././static/images/icons/star_orange.svg"
             alt="badge"
             height="60px"
           />
@@ -99,7 +99,7 @@ function Badge() {
         </Grid>
         {/* <Grid item>
           <img
-            src="./static/images/icons/star_blue.svg"
+            src=".././static/images/icons/star_blue.svg"
             alt="badge"
             height="60px"
           />
@@ -107,7 +107,7 @@ function Badge() {
         </Grid>
         <Grid item>
           <img
-            src="./static/images/icons/star_yellow.svg"
+            src=".././static/images/icons/star_yellow.svg"
             alt="badge"
             height="60px"
           />
