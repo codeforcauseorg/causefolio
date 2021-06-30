@@ -125,6 +125,8 @@ function Register() {
     e.preventDefault();
     const userId = user.uid;
     fieldValue.attending = [];
+    fieldValue.bookmarked = [];
+    fieldValue.photoURL = user.photoURL !== null ? user.photoURL : '';
     const db = firebase.firestore();
 
     db.collection('users')

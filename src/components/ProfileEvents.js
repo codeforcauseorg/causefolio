@@ -102,7 +102,7 @@ function ProfileEvents({ userEvents }) {
                 onClick={() => handleClick(`${event.eventLink}`)}
               >
                 <img
-                  src="./static/images/icons/event_calendar_w.svg"
+                  src=".././static/images/icons/event_calendar_w.svg"
                   alt="rsvp"
                   height="12px"
                   style={{ marginRight: '6px' }}

@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/styles';
 import { Button, Grid, Typography } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 import { firebase } from 'src/services/authService';
+import { useHistory } from 'react-router';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -66,6 +67,7 @@ function BookmarkedEvents() {
   const user = useSelector(state => state.account.user);
   const [bookmarkEvent, setBookmarkEvent] = useState([]);
   const [eventID, setEventID] = useState(null);
+  const history = useHistory();
 
   const readIds = async (collection, ids) => {
     setEventID(ids);
@@ -92,6 +94,11 @@ function BookmarkedEvents() {
     };
     fetchBookmarkEvents();
   }, [user]);
+
+  const handleClick = idx => {
+    if (eventID.length <= 0) return;
+    history.push(`/events/${eventID[idx]}`);
+  };
 
   return (
     <div className={classes.root}>
@@ -147,7 +154,7 @@ function BookmarkedEvents() {
                 </div>
                 <Button
                   className={classes.checkOut}
-                  href={`/events/${eventID[idx]}`}
+                  onClick={() => handleClick(idx)}
                   style={
                     event?.eventName.length <= 11
                       ? { marginTop: '21px', backgroundColor: 'white' }
