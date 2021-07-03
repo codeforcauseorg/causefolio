@@ -10,6 +10,7 @@ import ProfileEvents from './ProfileEvents';
 import ProjectsCarousel from './ProjectsCarousel';
 import Loader from './Loader';
 import Badge from './Badge';
+import fb from 'firebase/app';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -32,35 +33,39 @@ const PublicProfile = () => {
   const history = useHistory();
 
   useEffect(() => {
-    if (user === undefined || userID === undefined) return;
-    const db = firebase.firestore();
+    const fetchData = async () => {
+      // if (user === undefined) return;
+      if (fb.apps.length) {
+        const db = await firebase.firestore();
+        const userRef = db.collection('users').doc(userID);
 
-    const userRef = db.collection('users').doc(userID);
+        userRef
+          .get()
+          .then(doc => {
+            if (doc.exists) {
+              const data = doc.data();
+              setMyProfile(data);
+              setLoading(false);
+            } else {
+              history.push('/*');
+              return;
+            }
+          })
+          .catch(error => {
+            console.log('Error getting document:', error);
+          });
 
-    userRef
-      .get()
-      .then(doc => {
-        if (doc.exists) {
-          const data = doc.data();
-          setMyProfile(data);
-          setLoading(false);
-        } else {
-          history.push('/*');
-          return;
-        }
-      })
-      .catch(error => {
-        console.log('Error getting document:', error);
-      });
-
-    // For getting user's upcoming events
-    db.collection('events')
-      .where('createdBy', '==', `${userID}`)
-      .limit(2)
-      .get()
-      .then(userEventCollection => {
-        setUserEvents(userEventCollection.docs.map(doc => doc.data()));
-      });
+        // For getting user's upcoming events
+        db.collection('events')
+          .where('createdBy', '==', `${userID}`)
+          .limit(2)
+          .get()
+          .then(userEventCollection => {
+            setUserEvents(userEventCollection.docs.map(doc => doc.data()));
+          });
+      }
+    };
+    fetchData();
   }, [user, userID, history]);
 
   return (
