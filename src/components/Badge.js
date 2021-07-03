@@ -109,9 +109,6 @@ function Badge() {
           <img
             src="/static/images/icons/star_yellow.svg"
             alt="badge"
-            height="60px"
-          />
-          <Typography className={classes.badgesText}>Organizer</Typography>
         </Grid> */}
       </Grid>
       <div className={classes.buttonContainer}>
