@@ -137,7 +137,7 @@ function ProfileInfo({ myProfile, profileType }) {
             src={
               myProfile.photoURL.length > 0
                 ? myProfile.photoURL
-                : '.././static/profile/icons/icons.png'
+                : '/static/profile/icons/icons.png'
             }
             className={classes.medium}
           />
@@ -164,28 +164,28 @@ function ProfileInfo({ myProfile, profileType }) {
                 <img
                   className={classes.tiny}
                   alt="LinkedIn"
-                  src=".././static/profile/icons/Vector.png"
+                  src="/static/profile/icons/Vector.png"
                 />
               </IconButton>
               <IconButton href={myProfile.twitter}>
                 <img
                   className={classes.tiny}
                   alt="Twitter"
-                  src=".././static/profile/icons/Vector-1.png"
+                  src="/static/profile/icons/Vector-1.png"
                 />
               </IconButton>
               <IconButton href={myProfile.github}>
                 <img
                   className={classes.tiny}
                   alt="GitHub"
-                  src=".././static/profile/icons/Vector-3.png"
+                  src="/static/profile/icons/Vector-3.png"
                 />
               </IconButton>
               <IconButton href={myProfile.website}>
                 <img
                   className={classes.tiny}
                   alt="Website"
-                  src=".././static/profile/icons/Vector-2.png"
+                  src="/static/profile/icons/Vector-2.png"
                 />
               </IconButton>
             </Box>

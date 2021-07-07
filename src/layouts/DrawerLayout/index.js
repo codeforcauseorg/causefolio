@@ -97,7 +97,8 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     textAlign: 'left',
     color: 'white',
-    fontSize: '12px'
+    fontSize: '12px',
+    overflowWrap: 'anywhere'
   },
   idavatar: {
     marginLeft: '0px',
