@@ -1,12 +1,22 @@
 import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 
-const Stats = ({ conducted, attending }) => {
-  const heading = {
+const useStyles = makeStyles(theme => ({
+  heading: {
     color: '#291755',
     marginBottom: '10px'
-  };
-
-  const box = {
+  },
+  main: {
+    display: 'flex',
+    gap: '20px',
+    justifyContent: 'space-between',
+    width: '100%',
+    [theme.breakpoints.down('xs')]: {
+      flexDirection: 'column',
+      alignItems: 'center'
+    }
+  },
+  box: {
     display: 'flex',
     height: '80px',
     width: '250px',
@@ -17,10 +27,12 @@ const Stats = ({ conducted, attending }) => {
     alignItems: 'center',
     position: 'relative',
     fontWeight: '500',
-    fontSize: '20px'
-  };
-
-  const circle = {
+    fontSize: '20px',
+    [theme.breakpoints.down('xs')]: {
+      height: '70px'
+    }
+  },
+  circle: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -32,35 +44,36 @@ const Stats = ({ conducted, attending }) => {
     position: 'absolute',
     border: '2px solid #291755',
     right: '-10px',
-    fontWeight: '900'
-  };
+    fontWeight: '900',
+    [theme.breakpoints.down('xs')]: {
+      height: '85px',
+      width: '85px'
+    }
+  }
+}));
+
+const Stats = ({ conducted, attending }) => {
+  const classes = useStyles();
 
   return (
     <div>
-      <h2 style={heading}>Statistics</h2>
-      <div
-        style={{
-          display: 'flex',
-          gap: '20px',
-          justifyContent: 'space-between',
-          width: '100%'
-        }}
-      >
-        <div style={box}>
+      <h2 className={classes.heading}>Statistics</h2>
+      <div className={classes.main}>
+        <div className={classes.box}>
           <p>
             events
             <br />
             conducted
           </p>
-          <div style={circle}>{conducted}</div>
+          <div className={classes.circle}>{conducted}</div>
         </div>
-        <div style={box}>
+        <div className={classes.box}>
           <p>
             events
             <br />
             attended
           </p>
-          <div style={circle}>{attending}</div>
+          <div className={classes.circle}>{attending}</div>
         </div>
       </div>
     </div>
