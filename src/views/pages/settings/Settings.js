@@ -21,11 +21,7 @@ const useStyles = makeStyles(theme => ({
     width: '98%',
     background: '#FFFFFF',
     borderRadius: '20px',
-    fontSize: '16px',
-    [theme.breakpoints.down('xs')]: {
-      height: '793px',
-      width: '353px'
-    }
+    fontSize: '16px'
   },
   topContainer: {
     width: '150%',
@@ -42,9 +38,8 @@ const useStyles = makeStyles(theme => ({
     textAlign: 'center'
   },
   gallery: {
-    width: '20%',
-    [theme.breakpoints.down('xs')]: {
-      marginLeft: '71px'
+    [theme.breakpoints.down('sm')]: {
+      display: 'none'
     }
   },
 
@@ -295,7 +290,7 @@ function Settings() {
                   </Grid>
                 </Grid>
               </Box>
-              <Box maxWidth="28em" minWidth="24em">
+              <Box className={classes.gallery} maxWidth="28em" minWidth="24em">
                 <img
                   src=".././static/images/event_img.jpg"
                   alt="gallery-icon"

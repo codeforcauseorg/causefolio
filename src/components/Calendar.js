@@ -33,7 +33,7 @@ const useStyles = makeStyles(() => ({
     fontSize: '18px',
     color: '#292C3D',
     display: 'flex',
-    width: '60px',
+    width: '35px',
     height: '30px',
     justifyContent: 'center'
   },
@@ -42,7 +42,7 @@ const useStyles = makeStyles(() => ({
     color: '#291757',
     fontWeight: 'bold',
     display: 'flex',
-    width: '60px',
+    width: '35px',
     height: '30px',
     alignItems: 'center',
     textAlign: 'center',

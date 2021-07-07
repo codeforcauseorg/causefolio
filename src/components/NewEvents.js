@@ -4,7 +4,7 @@ import { Button, Card, Grid, Typography } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 import { firebase } from 'src/services/authService';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(theme => ({
   root: {
     background: '#CCD2E3',
     borderRadius: '20px',
@@ -12,7 +12,10 @@ const useStyles = makeStyles(() => ({
     color: '#291757',
     fontFamily: 'Montserrat',
     marginBottom: '21px',
-    marginLeft: '21px'
+    marginLeft: '21px',
+    [theme.breakpoints.down('sm')]: {
+      marginLeft: 0
+    }
   },
   topContainer: {
     display: 'flex',

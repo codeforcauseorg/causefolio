@@ -1,4 +1,4 @@
-import Box from '@material-ui/core/Box';
+import { Box, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -55,17 +55,23 @@ export default function Dashboard() {
     <DrawerLayout>
       {!loading ? (
         <main className={classes.content}>
-          <Box display="flex">
-            <Box flexGrow={1}>
-              {userEvents.length > 0 && <Calendar userEvents={userEvents} />}
-              <Stats conducted={userEvents.length} attending={attending} />
-              <BookmarkedEvents />
-            </Box>
-            <Box maxWidth="28em" minWidth="24em">
-              <NewEvents />
-              {/* <Publications /> */}
-            </Box>
-          </Box>
+          <Grid container>
+            {/* <Box display="flex"> */}
+            <Grid justify="center" md={8} sm={12} xs={12}>
+              <Box flexGrow={1}>
+                {userEvents.length > 0 && <Calendar userEvents={userEvents} />}
+                <Stats conducted={userEvents.length} attending={attending} />
+                <BookmarkedEvents />
+              </Box>
+            </Grid>
+            <Grid md={4} sm={12} xs={12}>
+              <Box>
+                <NewEvents />
+                {/* <Publications /> */}
+              </Box>
+            </Grid>
+            {/* </Box> */}
+          </Grid>
         </main>
       ) : (
         <Loader></Loader>
