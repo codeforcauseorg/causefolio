@@ -7,8 +7,7 @@ import {
   Dialog,
   DialogActions,
   DialogContent,
-  DialogContentText,
-  useMediaQuery
+  DialogContentText
 } from '@material-ui/core';
 // import Avatar from '@material-ui/core/Avatar';
 import AvatarGroup from '@material-ui/lab/AvatarGroup';
@@ -18,7 +17,6 @@ import { useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router';
 import DrawerLayout from 'src/layouts/DrawerLayout';
 import { firebase } from 'src/services/authService';
-import { useTheme } from '@material-ui/core/styles';
 import { BookmarkBorder, Bookmark } from '@material-ui/icons';
 import { SnackbarProvider, useSnackbar } from 'notistack';
 import Loader from 'src/components/Loader';
@@ -60,27 +58,50 @@ const useStyles = makeStyles(theme => ({
     color: 'black',
     fontSize: '32px',
     [theme.breakpoints.down('sm')]: {
-      fontSize: '26px'
+      fontSize: '30px'
     },
     [theme.breakpoints.down('xs')]: {
-      fontSize: '22px',
+      fontSize: '30px',
       marginBottom: '10px'
     }
   },
-
+  buttons: {
+    display: 'flex',
+    gap: '10px',
+    [theme.breakpoints.down('xs')]: {
+      flexDirection: 'column'
+    }
+  },
+  buttonHeading: {
+    color: '#fff',
+    fontWeight: 'bold',
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '0.85rem'
+    }
+  },
   register: {
     width: '160px',
     backgroundColor: '#291757',
     borderRadius: '20px',
     marginTop: 12,
-    marginBottom: 16
+    marginBottom: 16,
+    [theme.breakpoints.down('xs')]: {
+      width: '120px',
+      marginBottom: 0,
+      marginTop: 0
+    }
   },
   attending: {
     width: '160px',
     backgroundColor: '#576886',
     borderRadius: '20px',
     marginTop: 12,
-    marginBottom: 16
+    marginBottom: 16,
+    [theme.breakpoints.down('xs')]: {
+      width: '120px',
+      marginBottom: 0,
+      marginTop: 0
+    }
   },
   desc: {
     marginTop: '10px',
@@ -155,8 +176,6 @@ export default function IndividualEvent() {
   // For Attending
   const [open, setOpen] = useState(false);
   const [attending, setAttending] = useState(false);
-  const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -224,7 +243,6 @@ export default function IndividualEvent() {
       {!loading ? (
         <>
           <Dialog
-            fullScreen={fullScreen}
             open={open}
             onClose={handleClose}
             aria-labelledby="responsive-dialog-title"
@@ -269,14 +287,12 @@ export default function IndividualEvent() {
                       <Typography className={classes.introduction} variant="h1">
                         {event?.eventName}
                       </Typography>
-                      <Grid item style={{ display: 'flex', gap: '10px' }}>
+                      <Grid item className={classes.buttons}>
                         <Button
                           href={event?.eventLink}
                           className={classes.register}
                         >
-                          <Typography
-                            style={{ color: '#fff', fontWeight: 'bold' }}
-                          >
+                          <Typography className={classes.buttonHeading}>
                             Register
                           </Typography>
                         </Button>
@@ -287,9 +303,7 @@ export default function IndividualEvent() {
                           }
                           disabled={attending}
                         >
-                          <Typography
-                            style={{ color: '#fff', fontWeight: 'bold' }}
-                          >
+                          <Typography className={classes.buttonHeading}>
                             {attending ? 'Attending' : 'Attend'}
                           </Typography>
                         </Button>
