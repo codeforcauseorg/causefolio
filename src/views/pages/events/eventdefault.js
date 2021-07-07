@@ -23,9 +23,8 @@ const useStyles = makeStyles(theme => ({
     fontWeight: 'bold',
     fontSize: '18px',
     background: '#291757',
-    [theme.breakpoints.down('xs')]: {
-      marginTop: '29px',
-      marginLeft: '215px'
+    [theme.breakpoints.down('sm')]: {
+      margin: '0 0 20px 0'
     }
   }
 }));

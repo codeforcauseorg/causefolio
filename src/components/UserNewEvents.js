@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import { firebase } from 'src/services/authService';
 import { useHistory } from 'react-router';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(theme => ({
   root: {
     color: '#291757',
     fontFamily: 'Montserrat',
@@ -27,7 +27,10 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     fontSize: '17px',
     marginBottom: '10px',
-    letterSpacing: '0.44px'
+    letterSpacing: '0.44px',
+    [theme.breakpoints.down('xs')]: {
+      justifyContent: 'space-evenly'
+    }
   },
   bmText: {
     display: 'flex',
