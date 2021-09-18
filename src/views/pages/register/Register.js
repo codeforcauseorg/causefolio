@@ -90,12 +90,20 @@ const useStyles = makeStyles(theme => ({
   },
   registerButton: {
     width: '140px',
-    backgroundColor: '#291757',
+    backgroundColor: '#ffffff',
+    color: '#291757',
     borderRadius: '20px',
     padding: '5px',
     marginLeft: '16px',
     marginTop: 12,
-    marginBottom: 16
+    marginBottom: 16,
+    border: '1px solid #291757',
+    transition: 'all 0.1s ease 0s',
+    "&:hover": {
+      color: '#ffffff',
+      borderColor: 'transparent',
+      backgroundColor: '#291757',
+    }
   }
 }));
 
@@ -228,7 +236,7 @@ function Register() {
                     className={classes.registerButton}
                     onClick={handleRegister}
                   >
-                    <Typography style={{ color: '#fff' }}>
+                    <Typography variant = "h5" component = "div">
                       Register Me
                     </Typography>
                   </Button>{' '}
